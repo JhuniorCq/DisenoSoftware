@@ -1,0 +1,565 @@
+{
+  "campanas": [
+    {
+      "id": 1,
+      "name": "Campaña de marketing: Verano 2023",
+      "description": "Esta es una campaña de ejemplo para productos de verano",
+      "created": "2023-03-15",
+      "starts": "2023-03-20",
+      "ends": "2023-03-30",
+      "objectives": "Aumentar las ventas de productos de verano en un 20%.",
+      "targeredAge": "rangoEdad1",
+      "gender": "female",
+      "department": "Lima",
+      "district": "Lima"
+    },
+    {
+      "id": 2,
+      "name": "Campaña de marketing: Primavera 2023",
+      "description": "Esta es una campaña de ejemplo para la temporada primavera",
+      "created": "2023-04-04",
+      "starts": "2023-04-10",
+      "ends": "2023-04-20",
+      "objectives": "Promover los nuevos productos de primavera y captar nuevos clientes.",
+      "targeredAge": "rangoEdad2",
+      "gender": "male",
+      "department": "Cusco",
+      "district": "Cusco"
+    },
+    {
+      "id": 3,
+      "name": "Campaña de marketing: Verano 2023",
+      "description": "Esta es una campaña de ejemplo para productos de verano",
+      "created": "2023-06-07",
+      "starts": "2023-06-15",
+      "ends": "2023-06-25",
+      "objectives": "Incrementar las ventas de productos de verano y fidelizar a los clientes existentes.",
+      "targeredAge": "rangoEdad3",
+      "gender": "female",
+      "department": "Arequipa",
+      "district": "Arequipa"
+    },
+    {
+      "id": 4,
+      "name": "Campaña de marketing: Otoño 2023",
+      "description": "Esta es una campaña de ejemplo para la temporada de otoño",
+      "created": "2023-08-09",
+      "starts": "2023-08-15",
+      "ends": "2023-08-25",
+      "objectives": "Impulsar la compra de productos de otoño y generar interés en la nueva colección.",
+      "targeredAge": "rangoEdad4",
+      "gender": "male",
+      "department": "Loreto",
+      "district": "Iquitos"
+    },
+    {
+      "id": 5,
+      "name": "Campaña de marketing: Halloween 2023",
+      "description": "Esta es una campaña de ejemplo para la festividad de Halloween",
+      "created": "2023-10-10",
+      "starts": "2023-10-20",
+      "ends": "2023-10-31",
+      "objectives": "Aprovechar la temporada de Halloween para aumentar las ventas y la visibilidad de la marca.",
+      "targeredAge": "rangoEdad5",
+      "gender": "female",
+      "department": "Lambayeque",
+      "district": "Chiclayo"
+    },
+    {
+      "id": 6,
+      "name": "Campaña de marketing: Navidad 2023",
+      "description": "Esta es una campaña de ejemplo para la temporada navideña",
+      "created": "2023-11-12",
+      "starts": "2023-12-01",
+      "ends": "2023-12-24",
+      "objectives": "Crear una atmósfera festiva y aumentar las ventas durante la temporada navideña.",
+      "targeredAge": "rangoEdad1",
+      "gender": "male",
+      "department": "Piura",
+      "district": "Piura"
+    },
+    {
+      "id": 7,
+      "name": "Campaña de marketing: Año Nuevo 2023",
+      "description": "Esta es una campaña de ejemplo para la celebración de Año Nuevo",
+      "created": "2023-12-11",
+      "starts": "2023-12-26",
+      "ends": "2023-12-31",
+      "objectives": "Fomentar la participación en eventos de Año Nuevo y promover productos relacionados.",
+      "targeredAge": "rangoEdad2",
+      "gender": "female",
+      "department": "Tacna",
+      "district": "Tacna"
+    },
+    {
+      "id": 8,
+      "name": "Campaña de marketing: Rebajas de Verano 2023",
+      "description": "Esta es una campaña de ejemplo para las rebajas de verano",
+      "created": "2023-07-02",
+      "starts": "2023-07-05",
+      "ends": "2023-07-15",
+      "objectives": "Atraer a los compradores con descuentos especiales y liquidar inventario de verano.",
+      "targeredAge": "rangoEdad3",
+      "gender": "male",
+      "department": "Junin",
+      "district": "Huancayo"
+    },
+    {
+      "id": 9,
+      "name": "Campaña de marketing: Regreso a Clases 2023",
+      "description": "Esta es una campaña de ejemplo para el regreso a clases",
+      "created": "2023-08-08",
+      "starts": "2023-08-15",
+      "ends": "2023-08-30",
+      "objectives": "Ayudar a las familias a prepararse para el regreso a clases y aumentar las ventas de productos escolares.",
+      "targeredAge": "rangoEdad4",
+      "gender": "female",
+      "department": "Ica",
+      "district": "Ica"
+    },
+    {
+      "id": 10,
+      "name": "Campaña de marketing: Black Friday 2023",
+      "description": "Esta es una campaña de ejemplo para el Black Friday",
+      "created": "2023-11-11",
+      "starts": "2023-11-24",
+      "ends": "2023-11-30",
+      "objectives": "Generar entusiasmo por el Black Friday y aumentar las ventas en línea y en tiendas físicas.",
+      "targeredAge": "rangoEdad5",
+      "gender": "male",
+      "department": "Cajamarca",
+      "district": "Cajamarca"
+    },
+    {
+      "name": "No mas alonsos",
+      "starts": "2023-10-06",
+      "ends": "2023-10-10",
+      "objectives": "awdadaw",
+      "description": "holaa",
+      "targeredAge": "rangoEdad2",
+      "gender": "femenino",
+      "department": "La_Libertad",
+      "district": "Pataz",
+      "created": "2023-10-06",
+      "id": 11
+    },
+    {
+      "name": "aaa",
+      "starts": "2023-10-12",
+      "ends": "2023-11-12",
+      "objectives": "eeee",
+      "description": "holaaaa",
+      "targeredAge": "rangoEdad3",
+      "gender": "femenino",
+      "department": "La_Libertad",
+      "district": "Pataz",
+      "created": "2023-10-06",
+      "id": 12
+    },
+    {
+      "name": "aaa",
+      "starts": "2023-10-12",
+      "ends": "2023-11-12",
+      "objectives": "eeee",
+      "description": "holaaaa",
+      "targeredAge": "rangoEdad1",
+      "gender": "masculino",
+      "department": "Huanuco",
+      "district": "Leoncio Prado",
+      "created": "2023-10-06",
+      "id": 13
+    },
+    {
+      "name": "qqqq",
+      "starts": "2023-10-12",
+      "ends": "2023-12-21",
+      "objectives": "owind",
+      "description": "holaa",
+      "targeredAge": "rangoEdad1",
+      "gender": "masculino",
+      "department": "Junin",
+      "district": "Satipo",
+      "created": "2023-10-06",
+      "id": 14
+    },
+    {
+      "name": "wad",
+      "starts": "2023-12-12",
+      "ends": "2023-12-19",
+      "objectives": "afajbaef",
+      "description": "daaaadad",
+      "targeredAge": "rangoEdad1",
+      "gender": "masculino",
+      "department": "La_Libertad",
+      "district": "Pacasmayo",
+      "created": "2023-10-06",
+      "id": 15
+    },
+    {
+      "name": "ggggggg",
+      "starts": "2023-12-13",
+      "ends": "2023-12-19",
+      "objectives": "owain",
+      "description": "holaaaaa",
+      "targeredAge": "rangoEdad2",
+      "gender": "femenino",
+      "department": "Junin",
+      "district": "Chupaca",
+      "created": "2023-10-08",
+      "id": 16
+    },
+    {
+      "name": "NOMBRE CAMPAÑA PRUEBAAAAA",
+      "starts": "2023-11-13",
+      "ends": "2023-11-22",
+      "objectives": "oaidodn",
+      "description": "awdaawd",
+      "targeredAge": "rangoEdad4",
+      "gender": "masculino",
+      "department": "La_Libertad",
+      "district": "Santiago de Chuco",
+      "created": "2023-10-08",
+      "id": 17
+    },
+    {
+      "name": "aaaaaaaaaaaaaaaaaaaa",
+      "starts": "2023-11-13",
+      "ends": "2023-11-21",
+      "objectives": "alalalal",
+      "description": "DESCRIPCION DE EJEMPLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+      "targeredAge": "rangoEdad1",
+      "gender": "masculino",
+      "department": "Huancavelica",
+      "district": "Churcampa",
+      "created": "2023-10-08",
+      "id": 18
+    },
+    {
+      "name": "pruebita de restricciones",
+      "starts": "2023-03-12",
+      "ends": "2023-05-12",
+      "objectives": "as",
+      "description": "dwaadadadasdada",
+      "targeredAge": "rangoEdad2",
+      "gender": "femenino",
+      "department": "Lima",
+      "district": "Huaura",
+      "created": "2023-10-08",
+      "id": 19
+    },
+    {
+      "name": "eeeeeeee",
+      "starts": "2023-11-12",
+      "ends": "2023-12-12",
+      "objectives": "eeeeeeee",
+      "description": "hl",
+      "targeredAge": "rangoEdad5",
+      "gender": "masculino",
+      "department": "Lambayeque",
+      "district": "Lambayeque",
+      "created": "2023-10-08",
+      "id": 20
+    },
+    {
+      "name": "pruebinha",
+      "starts": "2023-11-12",
+      "ends": "2023-12-12",
+      "objectives": "eeeeeeee",
+      "description": "hl",
+      "targeredAge": "rangoEdad5",
+      "gender": "masculino",
+      "department": "Lambayeque",
+      "district": "Lambayeque",
+      "created": "2023-10-08",
+      "id": 21
+    },
+    {
+      "name": "hol",
+      "starts": "2024-12-12",
+      "ends": "2025-12-12",
+      "objectives": "alalalalal",
+      "description": "Opcional",
+      "targeredAge": "rangoEdad3",
+      "gender": "masculino",
+      "department": "La_Libertad",
+      "district": "Santiago de Chuco",
+      "created": "2023-10-11",
+      "id": 22
+    },
+    {
+      "name": "eeeeeeeeeee",
+      "starts": "1212-12-12",
+      "ends": "1213-12-12",
+      "objectives": "eeee",
+      "description": "caacacacacacacacacaacac",
+      "targeredAge": "4-5",
+      "gender": "femenino",
+      "department": "La_Libertad",
+      "district": "Pataz",
+      "created": "2023-10-12",
+      "id": 23
+    }
+  ],
+  "publicocorreoscampanas": [
+    {
+      "id": 1,
+      "name": "Carlos",
+      "surname": "Serpa",
+      "email": "carlosserpa@gmail.com",
+      "gender": "masculino",
+      "celphone": "987654321"
+    },
+    {
+      "id": 2,
+      "name": "Ana",
+      "surname": "García",
+      "email": "anagarcia@hotmail.com",
+      "gender": "femenino",
+      "celphone": "912345678"
+    },
+    {
+      "id": 3,
+      "name": "María",
+      "surname": "López",
+      "email": "marialopez@outlook.com",
+      "gender": "femenino",
+      "celphone": "956789012"
+    },
+    {
+      "id": 4,
+      "name": "Juan",
+      "surname": "Pérez",
+      "email": "juanperez@gmail.com",
+      "gender": "masculino",
+      "celphone": "945678901"
+    },
+    {
+      "id": 5,
+      "name": "Laura",
+      "surname": "Ramírez",
+      "email": "lauraramirez@hotmail.com",
+      "gender": "femenino",
+      "celphone": "913456789"
+    },
+    {
+      "id": 6,
+      "name": "Pedro",
+      "surname": "Sánchez",
+      "email": "pedrosanchez@outlook.com",
+      "gender": "masculino",
+      "celphone": "965432109"
+    },
+    {
+      "id": 7,
+      "name": "Carmen",
+      "surname": "Fernández",
+      "email": "carmenfernandez@gmail.com",
+      "gender": "femenino",
+      "celphone": "978901234"
+    },
+    {
+      "id": 8,
+      "name": "Luis",
+      "surname": "Gómez",
+      "email": "luisgomez@hotmail.com",
+      "gender": "masculino",
+      "celphone": "954321098"
+    },
+    {
+      "id": 9,
+      "name": "Elena",
+      "surname": "Martínez",
+      "email": "elenamartinez@outlook.com",
+      "gender": "femenino",
+      "celphone": "911234567"
+    },
+    {
+      "id": 10,
+      "name": "Javier",
+      "surname": "Rodríguez",
+      "email": "javierrodriguez@gmail.com",
+      "gender": "masculino",
+      "celphone": "966789012"
+    }
+  ],
+  "correoscampanascreadas": [
+    {
+      "id": 1,
+      "emailUser": "hola123@gmail.com",
+      "affairUser": "estoy probando , este es un asunto",
+      "messageUser": "estoy probando, este es un mensaje"
+    },
+    {
+      "emailUser": "aaa@hotmail.com",
+      "affairUser": "elelelele",
+      "messageUser": "asnandaoidandio",
+      "id": 2
+    },
+    {
+      "emailUser": "alalalalala@gmail.com",
+      "affairUser": "hola asunto raro",
+      "messageUser": "holassasmaodmoiad",
+      "id": 3
+    },
+    {
+      "newCorreo": {
+        "email": "awdaw@gmail.com",
+        "affair": "aeinaofni",
+        "message": "ofinaefoin"
+      },
+      "id": 4
+    },
+    {
+      "newCorreo": {
+        "email": "awdaw@gmail.com",
+        "affair": "aeinaofni",
+        "message": "ofinaefoin"
+      },
+      "emailUser": "aaa@gmail.com",
+      "send": "now",
+      "id": 5
+    },
+    {
+      "newCorreo": {
+        "email": "aaaadiamefoenafneao@gmail.com",
+        "affair": "eaofnaoin",
+        "message": "QOINFON"
+      },
+      "id": 6
+    },
+    {
+      "newCorreo": {
+        "email": "wadadad@gmail.com",
+        "affair": "aeoifn",
+        "message": "oaenfioan\n"
+      },
+      "emailUser": "hola@gmail.com",
+      "send": "now",
+      "id": 7
+    }
+  ],
+  "clientesllamadas":[
+    {
+      "id" : "0101",
+      "names" : "Alonso Mateo",
+      "surnames" : "Gutierrez Vidal", 
+      "email" : "alonso2910@gmail.com",
+      "gender" : "masculino",
+      "phone" : "986742853"
+    },
+    {
+      "id": "0202",
+      "names": "Camila",
+      "surnames": "López Martínez",
+      "email": "camila123@gmail.com",
+      "gender": "femenino",
+      "phone": "789456321"
+    },
+    {
+      "id": "0303",
+      "names": "Juan",
+      "surnames": "García Pérez",
+      "email": "juan.garcia@gmail.com",
+      "gender": "masculino",
+      "phone": "654123789"
+    },
+    {
+      "id": "0404",
+      "names": "María",
+      "surnames": "Rodríguez Sánchez",
+      "email": "maria.r@gmail.com",
+      "gender": "femenino",
+      "phone": "567890123"
+    },
+    {
+      "id": "0505",
+      "names": "Pedro",
+      "surnames": "Mendoza Silva",
+      "email": "pedro.m@gmail.com",
+      "gender": "masculino",
+      "phone": "432109876"
+    },
+    {
+      "id": "0606",
+      "names": "Laura",
+      "surnames": "Pérez González",
+      "email": "laura_pg@gmail.com",
+      "gender": "femenino",
+      "phone": "765432198"
+    },
+    {
+      "id": "0707",
+      "names": "Miguel",
+      "surnames": "Fernández López",
+      "email": "miguel_f@hotmail.com",
+      "gender": "masculino",
+      "phone": "654987321"
+    },
+    {
+      "id": "0808",
+      "names": "Isabella",
+      "surnames": "Torres Ramírez",
+      "email": "isabella_t@gmail.com",
+      "gender": "femenino",
+      "phone": "789012345"
+    },
+    {
+      "id": "0909",
+      "names": "David",
+      "surnames": "Hernández Martínez",
+      "email": "david.hm@gmail.com",
+      "gender": "masculino",
+      "phone": "543216789"
+    },
+    {
+      "id": "1010",
+      "names": "Valentina",
+      "surnames": "Gómez Pérez",
+      "email": "valentina.gomez@gmail.com",
+      "gender": "femenino",
+      "phone": "678901234"
+    }
+  ],
+  "llamadasadministrar": [
+    {
+      "id": "#00001",
+      "llamada": "llamada desde 945874932"
+    },
+    {
+      "id": "#00002",
+      "llamada": "llamada desde 958342195"
+    },
+    {
+      "id": "#00003",
+      "llamada": "llamada desde 974561238"
+    },
+    {
+      "id": "#00004",
+      "llamada": "llamada desde 921678543"
+    },
+    {
+      "id": "#00005",
+      "llamada": "llamada desde 936254781"
+    },
+    {
+      "id": "#00006",
+      "llamada": "llamada desde 953871462"
+    },
+    {
+      "id": "#00007",
+      "llamada": "llamada desde 947512683"
+    },
+    {
+      "id": "#00008",
+      "llamada": "llamada desde 998765432"
+    },
+    {
+      "id": "#00009",
+      "llamada": "llamada desde 964182753"
+    },
+    {
+      "id": "#00010",
+      "llamada": "llamada desde 926374819"
+    }
+  ]
+}
