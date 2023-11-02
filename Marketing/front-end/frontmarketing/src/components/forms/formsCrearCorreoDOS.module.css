@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Montserrat&family=Tilt+Neon&display=swap');
+
+:root{
+    --color-primario : #2D3E50;
+    --color-btn-light : #c4beeb;
+    --color-btn-primary : #6959cb;
+    --color-border : rgba(0, 0, 0, 0.173);
+    --color-fechas : rgb(213, 197, 197);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* parte menuLateral CREAR CORREO */
+
+.formCrearCorreoCampana{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.containerCorreoCliente{
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.containerCorreoCliente, .containerOpcionEnvio{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.containerCorreoCliente > input, .containerOpcionEnvio > input{
+    border: 1px solid wheat;
+    border-radius: 10px;
+    padding: .3rem .5rem;
+    outline: none;
+    transition: border-color .3s ease;
+}   
+
+.containerCorreoCliente > input:focus, .containerOpcionEnvio > input:focus{
+    border: 2px solid aqua;
+}
+
+.btnSubmitFinalForm{
+    border: none;
+    border-radius: 12px;
+    background-color: var(--color-btn-primary);
+    color: white;
+    letter-spacing: 1px;
+    padding: .5rem 1rem;
+    margin: 0 auto .4rem auto;
+    /* cursor: pointer; */
+    
+    transition: background-color .3s ease, color .3s ease, transform .3s ease;
+}
+
+.btnSubmitFinalForm:hover{
+    background-color: white;
+    transform: scale(1.1);
+    color: var(--color-btn-primary);
+}
+
+.botonDisabled {
+    opacity: 0.5; /* Establece una opacidad para indicar que está deshabilitado */
+    cursor: not-allowed; /* Cambia el cursor a "no permitido" para indicar que no se puede hacer clic */
+    transition: opacity .3s ease, cursor .3s ease;
+}
+
+.labelRadioButtonUno, .labelRadioButtonDos{
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    gap: 8rem;
+    color: blueviolet;
+    font-weight: 600;
+    margin: .7rem 0;
+    padding-bottom: 1rem;
+    font-family: 'Barlow', sans-serif;
+    letter-spacing: .5px;
+}
+
+.labelRadioButtonDos{
+    gap: 6.5rem;
+}
+
+.checkBoxesFormCrearCorreo{
+    margin: 2rem 0 0 0 ;
+}
+
+.labelRadioButtonDos > span , .labelRadioButtonUno > span{
+    transition: font-size .3s ease, font-weight .3s ease;
+}
+
+
+.labelRadioButtonDos > span:hover , .labelRadioButtonUno > span:hover{
+    font-size: 1.1rem;
+    font-weight: bold ;
+}
+
+.containerDateTime{
+    color: blueviolet;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    opacity: 0;
+    z-index: -100000000;
+    transition: opacity .3s ease;
+    font-family: 'Tilt Neon', sans-serif;
+    margin-bottom: 3rem;
+}
+
+.containerDateTime > label {
+    font-family: 'Tilt Neon', sans-serif;
+}
+
+.abrirOptMasTarde{
+    opacity: 1;
+    z-index: 1;
+}
+
+.hideOptMasTarde{
+    opacity: 0;
+    z-index: -1000000;
+}
+
+.containerInputsDate{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+
+
+
+
+

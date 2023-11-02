@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+:root{
+    --color-primario : #2D3E50;
+    --color-btn-light : #c4beeb;
+    --color-btn-primary : #6959cb;
+    --color-border : rgba(0, 0, 0, 0.173);
+    --color-fechas : rgb(213, 197, 197);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    font-size: 1rem;
+}
+
+
+/* colocando un efecto cuando se hace hover a cada 'anchor' (clientes, administrar, analizar, estado)  */
+
+.containerRoutes{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.containerRoutes .redirection{
+    width: 29rem;
+
+}
+
+.containerRoutes .redirection > li > a{
+    font-size: 1.3rem; 
+    color: black;
+    font-family: 'Mooli', sans-serif;
+    transition: font-size 0.3s ease, font-weight 0.3s ease;
+    text-decoration: none;
+}
+
+.containerRoutes .redirection > li > a:hover{
+    color: var(--color-btn-primary);
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+/* coloqué que los botones de gestión y calenadario se alcen un poco cuando se haga hover: */
+
+.containerRoutes .redirection > li{
+    transition: transform 0.3s ease;
+}
+
+.containerRoutes .redirection > li:hover{
+    transform: translate(0, -10%);
+}
+
+/* RESALTANDO el anchor en caso haya sido clickeado */
+
+.highlightAnchor{
+    color: var(--color-btn-primary) !important;
+    font-weight: bold;
+}
+
+/* estilizo la barra de búsqueda: */
+
+.barraBusqueda{
+    margin-bottom: 1.5rem;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navSearch{
+    position: relative;
+}
+
+.inputBar{
+    padding: 0.6rem;
+    width: 15rem;
+    border-radius: 5px;
+    border: 1px solid var(--color-border);
+    outline: none;
+    transition: border .2s ease;
+}
+
+.inputBar:focus{
+    border: 2px solid var(--color-border);
+}
+
+.navIconSearch{
+    position: absolute;
+    top : 50%;
+    left: 205px;
+    transform: translateY(-50%);
+    border: none;
+    color: var(--color-btn-primary);
+    font-size: 1rem;
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.navIconSearch:hover{
+    color: var(--color-primario);
+    box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
+}
+
+
+
+
+/* aplico el GRID a la parte de ADMINISTRAR */
+
+
+
+
+.parteAdministrar{
+    display: grid;
+    grid-template-columns: 1.5fr 3fr;
+}
+
+.parteListaIzquierda{
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    /* controlo la separacion mejor con gap para poder ajustarlo a mi gusto */
+    align-items: center;
+    position: relative;
+
+}
+
+.tituloLista{
+    padding: 1rem;
+    margin-top: .7rem;
+}
+
+.containerBotonesLista{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 4rem;
+}
+
+.botonLista{
+    border-radius: 13px;
+    border: none;
+    padding: .7rem 1.3rem;
+    color: rgb(55, 89, 156);
+    font-weight: bold;
+    background-color: rgb(160, 212, 233);
+    transition: background-color .3s ease, color .3s ease;
+}
+
+.botonLista:hover{
+    background-color: steelblue;
+    color: white;
+}
+
+
+.parteVisionCorreoDerecha{
+    padding: 2rem;
+}
+
+/* resaltando el boton seleccionado en la parte de administrar */
+
+.highlightButton{
+    background-color: rgb(55, 89, 156);
+    color: white;
+}
+
+
+
+
+
+/* parte CLIENTES: */
+
+
+
+
+.containerArribaClientes{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    /* background-color: red; */
+    align-items:center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+}
+
+.containerTablaClientes{
+    margin: 1.5rem;
+    border: 1px solid #2D3E50;
+}
+
+
+
+
+
+/* parte ANALIZAR */
+
+
+
+
+
+
+.containerArribaAnalizar{
+   /* background-color: red; */
+   position: relative;
+   height: 10rem;
+}
+
+.barraBusquedaParteAnalizar{
+    position: absolute;
+    left: 0;
+    top: 10%;
+    margin-left: 2rem;
+}
+
+.inputBarParteAnalizar{
+    width: 20rem;
+}
+
+.navIconSearchParteAnalizar{
+    left: 280px;
+}
+
+.interaccionUsuariosAnalizar{
+    margin-left: 2rem;
+    position: absolute;
+    top: 60%;
+    left: 0;
+}
+
+.cardAnalisisEstadistico{
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 20rem;
+    margin: .5rem 2rem 9rem 2rem;
+    /* le doy el margin abajo mucho para que quede espacio para scrollear un poco */
+}
+
+.enviadosCard, .tasaDeAperturaCard
+, .tasaDeClicksCard{
+    
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.enviadosCard > h3, .tasaDeAperturaCard > h3,
+.tasaDeClicksCard > h3{
+    padding: 0 1rem;
+    overflow-y: hidden;
+    transition: transform .3s ease, color .3s ease;
+}
+
+.enviadosCard > h3:hover, .tasaDeAperturaCard > h3:hover,
+.tasaDeClicksCard > h3:hover{
+    color: #6959cb;
+    transform: scale(1.2);
+}
+
+.enviadosCard > h1, .tasaDeAperturaCard > h1,
+.tasaDeClicksCard > h1{
+    padding: 0 1rem;
+    overflow-y: hidden;
+    transition: transform .3s ease, color .3s ease;
+}
+
+.enviadosCard > h1:hover, .tasaDeAperturaCard > h1:hover,
+.tasaDeClicksCard > h1:hover{
+    color: #6959cb;
+    transform: scale(1.2);
+}
+
+.enviadosCard > small, .tasaDeAperturaCard > small,
+.tasaDeClicksCard > small{
+    transition: transform .3s ease, color .3s ease, font-weight .3s ease;
+}
+
+.enviadosCard > small:hover, .tasaDeAperturaCard > small:hover,
+.tasaDeClicksCard > small:hover{
+    font-weight: bold;
+    color: #6959cb;
+    transform: scale(1.2);
+}
+
+
+/* parte ESTADO */
+
+.cardAnalisisParteEstado{
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1rem 0 1rem 45%;
+    width: 50%;
+
+}
+
+.enviadosCardParteEstado, .tasaDeAperturaCardParteEstado
+, .tasaDeClicksCardParteEstado{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.enviadosCardParteEstado > h3, .tasaDeAperturaCardParteEstado > h3
+, .tasaDeClicksCardParteEstado > h3{
+    overflow-y: hidden;
+}
+
+.enviadosCardParteEstado > h1, .tasaDeAperturaCardParteEstado > h1
+, .tasaDeClicksCardParteEstado > h1{
+    overflow-y: hidden;
+}
+
+.evolucionParteEstado{
+    margin-left: 2rem;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+.containerParteGraficoEstadisticoParteEstado{
+    display: block;
+    width: 100vw;
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.graficoEstado{
+    box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
+    background-color: whitesmoke;
+    width: 25rem;
+    height: 27rem;
+    margin: 3rem 0;
+}
+

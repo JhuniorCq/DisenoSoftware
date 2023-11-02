@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+:root{
+    --color-primario : #2D3E50;
+    --color-btn-light : #c4beeb;
+    --color-btn-primary : #6959cb;
+    --color-border : rgba(0, 0, 0, 0.173);
+    --color-fechas : rgb(213, 197, 197);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.formCrearCampana{    
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+
+.containerNombreCampana, .containerFechaInicioCampanas,
+.containerFechaFinCampanas , .containerObjetivosCampanas, 
+.containerPublicoObjetivoCampana, .containerNotas{
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.containerNombreCampana > input, .containerFechaInicioCampanas > input, 
+.containerFechaFinCampanas >input, .containerObjetivosCampanas > input, 
+.containerPublicoObjetivoCampana > input, .containerNotas > input{
+    border-radius: 3px;
+    border: 1px solid var(--color-btn-primary);
+    outline: none;
+    font-family: 'Mooli', sans-serif;
+    height: 1.8rem
+}
+
+.containerNombreCampana > label, .containerFechaInicioCampanas > label,  
+.containerFechaFinCampanas > label, .containerObjetivosCampanas > label, 
+.containerPublicoObjetivoCampana > label, .containerNotas > label{
+    font-family: 'Mooli', sans-serif;
+    letter-spacing: 1.5px;
+    margin-bottom: .7rem;
+}
+
+
+.textAreaa{
+    resize: none;
+}
+
+.botonesMenu{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+
+.boton{
+    border-radius: 7px;
+    border: none;
+    color: white;
+    padding: .6rem 1.6rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.boton__crear{
+    background-color: var(--color-btn-primary);
+    transition: background-color .3s ease;
+}
+
+.boton__crear:hover{
+    background-color: rgb(59, 59, 208);
+}
+
+.boton__cancelar{
+    background-color: var(--color-btn-primary);
+    transition: background-color .3s ease;
+}
+
+.boton__cancelar:hover{
+    background-color: rgb(59, 59, 208);
+}
+
+.publicoObjetivo{
+    border-radius: 10px;
+    border: none;
+    background-color: steelblue;
+    color: white;
+    padding: .25rem 0;
+    cursor: pointer;
+    font-family: 'Mooli', sans-serif;
+    letter-spacing: 1.5px;
+    margin-bottom: .7rem;
+    transition: background-color .3s ease;
+    text-align: center;
+}
+
+.publicoObjetivo:hover{
+    background-color: rgb(35, 112, 175);
+}
+
+.asterisco{
+    color: orangered;
+    font-weight: bold;
+}
+
+
+/* estilos para ver el boton deshabilitado */
+
+.botonDisabled {
+    opacity: 0.5; /* Establece una opacidad para indicar que está deshabilitado */
+    cursor: not-allowed; /* Cambia el cursor a "no permitido" para indicar que no se puede hacer clic */
+    transition: opacity .3s ease, cursor .3s ease;
+  }

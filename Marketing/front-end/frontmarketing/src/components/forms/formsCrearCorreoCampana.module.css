@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+:root{
+    --color-primario : #2D3E50;
+    --color-btn-light : #c4beeb;
+    --color-btn-primary : #6959cb;
+    --color-border : rgba(0, 0, 0, 0.173);
+    --color-fechas : rgb(213, 197, 197);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* parte menuLateral CREAR CORREO */
+
+.formCrearCorreoCampana{
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.containerTituloCorreo, .containerAsuntoCorreo
+, .containerMensajeCorreo{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.containerTituloCorreo > input, .containerAsuntoCorreo > input
+, .containerMensajeCorreo > textarea{
+    border: 1px solid wheat;
+    border-radius: 10px;
+    padding: .3rem .5rem;
+    outline: none;
+    transition: border-color .3s ease;
+}   
+
+.containerTituloCorreo > input:focus, .containerAsuntoCorreo > input:focus
+, .containerMensajeCorreo > textarea:focus{
+    border: 2px solid aqua;
+}
+
+.containerMensajeCorreo > textarea{
+    min-height: 20rem;
+    resize: none;
+}
+
+.btnCrearCorreo1{
+    border: none;
+    border-radius: 12px;
+    background-color: var(--color-btn-primary);
+    color: white;
+    letter-spacing: 1px;
+    padding: .5rem 1rem;
+    margin: 0 auto .4rem auto;
+    transition: background-color .3s ease, color .3s ease, transform .3s ease;
+}
+
+.btnCrearCorreo1:hover{
+    background-color: white;
+    transform: scale(1.1);
+    color: var(--color-btn-primary);
+}
+
+.botonDisabled {
+    opacity: 0.5; /* Establece una opacidad para indicar que está deshabilitado */
+    cursor: not-allowed; /* Cambia el cursor a "no permitido" para indicar que no se puede hacer clic */
+    transition: opacity .3s ease, cursor .3s ease;
+}
+
+.btnSiguienteIsClicked{
+    opacity: 0;
+    z-index: -100;
+}

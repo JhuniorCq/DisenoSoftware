@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+:root{
+    --color-primario : #2D3E50;
+    --color-btn-light : #c4beeb;
+    --color-btn-primary : #6959cb;
+    --color-border : rgba(0, 0, 0, 0.173);
+    --color-fechas : rgb(213, 197, 197);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    font-size: 1rem;
+
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+li{
+    list-style: none;
+}
+
+/* empiezan las clases  */
+
+/* estilizando la visualización de campañas */
+
+.vistaCampanas{
+    margin: 2.5rem 3.8rem;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    position: relative;
+}
+
+.titulos{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid var(--color-border);    
+    padding: 1rem;
+}
+
+.botonesCambiarVistaTabla{
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    font-family: 'Mooli', sans-serif;
+}
+
+.cambiarVistaTablaCampana{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    transition:font-weight .3s ease, transform .3s ease;
+}
+
+.cambiarVistaTablaCampana:hover{
+    font-weight: bold;
+    color: var(--color-btn-primary);
+    transform: scale(1.1);
+}   
+
+
+/* padding de la barraBusqueda y la tabla */
+.containerContenido{
+    padding: 1.1rem 1rem;
+}
+
+/* estilizamos la barra de búsqueda :  */
+
+.barraBusqueda{
+    margin-bottom: 1.5rem;
+    height: 2rem;
+    overflow-y: hidden;
+}
+
+.navSearch{
+    position: relative;
+}
+
+.inputBar{
+    padding: 0.6rem;
+    width: 15rem;
+    border-radius: 5px;
+    border: 1px solid var(--color-border);
+    outline: none;
+}
+
+.navIconSearch{
+    position: absolute;
+    top : 50%;
+    left: 205px;
+    transform: translateY(-50%);
+    border: none;
+    color: var(--color-btn-primary);
+    font-size: 1rem;
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.navIconSearch:hover{
+    color: var(--color-primario);
+    box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
+}
+
+.containerTabla{
+    height: 70vh;
+}
+
+/* configurando el scrollbar */
+
+body::-webkit-scrollbar{
+    width: 15px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background-color: var(--color-border);
+    border-radius: 10px;
+}
+
+.containerTabla::-webkit-scrollbar{
+    width: 9px;
+}
+.containerTabla::-webkit-scrollbar:hover{
+    width: 19px;
+}
+
+.containerTabla::-webkit-scrollbar-thumb{
+    background-color: var(--color-border);
+    border-radius: 10px;
+}
+
+
+/* controlando el ancho de la tabla para que no se pueda sobrepasar al momento de colocar una descripción larguisima. */
+.campanaDescripcion{
+    max-width: 200px; /* Ajusta el ancho máximo según tus preferencias */
+    word-wrap: break-word;
+    white-space: pre-line;
+}
+
+.descripcion-column:hover {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+    z-index: 9999;
+    position: absolute;
+    background-color: white;
+  }

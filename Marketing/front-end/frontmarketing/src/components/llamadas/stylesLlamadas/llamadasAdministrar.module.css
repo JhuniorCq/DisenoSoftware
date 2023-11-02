@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+:root{
+    --color-primario : #2D3E50;
+    --color-btn-light : #c4beeb;
+    --color-btn-primary : #6959cb;
+    --color-border : rgba(0, 0, 0, 0.173);
+    --color-fechas : rgb(213, 197, 197);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+main {
+    position: relative;
+}
+
+hr {
+    border: 0; /* Elimina el borde predeterminado del hr */
+    height: 2px; /* Ajusta la altura deseada para hacerlo más grueso */
+    background: linear-gradient(to right, #79b6e9, #A9A9A9); /* Aplica un degradado horizontal con los colores deseados */
+    margin: 2rem 0; /* Añade un margen superior e inferior para separar el hr de otros elementos */
+  }
+
+
+.containerTotal{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-top: 2rem;
+    border: .5px solid rgba(240, 233, 233, 0.404);
+    height: 80vh;
+
+}
+
+.listaLlamadasSide{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    border: .5px solid rgba(240, 233, 233, 0.404);
+}
+
+.listaLlamadasSide > h2 {
+    font-size: 2rem;
+    color: navy;
+    font-weight: 400;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.containerListaButtons{
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.btnList{
+    padding: .5rem 1rem;
+    width: 70%;
+    color: navy;
+    background: rgb(175, 201, 235);
+    border: none;
+    border-radius: 1rem;
+    font-weight: 600;
+    letter-spacing: -.5px;
+    transition: background .3s ease, color .3s ease;
+}
+
+.btnList:hover{
+    background: linear-gradient(to right, rgb(175, 201, 235), rgb(107, 107, 168));
+    color: white;
+}
+
+.vistaTablaLlamadas{
+    border : .5px solid rgba(240, 233, 233, 0.404);
+}
+.containerInput{
+    
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+
+.containerInput > input{
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.173);
+    padding: .3rem 1rem;
+    outline: none;
+    transition: border .3s ease;
+}
+
+.containerInput > input:focus{
+    border: 1.3px solid navy;
+}
+.tablaLlamadas{
+    margin: 3rem 1rem 0 1rem;
+    border-radius: 5px;
+}
+
+.tablaLlamadas > table{
+    text-align: center;
+}

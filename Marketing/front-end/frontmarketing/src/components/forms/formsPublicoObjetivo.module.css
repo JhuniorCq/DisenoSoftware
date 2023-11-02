@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+:root{
+    --color-primario : #2D3E50;
+    --color-btn-light : #c4beeb;
+    --color-btn-primary : #6959cb;
+    --color-border : rgba(0, 0, 0, 0.173);
+    --color-fechas : rgb(213, 197, 197);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* menu popup al clickear publico Objetivo de la campaña */
+
+.menuPopupPublicoObjetivo {
+    position: fixed;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 500px;
+    z-index: -1; /* el z-index me ayuda a que no se sobreponga así tenga el opacity en 0. */
+    background-color: whitesmoke;
+    border-radius: 10px;
+    border: 1px solid var(--color-primario);
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity .3s ease;
+    color: blueviolet;
+
+}
+
+.showMenuPopup{
+    z-index: 100000;
+    opacity: 1;
+}
+
+.hidePopupMenu{
+    z-index: -1;
+    opacity: 0;
+}
+
+.hamburguerPopup{
+    color: var(--color-primario);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: font-size .3s ease;
+    margin: .7rem 0 1.4rem 0;
+}
+
+.hamburguerPopup:hover {
+    font-size: 1.4rem;
+    font-weight: bold;
+    
+}
+
+
+.formSubmenuCrearCampana{
+    
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.labelsPublicoCampana{
+    display: flex;
+    gap: 5rem;
+}
+
+.labelsPublicoCampana > label{
+    font-family: 'Mooli', sans-serif;
+}
+
+.inputsPublicoCampana{
+    display: flex;
+    gap: 2rem;
+    font-family: 'Mooli', sans-serif;
+    height: 2.4rem;
+}
+
+.distritoPublicoCampana{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    font-family: 'Mooli', sans-serif;
+}
+
+.departamentoPublicoCampana{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.labelsPublicoCampana2 > label{
+    font-family: 'Mooli', sans-serif;
+}
+
+/* customizando el color de los selects */
+
+.customSelect{
+    width: 100%;
+  padding: 10px;
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+  font-family: 'Mooli', sans-serif;
+  transition: border .2s ease;
+}
+
+.customSelect:focus {
+    /* Estilos cuando el select está enfocado */
+    border: 1px solid #007bff; /* Cambia el color del borde cuando se enfoca */
+    outline: none; /* Elimina el resplandor predeterminado en el enfoque */
+}
+  
+.containerBotonesPopup{
+    display: flex;
+    justify-content: space-around;    
+    padding: 1rem 0;
+}  
+  
+.botonPopup{
+    border: none;
+    border-radius: 10px;
+    background-color: steelblue;
+    color: white;
+    font-family: 'Mooli', sans-serif;
+    padding: .5rem 1rem;
+    transition: font-weight .3s ease, transform .3s ease;
+}
+  
+.botonPopup:hover{
+    font-weight: bold;
+    transform: scale(1.1);
+}
+
+.rangoPersonalizado > label{
+    color: blueviolet;
+    font-weight: 600;
+    font-family: 'Mooli', sans-serif;
+}
+
+.containerInputsRango{
+    font-family: 'Mooli', sans-serif;   
+    margin-top: 1.1rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.containerInputsRango > input{
+    width: 4rem;
+    text-align: center;
+
+}
+
+/* quitar flechas del input number */
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }

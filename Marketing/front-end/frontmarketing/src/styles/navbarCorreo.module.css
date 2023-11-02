@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+:root{
+    --color-primario : #2D3E50;
+    --color-btn-light : #c4beeb;
+    --color-btn-primary : #6959cb;
+    --color-border : rgba(0, 0, 0, 0.173);
+    --color-fechas : rgb(213, 197, 197);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    font-size: 1rem;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.anchor{
+    text-decoration: none;
+    color: white;
+}
+
+.hamburguer{
+    color: white;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+li{
+    list-style: none;
+}
+
+
+nav{
+    position: relative;
+    background-color: var(--color-primario);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 4rem;
+    font-size: 1.1rem;
+    padding: 0 1.8rem;
+    color: wheat;
+}
+
+ul{
+    
+    width: 20vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.tools{
+
+    display: flex;
+    align-items: flex-end;
+    height: 2.8rem;
+}
+.contenidoLateral{
+    border: 1px solid var(--color-primario);
+    position: absolute;
+    width: 325px;
+    z-index: 10;
+    left: -350px;
+    transition: left .3s ease;
+    overflow-y: hidden;
+    height: 800px;
+}
+
+.open{  
+    left: 0;
+}
+
+.list{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 2rem;
+    background-color: whitesmoke;
+
+    
+    color: var(--color-primario);
+    font-size: 1.1rem;
+    
+}
+
+.list__item{
+    list-style: none;
+    width: 100%;
+    text-align: center;
+    
+    
+}
+
+.list__item.list__item__click{
+    cursor: pointer;
+    
+}
+
+
+.list__button{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    width: 70%;
+}
+
+
+.arrow .list__arrow{
+    transform: rotate(90deg);
+}
+
+.list__arrow{
+    transition: transform .3s ease;
+    margin: auto;
+    }
+
+/* enlaces */
+.nav__link{
+    color: #303440;
+    display: block;
+    padding: 0.9rem 0;
+    text-decoration: none;
+}
+
+.nav__link__click{
+    padding: 0.9rem 0;
+    
+}
+
+/* sublista adentro */
+
+.list__show{
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    border-left: 2px solid var(--color-primario);
+    height: 0;
+    transition: height 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity .3s ease;
+    opacity: 0;
+    /* se controlará la altura en JS */
+    overflow-y: hidden;
+}
+
+.openTwo{
+    opacity: 1;
+    height: 330px;
+
+}
+
+.list__inside{
+    overflow-y: hidden;
+}
+
+.nav__link__inside{
+    border-radius: 6px;
+    padding-left: 1rem;
+    transition: background-color .3s ease;
+    background-color: whitesmoke;
+}
+
+.nav__link__inside:hover{
+    background-color: #96a1ac;
+}
+
+/* creando el submenu 2 de FUNCIONALIDADES */
+.openFour{
+    height: 302px;
+    opacity: 1;
+
+}
+
+/* estilizando la linea de CORREOS y su botón "crear correo" */
+
+.campanasAnalisis{
+    position: relative;
+    margin-top: 1.5rem;
+}
+
+.despuesDelNavbar{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1.8rem;
+}
+
+
+/* estilizando a los botones */
+
+.buttons{
+    height: 40px;
+    width: 20rem;
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.campana > h1{
+    font-family:sans-serif;   
+}
+
+
+.botonCrearCorreo{
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    width: 130px;
+    cursor: pointer;
+    background-color: var(--color-btn-primary);
+    color: white;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    font-family: sans-serif;
+
+} 
+
+.botonCrearCorreo:hover{
+    
+    background-color: rgb(59, 59, 208);
+}
+
+/* parte menuLateral CREAR CORREO */
+
+.containerMenuLateralCrearCorreo{
+    position: absolute;
+    top: 4rem;
+    right: 0;
+    opacity: 0;
+    width: 400px;
+    z-index: -100;
+    min-height: 130vh;
+    background-color: whitesmoke;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    transition: opacity .3s ease;
+}
+
+.toggleCrearCorreoMenu{
+    opacity: 1;
+    z-index: 10000;
+}
+
+.cerrarMenuLateral{
+    width: 2rem;
+    border: none;
+    cursor: pointer;
+    transform: scale(1.3);
+    background-color: transparent;
+    transition: transform .3s ease, color .3s ease;
+}
+
+.cerrarMenuLateral:hover{
+    color: var(--color-btn-primary);
+    transform: scale(1.6);
+}

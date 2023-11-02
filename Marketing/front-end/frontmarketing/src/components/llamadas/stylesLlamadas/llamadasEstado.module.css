@@ -1,0 +1,110 @@
+
+.containerTotal{
+    margin: 1rem;
+}
+.visionNumerosLlamadas{
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.containerTotalLlamadasDiarias,
+.containerTotalLlamadasRealizadas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.containerTotalLlamadasDiarias > h1,
+.containerTotalLlamadasRealizadas > h1 {
+    overflow: hidden;
+    transition: font-size .3s ease, color .3s ease;
+}
+
+.containerTotalLlamadasDiarias > h1:hover,
+.containerTotalLlamadasRealizadas > h1:hover{
+    font-size: 3rem;
+    color: blueviolet;
+}
+
+.wrapperResumenLogistica{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.3fr 2fr;
+}
+
+.wrapperResumenMetricas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border : 1px solid rgba(240, 233, 233, 0.604);
+}
+
+.wrapperResumenMetricas > h3{
+    overflow: hidden;
+    margin: 2rem 0;
+    width: 90%;
+    color: rgb(69, 69, 204);
+}
+
+.containerBtnMetricas{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.btnList{
+    padding: .5rem 1rem;
+    width: 100%;
+    color: navy;
+    background: rgb(175, 201, 235);
+    border: none;
+    border-radius: 1rem;
+    font-weight: 600;
+    letter-spacing: -.5px;
+    transition: background .3s ease, color .3s ease;
+}
+
+.btnList:hover{
+    background: linear-gradient(to right, rgb(175, 201, 235), rgb(107, 107, 168));
+    color: white;
+}
+
+/* esto es para que el btn EVOLUCION pueda tener el width adecuado. */
+.btnListResumen{
+    padding: .5rem 1rem;
+    width: 50%;
+    color: navy;
+    background: rgb(175, 201, 235);
+    border: none;
+    border-radius: 1rem;
+    font-weight: 600;
+    letter-spacing: -.5px;
+    transition: background .3s ease, color .3s ease;
+}
+
+.btnListResumen:hover{
+    background: linear-gradient(to right, rgb(175, 201, 235), rgb(107, 107, 168));
+    color: white;
+}
+
+.wrapperDiagrama{
+    border : 1px solid rgba(240, 233, 233, 0.604);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width : 1024px) {
+
+    .btnListResumen{
+        max-width: 270px;
+    }
+
+    .btnList, .btnListResumen{
+        width: 270px;
+    }
+}

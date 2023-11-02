@@ -1,0 +1,57 @@
+
+.containerBeforeVistaLlamadas{
+    display: flex;
+    flex-direction: row;
+    /* background-color: red; */
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    align-items: center;
+
+}
+
+.containerBeforeVistaLlamadas > h3{
+    overflow: hidden;
+}
+
+.btnCrearLlamadas{
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    width: 150px;
+    cursor: pointer;
+    background-color: var(--color-btn-primary);
+    color: white;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    font-family: sans-serif;
+    padding: .6rem;
+
+} 
+
+.btnCrearLlamadas:hover{
+    
+    background-color: rgb(59, 59, 208);
+}
+
+.vistaLlamadas{
+    margin-top: 2rem;
+}
+
+.containerRouteLlamadas{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 3rem;
+    margin: auto 2.4rem;
+}
+
+.containerRouteLlamadas > li > .linkRoute{
+    color: #2D3E50;
+    font-size: 1.3rem;
+    transition: font-size .3s ease, color .3s ease, font-weight .3s ease;
+}
+
+.containerRouteLlamadas > li:hover .linkRoute{
+    color: #6959cb;
+    font-weight: 600;
+    font-size: 1.5rem;
+}

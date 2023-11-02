@@ -1,0 +1,17 @@
+.menuContainer {
+    width: 300px; /* Ancho inicial del menú */
+    height: 100%;
+    position: fixed;
+    top: 100px;
+    left: -300px; /* Empieza fuera de la pantalla */
+    background-color: #fff;
+    transition: left 0.3s ease; /* Agrega una transición suave a la propiedad 'left' */
+  }
+  
+  .open {
+    left: 0; /* Muestra el menú al cambiar la clase 'open' */
+  }
+  
+  .menuContent {
+    font-size: 1rem;
+  }

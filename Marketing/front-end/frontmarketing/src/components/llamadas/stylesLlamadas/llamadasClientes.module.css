@@ -1,0 +1,43 @@
+
+
+.containerTotalClientes{
+    position: relative;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.containerTotalClientes > h4,
+.containerTotalClientes > h6{
+    overflow: hidden;
+}
+
+.containerInput{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.containerInput{
+    
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem;
+}
+
+.containerInput > input{
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.173);
+    padding: .3rem 1rem;
+    outline: none;
+    transition: border .3s ease;
+}
+
+.containerInput > input:focus{
+    border: 1.3px solid navy;
+}
+
+.containerTable{
+    border-radius: 5px;
+}
