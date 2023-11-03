@@ -1,10 +1,15 @@
 import styles from "../stylesLlamadas/asideCrearLlamada.module.css";
 import { useState } from "react";
 import { useFormCrearLlamada } from "../storeLlamadas/storeFormCrearLlamada";
+import { useSubmitFormUnoLlamada } from "../storeLlamadas/storeSubmitFormUnoLlamada";
 
 export const FormCrearLlamadaUno = () => {
   const [guionLlamada, setGuionLlamada] = useState("");
 
+  // estado global para cambiar la visualización del form 1 al form 2:
+  const toggleFormUno = useSubmitFormUnoLlamada((state) => state.toggleFormUno);
+
+  // estado global para guardar los datos en un objeto para crear la llamada
   const methodCrearLlamada = useFormCrearLlamada(
     (state) => state.methodCrearLlamada
   );
@@ -19,6 +24,7 @@ export const FormCrearLlamadaUno = () => {
     const data = Object.fromEntries(formData);
     console.log(data);
     methodCrearLlamada(data);
+    toggleFormUno();
   };
 
   return (

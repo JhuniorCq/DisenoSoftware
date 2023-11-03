@@ -11,9 +11,10 @@
       "targeredAge": "rangoEdad1",
       "gender": "female",
       "department": "Lima",
-      "district": "Lima"
-    },
-    {
+      "district": "Lima",
+      "campanaTipo": "correo"
+  },
+  {
       "id": 2,
       "name": "Campaña de marketing: Primavera 2023",
       "description": "Esta es una campaña de ejemplo para la temporada primavera",
@@ -24,9 +25,10 @@
       "targeredAge": "rangoEdad2",
       "gender": "male",
       "department": "Cusco",
-      "district": "Cusco"
-    },
-    {
+      "district": "Cusco",
+      "campanaTipo": "llamada"
+  },
+  {
       "id": 3,
       "name": "Campaña de marketing: Verano 2023",
       "description": "Esta es una campaña de ejemplo para productos de verano",
@@ -37,9 +39,10 @@
       "targeredAge": "rangoEdad3",
       "gender": "female",
       "department": "Arequipa",
-      "district": "Arequipa"
-    },
-    {
+      "district": "Arequipa",
+      "campanaTipo": "sorteo"
+  },
+  {
       "id": 4,
       "name": "Campaña de marketing: Otoño 2023",
       "description": "Esta es una campaña de ejemplo para la temporada de otoño",
@@ -50,9 +53,10 @@
       "targeredAge": "rangoEdad4",
       "gender": "male",
       "department": "Loreto",
-      "district": "Iquitos"
-    },
-    {
+      "district": "Iquitos",
+      "campanaTipo": "correo"
+  },
+  {
       "id": 5,
       "name": "Campaña de marketing: Halloween 2023",
       "description": "Esta es una campaña de ejemplo para la festividad de Halloween",
@@ -63,9 +67,10 @@
       "targeredAge": "rangoEdad5",
       "gender": "female",
       "department": "Lambayeque",
-      "district": "Chiclayo"
-    },
-    {
+      "district": "Chiclayo",
+      "campanaTipo": "llamada"
+  },
+  {
       "id": 6,
       "name": "Campaña de marketing: Navidad 2023",
       "description": "Esta es una campaña de ejemplo para la temporada navideña",
@@ -76,9 +81,10 @@
       "targeredAge": "rangoEdad1",
       "gender": "male",
       "department": "Piura",
-      "district": "Piura"
-    },
-    {
+      "district": "Piura",
+      "campanaTipo": "sorteo"
+  },
+  {
       "id": 7,
       "name": "Campaña de marketing: Año Nuevo 2023",
       "description": "Esta es una campaña de ejemplo para la celebración de Año Nuevo",
@@ -89,9 +95,10 @@
       "targeredAge": "rangoEdad2",
       "gender": "female",
       "department": "Tacna",
-      "district": "Tacna"
-    },
-    {
+      "district": "Tacna",
+      "campanaTipo": "correo"
+  },
+  {
       "id": 8,
       "name": "Campaña de marketing: Rebajas de Verano 2023",
       "description": "Esta es una campaña de ejemplo para las rebajas de verano",
@@ -102,9 +109,10 @@
       "targeredAge": "rangoEdad3",
       "gender": "male",
       "department": "Junin",
-      "district": "Huancayo"
-    },
-    {
+      "district": "Huancayo",
+      "campanaTipo": "llamada"
+  },
+  {
       "id": 9,
       "name": "Campaña de marketing: Regreso a Clases 2023",
       "description": "Esta es una campaña de ejemplo para el regreso a clases",
@@ -115,9 +123,10 @@
       "targeredAge": "rangoEdad4",
       "gender": "female",
       "department": "Ica",
-      "district": "Ica"
-    },
-    {
+      "district": "Ica",
+      "campanaTipo": "sorteo"
+  },
+  {
       "id": 10,
       "name": "Campaña de marketing: Black Friday 2023",
       "description": "Esta es una campaña de ejemplo para el Black Friday",
@@ -128,8 +137,9 @@
       "targeredAge": "rangoEdad5",
       "gender": "male",
       "department": "Cajamarca",
-      "district": "Cajamarca"
-    },
+      "district": "Cajamarca",
+      "campanaTipo": "correo"
+  },
     {
       "name": "No mas alonsos",
       "starts": "2023-10-06",
