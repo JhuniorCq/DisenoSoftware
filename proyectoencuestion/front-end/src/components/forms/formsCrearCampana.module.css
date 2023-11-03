@@ -24,7 +24,7 @@
 
 .containerNombreCampana, .containerFechaInicioCampanas,
 .containerFechaFinCampanas , .containerObjetivosCampanas, 
-.containerPublicoObjetivoCampana, .containerNotas{
+.containerPublicoObjetivoCampana, .containerNotas, .containerTipoCampana{
     
     display: flex;
     flex-direction: column;
@@ -32,7 +32,8 @@
 
 .containerNombreCampana > input, .containerFechaInicioCampanas > input, 
 .containerFechaFinCampanas >input, .containerObjetivosCampanas > input, 
-.containerPublicoObjetivoCampana > input, .containerNotas > input{
+.containerPublicoObjetivoCampana > input, .containerNotas > input, 
+.containerTipoCampana > select{
     border-radius: 3px;
     border: 1px solid var(--color-btn-primary);
     outline: none;
@@ -42,7 +43,8 @@
 
 .containerNombreCampana > label, .containerFechaInicioCampanas > label,  
 .containerFechaFinCampanas > label, .containerObjetivosCampanas > label, 
-.containerPublicoObjetivoCampana > label, .containerNotas > label{
+.containerPublicoObjetivoCampana > label, .containerNotas > label, 
+.containerTipoCampana > label{
     font-family: 'Mooli', sans-serif;
     letter-spacing: 1.5px;
     margin-bottom: .7rem;

@@ -180,9 +180,6 @@ body{
 
 /* parte CLIENTES: */
 
-
-
-
 .containerArribaClientes{
     display: flex;
     flex-direction: row;
@@ -198,8 +195,19 @@ body{
     border: 1px solid #2D3E50;
 }
 
+.wrapperSelectTipoCorreo{
+    /* background-color: red; */
+    padding: 0 1rem;
+}
 
-
+.selectCampanaCorreo{
+    width: 50%;
+    border-radius: 3px;
+    border: 1px solid var(--color-btn-primary);
+    outline: none;
+    font-family: 'Mooli', sans-serif;
+    height: 1.8rem
+}
 
 
 /* parte ANALIZAR */

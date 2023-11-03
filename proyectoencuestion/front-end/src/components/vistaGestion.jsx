@@ -32,7 +32,6 @@ const VistaGestion = () => {
   const handleChange = (e) => {
     setBusqueda(e.target.value);
     filtrar(e.target.value);
-    console.log(e.target.value);
   };
 
   const filtrar = (terminoBusqueda) => {
@@ -159,7 +158,7 @@ const VistaGestion = () => {
                           {usuario.name}
                         </td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.campanaTipo}
+                          {usuario.tipoCampana}
                         </td>
                         <td className={styles.campanaDescripcion}>
                           {usuario.description}

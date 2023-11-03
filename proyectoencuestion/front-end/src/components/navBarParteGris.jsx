@@ -185,14 +185,6 @@ const NavbarParteGris = () => {
               </li>
               <li className={styles.list__inside}>
                 <Link
-                  to={"/calendario"}
-                  className={`${styles.nav__link} ${styles.nav__link__inside}`}
-                >
-                  Segmentación de mercado
-                </Link>
-              </li>
-              <li className={styles.list__inside}>
-                <Link
                   to={"/llamadas"}
                   className={`${styles.nav__link} ${styles.nav__link__inside}`}
                 >

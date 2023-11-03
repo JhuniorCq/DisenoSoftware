@@ -2,16 +2,16 @@ import styles from "../../styles/vistaCorreo.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getPublicoCorreosCampanas } from "../campanasAPI";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import NavbarCorreo from "../navbarCorreo";
 import VistaCorreo from "../vistaCorreo";
-import debounce from "lodash.debounce";
+import { getCampanas } from "../campanasAPI";
+import Select from "react-select";
 
 export const CorreoClientes = () => {
   const [nameCliente, setNameCliente] = useState("");
-  const queryClient = useQueryClient();
 
   const {
     isLoading,
@@ -23,6 +23,17 @@ export const CorreoClientes = () => {
     queryKey: ["publicocorreoscampanas", { nameCliente }],
   });
 
+  const { data: dataCampanas, isSuccess: isSuccessFetchCampana } = useQuery({
+    queryFn: () => getCampanas(),
+    queryKey: ["campanas"],
+  });
+
+  if (isSuccessFetchCampana) {
+    var campanasTipoCorreo = dataCampanas.filter((campana) => {
+      return campana.tipoCampana === "correo";
+    });
+  }
+
   if (isLoading) return <p>Loading...</p>;
   else if (isError) return <p>Error : {error.message}</p>;
 
@@ -30,16 +41,23 @@ export const CorreoClientes = () => {
     setNameCliente(e.target.value);
   };
 
-  const debouncedSearch = debounce(() => {
-    // Trigger a refetch when the user stops typing
-    queryClient.refetchQueries(["publicocorreoscampanas", { nameCliente }]);
-  }, 1000); // Adjust the debounce delay as needed
-
   return (
     <body>
       <NavbarCorreo />
       <VistaCorreo />
       <main>
+        <div className={styles.wrapperSelectTipoCorreo}>
+          <select
+            className={styles.selectCampanaCorreo}
+            placeholder="Seleccionar campana"
+          >
+            {campanasTipoCorreo.map((opcionesCampanas) => (
+              <option key={opcionesCampanas.id} value={opcionesCampanas.id}>
+                {opcionesCampanas.name}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className={styles.containerArribaClientes}>
           <strong>Publico Objetivo</strong>
           <div className={styles.barraBusqueda}>
@@ -48,12 +66,9 @@ export const CorreoClientes = () => {
                 className={styles.inputBar}
                 type="text"
                 value={nameCliente}
-                onChange={(e) => {
-                  handleChange(e); // Update nameCliente in real-time
-                  debouncedSearch(); // Trigger search after a delay
-                }}
                 placeholder="Buscar clientes..."
                 minlength="1"
+                onChange={handleChange}
               />
               {/* quité lo de value = {busqueda} y onChangue = {handleChange} porque aun no sé como se manejará la tabla */}
               <button className={styles.navIconSearch} type="submit">
