@@ -1,5 +1,7 @@
 const pool = require('../db');
 
+
+//Controladores de Prueba, los OFICIALES tendrá su archivo por separada cada uno
 const holaMundito = async (req, res, next) => {
     try {
         res.send("Hola Mundoooooooooooooooooo :D");
@@ -97,6 +99,9 @@ const modificarTarea = async (req, res, next) => {
 };
 
 module.exports = {
+    // crearCampana: crearCampana,
+
+    //Exportaciones de Prueba
     obtenerTodasTareas: obtenerTodasTareas,
     obtenerUnaTarea: obtenerUnaTarea,
     crearTarea: crearTarea,

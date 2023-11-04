@@ -2,7 +2,12 @@ const { Router } = require('express');
 const pool = require('../db');
 const router = Router();
 
+const {crearCampana} = require('../controllers/campanaController');
+
 const {
+    // crearCampana,
+
+    //Importaciones de Prueba
     obtenerTodasTareas,
     obtenerUnaTarea, 
     crearTarea, 
@@ -11,6 +16,9 @@ const {
     holaMundito
 } = require('../controllers/controller');
 
+router.post('/crearCampana', crearCampana);
+
+//Rutas de Prueba
 router.get('/', holaMundito);
 router.get('/tasks', obtenerTodasTareas);
 router.get('/tasks/:id', obtenerUnaTarea);
