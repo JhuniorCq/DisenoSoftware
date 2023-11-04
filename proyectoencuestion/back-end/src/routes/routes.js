@@ -2,11 +2,9 @@ const { Router } = require('express');
 const pool = require('../db');
 const router = Router();
 
-const {crearCampana} = require('../controllers/campanaController');
+const {crearCampana} = require('../controllers/crearCampanaController'); //Importa el Controlador para crearCampana
 
 const {
-    // crearCampana,
-
     //Importaciones de Prueba
     obtenerTodasTareas,
     obtenerUnaTarea, 

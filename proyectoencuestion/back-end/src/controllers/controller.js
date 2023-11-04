@@ -99,8 +99,6 @@ const modificarTarea = async (req, res, next) => {
 };
 
 module.exports = {
-    // crearCampana: crearCampana,
-
     //Exportaciones de Prueba
     obtenerTodasTareas: obtenerTodasTareas,
     obtenerUnaTarea: obtenerUnaTarea,
