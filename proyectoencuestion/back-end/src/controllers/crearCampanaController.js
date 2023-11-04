@@ -7,7 +7,7 @@ const crearCampana = async (req, res, next) => {
     try {
         const campanaData = req.body;
 
-        //Llamo a campanaService que llamará a campanaRepository que llamará a la BD
+        //Llamo a crearCampanaService que llamará a crearCampanaRepository que llamará a la BD
         const result = await campanaService.crearCampana(campanaData);
 
         console.log(result);
