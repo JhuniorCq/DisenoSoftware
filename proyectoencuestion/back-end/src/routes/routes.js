@@ -1,12 +1,17 @@
 const { Router } = require('express');
-const pool = require('../db');
+// const pool = require('../db');
 const router = Router();
 
 const {crearCampana} = require('../controllers/crearCampanaController'); //Importa el Controlador para crearCampana
 const {eliminarCampana} = require('../controllers/eliminarCampanaController'); //Importar el Controlador para eliminarCampana
+const {mostrarCampana} = require('../controllers/mostrarCampanaController');
 
 router.post('/crearCampana', crearCampana);
 router.delete('/eliminarCampana/:id', eliminarCampana);
+router.get('/mostrarCampana', mostrarCampana);
+
+
+
 
 const {
     //Importaciones de Prueba
