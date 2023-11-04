@@ -20,18 +20,10 @@ const FormsCrearCorreoCampana = (props) => {
   const asuntoCorreoID = useId();
   const mensajeCorreoID = useId();
 
-  const [correo, setCorreo] = useState("");
+  const [tituloCorreo, setTituloCorreo] = useState("");
 
-  const handleCorreoChange = (e) => {
-    const nuevoCorreo = e.target.value;
-
-    const correoRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-
-    if (correoRegex.test(nuevoCorreo)) {
-      setCorreo(nuevoCorreo);
-    } else {
-      // poner mensaje de error
-    }
+  const handleTituloChange = (e) => {
+    setTituloCorreo(e.target.value);
   };
 
   const handleChangeAsuntoCorreo = (e) => {
@@ -43,20 +35,14 @@ const FormsCrearCorreoCampana = (props) => {
   };
 
   useEffect(() => {
-    handleCorreoChange({
-      target: { value: correo },
-    });
-  }, [correo]);
-
-  useEffect(() => {
-    const correoCompleto = correo.length >= 5;
-    const asuntoCompleto = asuntoIsCompleted.length >= 1;
+    const tituloCompleto = tituloCorreo.length >= 5;
+    const asuntoCompleto = asuntoIsCompleted.length >= 5;
     const mensajeCompleto = mensajeIsCompleted.length >= 1;
 
-    if (correoCompleto && asuntoCompleto && mensajeCompleto) {
+    if (tituloCompleto && asuntoCompleto && mensajeCompleto) {
       setFormIsCompleted(true);
     }
-  }, [asuntoIsCompleted, mensajeIsCompleted, correo]);
+  }, [asuntoIsCompleted, mensajeIsCompleted, tituloCorreo]);
 
   const handleSubmitCorreo = (e) => {
     e.preventDefault();
@@ -84,11 +70,11 @@ const FormsCrearCorreoCampana = (props) => {
       <div className={styles.containerTituloCorreo}>
         <label htmlFor={tituloCorreoID}>Título del correo</label>
         <input
-          type="email"
+          type="text"
           required
-          placeholder="name@email.com"
-          name="email"
-          onChange={handleCorreoChange}
+          placeholder="Título..."
+          name="titleCorreo"
+          onChange={handleTituloChange}
         />
         {/* {errorCorreo && <p className={styles.error}>{errorCorreo}</p>} */}
       </div>

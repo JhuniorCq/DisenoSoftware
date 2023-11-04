@@ -21,10 +21,6 @@ export const ControlVistaLlamadas = () => {
       name: "Administrar",
       path: "/administrarllamadas",
     },
-    {
-      name: "Estado",
-      path: "/estadollamadas",
-    },
   ];
 
   return (

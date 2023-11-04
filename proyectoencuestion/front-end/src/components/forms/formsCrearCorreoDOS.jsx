@@ -4,14 +4,12 @@ import { useCampanas } from "../store/useCampanas";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createCorreosCampanas, getCorreosCampanas } from "../campanasAPI";
 
-function FormCrearCorreoDos({ submitSiguiente, setSubmitSiguiente }) {
-  const [emailUser, setEmail] = useState("");
+function FormCrearCorreoDos({ submitSiguiente }) {
   const [sendNow, setSendNow] = useState(true);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
 
-  const emailUserID = useId();
   const fechaID = useId();
   const horaID = useId();
 
@@ -31,22 +29,29 @@ function FormCrearCorreoDos({ submitSiguiente, setSubmitSiguiente }) {
     },
   });
 
+  const { data: dataCampanas, isSuccess: isSuccessFetchCampana } = useQuery({
+    queryFn: () => getCampanas(),
+    queryKey: ["campanas"],
+  });
+
+  if (isSuccessFetchCampana) {
+    var campanasTipoCorreo = dataCampanas.filter((campana) => {
+      return campana.tipoCampana === "correo";
+    });
+  }
+
   useEffect(() => {
     if (sendNow) {
-      setIsSubmitDisabled(!emailUser);
+      setIsSubmitDisabled(true);
     } else {
-      setIsSubmitDisabled(!emailUser || !date || !time || isDateTimeValid());
+      setIsSubmitDisabled(!date || !time || isDateTimeValid());
     }
-  }, [emailUser, sendNow, date, time]);
+  }, [sendNow, date, time]);
 
   const isDateTimeValid = () => {
     const selectedDateTime = new Date(`${date}T${time}`);
     const currentDateTime = new Date();
     return selectedDateTime < currentDateTime;
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
   };
 
   const handleSendOptionChange = (e) => {
@@ -87,15 +92,21 @@ function FormCrearCorreoDos({ submitSiguiente, setSubmitSiguiente }) {
   return (
     <form className={styles.formCrearCorreoCampana} onSubmit={handleSubmit}>
       <div className={styles.containerCorreoCliente}>
-        <label htmlFor={emailUserID}>Enviar a:</label>
-        <input
-          id={emailUserID}
-          type="email"
-          value={emailUser}
-          name="emailUser"
-          onChange={handleEmailChange}
-          required
-        />
+        <label htmlFor={"selectID"}>Enviar a:</label>
+        <div className={styles.wrapperSelectTipoCorreo}>
+          <select
+            className={styles.selectCampanaCorreo}
+            placeholder="Seleccionar campana"
+          >
+            <option value="all">Todas las campañas...</option>
+            {campanasTipoCorreo &&
+              campanasTipoCorreo.map((opcionesCampanas) => (
+                <option key={opcionesCampanas.id} value={opcionesCampanas.id}>
+                  {opcionesCampanas.name}
+                </option>
+              ))}
+          </select>
+        </div>
       </div>
       <div className={styles.containerOpcionEnvio}>
         <label className={styles.labelRadioButtonUno}>

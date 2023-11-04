@@ -6,6 +6,7 @@ import { ControlVistaLlamadas } from "./controlVistaLlamadas";
 import { CrearLlamadaLateral } from "./asideCrearLlamada";
 import { getLlamadasCliente } from "./llamadasAPI";
 import { useQuery } from "@tanstack/react-query";
+import { getCampanas } from "../campanasAPI";
 
 const LlamadasClientes = () => {
   const [inputCall, setInputCall] = useState("");
@@ -19,6 +20,17 @@ const LlamadasClientes = () => {
     queryKey: "clientesllamadas",
   });
 
+  const { data: dataCampanas, isSuccess: isSuccessFetchCampana } = useQuery({
+    queryFn: () => getCampanas(),
+    queryKey: ["campanas"],
+  });
+
+  if (isSuccessFetchCampana) {
+    var campanasTipoCorreo = dataCampanas.filter((campana) => {
+      return campana.tipoCampana === "llamada";
+    });
+  }
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -30,9 +42,22 @@ const LlamadasClientes = () => {
     <main>
       <NavbarParteGris />
       <ControlVistaLlamadas />
+      <div className={styles.wrapperSelectTipoCorreo}>
+        <select
+          className={styles.selectCampanaCorreo}
+          placeholder="Seleccionar campana"
+        >
+          <option value="all">Todas las campañas...</option>
+          {campanasTipoCorreo.map((opcionesCampanas) => (
+            <option key={opcionesCampanas.id} value={opcionesCampanas.id}>
+              {opcionesCampanas.name}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className={styles.containerTotalClientes}>
         <h4>Público Objetivo</h4>
-        <h6>Público objetivo</h6>
+
         <div className={styles.containerInput}>
           <input
             type="text"

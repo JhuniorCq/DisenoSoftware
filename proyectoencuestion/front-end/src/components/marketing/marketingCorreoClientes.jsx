@@ -51,6 +51,7 @@ export const CorreoClientes = () => {
             className={styles.selectCampanaCorreo}
             placeholder="Seleccionar campana"
           >
+            <option value="all">Todas las campañas...</option>
             {campanasTipoCorreo.map((opcionesCampanas) => (
               <option key={opcionesCampanas.id} value={opcionesCampanas.id}>
                 {opcionesCampanas.name}
