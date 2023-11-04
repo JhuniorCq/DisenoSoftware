@@ -1,4 +1,4 @@
-const {config} = require('dotenv'); //Importo el dotenv para poder crear el archivo .env y usare el objeto 'config'
+const {config} = require('dotenv');
 config();
 
 module.exports = {
