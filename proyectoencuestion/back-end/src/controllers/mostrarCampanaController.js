@@ -2,10 +2,15 @@ const {MostrarCampanaService} = require('../service/mostrarCampanaService'); //I
 const mostrarCampanaService = new MostrarCampanaService();
 
 const mostrarCampana = async (req, res, next) => {
-    const result = await mostrarCampanaService.mostrarCampana();
+    try {
+        const result = await mostrarCampanaService.mostrarCampana();
 
-    console.log(result);
-    res.json(result);
+        console.log(result);
+        res.json(result);
+    } catch(error) {
+        next(error);
+    }
+    
 }
 
 module.exports = {

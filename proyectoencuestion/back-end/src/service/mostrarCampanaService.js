@@ -3,12 +3,14 @@ const mostrarCampanaRepository = new MostrarCampanaRepository();
 
 class MostrarCampanaService {
     async mostrarCampana() {
-        //Lógica
+        try {
+            const result = await mostrarCampanaRepository.mostrarCampana();
 
-        //
-        const result = await mostrarCampanaRepository.mostrarCampana();
-
-        return result;
+            return result;
+        } catch(error) {
+            throw error;
+        }
+        
     }
 }
 
