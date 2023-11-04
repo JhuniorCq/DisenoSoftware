@@ -12,9 +12,9 @@
       "gender": "female",
       "department": "Lima",
       "district": "Lima",
-      "campanaTipo": "correo"
-  },
-  {
+      "tipoCampana": "correo"
+    },
+    {
       "id": 2,
       "name": "Campaña de marketing: Primavera 2023",
       "description": "Esta es una campaña de ejemplo para la temporada primavera",
@@ -26,9 +26,9 @@
       "gender": "male",
       "department": "Cusco",
       "district": "Cusco",
-      "campanaTipo": "llamada"
-  },
-  {
+      "tipoCampana": "llamada"
+    },
+    {
       "id": 3,
       "name": "Campaña de marketing: Verano 2023",
       "description": "Esta es una campaña de ejemplo para productos de verano",
@@ -40,9 +40,9 @@
       "gender": "female",
       "department": "Arequipa",
       "district": "Arequipa",
-      "campanaTipo": "sorteo"
-  },
-  {
+      "tipoCampana": "sorteo"
+    },
+    {
       "id": 4,
       "name": "Campaña de marketing: Otoño 2023",
       "description": "Esta es una campaña de ejemplo para la temporada de otoño",
@@ -54,9 +54,9 @@
       "gender": "male",
       "department": "Loreto",
       "district": "Iquitos",
-      "campanaTipo": "correo"
-  },
-  {
+      "tipoCampana": "correo"
+    },
+    {
       "id": 5,
       "name": "Campaña de marketing: Halloween 2023",
       "description": "Esta es una campaña de ejemplo para la festividad de Halloween",
@@ -68,9 +68,9 @@
       "gender": "female",
       "department": "Lambayeque",
       "district": "Chiclayo",
-      "campanaTipo": "llamada"
-  },
-  {
+      "tipoCampana": "llamada"
+    },
+    {
       "id": 6,
       "name": "Campaña de marketing: Navidad 2023",
       "description": "Esta es una campaña de ejemplo para la temporada navideña",
@@ -82,9 +82,9 @@
       "gender": "male",
       "department": "Piura",
       "district": "Piura",
-      "campanaTipo": "sorteo"
-  },
-  {
+      "tipoCampana": "sorteo"
+    },
+    {
       "id": 7,
       "name": "Campaña de marketing: Año Nuevo 2023",
       "description": "Esta es una campaña de ejemplo para la celebración de Año Nuevo",
@@ -96,9 +96,9 @@
       "gender": "female",
       "department": "Tacna",
       "district": "Tacna",
-      "campanaTipo": "correo"
-  },
-  {
+      "tipoCampana": "correo"
+    },
+    {
       "id": 8,
       "name": "Campaña de marketing: Rebajas de Verano 2023",
       "description": "Esta es una campaña de ejemplo para las rebajas de verano",
@@ -110,9 +110,9 @@
       "gender": "male",
       "department": "Junin",
       "district": "Huancayo",
-      "campanaTipo": "llamada"
-  },
-  {
+      "tipoCampana": "llamada"
+    },
+    {
       "id": 9,
       "name": "Campaña de marketing: Regreso a Clases 2023",
       "description": "Esta es una campaña de ejemplo para el regreso a clases",
@@ -124,9 +124,9 @@
       "gender": "female",
       "department": "Ica",
       "district": "Ica",
-      "campanaTipo": "sorteo"
-  },
-  {
+      "tipoCampana": "sorteo"
+    },
+    {
       "id": 10,
       "name": "Campaña de marketing: Black Friday 2023",
       "description": "Esta es una campaña de ejemplo para el Black Friday",
@@ -138,8 +138,8 @@
       "gender": "male",
       "department": "Cajamarca",
       "district": "Cajamarca",
-      "campanaTipo": "correo"
-  },
+      "tipoCampana": "correo"
+    },
     {
       "name": "No mas alonsos",
       "starts": "2023-10-06",
@@ -308,6 +308,76 @@
       "district": "Pataz",
       "created": "2023-10-12",
       "id": 23
+    },
+    {
+      "name": "enzo112212",
+      "tipoCampana": "llamada",
+      "starts": "2023-11-03",
+      "ends": "2023-11-10",
+      "objectives": "AALALAALAA",
+      "description": "notas a probar 1",
+      "targeredAge": "30-39",
+      "gender": "femenino",
+      "department": "Madre_de_Dios",
+      "district": "Manu",
+      "created": "2023-11-03",
+      "id": 24
+    },
+    {
+      "name": "Hodaaaaaaaaaaaaaaaaa",
+      "tipoCampana": "sorteo",
+      "starts": "2023-11-30",
+      "ends": "2023-11-23",
+      "objectives": "eooooooooooooo",
+      "description": "notas a probar 2",
+      "targeredAge": "32-59",
+      "gender": "prefieroNoDecirlo",
+      "department": "Lima",
+      "district": "Huarochiri",
+      "created": "2023-11-03",
+      "id": 25
+    },
+    {
+      "name": "aaaa",
+      "tipoCampana": "llamada",
+      "starts": "2023-11-08",
+      "ends": "2023-11-24",
+      "objectives": "aefeaifan9f",
+      "description": "naoevnoiv",
+      "targeredAge": "11-19",
+      "gender": "femenino",
+      "department": "Huancavelica",
+      "district": "Churcampa",
+      "created": "2023-11-03",
+      "id": 26
+    },
+    {
+      "name": "aaaa",
+      "tipoCampana": "correo",
+      "starts": "2023-11-04",
+      "ends": "2023-11-23",
+      "objectives": "wvvvsvsvs",
+      "description": "vsvsvsvsssvsv",
+      "targeredAge": "11-19",
+      "gender": "masculino",
+      "department": "Lima",
+      "district": "Oyon",
+      "created": "2023-11-03",
+      "id": 27
+    },
+    {
+      "name": "Campana actual 2020202020202",
+      "tipoCampana": "correo",
+      "starts": "2023-11-17",
+      "ends": "2023-11-29",
+      "objectives": "ainaoefnaofe",
+      "description": "aoinaeonaofnaofe",
+      "targeredAge": "11-19",
+      "gender": "masculino",
+      "department": "Huanuco",
+      "district": "Pachitea",
+      "created": "2023-11-03",
+      "id": 28
     }
   ],
   "publicocorreoscampanas": [
@@ -448,14 +518,14 @@
       "id": 7
     }
   ],
-  "clientesllamadas":[
+  "clientesllamadas": [
     {
-      "id" : "0101",
-      "names" : "Alonso Mateo",
-      "surnames" : "Gutierrez Vidal", 
-      "email" : "alonso2910@gmail.com",
-      "gender" : "masculino",
-      "phone" : "986742853"
+      "id": "0101",
+      "names": "Alonso Mateo",
+      "surnames": "Gutierrez Vidal",
+      "email": "alonso2910@gmail.com",
+      "gender": "masculino",
+      "phone": "986742853"
     },
     {
       "id": "0202",
