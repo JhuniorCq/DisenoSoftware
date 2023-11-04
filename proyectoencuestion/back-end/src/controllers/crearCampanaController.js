@@ -1,20 +1,18 @@
-const {CampanaRepository} = require('../repository/crearCampanaRepository');
-const {CampanaService} = require('../service/crearCampanaService');
-const campanaRepository = new CampanaRepository;
-const campanaService = new CampanaService;
+const {CrearCampanaService} = require('../service/crearCampanaService');
+const crearCampanaService = new CrearCampanaService();
 
 const crearCampana = async (req, res, next) => {
     try {
         const campanaData = req.body;
 
         //Llamo a crearCampanaService que llamará a crearCampanaRepository que llamará a la BD
-        const result = await campanaService.crearCampana(campanaData);
+        const result = await crearCampanaService.crearCampana(campanaData);
 
         console.log(result);
         res.json(result);
 
     } catch (error) {
-        next(error)
+        next(error);
     }
 }
 

@@ -1,8 +1,9 @@
 const pool = require('../db');
 
-class CampanaRepository {
+class CrearCampanaRepository {
     async crearCampana(campana) {
         const { fecha_inicio, fecha_fin, nombre, tipo_campana, descripcion, objetivos } = campana;
+
         const result = await pool.query('INSERT INTO campana ("fecha_inicio", "fecha_fin", nombre, "tipo_campana", descripcion, objetivos) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [
             fecha_inicio, 
             fecha_fin, 
@@ -17,5 +18,5 @@ class CampanaRepository {
 }
 
 module.exports = {
-    CampanaRepository: CampanaRepository
+    CrearCampanaRepository: CrearCampanaRepository
 }

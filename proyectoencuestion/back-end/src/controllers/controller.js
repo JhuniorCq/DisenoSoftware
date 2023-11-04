@@ -60,7 +60,7 @@ const crearTarea = async (req, res, next) => {
 };
 
 const eliminarTarea = async (req, res, next) => {
-    try {
+    try {   
         const {id} = req.params;
         
         const resultado = await pool.query('DELETE FROM task WHERE id = $1 RETURNING *', [id]);

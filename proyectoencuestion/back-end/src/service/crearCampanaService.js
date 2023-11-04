@@ -1,7 +1,7 @@
-const {CampanaRepository} = require('../repository/crearCampanaRepository');
-const campanaRepository = new CampanaRepository();
+const {CrearCampanaRepository} = require('../repository/crearCampanaRepository');
+const crearCampanaRepository = new CrearCampanaRepository();
 
-class CampanaService {
+class CrearCampanaService {
     async crearCampana (campanaData) {
         //Validación de los datos
         if(!campanaData.fecha_inicio || !campanaData.fecha_fin || !campanaData.nombre || !campanaData.tipo_campana || !campanaData.descripcion || !campanaData.objetivos) {
@@ -14,11 +14,11 @@ class CampanaService {
         }
 
         //Llamada a crearCampanaRepository para meter datos en la BD
-        const result = await campanaRepository.crearCampana(campanaData);
+        const result = await crearCampanaRepository.crearCampana(campanaData);
         return result;
     }
 }
 
 module.exports = {
-    CampanaService: CampanaService
+    CrearCampanaService: CrearCampanaService
 }
