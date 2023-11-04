@@ -22,3 +22,4 @@ class CrearCampanaService {
 module.exports = {
     CrearCampanaService: CrearCampanaService
 }
+

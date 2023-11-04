@@ -20,3 +20,4 @@ class CrearCampanaRepository {
 module.exports = {
     CrearCampanaRepository: CrearCampanaRepository
 }
+
