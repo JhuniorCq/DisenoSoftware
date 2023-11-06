@@ -1,11 +1,9 @@
-import styles from "../stylesLlamadas/asideCrearLlamada.module.css";
+import styles from "../stylesFormsLlamadas/formCrearLlamadaUno.module.css";
 import { useState } from "react";
 import { useFormCrearLlamada } from "../storeLlamadas/storeFormCrearLlamada";
 import { useSubmitFormUnoLlamada } from "../storeLlamadas/storeSubmitFormUnoLlamada";
 
 export const FormCrearLlamadaUno = () => {
-  const [guionLlamada, setGuionLlamada] = useState("");
-
   // estado global para cambiar la visualización del form 1 al form 2:
   const toggleFormUno = useSubmitFormUnoLlamada((state) => state.toggleFormUno);
 
@@ -13,10 +11,6 @@ export const FormCrearLlamadaUno = () => {
   const methodCrearLlamada = useFormCrearLlamada(
     (state) => state.methodCrearLlamada
   );
-
-  const handleGuionChangue = (e) => {
-    setGuionLlamada(e.target.value);
-  };
 
   const handleFormUnoSubmit = (e) => {
     e.preventDefault();
@@ -28,17 +22,18 @@ export const FormCrearLlamadaUno = () => {
   };
 
   return (
-    <form onSubmit={handleFormUnoSubmit} className={styles.formUno}>
-      <div className={styles.wrapperGuionLlamada}>
-        <p>Guion de la llamada</p>
-        <textarea
-          className={styles.textAreaGuionLlamada}
-          id="guionLlamada"
-          name="guionLlamada"
-          onChange={handleGuionChangue}
-        ></textarea>
-      </div>
-      <button className={styles.btnSubmitFormUno}>Submit</button>
-    </form>
+    <div className={styles.wrapperForm}>
+      <form onSubmit={handleFormUnoSubmit} className={styles.formUno}>
+        <div className={styles.wrapperGuionLlamada}>
+          <p>Guion de la llamada</p>
+          <textarea
+            className={styles.textAreaGuionLlamada}
+            id="guionLlamada"
+            name="guionLlamada"
+          ></textarea>
+        </div>
+        <button className={styles.btnSubmitForm}>Siguiente</button>
+      </form>
+    </div>
   );
 };

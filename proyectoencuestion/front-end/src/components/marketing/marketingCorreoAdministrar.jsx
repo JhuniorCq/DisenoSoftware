@@ -15,8 +15,8 @@ export const CorreoAdministrar = () => {
   const [botonCorreo, setBotonCorreo] = useState("Todos los correos");
 
   const { isLoading, isError, error, data, isSuccess } = useQuery({
-    queryKey: ["publicocorreoscampanas"],
     queryFn: getCorreosCampanas,
+    queryKey: ["correoscampanascreadas"],
   });
 
   useEffect(() => {
@@ -121,7 +121,11 @@ export const CorreoAdministrar = () => {
               <thead>
                 <tr>
                   <th>id</th>
-                  <th>Correos electrónicos</th>
+                  <th>Título del correo</th>
+                  <th>Asunto</th>
+                  <th>Id de la campaña</th>
+                  <th>Fecha de envío</th>
+                  <th>Hora de envío</th>
                 </tr>
               </thead>
               <tbody>
@@ -129,7 +133,11 @@ export const CorreoAdministrar = () => {
                   usuariosAdm.map((usuario) => (
                     <tr key={usuario.id}>
                       <td>{usuario.id}</td>
-                      <td>{usuario.emailUser}</td>
+                      <td>{usuario.titleCorreo}</td>
+                      <td>{usuario.affair}</td>
+                      <td>{usuario.tipoCampana}</td>
+                      <td>{usuario.date}</td>
+                      <td>{usuario.time}</td>
                     </tr>
                   ))}
               </tbody>

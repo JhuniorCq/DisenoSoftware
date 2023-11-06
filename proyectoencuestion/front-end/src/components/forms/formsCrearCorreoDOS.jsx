@@ -1,10 +1,15 @@
 import React, { useState, useEffect, useId } from "react";
 import styles from "./formsCrearCorreoDOS.module.css";
-import { useCampanas } from "../store/useCampanas";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createCorreosCampanas, getCorreosCampanas } from "../campanasAPI";
+import {
+  createCorreosCampanas,
+  getCampanas,
+  getCorreosCampanas,
+} from "../campanasAPI";
+import { useFormCorreo } from "../marketing/storeCorreo/useFormCorreo";
+import { useCloseFormCorreo } from "../marketing/storeCorreo/useCloseFormCorreo";
 
-function FormCrearCorreoDos({ submitSiguiente }) {
+function FormCrearCorreoDos() {
   const [sendNow, setSendNow] = useState(true);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -13,7 +18,23 @@ function FormCrearCorreoDos({ submitSiguiente }) {
   const fechaID = useId();
   const horaID = useId();
 
-  const addCorreoCount = useCampanas((state) => state.addCorreosEnviados);
+  const { data: dataCampanas, isSuccess: isSuccessFetchCampana } = useQuery({
+    queryFn: () => getCampanas(),
+    queryKey: ["campanas"],
+  });
+
+  if (isSuccessFetchCampana) {
+    const today = new Date();
+
+    let campanasTipoCorreo = dataCampanas.filter((campana) => {
+      return campana.tipoCampana === "correo";
+    });
+    var campanasTipoCorreoVigentes = campanasTipoCorreo.filter(
+      (campanasTipoCorreo) => {
+        return new Date(campanasTipoCorreo.ends) > today;
+      }
+    );
+  }
 
   const { data } = useQuery({
     queryKey: ["correoscampanascreadas"],
@@ -29,20 +50,9 @@ function FormCrearCorreoDos({ submitSiguiente }) {
     },
   });
 
-  const { data: dataCampanas, isSuccess: isSuccessFetchCampana } = useQuery({
-    queryFn: () => getCampanas(),
-    queryKey: ["campanas"],
-  });
-
-  if (isSuccessFetchCampana) {
-    var campanasTipoCorreo = dataCampanas.filter((campana) => {
-      return campana.tipoCampana === "correo";
-    });
-  }
-
   useEffect(() => {
     if (sendNow) {
-      setIsSubmitDisabled(true);
+      setIsSubmitDisabled(false);
     } else {
       setIsSubmitDisabled(!date || !time || isDateTimeValid());
     }
@@ -66,41 +76,59 @@ function FormCrearCorreoDos({ submitSiguiente }) {
     setTime(e.target.value);
   };
 
+  const dataCorreoForm = useFormCorreo((state) => state.dataCorreoForm);
+
+  // global state para cerrar la visión del form
+
+  const toggleStateFormCorreo = useCloseFormCorreo(
+    (state) => state.toggleStateFormCorreo
+  );
+
+  const fechaHoy = new Date();
+  const formattedDate = fechaHoy.toISOString().split("T")[0];
+
+  const horaActual = fechaHoy.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false, // Utiliza 24 horas
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const newFinalForm = new FormData(e.target);
     const newCorreoDos = Object.fromEntries(newFinalForm);
 
-    // setSubmitSiguiente((prevState) => ({
-    //   ...prevState,
-    //   ...newCorreoDos,
-    // }));
+    if (sendNow) {
+      agregarCorreoCampana.mutate({
+        ...dataCorreoForm,
+        ...newCorreoDos,
+        date: formattedDate,
+        time: horaActual,
+      });
+    } else {
+      agregarCorreoCampana.mutate({
+        ...dataCorreoForm,
+        ...newCorreoDos,
+      });
+    }
 
-    agregarCorreoCampana.mutate({
-      ...submitSiguiente,
-      ...newCorreoDos,
-    });
-    addCorreoCount();
-
-    // Aquí puedes enviar el correo o realizar la acción deseada.
-  };
-
-  const handleConsoleLog = () => {
-    console.log(submitSiguiente);
+    toggleStateFormCorreo();
   };
 
   return (
     <form className={styles.formCrearCorreoCampana} onSubmit={handleSubmit}>
       <div className={styles.containerCorreoCliente}>
-        <label htmlFor={"selectID"}>Enviar a:</label>
+        <label htmlFor="selectID">Enviar a:</label>
         <div className={styles.wrapperSelectTipoCorreo}>
           <select
             className={styles.selectCampanaCorreo}
-            placeholder="Seleccionar campana"
+            id="selectID"
+            name="tipoCampana"
           >
             <option value="all">Todas las campañas...</option>
-            {campanasTipoCorreo &&
-              campanasTipoCorreo.map((opcionesCampanas) => (
+            {campanasTipoCorreoVigentes &&
+              campanasTipoCorreoVigentes.map((opcionesCampanas) => (
                 <option key={opcionesCampanas.id} value={opcionesCampanas.id}>
                   {opcionesCampanas.name}
                 </option>
@@ -165,7 +193,6 @@ function FormCrearCorreoDos({ submitSiguiente }) {
       >
         Enviar
       </button>
-      <button onClick={handleConsoleLog}>handleconsolelog</button>
     </form>
   );
 }

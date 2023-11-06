@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import ModuloMarketing from "./components/marketing/marketingGestion";
 import ModuloMarketingDos from "./components/marketing/marketingCalendario";
-import ModuloMarketingTres from "./components/marketing/marketingCorreo";
 import { CorreoClientes } from "./components/marketing/marketingCorreoClientes";
 import { CorreoAdministrar } from "./components/marketing/marketingCorreoAdministrar";
 import LlamadasClientes from "./components/llamadas/llamadas";

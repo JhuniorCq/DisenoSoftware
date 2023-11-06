@@ -1,16 +1,9 @@
 import styles from "./formsCrearCorreoCampana.module.css";
 import { useEffect, useId, useState } from "react";
-import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
-import { createCorreosCampanas, getCorreosCampanas } from "../campanasAPI";
-import { useCampanas } from "../store/useCampanas";
+import { useFormCorreo } from "../marketing/storeCorreo/useFormCorreo";
 
 const FormsCrearCorreoCampana = (props) => {
-  const {
-    siguienteIsClicked,
-    setSiguienteIsClicked,
-    submitSiguiente,
-    setSubmitSiguiente,
-  } = props;
+  const { siguienteIsClicked, setSiguienteIsClicked } = props;
 
   const [formIsCompleted, setFormIsCompleted] = useState(false);
   const [asuntoIsCompleted, setAsuntoIsCompleted] = useState(false);
@@ -34,6 +27,10 @@ const FormsCrearCorreoCampana = (props) => {
     setMensajeIsCompleted(e.target.value);
   };
 
+  const methodAddDataFormCorreo = useFormCorreo(
+    (state) => state.methodAddDataFormCorreo
+  );
+
   useEffect(() => {
     const tituloCompleto = tituloCorreo.length >= 5;
     const asuntoCompleto = asuntoIsCompleted.length >= 5;
@@ -50,13 +47,7 @@ const FormsCrearCorreoCampana = (props) => {
     const newCorreo = Object.fromEntries(formData);
     console.log(newCorreo);
 
-    setSubmitSiguiente((prevState) => ({
-      ...prevState,
-      newCorreo,
-    }));
-
-    // verifico que se esté guardando el arreglo acá
-    console.log(submitSiguiente);
+    methodAddDataFormCorreo(newCorreo);
     setSiguienteIsClicked(true);
   };
 

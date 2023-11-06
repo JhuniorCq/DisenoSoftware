@@ -29,9 +29,15 @@ export const CorreoClientes = () => {
   });
 
   if (isSuccessFetchCampana) {
-    var campanasTipoCorreo = dataCampanas.filter((campana) => {
+    const today = new Date();
+    let campanasTipoCorreo = dataCampanas.filter((campana) => {
       return campana.tipoCampana === "correo";
     });
+    var campanasTipoCorreoVigentes = campanasTipoCorreo.filter(
+      (campanasTipoCorreo) => {
+        return new Date(campanasTipoCorreo.ends) > today;
+      }
+    );
   }
 
   if (isLoading) return <p>Loading...</p>;
@@ -52,7 +58,7 @@ export const CorreoClientes = () => {
             placeholder="Seleccionar campana"
           >
             <option value="all">Todas las campañas...</option>
-            {campanasTipoCorreo.map((opcionesCampanas) => (
+            {campanasTipoCorreoVigentes.map((opcionesCampanas) => (
               <option key={opcionesCampanas.id} value={opcionesCampanas.id}>
                 {opcionesCampanas.name}
               </option>

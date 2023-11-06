@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+.wrapperForm{
+    width: 100%;  
+}
+
+.formUno{
+    /* background-color: blue; */
+    padding: 1rem;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+
+}
+.wrapperGuionLlamada{
+    width: 100%;
+    height: 80%;    
+}
+
+.wrapperGuionLlamada > p{
+    font-family: 'Mooli', sans-serif;
+    letter-spacing: .5px;
+    margin-bottom: 1.4rem;
+}
+
+.textAreaGuionLlamada{
+    width: 100%;
+    height: 85%;
+    resize: none;
+    font-family: 'Mooli', sans-serif;
+    outline: none;
+    border: none;
+    transition: border .3s ease;
+}
+
+.textAreaGuionLlamada:focus{
+    border: 1.5px solid aqua;
+}
+
+.btnDepuradorAbsolute{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.btnSubmitForm{
+    padding: .5rem 1.4rem;
+    border-radius: 10px;
+    border: none;
+    background: rgb(175, 201, 235);
+    color: navy;
+    overflow: hidden;
+    transition: background .3s ease, color .3s ease;
+}
+
+.btnSubmitForm:hover{
+    background: linear-gradient(to right, rgb(175, 201, 235), rgb(107, 107, 168));
+    color: white;
+}

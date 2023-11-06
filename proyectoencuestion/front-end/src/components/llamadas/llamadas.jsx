@@ -26,9 +26,16 @@ const LlamadasClientes = () => {
   });
 
   if (isSuccessFetchCampana) {
-    var campanasTipoCorreo = dataCampanas.filter((campana) => {
+    const today = new Date();
+
+    let campanasTipoLlamada = dataCampanas.filter((campana) => {
       return campana.tipoCampana === "llamada";
     });
+    var campanasTipoLlamadaVigentes = campanasTipoLlamada.filter(
+      (campanasTipoLlamada) => {
+        return new Date(campanasTipoLlamada.ends) > today;
+      }
+    );
   }
 
   if (isLoading) {
@@ -48,7 +55,7 @@ const LlamadasClientes = () => {
           placeholder="Seleccionar campana"
         >
           <option value="all">Todas las campañas...</option>
-          {campanasTipoCorreo.map((opcionesCampanas) => (
+          {campanasTipoLlamadaVigentes.map((opcionesCampanas) => (
             <option key={opcionesCampanas.id} value={opcionesCampanas.id}>
               {opcionesCampanas.name}
             </option>

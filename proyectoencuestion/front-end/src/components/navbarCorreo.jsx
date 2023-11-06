@@ -1,38 +1,34 @@
 import React, { useState } from "react";
 import styles from "../styles/navbarCorreo.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBell,
-  faBars,
-  faMagnifyingGlass,
-  faGear,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
 
 import { FaXmark } from "react-icons/fa6";
 import FormsCrearCorreoCampana from "./forms/formsCrearCorreoCampana";
 import FormCrearCorreoDos from "./forms/formsCrearCorreoDOS";
-
-import { Link } from "react-router-dom";
 import NavbarParteGris from "./navBarParteGris";
+import { useFormCorreo } from "./marketing/storeCorreo/useFormCorreo";
+import { useCloseFormCorreo } from "./marketing/storeCorreo/useCloseFormCorreo";
 
 const NavbarCorreo = () => {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-  const [subMenuOpen, setSubMenuOpen] = useState(false);
-  const [subMenuOpen2, setSubMenuOpen2] = useState(false);
-  const [crearCorreo, setCrearCorreo] = useState(false);
-
-  const [submitSiguiente, setSubmitSiguiente] = useState([]);
 
   // esto es para saber si en el forms se ha clickeado el boton 'siguiente', para pasar al forms n° 02
   const [siguienteIsClicked, setSiguienteIsClicked] = useState(false);
 
-  const toggleLateralMenu = () => {
-    setIsDropDownOpen(!isDropDownOpen);
-  };
+  const isFormCorreoCompleted = useCloseFormCorreo(
+    (state) => state.isFormCorreoCompleted
+  );
+  const toggleStateFormCorreo = useCloseFormCorreo(
+    (state) => state.toggleStateFormCorreo
+  );
 
-  const toggleCrearCorreo = () => {
-    setCrearCorreo(!crearCorreo);
+  // estados globales del form correo.
+  const dataCorreoForm = useFormCorreo((state) => state.dataCorreoForm);
+  const methodAddDataFormCorreo = useFormCorreo(
+    (state) => state.methodAddDataFormCorreo
+  );
+
+  const handleConsoleLog = () => {
+    console.log(dataCorreoForm);
   };
 
   return (
@@ -49,7 +45,7 @@ const NavbarCorreo = () => {
           <div className={styles.buttons}>
             <button
               className={styles.botonCrearCorreo}
-              onClick={toggleCrearCorreo}
+              onClick={() => toggleStateFormCorreo()}
             >
               Crear correo
             </button>
@@ -59,12 +55,12 @@ const NavbarCorreo = () => {
 
       <div
         className={`${styles.containerMenuLateralCrearCorreo} ${
-          crearCorreo ? styles.toggleCrearCorreoMenu : ""
+          isFormCorreoCompleted ? styles.toggleCrearCorreoMenu : ""
         } `}
       >
         <button
           className={styles.cerrarMenuLateral}
-          onClick={toggleCrearCorreo}
+          onClick={() => toggleStateFormCorreo()}
         >
           <FaXmark />
         </button>
@@ -73,17 +69,12 @@ const NavbarCorreo = () => {
           <FormsCrearCorreoCampana
             siguienteIsClicked={siguienteIsClicked}
             setSiguienteIsClicked={setSiguienteIsClicked}
-            submitSiguiente={submitSiguiente}
-            setSubmitSiguiente={setSubmitSiguiente}
           />
         )}
 
-        {siguienteIsClicked && (
-          <FormCrearCorreoDos
-            submitSiguiente={submitSiguiente}
-            setSubmitSiguiente={setSubmitSiguiente}
-          />
-        )}
+        {siguienteIsClicked && <FormCrearCorreoDos />}
+
+        <button onClick={handleConsoleLog}>Handle global state form</button>
       </div>
     </header>
   );

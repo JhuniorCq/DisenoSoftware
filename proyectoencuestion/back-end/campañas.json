@@ -378,6 +378,62 @@
       "district": "Pachitea",
       "created": "2023-11-03",
       "id": 28
+    },
+    {
+      "name": "Campaña llamada 2023 noviembre",
+      "tipoCampana": "llamada",
+      "starts": "2023-11-17",
+      "ends": "2024-11-06",
+      "objectives": "4839 clientes nuevos",
+      "description": "ALALALALL",
+      "targeredAge": "30-39",
+      "gender": "femenino",
+      "department": "Junin",
+      "district": "Jauja",
+      "created": "2023-11-04",
+      "id": 29
+    },
+    {
+      "name": "Campaaaaaaa",
+      "tipoCampana": "llamada",
+      "starts": "2023-11-24",
+      "ends": "2023-11-25",
+      "objectives": "wadadaw",
+      "description": "adwadadwa",
+      "targeredAge": "20-29",
+      "gender": "masculino",
+      "department": "Junin",
+      "district": "Tarma",
+      "created": "2023-11-04",
+      "id": 30
+    },
+    {
+      "name": "campaña de octubre 2023",
+      "tipoCampana": "correo",
+      "starts": "2023-09-20",
+      "ends": "2023-10-20",
+      "objectives": "OOOOOOOOOOO",
+      "description": "adadadadadadaadadaaddadadadaadaddadaaddadaaddaaddadaad",
+      "targeredAge": "11-19",
+      "gender": "masculino",
+      "department": "Lambayeque",
+      "district": "Ferreñafe",
+      "created": "2023-11-04",
+      "id": 31
+    },
+    {
+      "name": "bob",
+      "tipoCampana": "llamada",
+      "starts": "2023-11-21",
+      "ends": "2023-11-30",
+      "objectives": "alalalalaa",
+      "description": "adadwadwadawd",
+      "targeredAge": "11-19",
+      "gender": "masculino",
+      "department": "Junin",
+      "district": "Satipo",
+      "created": "2023-11-04",
+      "id": 32
     }
   ],
   "publicocorreoscampanas": [
@@ -465,57 +521,29 @@
   "correoscampanascreadas": [
     {
       "id": 1,
-      "emailUser": "hola123@gmail.com",
-      "affairUser": "estoy probando , este es un asunto",
-      "messageUser": "estoy probando, este es un mensaje"
+      "titleCorreo": "hola123@gmail.com",
+      "affair": "estoy probando , este es un asunto",
+      "message": "estoy probando, este es un mensaje"
     },
     {
-      "emailUser": "aaa@hotmail.com",
-      "affairUser": "elelelele",
-      "messageUser": "asnandaoidandio",
+      "titleCorreo": "titulo del correo 2",
+      "affair": "asunto2",
+      "message": "mensaje 2",
+      "tipoCampana": "7",
+      "send": "later",
+      "date": "2023-11-28",
+      "time": "16:24",
       "id": 2
     },
     {
-      "emailUser": "alalalalala@gmail.com",
-      "affairUser": "hola asunto raro",
-      "messageUser": "holassasmaodmoiad",
+      "titleCorreo": "titulo correo 3",
+      "affair": "asunto 3",
+      "message": "mensaje 3",
+      "tipoCampana": "28",
+      "send": "now",
+      "date": "2023-11-05",
+      "time": "16:20",
       "id": 3
-    },
-    {
-      "newCorreo": {
-        "email": "awdaw@gmail.com",
-        "affair": "aeinaofni",
-        "message": "ofinaefoin"
-      },
-      "id": 4
-    },
-    {
-      "newCorreo": {
-        "email": "awdaw@gmail.com",
-        "affair": "aeinaofni",
-        "message": "ofinaefoin"
-      },
-      "emailUser": "aaa@gmail.com",
-      "send": "now",
-      "id": 5
-    },
-    {
-      "newCorreo": {
-        "email": "aaaadiamefoenafneao@gmail.com",
-        "affair": "eaofnaoin",
-        "message": "QOINFON"
-      },
-      "id": 6
-    },
-    {
-      "newCorreo": {
-        "email": "wadadad@gmail.com",
-        "affair": "aeoifn",
-        "message": "oaenfioan\n"
-      },
-      "emailUser": "hola@gmail.com",
-      "send": "now",
-      "id": 7
     }
   ],
   "clientesllamadas": [
