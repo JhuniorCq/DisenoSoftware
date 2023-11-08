@@ -1,22 +1,38 @@
 import styles from "../stylesFormsLlamadas/formCrearLlamadaDos.module.css";
 import { useState } from "react";
 import { useFormCrearLlamada } from "../storeLlamadas/storeFormCrearLlamada";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createLlamadasAdministrar } from "../llamadasAPI";
+import { useCrearLlamada } from "../storeLlamadas/storeCrearLlamada";
 
 export const FormCrearLlamadaDos = () => {
   const [guionLlamada, setGuionLlamada] = useState("");
 
-  const methodCrearLlamada = useFormCrearLlamada(
-    (state) => state.methodCrearLlamada
+  const dataFormLlamada = useFormCrearLlamada((state) => state.dataFormLlamada);
+
+  const toggleCrearLlamada = useCrearLlamada(
+    (state) => state.toggleCrearLlamada
   );
+
+  const queryClient = useQueryClient();
+  const addLlamadasAdministrar = useMutation({
+    mutationFn: createLlamadasAdministrar,
+    onSuccess: () => {
+      queryClient.invalidateQueries("correoscampanascreadas");
+      console.log("campaña añadida correctamente!");
+    },
+  });
 
   const handleSubmitSecondForm = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-    methodCrearLlamada(data);
 
-    console.log(`data del segundo form: `);
-    console.log(data);
+    addLlamadasAdministrar.mutate({
+      ...dataFormLlamada,
+      ...data,
+    });
+    toggleCrearLlamada();
   };
 
   return (

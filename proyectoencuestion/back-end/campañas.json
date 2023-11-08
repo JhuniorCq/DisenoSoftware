@@ -520,12 +520,6 @@
   ],
   "correoscampanascreadas": [
     {
-      "id": 1,
-      "titleCorreo": "hola123@gmail.com",
-      "affair": "estoy probando , este es un asunto",
-      "message": "estoy probando, este es un mensaje"
-    },
-    {
       "titleCorreo": "titulo del correo 2",
       "affair": "asunto2",
       "message": "mensaje 2",
@@ -533,7 +527,7 @@
       "send": "later",
       "date": "2023-11-28",
       "time": "16:24",
-      "id": 2
+      "id": 1
     },
     {
       "titleCorreo": "titulo correo 3",
@@ -543,7 +537,37 @@
       "send": "now",
       "date": "2023-11-05",
       "time": "16:20",
+      "id": 2
+    },
+    {
+      "titleCorreo": "ppppaa",
+      "affair": "Alalalalalal",
+      "message": "eelelelelelel",
+      "tipoCampana": "10",
+      "send": "later",
+      "date": "2023-11-16",
+      "time": "11:43",
       "id": 3
+    },
+    {
+      "titleCorreo": "correo 4",
+      "affair": "asunto 4",
+      "message": "mensaje 4",
+      "tipoCampana": "7",
+      "send": "later",
+      "date": "2023-11-08",
+      "time": "08:05",
+      "id": 4
+    },
+    {
+      "titleCorreo": "flowwww",
+      "affair": "alala",
+      "message": "alalaaaa",
+      "tipoCampana": "10",
+      "send": "now",
+      "date": "2023-11-08",
+      "time": "08:06",
+      "id": 5
     }
   ],
   "clientesllamadas": [
@@ -630,44 +654,36 @@
   ],
   "llamadasadministrar": [
     {
-      "id": "#00001",
-      "llamada": "llamada desde 945874932"
+      "guionLlamada": "guioncito",
+      "initialDateCall": "2023-11-15",
+      "endDateCall": "2023-11-16",
+      "initialTimeCall": "11:42",
+      "endTimeCall": "13:44",
+      "id": 1
     },
     {
-      "id": "#00002",
-      "llamada": "llamada desde 958342195"
+      "guionLlamada": "guion de la llamada 2",
+      "initialDateCall": "2023-11-15",
+      "endDateCall": "2023-11-23",
+      "initialTimeCall": "13:01",
+      "endTimeCall": "12:00",
+      "id": 2
     },
     {
-      "id": "#00003",
-      "llamada": "llamada desde 974561238"
+      "guionLlamada": "alalalalla",
+      "initialDateCall": "2023-11-10",
+      "endDateCall": "2023-11-23",
+      "initialTimeCall": "12:00",
+      "endTimeCall": "15:02",
+      "id": 3
     },
     {
-      "id": "#00004",
-      "llamada": "llamada desde 921678543"
-    },
-    {
-      "id": "#00005",
-      "llamada": "llamada desde 936254781"
-    },
-    {
-      "id": "#00006",
-      "llamada": "llamada desde 953871462"
-    },
-    {
-      "id": "#00007",
-      "llamada": "llamada desde 947512683"
-    },
-    {
-      "id": "#00008",
-      "llamada": "llamada desde 998765432"
-    },
-    {
-      "id": "#00009",
-      "llamada": "llamada desde 964182753"
-    },
-    {
-      "id": "#00010",
-      "llamada": "llamada desde 926374819"
+      "guionLlamada": "elelelelelelelele",
+      "initialDateCall": "2023-11-06",
+      "endDateCall": "2023-11-07",
+      "initialTimeCall": "15:10",
+      "endTimeCall": "16:11",
+      "id": 4
     }
   ]
 }

@@ -43,10 +43,6 @@ export const CrearLlamadaLateral = () => {
         onClick={handleCrearLlamada}
       />
       {!isFormUnoCompleted ? <FormCrearLlamadaUno /> : <FormCrearLlamadaDos />}
-
-      <button className={styles.btnDepuradorAbsolute} onClick={showFormLlamada}>
-        Show global state
-      </button>
     </div>
   );
 };

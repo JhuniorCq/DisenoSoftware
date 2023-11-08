@@ -78,6 +78,11 @@ hr {
     color: white;
 }
 
+.buttonPressed{
+    background: linear-gradient(to right, rgb(175, 201, 235), rgb(107, 107, 168));
+    color: white;
+}
+
 .vistaTablaLlamadas{
     border : .5px solid rgba(240, 233, 233, 0.404);
 }
