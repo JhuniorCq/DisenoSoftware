@@ -14,7 +14,7 @@ export const useFormCrearLlamada = create((set) => ({
         });
     },
 
-    clearForm: () => {
+    clearFormLlamada: () => {
         set({
             dataFormLlamada: {}
         });

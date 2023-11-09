@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+.wrapperForm, .wrapperDataForm{
+    width: 100%;  
+}
+
+.programacionLlamada{
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+}
+
+.dia{
+    font-size: 1.4rem;
+    margin: 1rem 0;
+    width: 97%;
+}
+
+.formDos{
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'Mooli', sans-serif;
+
+}
+/* contenedor total */
+.wrapperName{
+    width: 97%;
+    font-family: 'Mooli', sans-serif;
+}
+/* parte del texto */
+.wrapperName > p{
+    font-family: 'Mooli', sans-serif;
+}
+/* parte del input */
+.wrapperName > input{
+    width: 100%;
+    padding: .3rem .4rem;
+    outline: none;
+    border: none;
+    transition: border .3s ease;
+}
+
+.wrapperName > input:focus{
+    border: 1.5px solid aqua;
+}
+
+.wrapperName > input:disabled{
+    border-radius: 10px;
+    background-color: rgba(128, 128, 128, 0.534);
+    cursor:not-allowed;
+}
+
+.wrapperDates{
+    display: flex;
+    justify-content: space-around;
+    width: 97%;
+    margin-bottom: 2rem;
+}
+
+.containerInitialDate > input, .containerEndDate > input,
+.containerInitialTime > input, .containerEndTime > input{
+    font-family: 'Mooli', sans-serif;
+    outline: none;
+    /* border: none; */
+    transition: border .3s ease;
+}
+
+.containerInitialDate > input:focus, .containerEndDate > input:focus,
+.containerInitialTime > input:focus, .containerEndTime > input:focus{
+    border: 1.4px solid aqua;
+}
+
+
+.containerInitialDate > p, .containerEndDate > p,
+.containerInitialTime > p, .containerEndTime > p{
+    font-family: 'Mooli', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.wrapperTimes{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: .8rem;
+    margin-bottom: 3.5rem;
+    gap: 5.5rem;
+    width: 97%;
+}
+
+.btnSubmitForm{
+    padding: .5rem 1.4rem;
+    border-radius: 10px;
+    border: none;
+    background: rgb(175, 201, 235);
+    color: navy;
+    overflow: hidden;
+    transition: background .3s ease, color .3s ease;
+}
+
+.btnSubmitForm:hover{
+    background: linear-gradient(to right, rgb(175, 201, 235), rgb(107, 107, 168));
+    color: white;
+}

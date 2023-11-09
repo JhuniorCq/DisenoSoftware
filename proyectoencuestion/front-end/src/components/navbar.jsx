@@ -9,14 +9,11 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "../styles/navbar.module.css";
-import { useCampanas } from "./store/useCampanas";
 import FormCrearCampana from "./forms/formsCrearCampana";
 import NavbarParteGris from "./navBarParteGris";
 
 const Navbar = () => {
   const [crearCampana, setCrearCampana] = useState(false);
-
-  const { dataCampanaIDs, addDataCampana } = useCampanas();
 
   const toggleCrearCampana = () => {
     setCrearCampana(!crearCampana);
@@ -68,9 +65,6 @@ const Navbar = () => {
         <div className={styles.cerrarMenu} onClick={toggleCrearCampana}>
           <FontAwesomeIcon icon={faXmark} />
         </div>
-
-        <div className={styles.tituloForm}>Título</div>
-
         <div className={styles.containerForm}>
           <FormCrearCampana
             crearCampana={crearCampana}

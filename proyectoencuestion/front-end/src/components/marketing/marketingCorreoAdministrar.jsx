@@ -15,8 +15,8 @@ export const CorreoAdministrar = () => {
   const [botonCorreo, setBotonCorreo] = useState("Todos los correos");
 
   const { isLoading, isError, error, data, isSuccess } = useQuery({
-    queryKey: ["publicocorreoscampanas"],
     queryFn: getCorreosCampanas,
+    queryKey: ["correoscampanascreadas"],
   });
 
   useEffect(() => {
@@ -64,7 +64,7 @@ export const CorreoAdministrar = () => {
   };
 
   return (
-    <body>
+    <div>
       <NavbarCorreo />
       <VistaCorreo />
       <main className={styles.parteAdministrar}>
@@ -108,7 +108,7 @@ export const CorreoAdministrar = () => {
                 value={busquedaAdm}
                 type="text"
                 placeholder="Buscar correos..."
-                minlength="1"
+                minLength="1"
               />
               {/* quité lo de value = {busqueda} y onChangue = {handleChange} porque aun no sé como se manejará la tabla */}
               <button className={styles.navIconSearch} type="submit">
@@ -121,22 +121,71 @@ export const CorreoAdministrar = () => {
               <thead>
                 <tr>
                   <th>id</th>
-                  <th>Correos electrónicos</th>
+                  <th>Título del correo</th>
+                  <th>Asunto</th>
+                  <th>Id de la campaña</th>
+                  <th>Fecha de envío</th>
+                  <th>Hora de envío</th>
                 </tr>
               </thead>
               <tbody>
-                {usuariosAdm &&
-                  usuariosAdm.map((usuario) => (
-                    <tr key={usuario.id}>
-                      <td>{usuario.id}</td>
-                      <td>{usuario.emailUser}</td>
+                {usuariosAdm && botonCorreo === "Todos los correos" ? (
+                  usuariosAdm.map((correo) => (
+                    <tr key={correo.id}>
+                      <td>{correo.id}</td>
+                      <td>{correo.titleCorreo}</td>
+                      <td>{correo.affair}</td>
+                      <td>{correo.tipoCampana}</td>
+                      <td>{correo.date}</td>
+                      <td>{correo.time}</td>
                     </tr>
-                  ))}
+                  ))
+                ) : usuariosAdm && botonCorreo === "Programados" ? (
+                  usuariosAdm
+                    .filter((correo) => {
+                      const currentDate = new Date();
+                      const correoDateTime = new Date(
+                        `${correo.date}T${correo.time}`
+                      );
+                      return currentDate < correoDateTime;
+                    })
+                    .map((correo) => (
+                      <tr key={correo.id}>
+                        <td>{correo.id}</td>
+                        <td>{correo.titleCorreo}</td>
+                        <td>{correo.affair}</td>
+                        <td>{correo.tipoCampana}</td>
+                        <td>{correo.date}</td>
+                        <td>{correo.time}</td>
+                      </tr>
+                    ))
+                ) : usuariosAdm && botonCorreo === "Enviados" ? (
+                  usuariosAdm
+                    .filter((correo) => {
+                      const currentDate = new Date();
+                      const correoDateTime = new Date(
+                        `${correo.date}T${correo.time}`
+                      );
+                      return currentDate >= correoDateTime;
+                    })
+                    .map((correo) => (
+                      <tr key={correo.id}>
+                        <td>{correo.id}</td>
+                        <td>{correo.titleCorreo}</td>
+                        <td>{correo.affair}</td>
+                        <td>{correo.tipoCampana}</td>
+                        <td>{correo.date}</td>
+                        <td>{correo.time}</td>
+                      </tr>
+                    ))
+                ) : (
+                  <div> Dataaaaaa tablita</div>
+                )}
               </tbody>
             </table>
           </div>
         </section>
       </main>
-    </body>
+    </div>
   );
 };

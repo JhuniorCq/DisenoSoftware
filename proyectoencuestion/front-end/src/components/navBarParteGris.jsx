@@ -200,12 +200,12 @@ const NavbarParteGris = () => {
                 </Link>
               </li>
               <li className={styles.list__inside}>
-                <a
-                  href="#c"
+                <Link
+                  to={"/sorteos"}
                   className={`${styles.nav__link} ${styles.nav__link__inside}`}
                 >
                   Sorteos
-                </a>
+                </Link>
               </li>
             </ul>
           </li>

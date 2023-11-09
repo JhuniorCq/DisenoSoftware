@@ -3,7 +3,7 @@ import { useCrearLlamada } from "./storeLlamadas/storeCrearLlamada";
 import { FaXmark } from "react-icons/fa6";
 import { FormCrearLlamadaUno } from "./formsCrearLlamadas/formCrearLlamadaUno";
 import { useFormCrearLlamada } from "./storeLlamadas/storeFormCrearLlamada";
-import { useSubmitFormUnoLlamada } from "./storeLlamadas/storeSubmitFormUnoLlamada";
+import { useSubmitFormsLlamada } from "./storeLlamadas/storeSubmitFormsLlamada";
 import { FormCrearLlamadaDos } from "./formsCrearLlamadas/formCrearLlamadaDos";
 
 export const CrearLlamadaLateral = () => {
@@ -20,13 +20,15 @@ export const CrearLlamadaLateral = () => {
 
   // estados para poder cambiar del form 1 al form 2 de llamadas:
 
-  const isFormUnoCompleted = useSubmitFormUnoLlamada(
+  const isFormUnoCompleted = useSubmitFormsLlamada(
     (state) => state.isFormUnoCompleted
   );
 
   // estados del form para poder visualizar los datos
   // parte del form
-  const dataFormLlamada = useFormCrearLlamada((state) => state.dataFormLlamada);
+  const dataFormLlamada = useSubmitFormsLlamada(
+    (state) => state.dataFormLlamada
+  );
 
   const showFormLlamada = () => {
     console.log(dataFormLlamada);
@@ -43,10 +45,6 @@ export const CrearLlamadaLateral = () => {
         onClick={handleCrearLlamada}
       />
       {!isFormUnoCompleted ? <FormCrearLlamadaUno /> : <FormCrearLlamadaDos />}
-
-      <button className={styles.btnDepuradorAbsolute} onClick={showFormLlamada}>
-        Show global state
-      </button>
     </div>
   );
 };

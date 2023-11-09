@@ -1,7 +1,6 @@
 import { useEffect, useId, useState } from "react";
 import styles from "./formsCrearCampana.module.css";
 import FormsPublicoObjetivoCrearCampana from "./formsPublicoObjetivoCrearCampana";
-import { useCampanas } from "../store/useCampanas";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { crearCampanas } from "../campanasAPI";
 import { ToastContainer, toast } from "react-toastify";
@@ -24,16 +23,13 @@ const FormCrearCampana = (props) => {
   const [tipoCampanaInput, setTipoCampanaInput] = useState("");
   const [bothFormsAreSubmitted, setBothFormsAreSubmitted] = useState(false);
 
-  // datos del store de zustand
-  const dataCampanas = useCampanas((state) => state.dataCampanas);
-  const addDataCampana = useCampanas((state) => state.addDataCampana);
-
   const nombreCampanaID = useId();
   const fechaInicioID = useId();
   const fechaFinID = useId();
   const objetivosCampanaID = useId();
   const notasID = useId();
   const tipoCampanaID = useId();
+  const descuentoCampanaID = useId();
 
   const queryClient = useQueryClient();
   const agregarCampana = useMutation({
@@ -56,11 +52,11 @@ const FormCrearCampana = (props) => {
     const fechaFin = new Date(mainForm.ends);
 
     if (fechaInicio < today) {
-      toast.error("la fecha de inicio debe ser igual o posterior a hoy");
+      alert("la fecha de inicio debe ser igual o posterior a hoy");
       return;
     }
-    if (fechaInicio >= fechaFin) {
-      toast.error(
+    if (fechaFin <= fechaInicio) {
+      alert(
         "La fecha de finalización debe ser al menos un día después de la fecha de inicio"
       );
       return;
@@ -113,6 +109,7 @@ const FormCrearCampana = (props) => {
 
   const handleTipoCampanaChange = (e) => {
     setTipoCampanaInput(e.target.value);
+    console.log(e.target.value);
   };
 
   useEffect(() => {
@@ -164,6 +161,23 @@ const FormCrearCampana = (props) => {
               <option value="llamada">Llamada</option>
               <option value="sorteo">Sorteo</option>
             </select>
+          </div>
+          <div
+            className={` ${styles.containerDescuento} ${
+              tipoCampanaInput === "correo" || tipoCampanaInput === "llamada"
+                ? styles.mostrarDescuento
+                : ""
+            }`}
+          >
+            <label htmlFor={descuentoCampanaID}>
+              Descuento de la campaña (%)
+              <span className={styles.asterisco}>*</span>
+            </label>
+            <input
+              id={descuentoCampanaID}
+              name="descuentoCampana"
+              placeholder="Descuento para los usuarios..."
+            />
           </div>
           <div className={styles.containerFechaInicioCampanas}>
             <label htmlFor={fechaInicioID}>
