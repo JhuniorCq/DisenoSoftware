@@ -1,6 +1,6 @@
 const pool = require('../db');
 
-class CrearCampanaRepository {
+class CampanaRepository {
     async crearCampana(campana) {
         const { fecha_inicio, fecha_fin, nombre, tipo_campana, descripcion, objetivos } = campana;
 
@@ -15,9 +15,26 @@ class CrearCampanaRepository {
 
         return result.rows[0];
     }
+
+    async mostrarCampana() {
+        try {
+            const result = await pool.query('SELECT * FROM campana');
+            return result.rows;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async eliminarCampana(id_campana) {
+        // const {id} = id_campana;
+
+        const result = await pool.query('DELETE FROM campana WHERE campana_id = $1 RETURNING *', [id_campana]);
+
+        return result;
+    }
 }
 
 module.exports = {
-    CrearCampanaRepository: CrearCampanaRepository
+    CampanaRepository: CampanaRepository
 }
 
