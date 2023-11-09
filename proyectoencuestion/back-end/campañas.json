@@ -12,7 +12,8 @@
       "gender": "female",
       "department": "Lima",
       "district": "Lima",
-      "tipoCampana": "correo"
+      "tipoCampana": "correo",
+      "descuentoCampana": "15"
     },
     {
       "id": 2,
@@ -26,7 +27,8 @@
       "gender": "male",
       "department": "Cusco",
       "district": "Cusco",
-      "tipoCampana": "llamada"
+      "tipoCampana": "llamada",
+      "descuentoCampana": "25"
     },
     {
       "id": 3,
@@ -40,7 +42,8 @@
       "gender": "female",
       "department": "Arequipa",
       "district": "Arequipa",
-      "tipoCampana": "sorteo"
+      "tipoCampana": "sorteo",
+      "descuentoCampana": "0"
     },
     {
       "id": 4,
@@ -54,7 +57,8 @@
       "gender": "male",
       "department": "Loreto",
       "district": "Iquitos",
-      "tipoCampana": "correo"
+      "tipoCampana": "correo",
+      "descuentoCampana": "10"
     },
     {
       "id": 5,
@@ -68,7 +72,8 @@
       "gender": "female",
       "department": "Lambayeque",
       "district": "Chiclayo",
-      "tipoCampana": "llamada"
+      "tipoCampana": "llamada",
+      "descuentoCampana": "5"
     },
     {
       "id": 6,
@@ -82,7 +87,8 @@
       "gender": "male",
       "department": "Piura",
       "district": "Piura",
-      "tipoCampana": "sorteo"
+      "tipoCampana": "sorteo",
+      "descuentoCampana": "0"
     },
     {
       "id": 7,
@@ -96,7 +102,8 @@
       "gender": "female",
       "department": "Tacna",
       "district": "Tacna",
-      "tipoCampana": "correo"
+      "tipoCampana": "correo",
+      "descuentoCampana": "30"
     },
     {
       "id": 8,
@@ -110,7 +117,8 @@
       "gender": "male",
       "department": "Junin",
       "district": "Huancayo",
-      "tipoCampana": "llamada"
+      "tipoCampana": "llamada",
+      "descuentoCampana": "20"
     },
     {
       "id": 9,
@@ -124,7 +132,8 @@
       "gender": "female",
       "department": "Ica",
       "district": "Ica",
-      "tipoCampana": "sorteo"
+      "tipoCampana": "sorteo",
+      "descuentoCampana": "0"
     },
     {
       "id": 10,
@@ -138,302 +147,23 @@
       "gender": "male",
       "department": "Cajamarca",
       "district": "Cajamarca",
-      "tipoCampana": "correo"
+      "tipoCampana": "correo",
+      "descuentoCampana": "40"
     },
     {
-      "name": "No mas alonsos",
-      "starts": "2023-10-06",
-      "ends": "2023-10-10",
-      "objectives": "awdadaw",
-      "description": "holaa",
-      "targeredAge": "rangoEdad2",
-      "gender": "femenino",
-      "department": "La_Libertad",
-      "district": "Pataz",
-      "created": "2023-10-06",
-      "id": 11
-    },
-    {
-      "name": "aaa",
-      "starts": "2023-10-12",
-      "ends": "2023-11-12",
-      "objectives": "eeee",
-      "description": "holaaaa",
-      "targeredAge": "rangoEdad3",
-      "gender": "femenino",
-      "department": "La_Libertad",
-      "district": "Pataz",
-      "created": "2023-10-06",
-      "id": 12
-    },
-    {
-      "name": "aaa",
-      "starts": "2023-10-12",
-      "ends": "2023-11-12",
-      "objectives": "eeee",
-      "description": "holaaaa",
-      "targeredAge": "rangoEdad1",
-      "gender": "masculino",
-      "department": "Huanuco",
-      "district": "Leoncio Prado",
-      "created": "2023-10-06",
-      "id": 13
-    },
-    {
-      "name": "qqqq",
-      "starts": "2023-10-12",
-      "ends": "2023-12-21",
-      "objectives": "owind",
-      "description": "holaa",
-      "targeredAge": "rangoEdad1",
-      "gender": "masculino",
-      "department": "Junin",
-      "district": "Satipo",
-      "created": "2023-10-06",
-      "id": 14
-    },
-    {
-      "name": "wad",
-      "starts": "2023-12-12",
-      "ends": "2023-12-19",
-      "objectives": "afajbaef",
-      "description": "daaaadad",
-      "targeredAge": "rangoEdad1",
-      "gender": "masculino",
-      "department": "La_Libertad",
-      "district": "Pacasmayo",
-      "created": "2023-10-06",
-      "id": 15
-    },
-    {
-      "name": "ggggggg",
-      "starts": "2023-12-13",
-      "ends": "2023-12-19",
-      "objectives": "owain",
-      "description": "holaaaaa",
-      "targeredAge": "rangoEdad2",
-      "gender": "femenino",
-      "department": "Junin",
-      "district": "Chupaca",
-      "created": "2023-10-08",
-      "id": 16
-    },
-    {
-      "name": "NOMBRE CAMPAÑA PRUEBAAAAA",
-      "starts": "2023-11-13",
-      "ends": "2023-11-22",
-      "objectives": "oaidodn",
-      "description": "awdaawd",
-      "targeredAge": "rangoEdad4",
-      "gender": "masculino",
-      "department": "La_Libertad",
-      "district": "Santiago de Chuco",
-      "created": "2023-10-08",
-      "id": 17
-    },
-    {
-      "name": "aaaaaaaaaaaaaaaaaaaa",
-      "starts": "2023-11-13",
-      "ends": "2023-11-21",
-      "objectives": "alalalal",
-      "description": "DESCRIPCION DE EJEMPLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
-      "targeredAge": "rangoEdad1",
-      "gender": "masculino",
-      "department": "Huancavelica",
-      "district": "Churcampa",
-      "created": "2023-10-08",
-      "id": 18
-    },
-    {
-      "name": "pruebita de restricciones",
-      "starts": "2023-03-12",
-      "ends": "2023-05-12",
-      "objectives": "as",
-      "description": "dwaadadadasdada",
-      "targeredAge": "rangoEdad2",
-      "gender": "femenino",
-      "department": "Lima",
-      "district": "Huaura",
-      "created": "2023-10-08",
-      "id": 19
-    },
-    {
-      "name": "eeeeeeee",
-      "starts": "2023-11-12",
-      "ends": "2023-12-12",
-      "objectives": "eeeeeeee",
-      "description": "hl",
-      "targeredAge": "rangoEdad5",
-      "gender": "masculino",
-      "department": "Lambayeque",
-      "district": "Lambayeque",
-      "created": "2023-10-08",
-      "id": 20
-    },
-    {
-      "name": "pruebinha",
-      "starts": "2023-11-12",
-      "ends": "2023-12-12",
-      "objectives": "eeeeeeee",
-      "description": "hl",
-      "targeredAge": "rangoEdad5",
-      "gender": "masculino",
-      "department": "Lambayeque",
-      "district": "Lambayeque",
-      "created": "2023-10-08",
-      "id": 21
-    },
-    {
-      "name": "hol",
-      "starts": "2024-12-12",
-      "ends": "2025-12-12",
-      "objectives": "alalalalal",
-      "description": "Opcional",
-      "targeredAge": "rangoEdad3",
-      "gender": "masculino",
-      "department": "La_Libertad",
-      "district": "Santiago de Chuco",
-      "created": "2023-10-11",
-      "id": 22
-    },
-    {
-      "name": "eeeeeeeeeee",
-      "starts": "1212-12-12",
-      "ends": "1213-12-12",
-      "objectives": "eeee",
-      "description": "caacacacacacacacacaacac",
-      "targeredAge": "4-5",
-      "gender": "femenino",
-      "department": "La_Libertad",
-      "district": "Pataz",
-      "created": "2023-10-12",
-      "id": 23
-    },
-    {
-      "name": "enzo112212",
+      "name": "descuentito",
       "tipoCampana": "llamada",
-      "starts": "2023-11-03",
-      "ends": "2023-11-10",
-      "objectives": "AALALAALAA",
-      "description": "notas a probar 1",
-      "targeredAge": "30-39",
-      "gender": "femenino",
-      "department": "Madre_de_Dios",
-      "district": "Manu",
-      "created": "2023-11-03",
-      "id": 24
-    },
-    {
-      "name": "Hodaaaaaaaaaaaaaaaaa",
-      "tipoCampana": "sorteo",
-      "starts": "2023-11-30",
-      "ends": "2023-11-23",
-      "objectives": "eooooooooooooo",
-      "description": "notas a probar 2",
-      "targeredAge": "32-59",
-      "gender": "prefieroNoDecirlo",
-      "department": "Lima",
-      "district": "Huarochiri",
-      "created": "2023-11-03",
-      "id": 25
-    },
-    {
-      "name": "aaaa",
-      "tipoCampana": "llamada",
-      "starts": "2023-11-08",
+      "descuentoCampana": "23",
+      "starts": "2023-11-15",
       "ends": "2023-11-24",
-      "objectives": "aefeaifan9f",
-      "description": "naoevnoiv",
-      "targeredAge": "11-19",
-      "gender": "femenino",
-      "department": "Huancavelica",
-      "district": "Churcampa",
-      "created": "2023-11-03",
-      "id": 26
-    },
-    {
-      "name": "aaaa",
-      "tipoCampana": "correo",
-      "starts": "2023-11-04",
-      "ends": "2023-11-23",
-      "objectives": "wvvvsvsvs",
-      "description": "vsvsvsvsssvsv",
+      "objectives": "descuento",
+      "description": "aaaaaaa",
       "targeredAge": "11-19",
       "gender": "masculino",
-      "department": "Lima",
-      "district": "Oyon",
-      "created": "2023-11-03",
-      "id": 27
-    },
-    {
-      "name": "Campana actual 2020202020202",
-      "tipoCampana": "correo",
-      "starts": "2023-11-17",
-      "ends": "2023-11-29",
-      "objectives": "ainaoefnaofe",
-      "description": "aoinaeonaofnaofe",
-      "targeredAge": "11-19",
-      "gender": "masculino",
-      "department": "Huanuco",
-      "district": "Pachitea",
-      "created": "2023-11-03",
-      "id": 28
-    },
-    {
-      "name": "Campaña llamada 2023 noviembre",
-      "tipoCampana": "llamada",
-      "starts": "2023-11-17",
-      "ends": "2024-11-06",
-      "objectives": "4839 clientes nuevos",
-      "description": "ALALALALL",
-      "targeredAge": "30-39",
-      "gender": "femenino",
-      "department": "Junin",
-      "district": "Jauja",
-      "created": "2023-11-04",
-      "id": 29
-    },
-    {
-      "name": "Campaaaaaaa",
-      "tipoCampana": "llamada",
-      "starts": "2023-11-24",
-      "ends": "2023-11-25",
-      "objectives": "wadadaw",
-      "description": "adwadadwa",
-      "targeredAge": "20-29",
-      "gender": "masculino",
-      "department": "Junin",
-      "district": "Tarma",
-      "created": "2023-11-04",
-      "id": 30
-    },
-    {
-      "name": "campaña de octubre 2023",
-      "tipoCampana": "correo",
-      "starts": "2023-09-20",
-      "ends": "2023-10-20",
-      "objectives": "OOOOOOOOOOO",
-      "description": "adadadadadadaadadaaddadadadaadaddadaaddadaaddaaddadaad",
-      "targeredAge": "11-19",
-      "gender": "masculino",
-      "department": "Lambayeque",
-      "district": "Ferreñafe",
-      "created": "2023-11-04",
-      "id": 31
-    },
-    {
-      "name": "bob",
-      "tipoCampana": "llamada",
-      "starts": "2023-11-21",
-      "ends": "2023-11-30",
-      "objectives": "alalalalaa",
-      "description": "adadwadwadawd",
-      "targeredAge": "11-19",
-      "gender": "masculino",
-      "department": "Junin",
-      "district": "Satipo",
-      "created": "2023-11-04",
-      "id": 32
+      "department": "La_Libertad",
+      "district": "Pataz",
+      "created": "2023-11-09",
+      "id": 11
     }
   ],
   "publicocorreoscampanas": [
@@ -568,6 +298,16 @@
       "date": "2023-11-08",
       "time": "08:06",
       "id": 5
+    },
+    {
+      "titleCorreo": "sefefsefesfesf",
+      "affair": "esfesfsefesfsefsef",
+      "message": "sfseesfseesfesf",
+      "tipoCampana": "7",
+      "send": "later",
+      "date": "2023-11-28",
+      "time": "10:42",
+      "id": 6
     }
   ],
   "clientesllamadas": [
@@ -684,6 +424,46 @@
       "initialTimeCall": "15:10",
       "endTimeCall": "16:11",
       "id": 4
+    },
+    {
+      "guionLlamada": "dawaoinefonaeo2398ea",
+      "initialDateCall": "2023-11-10",
+      "endDateCall": "2023-11-17",
+      "initialTimeCall": "10:25",
+      "endTimeCall": "10:25",
+      "id": 5
+    },
+    {
+      "guionLlamada": "dwaadwadzvsdvsdvz",
+      "initialDateCall": "2023-11-11",
+      "endDateCall": "2023-11-12",
+      "initialTimeCall": "14:21",
+      "endTimeCall": "10:25",
+      "id": 6
+    },
+    {
+      "guionLlamada": "sbbbxxbxbxbxbxbxbxb",
+      "initialDateCall": "2023-11-16",
+      "endDateCall": "2023-11-24",
+      "initialTimeCall": "14:23",
+      "endTimeCall": "15:23",
+      "id": 7
+    },
+    {
+      "guionLlamada": "guion prueba",
+      "initialDateCall": "2023-11-21",
+      "endDateCall": "2023-11-23",
+      "initialTimeCall": "10:34",
+      "endTimeCall": "15:31",
+      "id": 8
+    },
+    {
+      "guionLlamada": "alalalalaaldal",
+      "initialDateCall": "2023-11-29",
+      "endDateCall": "2023-11-30",
+      "initialTimeCall": "14:31",
+      "endTimeCall": "15:31",
+      "id": 9
     }
   ]
 }

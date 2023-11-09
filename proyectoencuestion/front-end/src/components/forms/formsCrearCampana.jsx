@@ -29,6 +29,7 @@ const FormCrearCampana = (props) => {
   const objetivosCampanaID = useId();
   const notasID = useId();
   const tipoCampanaID = useId();
+  const descuentoCampanaID = useId();
 
   const queryClient = useQueryClient();
   const agregarCampana = useMutation({
@@ -108,6 +109,7 @@ const FormCrearCampana = (props) => {
 
   const handleTipoCampanaChange = (e) => {
     setTipoCampanaInput(e.target.value);
+    console.log(e.target.value);
   };
 
   useEffect(() => {
@@ -159,6 +161,23 @@ const FormCrearCampana = (props) => {
               <option value="llamada">Llamada</option>
               <option value="sorteo">Sorteo</option>
             </select>
+          </div>
+          <div
+            className={` ${styles.containerDescuento} ${
+              tipoCampanaInput === "correo" || tipoCampanaInput === "llamada"
+                ? styles.mostrarDescuento
+                : ""
+            }`}
+          >
+            <label htmlFor={descuentoCampanaID}>
+              Descuento de la campaña (%)
+              <span className={styles.asterisco}>*</span>
+            </label>
+            <input
+              id={descuentoCampanaID}
+              name="descuentoCampana"
+              placeholder="Descuento para los usuarios..."
+            />
           </div>
           <div className={styles.containerFechaInicioCampanas}>
             <label htmlFor={fechaInicioID}>

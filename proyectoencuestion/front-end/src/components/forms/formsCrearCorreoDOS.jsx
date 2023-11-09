@@ -9,7 +9,7 @@ import {
 import { useFormCorreo } from "../marketing/storeCorreo/useFormCorreo";
 import { useCloseFormCorreo } from "../marketing/storeCorreo/useCloseFormCorreo";
 
-function FormCrearCorreoDos() {
+function FormCrearCorreoDos({ siguienteIsClicked, setSiguienteIsClicked }) {
   const [sendNow, setSendNow] = useState(true);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -114,6 +114,7 @@ function FormCrearCorreoDos() {
     }
 
     toggleStateFormCorreo();
+    setSiguienteIsClicked(!siguienteIsClicked);
   };
 
   return (

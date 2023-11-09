@@ -72,7 +72,12 @@ const NavbarCorreo = () => {
           />
         )}
 
-        {siguienteIsClicked && <FormCrearCorreoDos />}
+        {siguienteIsClicked && (
+          <FormCrearCorreoDos
+            siguienteIsClicked={siguienteIsClicked}
+            setSiguienteIsClicked={setSiguienteIsClicked}
+          />
+        )}
 
         <button onClick={handleConsoleLog}>Handle global state form</button>
       </div>

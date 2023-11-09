@@ -115,6 +115,7 @@ const VistaGestion = () => {
                   <th>Id</th>
                   <th>Nombre de la campaña</th>
                   <th>Tipo de campaña</th>
+                  <th>Descuento</th>
                   <th>Descripción</th>
                   <th>Objetivos de la campaña</th>
                   <th>Fecha de creación</th>
@@ -159,6 +160,9 @@ const VistaGestion = () => {
                         </td>
                         <td className={styles.campanaDescripcion}>
                           {usuario.tipoCampana}
+                        </td>
+                        <td className={styles.campanaDescripcion}>
+                          {`${usuario.descuentoCampana}%`}
                         </td>
                         <td className={styles.campanaDescripcion}>
                           {usuario.description}

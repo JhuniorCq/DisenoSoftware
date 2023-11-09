@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const useSubmitFormUnoLlamada = create((set) => ({
+export const useSubmitFormsLlamada = create((set) => ({
     isFormUnoCompleted: false,
     toggleFormUno: () => {
         set((state) => ({

@@ -48,7 +48,7 @@ const FormsCrearCorreoCampana = (props) => {
     console.log(newCorreo);
 
     methodAddDataFormCorreo(newCorreo);
-    setSiguienteIsClicked(true);
+    setSiguienteIsClicked(!siguienteIsClicked);
   };
 
   return (

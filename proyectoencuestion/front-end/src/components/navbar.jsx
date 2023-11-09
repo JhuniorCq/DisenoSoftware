@@ -65,9 +65,6 @@ const Navbar = () => {
         <div className={styles.cerrarMenu} onClick={toggleCrearCampana}>
           <FontAwesomeIcon icon={faXmark} />
         </div>
-
-        <div className={styles.tituloForm}>Título</div>
-
         <div className={styles.containerForm}>
           <FormCrearCampana
             crearCampana={crearCampana}
