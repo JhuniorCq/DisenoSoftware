@@ -1,7 +1,7 @@
 const {CampanaService} = require('../service/campanaService');
 const campanaService = new CampanaService();
 
-const {CrearCampanaCommand} = require('../command/crearCampanaCommand');//Probando
+const {CrearCampanaCommand, MostrarCampanaCommand, EliminarCampanaCommand} = require('../command/campanaCommand');//Probando
 
 
 const crearCampana = async (req, res, next) => {
