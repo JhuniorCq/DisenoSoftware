@@ -6,7 +6,7 @@ const eliminarCampana = async (req, res, next) => {
         const {id} = req.params;
 
         //Llamamos a eliminarCampanaService que llama a eliminarCampanaRepository que llama a la BD
-        await eliminarCampanaService.eliminarCampana(id);
+        const result = await eliminarCampanaService.eliminarCampana(id);
 
         console.log(`La campaña #${id} ha sido eliminada`); //Para probar que se elimina
 
