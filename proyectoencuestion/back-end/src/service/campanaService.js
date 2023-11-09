@@ -42,7 +42,7 @@ class CampanaService {
             });
         }
 
-        return result;
+        return result.rows;//Acá recién uso el result.rows, porque si lo usaba en Repository no hubiera podido usar result.rowCount
     }
 }
 
