@@ -26,7 +26,11 @@ const crearCampana = async (req, res, next) => {
 
 const mostrarCampana = async (req, res, next) => {
     try {
-        const result = await campanaService.mostrarCampana();
+        const mostrarCampanaCommand = new MostrarCampanaCommand(campanaService);//Probando
+
+        // const result = await campanaService.mostrarCampana();
+
+        const result = await mostrarCampanaCommand.execute();
 
         console.log(result);
         res.json(result);
@@ -37,14 +41,18 @@ const mostrarCampana = async (req, res, next) => {
 
 const eliminarCampana = async (req, res, next) => {
     try {
+        const eliminarCampanaCommand = new EliminarCampanaCommand(campanaService);
+
         const {id} = req.params;
 
         //Llamamos a eliminarCampanaService que llama a eliminarCampanaRepository que llama a la BD
-        const result = await campanaService.eliminarCampana(id);
+        // const result = await campanaService.eliminarCampana(id);
+
+        const result = await eliminarCampanaCommand.execute(id);//Probando
 
         console.log(`La campaña #${id} ha sido eliminada`); //Para probar que se elimina
 
-        return res.sendStatus(204);
+        res.sendStatus(204);
 
     } catch (error) {
         next(error);

@@ -13,8 +13,8 @@ class MostrarCampanaCommand {
         this.campanaService = campanaService;
     }
 
-    execute(campanaData){
-        return this.campanaService.mostrarCampana(campanaData);
+    execute(){
+        return this.campanaService.mostrarCampana();
     }
 }
 
