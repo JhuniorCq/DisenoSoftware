@@ -105,11 +105,13 @@ function FormCrearCorreoDos({ siguienteIsClicked, setSiguienteIsClicked }) {
         ...newCorreoDos,
         date: formattedDate,
         time: horaActual,
+        estado: "realizados",
       });
     } else {
       agregarCorreoCampana.mutate({
         ...dataCorreoForm,
         ...newCorreoDos,
+        estado: "programados",
       });
     }
 
