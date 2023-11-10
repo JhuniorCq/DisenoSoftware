@@ -18,9 +18,9 @@ class CampanaService {
         return result;
     }
 
-    async mostrarCampana() {
+    async mostrarCampanas() {
         try {
-            const result = await campanaRepository.mostrarCampana();
+            const result = await campanaRepository.mostrarCampanas();
 
             return result;
         } catch(error) {

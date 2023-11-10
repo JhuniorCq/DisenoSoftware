@@ -1,5 +1,5 @@
 const {CampanaService} = require('../service/campanaService');
-const {CrearCampanaCommand, MostrarCampanaCommand, EliminarCampanaCommand} = require('../command/campanaCommand');
+const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand} = require('../command/campanaCommand');
 const campanaService = new CampanaService();
 
 const crearCampana = async (req, res, next) => {
@@ -18,10 +18,10 @@ const crearCampana = async (req, res, next) => {
     }
 }
 
-const mostrarCampana = async (req, res, next) => {
+const mostrarCampanas = async (req, res, next) => {
     try {
-        const mostrarCampanaCommand = new MostrarCampanaCommand(campanaService);
-        const result = await mostrarCampanaCommand.execute();
+        const mostrarCampanasCommand = new MostrarCampanasCommand(campanaService);
+        const result = await mostrarCampanasCommand.execute();
 
         console.log(result);
         res.json(result);
@@ -52,6 +52,6 @@ const eliminarCampana = async (req, res, next) => {
 
 module.exports = {
     crearCampana: crearCampana,
-    mostrarCampana: mostrarCampana,
+    mostrarCampanas: mostrarCampanas,
     eliminarCampana: eliminarCampana
 }

@@ -1,12 +1,18 @@
 const { Router } = require('express');
-// const pool = require('../db');
 const router = Router();
 
-const {crearCampana, mostrarCampana, eliminarCampana} = require('../controllers/campanaController');
+const {crearCampana, mostrarCampanas, eliminarCampana} = require('../controllers/campanaController');
+const {crearCorreo, mostrarCorreos} = require('../controllers/correoController');
 
+//RUTAS PARA EL APARTADO DE CAMPAÑA
 router.post('/crearCampana', crearCampana);
-router.get('/mostrarCampana', mostrarCampana);
+router.get('/mostrarCampanas', mostrarCampanas);
 router.delete('/eliminarCampana/:id', eliminarCampana);
+
+//RUTAS PARA EL APARTADO DE CORREOS
+router.post('/crearCorreo', crearCorreo);
+router.get('/mostrarCorreos', mostrarCorreos);
+
 
 const {
     //Importaciones de Prueba

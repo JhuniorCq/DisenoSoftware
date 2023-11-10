@@ -308,6 +308,16 @@
       "date": "2023-11-28",
       "time": "10:42",
       "id": 6
+    },
+    {
+      "titleCorreo": "Correooooo",
+      "affair": "Enviando",
+      "message": "123456",
+      "tipoCampana": "7",
+      "send": "now",
+      "date": "2023-11-10",
+      "time": "19:24",
+      "id": 7
     }
   ],
   "clientesllamadas": [

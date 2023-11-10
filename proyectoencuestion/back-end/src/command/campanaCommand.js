@@ -8,13 +8,13 @@ class CrearCampanaCommand {
     }
 }
 
-class MostrarCampanaCommand {
+class MostrarCampanasCommand {
     constructor(campanaService){
         this.campanaService = campanaService;
     }
 
     execute(){
-        return this.campanaService.mostrarCampana();
+        return this.campanaService.mostrarCampanas();
     }
 }
 
@@ -30,6 +30,6 @@ class EliminarCampanaCommand {
 
 module.exports = {
     CrearCampanaCommand: CrearCampanaCommand,
-    MostrarCampanaCommand: MostrarCampanaCommand,
+    MostrarCampanasCommand: MostrarCampanasCommand,
     EliminarCampanaCommand: EliminarCampanaCommand
 }
