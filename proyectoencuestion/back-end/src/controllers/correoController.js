@@ -1,5 +1,5 @@
 const {CorreoService} = require('../service/correoService');
-const {CrearCorreoCommand, MostrarCorreosCommand} = require('../command/correoCommand');
+const {CrearCorreoCommand, MostrarCorreosCommand, EnviarCorreosCommand} = require('../command/correoCommand');
 const correoService = new CorreoService();
 
 const crearCorreo = async (req, res, next) => {
@@ -32,7 +32,24 @@ const mostrarCorreos = async (req, res, next) => {
     }
 }
 
+const enviarCorreos = async (req, res, next) => {
+    try {
+        const enviarCorreosCommand = new EnviarCorreosCommand(correoService);
+
+        const correoData = req.body;
+
+        const result = await enviarCorreosCommand.execute(correoData);
+
+        console.log(result);
+        res.json(result);
+
+    } catch(error) {
+        next(error);
+    }
+}
+
 module.exports = {
     crearCorreo: crearCorreo,
-    mostrarCorreos: mostrarCorreos
+    mostrarCorreos: mostrarCorreos,
+    enviarCorreos: enviarCorreos
 }

@@ -2,7 +2,8 @@ const { Router } = require('express');
 const router = Router();
 
 const {crearCampana, mostrarCampanas, eliminarCampana} = require('../controllers/campanaController');
-const {crearCorreo, mostrarCorreos} = require('../controllers/correoController');
+const {crearCorreo, mostrarCorreos, enviarCorreos} = require('../controllers/correoController');
+const {crearLlamada, mostrarLlamadas} = require('../controllers/llamadaController');
 
 //RUTAS PARA EL APARTADO DE CAMPAÑA
 router.post('/crearCampana', crearCampana);
@@ -12,7 +13,11 @@ router.delete('/eliminarCampana/:id', eliminarCampana);
 //RUTAS PARA EL APARTADO DE CORREOS
 router.post('/crearCorreo', crearCorreo);
 router.get('/mostrarCorreos', mostrarCorreos);
+router.get('/enviarCorreos', enviarCorreos);//Ruta nueva
 
+//RUTAS PARA EL APARTADO DE LLAMADAS
+router.post('/crearLlamada', crearLlamada);
+router.get('/mostrarLlamadas', mostrarLlamadas);
 
 const {
     //Importaciones de Prueba
