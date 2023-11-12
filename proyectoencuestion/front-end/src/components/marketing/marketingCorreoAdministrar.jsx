@@ -21,8 +21,16 @@ export const CorreoAdministrar = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      setUsuariosAdm(data);
-      setTablaUsuariosAdm(data);
+      const currentDate = new Date();
+      const correosActualizados = data.map((correo) => {
+        const correoDateTime = new Date(`${correo.date}T${correo.time}`);
+        if (currentDate >= correoDateTime) {
+          return { ...correo, estado: "realizados" };
+        }
+        return correo;
+      });
+      setUsuariosAdm(correosActualizados);
+      setTablaUsuariosAdm(correosActualizados);
     }
   }, [isSuccess]);
 
@@ -62,19 +70,6 @@ export const CorreoAdministrar = () => {
   const toggleCorreosEnviados = () => {
     setBotonCorreo("Enviados");
   };
-
-  // if (isfetched) {
-  //   const currentDate = new Date();
-  //   const correosActualizados = data.map((correo) => {
-  //     const correoDateTime = new Date(`${correo.date}T${correo.time}`);
-  //     if (currentDate >= correoDateTime) {
-  //       return { ...correo, estado: "realizados" };
-  //     }
-  //     return correo;
-  //   });
-  //   setUsuariosAdm(correosActualizados);
-  //   setTablaUsuariosAdm(correosActualizados);
-  // }
 
   return (
     <div>

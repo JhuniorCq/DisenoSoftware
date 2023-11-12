@@ -539,7 +539,7 @@
       "date": "2023-11-05",
       "time": "16:20",
       "id": 2,
-      "estado": "programados"
+      "estado": "realizados"
     },
     {
       "titleCorreo": "ppppaa",
@@ -550,7 +550,7 @@
       "date": "2023-11-16",
       "time": "11:43",
       "id": 3,
-      "estado": "realizados"
+      "estado": "programados"
     },
     {
       "titleCorreo": "correo 4",
@@ -561,7 +561,7 @@
       "date": "2023-11-08",
       "time": "08:05",
       "id": 4,
-      "estado": "programados"
+      "estado": "realizados"
     },
     {
       "titleCorreo": "flowwww",
@@ -584,6 +584,17 @@
       "time": "10:42",
       "id": 6,
       "estado": "programados"
+    },
+    {
+      "titleCorreo": "correito ejemplo",
+      "affair": "correo ejemploooo",
+      "message": "dcbsdivsbviusdviussib",
+      "tipoCampana": "26",
+      "send": "later",
+      "date": "2023-11-12",
+      "time": "00:18",
+      "estado": "programados",
+      "id": 7
     }
   ],
   "clientesllamadas": [
