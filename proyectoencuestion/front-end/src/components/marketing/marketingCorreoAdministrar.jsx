@@ -14,15 +14,23 @@ export const CorreoAdministrar = () => {
 
   const [botonCorreo, setBotonCorreo] = useState("Todos los correos");
 
-  const { isLoading, isError, error, data, isSuccess } = useQuery({
+  const { isLoading, isError, error, data, isSuccess, isFetched } = useQuery({
     queryFn: getCorreosCampanas,
     queryKey: ["correoscampanascreadas"],
   });
 
   useEffect(() => {
     if (isSuccess) {
-      setUsuariosAdm(data);
-      setTablaUsuariosAdm(data);
+      const currentDate = new Date();
+      const correosActualizados = data.map((correo) => {
+        const correoDateTime = new Date(`${correo.date}T${correo.time}`);
+        if (currentDate >= correoDateTime) {
+          return { ...correo, estado: "realizados" };
+        }
+        return correo;
+      });
+      setUsuariosAdm(correosActualizados);
+      setTablaUsuariosAdm(correosActualizados);
     }
   }, [isSuccess]);
 
@@ -123,9 +131,10 @@ export const CorreoAdministrar = () => {
                   <th>id</th>
                   <th>Título del correo</th>
                   <th>Asunto</th>
-                  <th>Id de la campaña</th>
+                  <th>Id campaña</th>
                   <th>Fecha de envío</th>
                   <th>Hora de envío</th>
+                  {botonCorreo === "Todos los correos" && <th>Estado</th>}
                 </tr>
               </thead>
               <tbody>
@@ -138,6 +147,7 @@ export const CorreoAdministrar = () => {
                       <td>{correo.tipoCampana}</td>
                       <td>{correo.date}</td>
                       <td>{correo.time}</td>
+                      <td>{correo.estado}</td>
                     </tr>
                   ))
                 ) : usuariosAdm && botonCorreo === "Programados" ? (

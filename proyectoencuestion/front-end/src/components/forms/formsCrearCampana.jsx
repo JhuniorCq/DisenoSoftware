@@ -16,11 +16,13 @@ const FormCrearCampana = (props) => {
 
   // capturando valores para poder restringir el botón cuando los campos obligatorios no están completos.
   const [secondFormIsSubmitted, setSecondFormIsSubmitted] = useState(false);
-  const [nombreCampanaInput, setNombreCampanaInput] = useState(false);
-  const [objetivosCampanaInput, setObjetivosCampanaInput] = useState(false);
+  const [nombreCampanaInput, setNombreCampanaInput] = useState("");
+  const [descuentoInput, setDescuentoInput] = useState(0);
+  const [objetivosCampanaInput, setObjetivosCampanaInput] = useState("");
   const [fechaInicioInput, setFechaInicioInput] = useState("");
   const [fechaFinInput, setFechaFinInput] = useState("");
   const [tipoCampanaInput, setTipoCampanaInput] = useState("");
+  const [notasInput, setNotasInput] = useState("");
   const [bothFormsAreSubmitted, setBothFormsAreSubmitted] = useState(false);
 
   const nombreCampanaID = useId();
@@ -48,17 +50,154 @@ const FormCrearCampana = (props) => {
     const formData = new FormData(e.target);
     const mainForm = Object.fromEntries(formData);
 
+    const regexText = /^[a-zA-Z0-9ñÑ\s]*$/;
+    const regexNumeric = /^[0-9]+$/;
+
     const fechaInicio = new Date(mainForm.starts);
     const fechaFin = new Date(mainForm.ends);
+    const notas = mainForm.description;
+    const objetivo = mainForm.objectives;
+    const nombreCampana = mainForm.name;
+    const descuentoValue = mainForm.descuentoCampana; //nos ayuda a saber si este campo contiene numeros con su respectivo regex
+    const descuento = parseInt(mainForm.descuentoCampana); //nos ayuda a establecer que el descuento no pase de 50% con una condicional
 
     if (fechaInicio < today) {
-      alert("la fecha de inicio debe ser igual o posterior a hoy");
+      toast.warn("La fecha de inicio debe ser igual o posterior a hoy", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       return;
     }
     if (fechaFin <= fechaInicio) {
-      alert(
-        "La fecha de finalización debe ser al menos un día después de la fecha de inicio"
+      toast.warn(
+        "La fecha de finalización debe ser al menos un día después de la fecha de inicio",
+        {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
       );
+      return;
+    }
+
+    if (notas.length < 10 || notas.length > 300) {
+      toast.warn(
+        "Las notas deben tener una longitud entre 10 y 300 caracteres",
+        {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
+      return;
+    }
+
+    if (!regexText.test(objetivo)) {
+      toast.warn("El objetivo no debe contener caracteres especiales", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
+
+    if (objetivo.length < 10 || objetivo.length > 80) {
+      toast.warn(
+        "El objetivo deben tener una longitud entre 10 y 80 caracteres",
+        {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
+      return;
+    }
+
+    if (!regexText.test(nombreCampana)) {
+      toast.warn(
+        "El nombre de la campaña no debe contener caracteres especiales",
+        {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
+      return;
+    }
+
+    if (nombreCampana.length < 5 || nombreCampana.length > 50) {
+      toast.warn(
+        "El nombre de la campaña deben tener una longitud entre 5 y 30 caracteres",
+        {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
+      return;
+    }
+
+    if (!regexNumeric.test(descuentoValue)) {
+      toast.warn("El descuento debe contener solo números", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
+
+    if (isNaN(descuento) || descuento < 0 || descuento > 50) {
+      toast.warn("El descuento debe ser un número entre 0 y 50%", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       return;
     }
 
@@ -74,16 +213,13 @@ const FormCrearCampana = (props) => {
 
     setCrearCampana(!crearCampana);
 
-    toast.success("🦄 Wow so easy!", {
-      position: "bottom-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+    setNombreCampanaInput("");
+    setObjetivosCampanaInput("");
+    setFechaInicioInput("");
+    setFechaFinInput("");
+    setTipoCampanaInput("");
+    setNotasInput("");
+    setDescuentoInput(0);
   };
 
   // establezco los valores del submenu popup para que pueda juntarlos con los valores de mi form "principal":
@@ -108,18 +244,23 @@ const FormCrearCampana = (props) => {
   };
 
   const handleTipoCampanaChange = (e) => {
+    if (e.target.value === "") {
+      setTipoCampanaInput("");
+      return;
+    }
     setTipoCampanaInput(e.target.value);
-    console.log(e.target.value);
   };
 
   useEffect(() => {
     const nombreCampanaCompleto = nombreCampanaInput.length >= 1;
     const objetivosCampanaCompleto = objetivosCampanaInput.length >= 1;
     const fechasCompletas = fechaInicioInput && fechaFinInput;
+    const tipoCampanaCompleto = tipoCampanaInput;
     setBothFormsAreSubmitted(
       secondFormIsSubmitted &&
         nombreCampanaCompleto &&
         objetivosCampanaCompleto &&
+        tipoCampanaCompleto &&
         fechasCompletas
     );
   }, [
@@ -128,11 +269,13 @@ const FormCrearCampana = (props) => {
     secondFormIsSubmitted,
     fechaInicioInput,
     fechaFinInput,
+    tipoCampanaInput,
   ]);
 
   return (
     <>
       <div className={styles.containerForm}>
+        <ToastContainer />
         <form className={styles.formCrearCampana} onSubmit={handleSubmit}>
           <div className={styles.containerNombreCampana}>
             <label htmlFor={nombreCampanaID}>
@@ -142,7 +285,7 @@ const FormCrearCampana = (props) => {
               type="text"
               id={nombreCampanaID}
               required
-              minLength={1}
+              value={nombreCampanaInput}
               name="name"
               onChange={handleNombreCampanaInputChange}
             />
@@ -154,9 +297,11 @@ const FormCrearCampana = (props) => {
             <select
               id={tipoCampanaID}
               name="tipoCampana"
+              value={tipoCampanaInput}
               onChange={handleTipoCampanaChange}
               required
             >
+              <option value="">Selecciona una opción...</option>
               <option value="correo">Correo</option>
               <option value="llamada">Llamada</option>
               <option value="sorteo">Sorteo</option>
@@ -174,9 +319,12 @@ const FormCrearCampana = (props) => {
               <span className={styles.asterisco}>*</span>
             </label>
             <input
+              type="text"
               id={descuentoCampanaID}
+              value={descuentoInput}
               name="descuentoCampana"
               placeholder="Descuento para los usuarios..."
+              onChange={(e) => setDescuentoInput(e.target.value)}
             />
           </div>
           <div className={styles.containerFechaInicioCampanas}>
@@ -214,7 +362,7 @@ const FormCrearCampana = (props) => {
               type="text"
               id={objetivosCampanaID}
               required
-              minLength={1}
+              value={objetivosCampanaInput}
               name="objectives"
               onChange={handleObjetivosCampanaInputChange}
             />
@@ -232,11 +380,15 @@ const FormCrearCampana = (props) => {
           </div>
 
           <div className={styles.containerNotas}>
-            <label htmlFor={notasID}>Notas</label>
+            <label htmlFor={notasID}>
+              Notas <small>(entre 10 y 300 caracteres)</small>{" "}
+            </label>
             <textarea
               className={styles.textAreaa}
               id={notasID}
               name="description"
+              value={notasInput}
+              onChange={(e) => setNotasInput(e.target.value)}
             ></textarea>
           </div>
 
