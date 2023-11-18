@@ -11,7 +11,7 @@ const holaMundito = async (req, res, next) => {
     }
 }
 
-const obtenerTodasTareas = async (req, res) => {
+const obtenerTodasTareas = async (req, res, next) => {
     try{
         const resultado = await pool.query('SELECT * FROM task');
         res.json(resultado.rows);
