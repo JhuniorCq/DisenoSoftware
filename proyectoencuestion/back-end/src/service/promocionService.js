@@ -3,12 +3,30 @@ const promocionRepository = new PromocionRepository();
 
 
 class PromocionService {
-    async buscarPromoDNI() {
+    async buscarPromoDNI(dni_cliente) {
+        try {
+            //Lógica
 
+            //Llamado a Repository
+            const result = promocionRepository.buscarPromoDNI(dni_cliente);
+            return result;
+
+        } catch(error) {
+            throw error;
+        }
     }
 
-    async buscarPromo() {
+    async buscarPromo(promocion_id) {
+        try {
+            //Lógica
 
+            //Llamado a Repository
+            const result = promocionRepository.buscaPromo(promocion_id);
+            return result;
+
+        } catch (error) {
+            throw error;
+        }
     }
 }
 

@@ -3,8 +3,8 @@ class BuscarPromoDNICommand {
         this.promocionService = promocionService;
     }
 
-    execute() {
-        return this.promocionService.buscarPromoDNI();
+    execute(dni_cliente) {
+        return this.promocionService.buscarPromoDNI(dni_cliente);
     }
 }
 
@@ -13,8 +13,8 @@ class BuscarPromo {
         this.promocionService = promocionService
     }
 
-    execute(promocionService) {
-        return this.promocionService.buscarPromo();
+    execute(promocion_id) {
+        return this.promocionService.buscarPromo(promocion_id);
     }
 }
 
