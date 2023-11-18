@@ -4,6 +4,8 @@ const router = Router();
 const {crearCampana, mostrarCampanas, eliminarCampana} = require('../controllers/campanaController');
 const {crearCorreo, mostrarCorreos, enviarCorreos} = require('../controllers/correoController');
 const {crearLlamada, mostrarLlamadas} = require('../controllers/llamadaController');
+const {crearSegmentacion, mostrarSegmentacion} = require('../controllers/segmentacionController');
+const {buscarPromoDNI, buscarPromo} = require('../controllers/promocionController');
 
 //RUTAS PARA EL APARTADO DE CAMPAÑA
 router.post('/crearCampana', crearCampana);
@@ -19,17 +21,19 @@ router.get('/enviarCorreos', enviarCorreos);//Ruta nueva
 router.post('/crearLlamada', crearLlamada);
 router.get('/mostrarLlamadas', mostrarLlamadas);
 
-//RUTA PARA LA SEGMENTACIÓN
-// router.post('/crearSegmentacion', crearSegmentacion);//CREAR AHORA
-// router.get('/mostrarSegmentacion', mostrarSegmentacion);
+//RUTAS PARA LA SEGMENTACIÓN
+router.post('/crearSegmentacion', crearSegmentacion);//CREAR AHORA
+router.get('/mostrarSegmentacion', mostrarSegmentacion);
+
+//RUTAS PARA LA PROMOCIÓN (DESCUENTO) -> SERGIO
+router.get('/buscarPromoDNI', buscarPromoDNI);
+router.get('/buscarPromo', buscarPromo);
 
 // //
 // router.get('/clientesPorCampana');
 //Por si quiero mostrar los cliente de Joaquin
 // const response = await axios.get('/rutaDeJoaquin');
 // const arrayClientes = response.data;
-
-
 
 
 //Esto no es del Proyecto
