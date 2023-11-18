@@ -2,15 +2,18 @@ const pool = require('../db');
 
 class CampanaRepository {
     async crearCampana(campanaData) {
-        const { fecha_inicio, fecha_fin, nombre, tipo_campana, descripcion, objetivos } = campanaData;
+        const { fecha_inicio, fecha_fin, nombre, tipo_campana, descripcion, objetivos, usuario_id, segmentacion_id, promocion_id } = campanaData;
 
-        const result = await pool.query('INSERT INTO campana ("fecha_inicio", "fecha_fin", nombre, "tipo_campana", descripcion, objetivos) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [
+        const result = await pool.query('INSERT INTO campana ("fecha_inicio", "fecha_fin", nombre, "tipo_campana", descripcion, objetivos, "usuario_id", "segmentacion_id", "promocion_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *', [
             fecha_inicio, 
             fecha_fin, 
             nombre, 
             tipo_campana, 
             descripcion, 
-            objetivos
+            objetivos,
+            usuario_id,
+            segmentacion_id,
+            promocion_id
         ]);
 
         return result.rows[0];

@@ -19,6 +19,20 @@ router.get('/enviarCorreos', enviarCorreos);//Ruta nueva
 router.post('/crearLlamada', crearLlamada);
 router.get('/mostrarLlamadas', mostrarLlamadas);
 
+//RUTA PARA LA SEGMENTACIÓN
+// router.post('/crearSegmentacion', crearSegmentacion);//CREAR AHORA
+// router.get('/mostrarSegmentacion', mostrarSegmentacion);
+
+// //
+// router.get('/clientesPorCampana');
+//Por si quiero mostrar los cliente de Joaquin
+// const response = await axios.get('/rutaDeJoaquin');
+// const arrayClientes = response.data;
+
+
+
+
+//Esto no es del Proyecto
 const {
     //Importaciones de Prueba
     obtenerTodasTareas,
@@ -36,5 +50,7 @@ router.get('/tasks/:id', obtenerUnaTarea);
 router.post('/tasks', crearTarea);
 router.delete('/tasks/:id', eliminarTarea);
 router.put('/tasks/:id', modificarTarea);
+//Hasta acá
+
 
 module.exports = router;

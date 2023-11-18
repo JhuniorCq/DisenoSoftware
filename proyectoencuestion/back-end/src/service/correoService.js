@@ -7,6 +7,8 @@ class CorreoService {
         try{
             //Validación de Datos
 
+
+            
             //Lógica de Negocio
             const {correo, mensaje, fecha_envio} = correoData;
             const nuevoCorreo = new Correo(correo, mensaje, fecha_envio);
