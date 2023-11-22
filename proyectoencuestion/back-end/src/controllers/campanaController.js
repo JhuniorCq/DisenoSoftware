@@ -1,5 +1,5 @@
 const {CampanaService} = require('../service/campanaService');
-const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand} = require('../command/campanaCommand');
+const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand, MostrarTipoCampanaCommand} = require('../command/campanaCommand');
 const campanaService = new CampanaService();
 
 const crearCampana = async (req, res, next) => {
@@ -41,7 +41,13 @@ const eliminarCampana = async (req, res, next) => {
 
         console.log(`La campaña #${id} ha sido eliminada`); //Para probar que se elimina
 
-        console.log(result);
+        if(result.rowCount === 0){
+            return res.status(404).json({
+                message: "Campaña no encontrada."
+            });
+        }
+
+        console.log(result.rows);
 
         res.sendStatus(204);
 
@@ -50,8 +56,23 @@ const eliminarCampana = async (req, res, next) => {
     }
 }
 
+const mostrarTipoCampana = async (req, res, next) => {//HACER LA LOGICA PARA QUE AL DAR CLICK EN EL FRONT SE COMPARE CON UN TIPO DE CAMPAÑA
+    try {
+        const mostrarTipoCampanaCommand = new MostrarTipoCampanaCommand(campanaService);
+
+        const result = await mostrarTipoCampanaCommand.execute();
+
+        console.log(result.rows);
+        res.json(result.rows);
+
+    } catch(error) {
+        next(error);
+    }
+}
+
 module.exports = {
     crearCampana: crearCampana,
     mostrarCampanas: mostrarCampanas,
-    eliminarCampana: eliminarCampana
+    eliminarCampana: eliminarCampana,
+    mostrarTipoCampana: mostrarTipoCampana
 }

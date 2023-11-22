@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 
-const {crearCampana, mostrarCampanas, eliminarCampana} = require('../controllers/campanaController');
+const {crearCampana, mostrarCampanas, eliminarCampana, mostrarTipoCampana} = require('../controllers/campanaController');
 const {crearCorreo, mostrarCorreos, enviarCorreos} = require('../controllers/correoController');
 const {crearLlamada, mostrarLlamadas} = require('../controllers/llamadaController');
 const {crearSegmentacion, mostrarSegmentacion} = require('../controllers/segmentacionController');
@@ -11,6 +11,9 @@ const {buscarPromoDNI, buscarPromo} = require('../controllers/promocionControlle
 router.post('/crearCampana', crearCampana);
 router.get('/mostrarCampanas', mostrarCampanas);
 router.delete('/eliminarCampana/:id', eliminarCampana);
+
+//RUTAS PARA MOSTRAR TIPO DE UNA CAMPAÑA
+router.get('/mostrarTipoCampana', mostrarTipoCampana);
 
 //RUTAS PARA EL APARTADO DE CORREOS
 router.post('/crearCorreo', crearCorreo);
@@ -24,14 +27,14 @@ router.get('/mostrarLlamadas', mostrarLlamadas);
 //RUTAS PARA LA SEGMENTACIÓN
 router.post('/crearSegmentacion', crearSegmentacion);//CREAR AHORA
 router.get('/mostrarSegmentacion', mostrarSegmentacion);
-
+        
 //RUTAS PARA LA PROMOCIÓN (DESCUENTO) -> SERGIO
-router.get('/buscarPromoDNI', buscarPromoDNI);
-router.get('/buscarPromo', buscarPromo);
+router.get('/buscarPromoDNI', buscarPromoDNI);//Cambiar
+router.get('/buscarPromo', buscarPromo);//Cambiar
 
 // //
 // router.get('/clientesPorCampana');
-//Por si quiero mostrar los cliente de Joaquin
+// // Por si quiero mostrar los cliente de Joaquin
 // const response = await axios.get('/rutaDeJoaquin');
 // const arrayClientes = response.data;
 
@@ -55,6 +58,5 @@ router.post('/tasks', crearTarea);
 router.delete('/tasks/:id', eliminarTarea);
 router.put('/tasks/:id', modificarTarea);
 //Hasta acá
-
 
 module.exports = router;

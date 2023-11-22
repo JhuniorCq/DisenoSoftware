@@ -24,12 +24,18 @@ class CampanaRepository {
             const result = await pool.query('SELECT * FROM campana');
             return result.rows;
         } catch (error) {
-            throw error;
+            throw new Error("Hubo un error al mostrar todas las campañas");
         }
     }
 
     async eliminarCampana(id_campana) {
         const result = await pool.query('DELETE FROM campana WHERE campana_id = $1 RETURNING *', [id_campana]);
+
+        return result;
+    }
+
+    async mostrarTipoCampana() {
+        const result = await pool.query('SELECT * FROM tipo_campana');
 
         return result;
     }

@@ -36,13 +36,15 @@ class CampanaService {
         //
         const result = await campanaRepository.eliminarCampana(id_campana);
 
-        if(result.rowCount === 0){
-            return res.status(404).json({
-                message: "Campaña no encontrada."
-            });
-        }
+        return result;//Acá recién uso el result.rows, porque si lo usaba en Repository no hubiera podido usar result.rowCount
+    }
 
-        return result.rows;//Acá recién uso el result.rows, porque si lo usaba en Repository no hubiera podido usar result.rowCount
+    async mostrarTipoCampana() {
+        //Lógica
+
+        //Llamado a Repository
+        const result = await campanaRepository.mostrarTipoCampana();
+        return result;
     }
 }
 
