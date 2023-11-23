@@ -28,6 +28,8 @@ const FormCrearCampana = (props) => {
   const nombreCampanaID = useId();
   const fechaInicioID = useId();
   const fechaFinID = useId();
+  const fechaInicioSorteoID = useId();
+  const fechaFinSorteoID = useId();
   const objetivosCampanaID = useId();
   const notasID = useId();
   const tipoCampanaID = useId();
@@ -256,6 +258,12 @@ const FormCrearCampana = (props) => {
     const objetivosCampanaCompleto = objetivosCampanaInput.length >= 1;
     const fechasCompletas = fechaInicioInput && fechaFinInput;
     const tipoCampanaCompleto = tipoCampanaInput;
+    if (tipoCampanaInput === "3") {
+      setBothFormsAreSubmitted(
+        nombreCampanaCompleto && tipoCampanaCompleto && fechasCompletas
+      );
+      return;
+    }
     setBothFormsAreSubmitted(
       secondFormIsSubmitted &&
         nombreCampanaCompleto &&
@@ -302,95 +310,136 @@ const FormCrearCampana = (props) => {
               required
             >
               <option value="">Selecciona una opción...</option>
-              <option value="correo">Correo</option>
-              <option value="llamada">Llamada</option>
-              <option value="sorteo">Sorteo</option>
+              <option value="2">Correo</option>
+              <option value="1">Llamada</option>
+              <option value="3">Sorteo</option>
             </select>
           </div>
-          <div
-            className={` ${styles.containerDescuento} ${
-              tipoCampanaInput === "correo" || tipoCampanaInput === "llamada"
-                ? styles.mostrarDescuento
-                : ""
-            }`}
-          >
-            <label htmlFor={descuentoCampanaID}>
-              Descuento de la campaña (%)
-              <span className={styles.asterisco}>*</span>
-            </label>
-            <input
-              type="text"
-              id={descuentoCampanaID}
-              value={descuentoInput}
-              name="descuentoCampana"
-              placeholder="Descuento para los usuarios..."
-              onChange={(e) => setDescuentoInput(e.target.value)}
-            />
-          </div>
-          <div className={styles.containerFechaInicioCampanas}>
-            <label htmlFor={fechaInicioID}>
-              Fecha de inicio<span className={styles.asterisco}>*</span>
-            </label>
-            <input
-              type="date"
-              id={fechaInicioID}
-              required
-              name="starts"
-              value={fechaInicioInput}
-              onChange={(e) => setFechaInicioInput(e.target.value)}
-            />
-          </div>
-          <div className={styles.containerFechaFinCampanas}>
-            <label htmlFor={fechaFinID}>
-              Fecha de finalización<span className={styles.asterisco}>*</span>
-            </label>
-            <input
-              type="date"
-              required
-              id={fechaFinID}
-              name="ends"
-              value={fechaFinInput}
-              onChange={(e) => setFechaFinInput(e.target.value)}
-            />
-          </div>
 
-          <div className={styles.containerObjetivosCampanas}>
-            <label htmlFor={objetivosCampanaID}>
-              Objetivos de la campaña<span className={styles.asterisco}>*</span>
-            </label>
-            <input
-              type="text"
-              id={objetivosCampanaID}
-              required
-              value={objetivosCampanaInput}
-              name="objectives"
-              onChange={handleObjetivosCampanaInputChange}
-            />
-          </div>
+          {tipoCampanaInput !== "3" && (
+            <>
+              <div
+                className={` ${styles.containerDescuento} ${
+                  tipoCampanaInput === "correo" ||
+                  tipoCampanaInput === "llamada"
+                    ? styles.mostrarDescuento
+                    : ""
+                }`}
+              >
+                <label htmlFor={descuentoCampanaID}>
+                  Descuento de la campaña (%)
+                  <span className={styles.asterisco}>*</span>
+                </label>
+                <input
+                  type="text"
+                  id={descuentoCampanaID}
+                  value={descuentoInput}
+                  name="descuentoCampana"
+                  placeholder="Descuento para los usuarios..."
+                  onChange={(e) => setDescuentoInput(e.target.value)}
+                />
+              </div>
+              <div className={styles.containerFechaInicioCampanas}>
+                <label htmlFor={fechaInicioID}>
+                  Fecha de inicio<span className={styles.asterisco}>*</span>
+                </label>
+                <input
+                  type="date"
+                  id={fechaInicioID}
+                  required
+                  name="starts"
+                  value={fechaInicioInput}
+                  onChange={(e) => setFechaInicioInput(e.target.value)}
+                />
+              </div>
+              <div className={styles.containerFechaFinCampanas}>
+                <label htmlFor={fechaFinID}>
+                  Fecha de finalización
+                  <span className={styles.asterisco}>*</span>
+                </label>
+                <input
+                  type="date"
+                  required
+                  id={fechaFinID}
+                  name="ends"
+                  value={fechaFinInput}
+                  onChange={(e) => setFechaFinInput(e.target.value)}
+                />
+              </div>
 
-          <div className={styles.containerPublicoObjetivoCampana}>
-            <button
-              onClick={togglePublicoObjetivoClicked}
-              className={styles.publicoObjetivo}
-            >
-              {" "}
-              Público objetivo de la campaña
-              <span className={styles.asterisco}>*</span>{" "}
-            </button>
-          </div>
+              <div className={styles.containerObjetivosCampanas}>
+                <label htmlFor={objetivosCampanaID}>
+                  Objetivos de la campaña
+                  <span className={styles.asterisco}>*</span>
+                </label>
+                <input
+                  type="text"
+                  id={objetivosCampanaID}
+                  required
+                  value={objetivosCampanaInput}
+                  name="objectives"
+                  onChange={handleObjetivosCampanaInputChange}
+                />
+              </div>
 
-          <div className={styles.containerNotas}>
-            <label htmlFor={notasID}>
-              Notas <small>(entre 10 y 300 caracteres)</small>{" "}
-            </label>
-            <textarea
-              className={styles.textAreaa}
-              id={notasID}
-              name="description"
-              value={notasInput}
-              onChange={(e) => setNotasInput(e.target.value)}
-            ></textarea>
-          </div>
+              <div className={styles.containerPublicoObjetivoCampana}>
+                <button
+                  onClick={togglePublicoObjetivoClicked}
+                  className={styles.publicoObjetivo}
+                >
+                  {" "}
+                  Público objetivo de la campaña
+                  <span className={styles.asterisco}>*</span>{" "}
+                </button>
+              </div>
+
+              <div className={styles.containerNotas}>
+                <label htmlFor={notasID}>
+                  Notas <small>(entre 10 y 300 caracteres)</small>{" "}
+                </label>
+                <textarea
+                  className={styles.textAreaa}
+                  id={notasID}
+                  name="description"
+                  value={notasInput}
+                  onChange={(e) => setNotasInput(e.target.value)}
+                ></textarea>
+              </div>
+            </>
+          )}
+
+          {tipoCampanaInput === "3" && (
+            <>
+              <div className={styles.containerFechaInicioCampanas}>
+                <label htmlFor={fechaInicioSorteoID}>
+                  Fecha de inicio campana sorteo
+                  <span className={styles.asterisco}>*</span>
+                </label>
+                <input
+                  type="date"
+                  id={fechaInicioSorteoID}
+                  required={tipoCampanaInput === "3"}
+                  name="startsDrawCampaign"
+                  value={fechaInicioInput}
+                  onChange={(e) => setFechaInicioInput(e.target.value)}
+                />
+              </div>
+              <div className={styles.containerFechaFinCampanas}>
+                <label htmlFor={fechaFinSorteoID}>
+                  Fecha de finalización campana sorteo
+                  <span className={styles.asterisco}>*</span>
+                </label>
+                <input
+                  type="date"
+                  required={tipoCampanaInput === "3"}
+                  id={fechaFinSorteoID}
+                  name="endsDrawCampaign"
+                  value={fechaFinInput}
+                  onChange={(e) => setFechaFinInput(e.target.value)}
+                />
+              </div>
+            </>
+          )}
 
           <div className={styles.botonesMenu}>
             <button
