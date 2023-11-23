@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+*{
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+#prevWeek{
+    background-color: #dfd5eb;
+    border-radius: 50%;
+    border: none;
+}
+hr{
+    border: 0;
+    height: 2px;
+    background: #e3ebf2;
+    margin: 2rem 0;
+}
+h1{
+    color: #2d3e50;
+    font-size: 27px;
+    font-family: sans-serif;
+    font-weight: 500;
+    margin: 0 1.8rem;
+    margin-left: 40px;
+    font-weight: bold;
+}
+.container{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: auto 2.4rem;
+}
+ul{
+    list-style-type: none;
+    padding-left: 2rem;
+    color: #33475b;
+
+    margin-top: 50px;
+}
+.container ul li.sub {
+    font-size: 1.3rem;
+    color: #33475b;
+    font-family: 'Mooli', sans-serif;
+    transition: font-size 0.3s ease; /* Transición suave al cambiar el tamaño del texto */
+    cursor: pointer; /* Cambia el cursor al pasar el cursor sobre los elementos de la lista */
+}
+
+.container ul li.sub:hover {
+    color: #6959cb;
+    font-size: 1.4rem; /* Aumenta el tamaño al pasar el cursor sobre los elementos de la lista */
+    font-weight: bold;
+}
+li{
+    display: inline;
+    margin-right: 10px;
+    margin-right: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.sub:hover{
+    transform: scale(1.2); 
+}
+li:hover{
+    color: #6959cb;
+}
+.table {
+    margin-top: 30px;
+    display: table;
+    width: 98%;
+    float: center;
+    margin-left: 1.2%;
+}
+.encabezado-tabla{
+    display: table-row;
+}
+
+.calendar-day {
+    position: static;
+    color: black;
+    display: table-cell;
+    padding-left: 5px;
+    vertical-align: middle;
+    background-color: #F5F8FA;
+    border-top: 1px  solid #B9C5DE;
+    border-left: 1px solid #B9C5DE;
+    border-right: 1px solid #B9C5DE;
+    padding-top: 10px;
+    margin-left: 5px;
+  
+}
+
+.main{
+    border: 1px black;
+}
+
+.calendar-cell {
+    display: table-cell;
+    border: 1px solid #B9C5DE;
+    padding: 20px;
+}
+.calendar-row {
+    display: table-row;
+}
+.encabezado1{
+    margin-top: 90px;
+    font-family:sans-serif; 
+}
+.txt{
+    margin-left: 20px;
+    color: #212529;
+    font-family:sans-serif;
+    color: #212529; 
+}
+.search{
+    margin-top: px ;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;
+    width: 250px;
+    height: 35px;
+    margin-left: 1240px;
+    vertical-align: middle;
+    position: static;
+}

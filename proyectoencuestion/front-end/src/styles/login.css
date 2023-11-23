@@ -1,0 +1,100 @@
+.right{
+    background-color: #87b5e1;
+    position: absolute;
+    height: 770px;
+    width: 1000px;
+    margin-left: 820px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    
+}
+.left{
+    position: absolute;
+}
+h1{
+    color: #33475B;
+    height: 43px;
+    width: 430px;
+    font-size: 34px;
+    margin-top: 100px;
+    margin-left: 260px;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+h1:hover{
+    transform: scale(1.1);
+}
+
+h2{
+    color: #fff;
+    position: absolute;
+    margin-left: 260px;
+    top: 100px;
+    font-size: 30px;
+    height: 40px;
+    transition: transform 0.2s;
+}
+h2:hover{
+    transform: scale(1.1);
+}
+.imagen{
+    float: left;
+    position: relative;
+    margin-left: 140px;
+    margin-top: 5px;
+    z-index: 999;
+}
+
+form{
+    background-color: #87b5e1;
+    position: absolute;
+    margin-top: 250px;
+    margin-left: 230px;
+    line-height: 4.5;
+    text-align: center;
+    margin-right: 50px;
+    height: 480px;
+}
+
+input {
+   background-color: #33475B;
+    width: 300px;
+    height: 40px;
+    border: 1px solid #ADCBED; /* Cambiamos el orden y especificamos 'solid' */
+    border-radius: 10px;
+    background-color: #adcbed;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+input:hover {
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Agregamos una sombra al pasar el cursor */
+}
+select{
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    border:none;
+    color: #757575;
+    background-color: #ADCBED;
+    
+}
+select:hover{
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.ingresar{
+    margin-top: 100px;
+    width: 300px;
+    border-radius: 10px;
+    color: white;
+    background-color: #7C98B6;
+    border:none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+button:hover{
+    transform: scale(1.1);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
