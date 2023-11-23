@@ -19,6 +19,14 @@ class CampanaRepository {
         return result.rows[0];
     }
 
+    async crearPromocion(campanaData) {
+
+        const {promocion} = campanaData;
+        const result = await pool.query('INSERT INTO promocion (promocion, estado) VALUES ($1, $2) RETURNING *', [promocion, 'activo']);
+
+        return result.rows[0];
+    }
+
     async mostrarCampanas() {
         try {
             const result = await pool.query('SELECT * FROM campana');

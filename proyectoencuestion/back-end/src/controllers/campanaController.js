@@ -2,6 +2,7 @@ const {CampanaService} = require('../service/campanaService');
 const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand, MostrarTipoCampanaCommand} = require('../command/campanaCommand');
 const campanaService = new CampanaService();
 
+//Decirla a Enzo que los inputs en CREAR CAMPAÑA sean los que se ponen en la desestructuración de campanaData
 const crearCampana = async (req, res, next) => {
     try {
         const crearCampanaCommand = new CrearCampanaCommand(campanaService);

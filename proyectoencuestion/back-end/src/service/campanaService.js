@@ -3,19 +3,45 @@ const campanaRepository = new CampanaRepository();
 
 class CampanaService {
     async crearCampana (campanaData) {
-        //Validación de los datos
-        if(!campanaData.fecha_inicio || !campanaData.fecha_fin || !campanaData.nombre || !campanaData.tipo_campana || !campanaData.descripcion || !campanaData.objetivos) {
+        // Validación de los datos
+        if (!campanaData.fecha_inicio || !campanaData.fecha_fin || !campanaData.nombre || !campanaData.tipo_campana || !campanaData.descripcion || !campanaData.objetivos) {
             throw new Error('Complete todos los campos');
         }
 
-        //Lógica Fechas
-        if(campanaData.fecha_inicio > campanaData.fecha_fin) {
+        // Lógica Fechas
+        if (campanaData.fecha_inicio > campanaData.fecha_fin) {
             throw new Error('La fecha de inicio no puede ser posterior a la fecha de finalización');
         }
 
-        //Llamada a crearCampanaRepository para meter datos en la BD
+        //PARA LA PROMOCION MEJOR CREAR OTRA RUTA
+        //ESTO CREO QUE MEJOR LO HAGO EN UN ARCHIVO APARTE, Y ACÁ LO LLAMO, PARA ASÍ YA NO USAR CAMPANADATA SINO PROMOCIONDATA
+        // Verificar si es un tipo de campaña que requiere descuento
+        if (campanaData.tipo_campana === '1' || campanaData.tipo_campana === '2') {//Llamada = 1 y Correo = 2
+            // Aquí deberías verificar que el campo de descuento esté presente y no sea nulo
+            if (campanaData.promocion == null) {
+                throw new Error('El campo de descuento es obligatorio para este tipo de campaña');
+            }
+            // Llamada a crearCampanaRepository para meter datos en la BD
+            await campanaRepository.crearPromocion(campanaData);
+        }
+
+        // Llamada a crearCampanaRepository para meter datos en la BD
         const result = await campanaRepository.crearCampana(campanaData);
         return result;
+
+        // //Validación de los datos
+        // if(!campanaData.fecha_inicio || !campanaData.fecha_fin || !campanaData.nombre || !campanaData.tipo_campana || !campanaData.descripcion || !campanaData.objetivos) {
+        //     throw new Error('Complete todos los campos');
+        // }
+
+        // //Lógica Fechas
+        // if(campanaData.fecha_inicio > campanaData.fecha_fin) {
+        //     throw new Error('La fecha de inicio no puede ser posterior a la fecha de finalización');
+        // }
+
+        // //Llamada a crearCampanaRepository para meter datos en la BD
+        // const result = await campanaRepository.crearCampana(campanaData);
+        // return result;
     }
 
     async mostrarCampanas() {
