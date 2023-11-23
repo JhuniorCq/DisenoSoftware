@@ -10,10 +10,10 @@ const {buscarPromoDNI, buscarPromo} = require('../controllers/promocionControlle
 //RUTAS PARA EL APARTADO DE CAMPAÑA
 router.post('/crearCampana', crearCampana);
 router.get('/mostrarCampanas', mostrarCampanas);
-router.delete('/eliminarCampana/:id', eliminarCampana);
+router.delete('/eliminarCampana/:id', eliminarCampana);//Modificar esto o sacarlo
 
 //RUTAS PARA MOSTRAR TIPO DE UNA CAMPAÑA
-router.get('/mostrarTipoCampana', mostrarTipoCampana);
+router.get('/mostrarTipoCampana/:id', mostrarTipoCampana);
 
 //RUTAS PARA EL APARTADO DE CORREOS
 router.post('/crearCorreo', crearCorreo);

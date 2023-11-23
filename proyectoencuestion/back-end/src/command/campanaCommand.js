@@ -33,8 +33,8 @@ class MostrarTipoCampanaCommand {
         this.campanaService = campanaService;
     }
 
-    execute() {
-        return this.campanaService.mostrarTipoCampana();
+    execute(tipoCampanaID) {
+        return this.campanaService.mostrarTipoCampana(tipoCampanaID);
     }
 }
 

@@ -2,6 +2,7 @@ const {SegmentacionService} = require('../service/segmentacionService');
 const {CrearSegmentacionCommand, MostrarSegmentacionCommand} = require('../command/segmentacionCommand');
 const segmentacionService = new SegmentacionService();
 
+//CREAR SEGMENTACION SE PUEDE IR CREO
 const crearSegmentacion = (req, res, next) => {
     try {
         const crearSegmentacionCommand = new CrearSegmentacionCommand(segmentacionService);

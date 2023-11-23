@@ -57,14 +57,15 @@ const eliminarCampana = async (req, res, next) => {
     }
 }
 
-const mostrarTipoCampana = async (req, res, next) => {//HACER LA LOGICA PARA QUE AL DAR CLICK EN EL FRONT SE COMPARE CON UN TIPO DE CAMPAÑA
+//Esta Ruta mostrará los tipos de campaña en los "options" del "select"
+const mostrarTipoCampana = async (req, res, next) => {
     try {
         const mostrarTipoCampanaCommand = new MostrarTipoCampanaCommand(campanaService);
-
-        const result = await mostrarTipoCampanaCommand.execute();
-
-        console.log(result.rows);
-        res.json(result.rows);
+        const {id} = req.params;
+        
+        const nombreTipoCampana = await mostrarTipoCampanaCommand.execute(id);
+        console.log(nombreTipoCampana);
+        res.send(nombreTipoCampana);
 
     } catch(error) {
         next(error);
