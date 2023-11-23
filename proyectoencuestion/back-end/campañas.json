@@ -575,13 +575,25 @@
       "estado": "realizados"
     },
     {
-      "titleCorreo": "Correooooo",
-      "affair": "Enviando",
-      "message": "123456",
+      "titleCorreo": "sefefsefesfesf",
+      "affair": "esfesfsefesfsefsef",
+      "message": "sfseesfseesfesf",
       "tipoCampana": "7",
-      "send": "now",
-      "date": "2023-11-10",
-      "time": "19:24",
+      "send": "later",
+      "date": "2023-11-28",
+      "time": "10:42",
+      "id": 6,
+      "estado": "programados"
+    },
+    {
+      "titleCorreo": "correito ejemplo",
+      "affair": "correo ejemploooo",
+      "message": "dcbsdivsbviusdviussib",
+      "tipoCampana": "26",
+      "send": "later",
+      "date": "2023-11-12",
+      "time": "00:18",
+      "estado": "programados",
       "id": 7
     }
   ],
@@ -739,6 +751,14 @@
       "initialTimeCall": "14:31",
       "endTimeCall": "15:31",
       "id": 9
+    },
+    {
+      "guionLlamada": "eefefegegegegegegegeg",
+      "initialDateCall": "2023-11-21",
+      "endDateCall": "2023-11-27",
+      "initialTimeCall": "21:03",
+      "endTimeCall": "22:02",
+      "id": 10
     }
   ]
 }

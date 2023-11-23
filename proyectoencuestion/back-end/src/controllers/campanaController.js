@@ -1,7 +1,8 @@
 const {CampanaService} = require('../service/campanaService');
-const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand} = require('../command/campanaCommand');
+const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand, MostrarTipoCampanaCommand} = require('../command/campanaCommand');
 const campanaService = new CampanaService();
 
+//Decirla a Enzo que los inputs en CREAR CAMPAÑA sean los que se ponen en la desestructuración de campanaData
 const crearCampana = async (req, res, next) => {
     try {
         const crearCampanaCommand = new CrearCampanaCommand(campanaService);
@@ -41,7 +42,13 @@ const eliminarCampana = async (req, res, next) => {
 
         console.log(`La campaña #${id} ha sido eliminada`); //Para probar que se elimina
 
-        console.log(result);
+        if(result.rowCount === 0){
+            return res.status(404).json({
+                message: "Campaña no encontrada."
+            });
+        }
+
+        console.log(result.rows);
 
         res.sendStatus(204);
 
@@ -50,8 +57,24 @@ const eliminarCampana = async (req, res, next) => {
     }
 }
 
+//Esta Ruta mostrará los tipos de campaña en los "options" del "select"
+const mostrarTipoCampana = async (req, res, next) => {
+    try {
+        const mostrarTipoCampanaCommand = new MostrarTipoCampanaCommand(campanaService);
+        const {id} = req.params;
+        
+        const nombreTipoCampana = await mostrarTipoCampanaCommand.execute(id);
+        console.log(nombreTipoCampana);
+        res.send(nombreTipoCampana);
+
+    } catch(error) {
+        next(error);
+    }
+}
+
 module.exports = {
     crearCampana: crearCampana,
     mostrarCampanas: mostrarCampanas,
-    eliminarCampana: eliminarCampana
+    eliminarCampana: eliminarCampana,
+    mostrarTipoCampana: mostrarTipoCampana
 }

@@ -28,8 +28,19 @@ class EliminarCampanaCommand {
     }
 }
 
+class MostrarTipoCampanaCommand {
+    constructor(campanaService) {
+        this.campanaService = campanaService;
+    }
+
+    execute(tipoCampanaID) {
+        return this.campanaService.mostrarTipoCampana(tipoCampanaID);
+    }
+}
+
 module.exports = {
     CrearCampanaCommand: CrearCampanaCommand,
     MostrarCampanasCommand: MostrarCampanasCommand,
-    EliminarCampanaCommand: EliminarCampanaCommand
+    EliminarCampanaCommand: EliminarCampanaCommand,
+    MostrarTipoCampanaCommand: MostrarTipoCampanaCommand
 }

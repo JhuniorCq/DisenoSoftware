@@ -12,7 +12,7 @@ class MostrarLlamadasCommand{
     constructor(llamadaService){
         this.llamadaService = llamadaService;
     }
-    execute(llamadaData){
+    execute(){
         return this.llamadaService.mostrarLlamadas();
     }
 }

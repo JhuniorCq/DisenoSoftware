@@ -18,7 +18,18 @@ class MostrarCorreosCommand {
     }
 }
 
+class EnviarCorreosCommand {
+    constructor(correoService) {
+        this.correoService = correoService.enviarCorreos(correoData);
+    }
+
+    execute() {
+        
+    }
+}
+
 module.exports = {
     CrearCorreoCommand: CrearCorreoCommand,
-    MostrarCorreosCommand: MostrarCorreosCommand
+    MostrarCorreosCommand: MostrarCorreosCommand,
+    EnviarCorreosCommand: EnviarCorreosCommand
 }
