@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import "../styles/vistaConfiguracion.css";
 
 const Configuracion = () => {
@@ -8,9 +9,15 @@ const Configuracion = () => {
         <h1>Sorteos</h1>
         <div className="container">
           <ul>
-            <li className="sub"> Participantes</li>
-            <li className="sub"> Configuración</li>
-            <li className="sub"> Sorteo</li>
+          <li className="sub">
+          <Link to="/Vistap">Participantes</Link>
+          </li>
+          <li className="sub">
+          <Link to="/Vistac">Configuracion</Link>
+          </li>
+          <li className="sub">
+          <Link to="/Vistas">Sorteo</Link>
+          </li>
           </ul>
         </div>
         <hr />

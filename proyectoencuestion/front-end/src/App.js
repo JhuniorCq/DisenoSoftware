@@ -7,7 +7,9 @@ import { CorreoAdministrar } from "./components/marketing/marketingCorreoAdminis
 import LlamadasClientes from "./components/llamadas/llamadas";
 import LlamadasAdministrar from "./components/llamadas/llamadasAdministrar";
 import SorteoMrk from "./components/marketing/marketingSorteo";
-
+import Vistaparti from "./components/vistaParticipantes";
+import Configuracion from "./components/vistaConfiguracion";
+import Sorteo from "./components/marketing/marketingSorteo";
 
 
 function App() {
@@ -22,6 +24,10 @@ function App() {
         <Route path={'/llamadas'} element={<LlamadasClientes />} />
         <Route path={'/llamadas/administrarllamadas'} element={<LlamadasAdministrar />} />
         <Route path={'/Sorteom'} element={<SorteoMrk/>} />
+        <Route path= {'/Vistap'} element={<Vistaparti />} />
+        <Route path= {'/Vistac'} element={<Configuracion />} />
+        <Route path= {'/Vistas'} element={<Sorteo/>} />
+
       </Routes>
     </BrowserRouter>
   );
