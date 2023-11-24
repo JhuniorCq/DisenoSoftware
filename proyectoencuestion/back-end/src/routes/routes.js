@@ -41,6 +41,21 @@ router.post('/crearSegmentacion', crearSegmentacion);//YA NO LA USAREMOS CREO
 router.get('/buscarPromoDNI', buscarPromoDNI);//Cambiar
 router.get('/buscarPromo', buscarPromo);//Cambiar
 
+//OBTENER CLIENTES -> MÓDULO CLIENTES
+router.get('/obtenerClientes', async (req, res, next) => {
+    try {
+        // Realiza una solicitud a la API externa para obtener datos de clientes
+        const response = await axios.get('https://clientemodulocrm.onrender.com/clientes');
+        const clientes = response.data;
+
+        // Puedes realizar cualquier procesamiento adicional aquí
+
+        res.json(clientes);
+    } catch(error) {
+        res.status(500).json({ error: 'Ha ocurrido un error' }); 
+    }
+});
+
 // //
 // router.get('/clientesPorCampana');
 // // Por si quiero mostrar los cliente de Joaquin
