@@ -10,9 +10,9 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(routes);
 
-app.use((err, req, res, next) => {
+app.use((error, req, res, next) => {
     return res.json({
-        message: err.message
+        message: error.message
     });
 });
 

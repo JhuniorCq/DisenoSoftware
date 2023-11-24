@@ -2,27 +2,26 @@ const {SegmentacionService} = require('../service/segmentacionService');
 const {CrearSegmentacionCommand, MostrarSegmentacionCommand} = require('../command/segmentacionCommand');
 const segmentacionService = new SegmentacionService();
 
-//CREAR SEGMENTACION SE PUEDE IR CREO
-const crearSegmentacion = (req, res, next) => {
+//LA USARÉ COMO UNA FUNCIÓN, MAS NO COMO UNA RUTA
+const crearSegmentacion = async (req, res, next) => {
     try {
         const crearSegmentacionCommand = new CrearSegmentacionCommand(segmentacionService);
 
         const segmentacionData = req.body;
 
-        const result = crearSegmentacionCommand.execute(segmentacionData);
+        const segmentacion_id = await crearSegmentacionCommand.execute(segmentacionData);
 
-        console.log(result);
-        res.json(result);
+        return segmentacion_id;
 
     } catch(error) {
         next(error);
     }
 }
 
-const mostrarSegmentacion = (req, res, next) => {
+const mostrarSegmentacion = async (req, res, next) => {
     try {
         const mostrarSegmentacionCommand = new MostrarSegmentacionCommand(segmentacionService);
-        const result = mostrarSegmentacionCommand.execute();
+        const result = await mostrarSegmentacionCommand.execute();
 
         console.log(result);
         console.log(`Esto es después del Result, NO se imprime el contenido del Result, se imprime una 'Promesa Pendiente'`);

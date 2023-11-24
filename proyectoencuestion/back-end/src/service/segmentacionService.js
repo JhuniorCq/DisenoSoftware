@@ -6,9 +6,15 @@ class SegmentacionService {
         try {
             //Lógica
 
-            //Llamada a Repository
+            
+            //Llamada a Repository para Crear la Segmentacion
             const result = await segmentacionRepository.crearSegmentacion(segmentacionData);
-            return result;
+
+            //Llamada a Repository para Obtener la Segmentacion
+            const infoSegmentacion = await segmentacionRepository.mostrarSegmentacion();
+            const {segmentacion_id} = infoSegmentacion; //Obtengo solo segmentacion_id de toda la info de la tabla criterios_segmentacion
+
+            return segmentacion_id;
         } catch(error) {
             throw error;
         }

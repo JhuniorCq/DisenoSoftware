@@ -3,8 +3,8 @@ class CrearCampanaCommand {
         this.campanaService = campanaService;
     }
 
-    execute(campanaData) {
-        return this.campanaService.crearCampana(campanaData);
+    execute(campanaData, segmentacion_id) {
+        return this.campanaService.crearCampana(campanaData, segmentacion_id);
     }
 }
 
@@ -15,6 +15,26 @@ class MostrarCampanasCommand {
 
     execute(){
         return this.campanaService.mostrarCampanas();
+    }
+}
+
+class MostrarCampanasEsteMesCommand {
+    constructor(campanaService) {
+        this.campanaService = campanaService;
+    }
+
+    execute() {
+        return this.campanaService.mostrarCampanasEsteMes();
+    }
+}
+
+class MostrarCampanasRecientesCommand {
+    constructor(campanaService) {
+        this.campanaService = campanaService;
+    }
+
+    execute() {
+        return this.campanaService.mostrarCampanasRecientes();
     }
 }
 
@@ -38,9 +58,44 @@ class MostrarTipoCampanaCommand {
     }
 }
 
+class MostrarCampanasCorreoCommand {
+    constructor(campanaService) {
+        this.campanaService = campanaService;
+    }
+
+    execute() {
+        return this.campanaService.mostrarCampanasCorreo();
+    }
+}
+
+class MostrarCampanasLlamadaCommand {
+    constructor(campanaService) {
+        this.campanaService = campanaService;
+    }
+
+    execute() {
+        return this.campanaService.mostrarCampanasLlamada();
+    }
+}
+
+class MostrarCampanasSorteoCommand {
+    constructor(campanaService) {
+        this.campanaService = campanaService;
+    }
+
+    execute() {
+        return this.campanaService.mostrarCampanasSorteo();
+    }
+}
+
 module.exports = {
     CrearCampanaCommand: CrearCampanaCommand,
     MostrarCampanasCommand: MostrarCampanasCommand,
+    MostrarCampanasEsteMesCommand: MostrarCampanasEsteMesCommand,
+    MostrarCampanasRecientesCommand: MostrarCampanasRecientesCommand,
     EliminarCampanaCommand: EliminarCampanaCommand,
-    MostrarTipoCampanaCommand: MostrarTipoCampanaCommand
+    MostrarTipoCampanaCommand: MostrarTipoCampanaCommand,
+    MostrarCampanasCorreoCommand: MostrarCampanasCorreoCommand,
+    MostrarCampanasLlamadaCommand: MostrarCampanasLlamadaCommand,
+    MostrarCampanasSorteoCommand: MostrarCampanasSorteoCommand
 }

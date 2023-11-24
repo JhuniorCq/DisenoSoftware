@@ -1,5 +1,7 @@
 const {CampanaService} = require('../service/campanaService');
-const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand, MostrarTipoCampanaCommand} = require('../command/campanaCommand');
+const {crearSegmentacion} = require('../controllers/segmentacionController');
+// const {iniciarSesion} = require('../controllers/inicioSesionController');
+const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand, MostrarTipoCampanaCommand, MostrarCampanasEsteMesCommand, MostrarCampanasRecientesCommand, MostrarCampanasCorreoCommand, MostrarCampanasLlamadaCommand, MostrarCampanasSorteoCommand} = require('../command/campanaCommand');
 const campanaService = new CampanaService();
 
 //Decirla a Enzo que los inputs en CREAR CAMPAÑA sean los que se ponen en la desestructuración de campanaData
@@ -9,7 +11,16 @@ const crearCampana = async (req, res, next) => {
         
         const campanaData = req.body;
 
-        const result = await crearCampanaCommand.execute(campanaData);
+        //NO SE PODRÁ TRAER EL DNI CON RES.LOCALS YA QUE EL RES.LOCALS solo tiene un tiempo de vida de 1 Solicitud, IniciarSesion y CrearCampaña son 2 Solicitudes, el res.locals de IniciarSesion muere cuando inicia el de CrearCampaña
+        // let {dni} = res.locals;
+
+        // // dni = "12345678";//Probando
+        // console.log(dni);
+
+        //LLAMANDO A SEGMENTACION PARA OBTENER segmentacion_id -> Este atributo contiene el ID de la ultima segmentacion realizada
+        const segmentacion_id = await crearSegmentacion(req,res,next);
+
+        const result = await crearCampanaCommand.execute(campanaData, segmentacion_id);
 
         console.log(result);
         res.json(result);
@@ -23,6 +34,33 @@ const mostrarCampanas = async (req, res, next) => {
     try {
         const mostrarCampanasCommand = new MostrarCampanasCommand(campanaService);
         const result = await mostrarCampanasCommand.execute();
+
+        console.log(result);
+        res.json(result);
+
+    } catch(error) {
+        next(error);
+    }
+}
+
+const mostrarCampanasEsteMes = async (req, res, next) => {
+    try {
+        const mostrarCampanasEsteMesCommand = new MostrarCampanasEsteMesCommand(campanaService);
+        const result = await mostrarCampanasEsteMesCommand.execute();
+
+        console.log(result);
+        res.json(result);
+
+    } catch(error) {
+        next(error);
+    }
+}
+
+const mostrarCampanasRecientes = async (req, res, next) => {
+    try {
+
+        const mostrarCampanasRecientesCommand = new MostrarCampanasRecientesCommand(campanaService);
+        const result = await mostrarCampanasRecientesCommand.execute();
 
         console.log(result);
         res.json(result);
@@ -72,9 +110,50 @@ const mostrarTipoCampana = async (req, res, next) => {
     }
 }
 
+const mostrarCampanasCorreo = async (req, res) => {
+    try {
+        const mostrarCampanasCorreoCommand = new MostrarCampanasCorreoCommand(campanaService);
+        const result = await mostrarCampanasCorreoCommand.execute();
+
+        console.log(result);
+        res.json(result);
+    } catch(error) {
+        res.status(500).json({ error: 'Ha ocurrido un error' });
+    }
+}
+
+const mostrarCampanasLlamada = async (req, res) => {
+    try {
+        const mostrarCampanasLlamadaCommand = new MostrarCampanasLlamadaCommand(campanaService);
+        const result = await mostrarCampanasLlamadaCommand.execute();
+
+        console.log(result);
+        res.json(result);
+    } catch(error) {
+        res.status(500).json({ error: 'Ha ocurrido un error' }); 
+    }
+}
+
+const mostrarCampanasSorteo = async (req, res) => {
+    try {
+        const mostrarCampanasSorteoCommand = new MostrarCampanasSorteoCommand(campanaService);
+        const result = await mostrarCampanasSorteoCommand.execute();
+
+        console.log(result);
+        res.json(result);
+    } catch(error) {
+        res.status(500).json({ error: 'Ha ocurrido un error' });
+    }
+}
+
 module.exports = {
     crearCampana: crearCampana,
     mostrarCampanas: mostrarCampanas,
+    mostrarCampanasEsteMes: mostrarCampanasEsteMes,
+    mostrarCampanasRecientes: mostrarCampanasRecientes,
     eliminarCampana: eliminarCampana,
-    mostrarTipoCampana: mostrarTipoCampana
+    mostrarTipoCampana: mostrarTipoCampana,
+    mostrarCampanasCorreo: mostrarCampanasCorreo,
+    mostrarCampanasLlamada: mostrarCampanasLlamada,
+    mostrarCampanasSorteo: mostrarCampanasSorteo
 }
