@@ -1,47 +1,53 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import SorteoMarketing from "./navbarsorteo";
 import "../styles/vistaConfiguracion.css";
+
 
 const Configuracion = () => {
   return (
     <div>
-      <div className="encabezado1">
-        <h1>Sorteos</h1>
-        <div className="container">
-          <ul>
-          <li className="sub">
-          <Link to="/Vistap">Participantes</Link>
-          </li>
-          <li className="sub">
-          <Link to="/Vistac">Configuracion</Link>
-          </li>
-          <li className="sub">
-          <Link to="/Vistas">Sorteo</Link>
-          </li>
+      <SorteoMarketing /> 
+      <div className="Cencabezado">
+        <h3 className="Ch3">Sorteos</h3>
+        <div className="Ccontainer">
+        <ul className="Cul">
+            <li>
+              <a className="Cli" href="/Sorteom">Participantes</a>
+            </li> 
+            <li>
+              <a className="Cli" href="/Vistac">Configuracion</a>
+            </li> 
+            <li>
+              <a className="Cli" href="/Vistas">Sorteo</a>
+            </li>  
           </ul>
         </div>
-        <hr />
+        <hr className="Chr" />
       </div>
-      <div className="section1">
-        <button className="btn1">Enviar correo</button>
+
+      <div className="Csection1">
+        <div className="Cbtn1">Enviar correo</div>
       </div>
-      <div className="section2">
-        <button className="btn2">Enviar</button>
-        <div className="cont">
-          <h5 className="subtitulo"> Público objetivo</h5>
-          <select className="combobox">
+      <div className="Csection2">
+         <button className="Cbtn2">
+        <Link to="/EditarCorreo">Enviar</Link>
+      </button>
+        <div className="Ccont">
+          <h5 className="Ch5"> Público objetivo</h5>
+          <select className="Ccombobox">
             <option value="opcion1">Opción 1</option>
             <option value="opcion2">Opción 2</option>
             <option value="opcion3">Opción 3</option>
           </select>
         </div>
-        <div className="cont">
-          <h5 className="subtitulo1">Asunto</h5>
-          <input type="text" className="caja1" placeholder="Escribe aquí" />
+        <div className="Ccont">
+          <h5 className="Ch5">Asunto</h5>
+          <input type="text" className="Ccaja1" placeholder="Escribe aquí" />
         </div>
-        <div className="cont">
-          <h5 className="subtitulo2">Mensaje</h5>
-          <input type="text" className="caja2" placeholder="Escribe aquí" />
+        <div className="Ccont">
+          <h5 className="Ch5">Mensaje</h5>
+          <input type="text" className="Ccaja2" placeholder="Escribe aquí" />
         </div>
       </div>
     </div>

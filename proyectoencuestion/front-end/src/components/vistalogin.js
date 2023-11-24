@@ -17,21 +17,21 @@ function Login() {
     if (rol === "administrador de marketing") {
       navigate('/gestion'); // Reemplaza '/otra-ruta' con la ruta a la que deseas redirigir al rol 'call center'
     } else {
-      navigate(''); // Ruta predeterminada cuando el rol no es 'call center'
+      navigate('/callcenter'); // Ruta predeterminada cuando el rol no es 'call center'
     }
   };
 
   return (
     <div>
-      <div className="left">
-      <h1>MÓDULO DE MARKETING</h1>
+      <div className="LGleft">
+      <h1 className='LGh1'>MÓDULO DE MARKETING</h1>
         <img src={foto} className='imagen'/>
       </div>
-      <div className="right">
-        <h2>BIENVENIDO</h2>
-        <form>
+      <div className="LGright">
+        <h2 className='LGh2'>BIENVENIDO</h2>
+        <form className='LGform'>
           <section className="dni">
-            <input
+            <input className='LGinput'
               type="text"
               id="dni2"
               placeholder=" DNI"
@@ -41,7 +41,7 @@ function Login() {
           </section>
 
           <section className="contraseña">
-            <input
+            <input className='LGinput'
               type="password"
               name="clave"
               required
@@ -52,7 +52,7 @@ function Login() {
           </section>
 
           <section className="rol">
-            <select
+            <select className='LGselect'
               name="lenguajes"
               id="lang"
               value={rol}
@@ -63,7 +63,7 @@ function Login() {
               <option value="administrador de marketing">Administrador de Marketing</option>
             </select>
           </section>
-          <button className='ingresar' onClick={handleIngresarClick}>INGRESAR</button>
+          <button className='LGingresar' onClick={handleIngresarClick}>INGRESAR</button>
         </form>
       </div>
     </div>

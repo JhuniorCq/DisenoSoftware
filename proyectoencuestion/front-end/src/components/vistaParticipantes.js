@@ -5,41 +5,41 @@ import "../styles/vistaParticipantes.css";
 const Vistaparti = () => {
   return (
     <div>
-      <div className="encabezado1">
-        <h1>Sorteos</h1>
-        <div className="container">
-          <ul>
-          <li className="sub">
-          <Link to="/Vistap">Participantes</Link>
-          </li>
-          <li className="sub">
-          <Link to="/Vistac">Configuracion</Link>
-          </li>
-          <li className="sub">
-          <Link to="/Vistas">Sorteo</Link>
-          </li>
+      <div className="Pencabezado">
+        <h3 className="Ph3">Sorteos</h3>
+        <div className="Pcontainer">
+          <ul className="Pul">
+            <li>
+              <a className="Pli" href="/Sorteom">Participantes</a>
+            </li> 
+            <li>
+              <a className="Pli" href="/Vistac">Configuracion</a>
+            </li> 
+            <li>
+              <a className="Pli" href="/Vistas">Sorteo</a>
+            </li> 
           </ul>
         </div>
-        <hr />
+        <hr className="Phr" />
       </div>
-      <div className="encabezado">
-        <h4 className="txt">Público objetivo</h4>
-        <h5 className="txt">Público objetivo</h5>
-        <input type="text" className="search" placeholder="Buscar participante" />
+      <div className="Pencabezado">
+        <h4 className="Ptxt">Público objetivo</h4>
+        <h6 className="Ptxt">Público objetivo</h6>
+        <input type="text" className="Psearch" placeholder="Buscar participante" />
       </div>
-      <div className="table">
-        <div className="calendar-row">
-          <div className="calendar-day">id</div>
-          <div className="calendar-day">Nombres</div>
-          <div className="calendar-day">Apellidos</div>
-          <div className="calendar-day">Correo electronico</div>
-          <div className="calendar-day">Genero</div>
-          <div className="calendar-day">Celular</div>
+      <div className="Ptable">
+        <div className="Pcalendar-row">
+          <div className="Pcalendar-day">id</div>
+          <div className="Pcalendar-day">Nombres</div>
+          <div className="Pcalendar-day">Apellidos</div>
+          <div className="Pcalendar-day">Correo electronico</div>
+          <div className="Pcalendar-day">Genero</div>
+          <div className="Pcalendar-day">Celular</div>
         </div>
         {[...Array(7)].map((_, index) => (
-          <div key={index} className="calendar-row">
+          <div key={index} className="Pcalendar-row">
             {[...Array(6)].map((_, cellIndex) => (
-              <div key={cellIndex} className="calendar-cell"></div>
+              <div key={cellIndex} className="Pcalendar-cell"></div>
             ))}
           </div>
         ))}

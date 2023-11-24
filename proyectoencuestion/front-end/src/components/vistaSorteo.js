@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
+import SorteoMarketing from "./navbarsorteo";
 import "../styles/vistaSor.css";
+
 
 const Sorteo = () => {
   const [participants, setParticipants] = useState("");
@@ -53,57 +55,60 @@ const Sorteo = () => {
 
   return (
     <div>
-      <div className="encabezado1">
-        <h1>Sorteos</h1>
-        <div className="container">
-          <ul>
-          <li className="sub">
-          <Link to="/Vistap">Participantes</Link>
-          </li>
-          <li className="sub">
-          <Link to="/Vistac">Configuracion</Link>
-          </li>
-          <li className="sub">
-          <Link to="/Vistas">Sorteo</Link>
-          </li>
+       <SorteoMarketing /> 
+      <div className="Sencabezado">
+        <h3 className="Sh3">Sorteos</h3>
+        <div className="Scontainer">
+        <ul className="Sul">
+            <li>
+              <a className="Sli" href="/Sorteom">Participantes</a>
+            </li> 
+            <li>
+              <a className="Sli" href="/Vistac">Configuracion</a>
+            </li> 
+            <li>
+              <a className="Sli" href="/Vistas">Sorteo</a>
+            </li> 
           </ul>
         </div>
-        <hr />
+        <hr className="Shr" />
       </div>
 
-      <div className="section1">
-        <h4 className="txt">Público objetivo</h4>
-        <h6 className="txt1">Público objetivo</h6>
-        <label className="win" htmlFor="numberOfWinners">
+      <div className="Ssection1">
+        <h4 className="Stxt">Público objetivo</h4>
+        <h6 className="Stxt1">Público objetivo</h6>
+        <label className="Swin" htmlFor="numberOfWinners">
           Número de Ganadores:
         </label>
         <input
-          className="res"
+          className="Sres"
           type="number"
           id="numberOfWinners"
           min="1"
           value={numberOfWinners}
           onChange={(e) => setNumberOfWinners(e.target.value)}
         />
-        <div className="participants">
+        <div className="Sparticipants">
           <textarea
-            className="partici"
+            className="Spartici"
             id="participantsInput"
             placeholder="Ingresa los participantes, uno por línea"
             value={participants}
             onChange={(e) => setParticipants(e.target.value)}
           ></textarea>
         </div>
-        <button className="btn3" onClick={generarSorteo}>
+        <button className="Sbtn3" onClick={generarSorteo}>
           Generar Sorteo
         </button>
       </div>
 
-      <div className="section2">
-        <h3>GANADORES</h3>
-        <button className="btn4">Enviar correo</button>
-        <div className="generator-container">
-          <div className="result" id="result">
+      <div className="Ssection2">
+        <h3 className="Sh3">GANADORES</h3>
+        <button className="Sbtn4">
+        <Link to="/EditarCorreo">Enviar correo</Link>
+      </button>
+        <div className="Sgenerator-container">
+          <div className="Sresult" id="result">
             {result}
           </div>
         </div>

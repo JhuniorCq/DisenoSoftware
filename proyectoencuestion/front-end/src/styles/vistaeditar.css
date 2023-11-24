@@ -5,31 +5,33 @@
     padding: 0;
 }
 
-header{
+.VCheader{
     width: 100%;
     height: 64px;
     background-color: #2d3e50;
 }
-.button1{
-    padding: 10px 20px;
-    width: 150px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #c5daf7;
-    color: #6052a9;
-    border: none;
-    border-radius: 20px;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: opacity 0.5s ease;
-    margin-left: 30px;
+.VCbutton1{
+  position: absolute;
+  text-align: center;
+  padding: 10px 20px;
+  width: 150px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #c5daf7;
+  color: #6052a9;
+  border: none;
+  border-radius: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+  margin-left: 30px;
   }
-  .button1:hover{
+  .VCbutton1:hover{
     background-color: #6052a9;
     color: white;
     opacity: 0.7; 
   }
-  .button2 {
+  .VCbutton2 {
     position: fixed;
     padding: 10px 20px;
     width: 250px;
@@ -40,15 +42,13 @@ header{
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     margin-top: none;
-    transition: opacity 0.5s ease;
-    margin-left: 500px;
+    margin-left: 480px;
     border: 1px solid #e3ebf2;
   }
-  .button2:hover{
-        background-color: #d9e5ed;
-        opacity: 0.7; 
-  }
-  .button3{
+
+  .VCbutton3{
+    position: absolute;
+    text-align: center;
     padding: 10px 20px;
     width: 250px;
     font-size: 1rem;
@@ -58,15 +58,12 @@ header{
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     margin-top: none;
-    transition: opacity 0.5s ease;
-    margin-left: 750px;
+    margin-left: 730px;
     border: 1px solid #e3ebf2;
   }
-  .button3:hover{
-    background-color: #d9e5ed;
-    opacity: 0.7; 
-}
-.btnsg{
+.VCbtnsg{
+  position:absolute;
+  text-align: center;
     padding: 10px 20px;
     width: 150px;
     font-size: 1rem;
@@ -75,42 +72,43 @@ header{
     color: #6052a9;
     border: none;
     border-radius: 20px;
-    margin-top: 10px;
+    margin-top: 50px;
     margin-left: 1300px;
     cursor: pointer;
     transition: opacity 0.5s ease;
 }
-.btnsg:hover{
+.VCbtnsg:hover{
   background-color: #33475b;
   color: white;
   opacity: 0.7; 
 }
-.container{
+.VCcontainer{
+  margin-top: 90px;
   font-family: 'Mooli', sans-serif;
   margin-left: 150px;
   color: #2d3e50;
 }
-.sb1{
+.VCsb1{
   font-family: 'Mooli', sans-serif;
 }
-#cuadrotexto{
+#VCcuadrotexto{
   border: 1px solid #c5daf7;
   width: 500px;
   height: 30px;
   border-radius: 10px;
   margin-top: 15px;
 }
-#name{
+#VCname{
   margin-top: 30px;
 }
-.box1{
+.VCbox1{
   border: 1px solid #c5daf7;
   width: 500px;
   height: 30px;
   border-radius: 10px;
   margin-top: 15px;
 }
-#cuadrotexto1{
+#VCcuadrotexto1{
   border: 1px solid #c5daf7;
   width: 700px;
   height: 350px;

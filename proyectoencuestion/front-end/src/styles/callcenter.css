@@ -3,17 +3,37 @@
     box-sizing: border-box;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
+.CCheader{
+    width: 100%;
+    height: 64px;
+    background-color: #2d3e50;
+}
+.CCbutton1{
+    position: absolute;
+    text-align: center;
+    padding: 10px 20px;
+    width: 150px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #c5daf7;
+    color: #6052a9;
+    border: none;
+    border-radius: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+    margin-left: 30px;
+    }
 body {
     font-family: Arial, sans-serif;
 }
-.Ph3{
+.CCh3{
     margin-left: 50px;
     font-weight: 500;
-    margin-top: 15px;
+    margin-top: 40px;
     height: 50px;
 }
-.Pul{
+.CCul{
     margin-top: 200px;
     width: 100%;
     display: flex;
@@ -24,35 +44,35 @@ body {
     font-size: 20px ;
     
 }
-.Pli{
+.CCli{
     cursor: pointer;
   transition: transform 0.3s ease;
   color: #2d3e50;
 }
-.Pli:hover{
+.CCli:hover{
   color: #6959cb; /* Cambia el color al pasar el mouse sobre el elemento */
   transform: scale(1.2); 
   font-weight: bold;
 }
 
-.Phr{
+.CChr{
     border: 0;
     height: 2px;
     background: linear-gradient(to right, #79b6e9, #A9A9A9);
     
 }
-.Ptable {
+.CCtable {
     margin-top: 30px;
     display: table;
     width: 98%;
     float: center;
     margin-left: 1.2%;
 }
-.Pencabezado-tabla{
+.CCencabezado-tabla{
     display: table-row;
 }
 
-.Pcalendar-day {
+.CCcalendar-day {
     position: static;
     color: black;
     display: table-cell;
@@ -67,30 +87,32 @@ body {
   
 }
 
-.Pmain{
+.CCmain{
     border: 1px black;
 }
 
-.Pcalendar-cell {
+.CCcalendar-cell {
     display: table-cell;
     border: 1px solid #B9C5DE;
     padding: 20px;
 }
-.Pcalendar-row {
+.CCcalendar-row {
     display: table-row;
 }
-.Pencabezado1{
-    margin-top: 90px;
+.CCencabezado1{
+    
     font-family:sans-serif; 
+    
 }
-.Ptxt{
+
+.CCtxt{
     margin-left: 20px;
     margin-top: 30px;
     color: #212529;
     font-family:sans-serif;
     color: #212529; 
 }
-.Psearch{
+.CCsearch{
     margin-top: px ;
     border-radius: 5px;
     border: 1px solid #d3d3d3;

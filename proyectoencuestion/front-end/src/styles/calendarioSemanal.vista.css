@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+}
+#nextWeek:hover{
+    background-color: #b3a9f4;
+    color: #ffffff;
+  }
+#nextWeek{
+    position: absolute;
+    font-weight: bold;
+    bottom: 10px;
+    top: 350px;
+    left: 1100px;
+    height: 40px;
+    width: 40px;
+    color: black;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 40px;
+    border-radius: 50%;
+    background: #dfd5eb;
+    border: none;
+    cursor: pointer;
+}
+#prevWeek:hover{
+    background-color: #b3a9f4;
+    color: #ffffff;
+  }
+#prevWeek{
+    position: absolute;
+    font-weight: bold;
+    top: 350px;
+    left: 1050px;
+    height: 40px;
+    width: 40px;
+    color: black;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 40px;
+    border-radius: 50%;
+    background: #dfd5eb;
+    border: none;
+    cursor: pointer;
+}
+.container{
+    width: 95%;
+    margin-left: 1.2%;
+    max-height: 450px; /* Establece la altura máxima del contenedor externo */
+    overflow-y: auto; /* Activa la barra de desplazamiento vertical si es necesario */
+    border: 1px solid #B9C5DE;
+    padding: 5px;
+    margin-top: 5px;
+}
+.calendar {
+    display: table;
+    width: 95%;
+    float: center;
+    margin-left: 1.2%;
+}
+
+.calendar-day {
+    font-weight: bold;
+    color: #33475B;
+    display: table-cell;
+    text-align: center;
+    background-color: #F5F8FA;
+    border-top: 1px  solid #B9C5DE;
+    border-left: 1px solid #B9C5DE;
+    border-right: 1px solid #B9C5DE;
+    padding-top: 10px;
+  
+}
+
+.calendar-num{
+    font-size: 12px;
+    display: table-cell;
+    text-align: center;
+    padding-bottom: 10px;
+    color: #33475B;
+    background-color: #F5F8FA;
+    border-bottom: 1px  solid #B9C5DE;
+    border-left: 1px solid #B9C5DE;
+    border-right: 1px solid #B9C5DE;
+}
+.main{
+    border: 1px black;
+}
+
+.calendar-cell {
+    display: table-cell;
+    border: 1px solid #B9C5DE;
+    text-align: center;
+    padding: 30px;
+}
+.calendar-cell-hora{
+    text-align: right;
+}
+.calendar-day-hor,.calendar-num-hor{
+    text-align: center;
+    padding:5px;
+    width: 10px;
+}
+
+.calendar-row {
+    display: table-row;
+}
+
+  
+  /* configurando el scrollbar */
+
+  .container::-webkit-scrollbar{
+    width: 15px;
+    overflow: auto;
+  }
+  
+  .container::-webkit-scrollbar-thumb{
+    background-color: var(--color-border);
+    border-radius: 10px;
+  }
+  
+  .container::-webkit-scrollbar{
+    width: 9px;
+  }
+  .container::-webkit-scrollbar:hover{
+    width: 19px;
+  }
+  
+  .container::-webkit-scrollbar-thumb{
+    background-color: var(--color-border);
+    border-radius: 10px;
+  }

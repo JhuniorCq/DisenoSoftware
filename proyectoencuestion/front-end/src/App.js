@@ -9,7 +9,12 @@ import LlamadasAdministrar from "./components/llamadas/llamadasAdministrar";
 import SorteoMrk from "./components/marketing/marketingSorteo";
 import Vistaparti from "./components/vistaParticipantes";
 import Configuracion from "./components/vistaConfiguracion";
-import Sorteo from "./components/marketing/marketingSorteo";
+import Sorteo from "./components/vistaSorteo";
+import Editar from "./components/vistaEditaCorreo";
+import Enviar from "./components/vistaEnviarCorreo";
+import Modal from "./components/revisaryenviar";
+import ModalP from "./components/programar";
+import CallcenterM from "./components/marketingCall";
 
 
 function App() {
@@ -27,6 +32,12 @@ function App() {
         <Route path= {'/Vistap'} element={<Vistaparti />} />
         <Route path= {'/Vistac'} element={<Configuracion />} />
         <Route path= {'/Vistas'} element={<Sorteo/>} />
+        <Route path={'/EditarCorreo'} element={<Editar/>} />
+        <Route path={'/EnviarCorreo'} element={<Enviar/>} />
+        <Route path={'/ModalS'} element={<Modal/>}/>
+        <Route path={'/ModalPro'} element={<ModalP />}/>
+        <Route path={'/callcenter'} element={<CallcenterM />}/>
+ 
 
       </Routes>
     </BrowserRouter>

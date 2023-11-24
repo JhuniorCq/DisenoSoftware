@@ -1,4 +1,4 @@
-.right{
+.LGright{
     background-color: #87b5e1;
     position: absolute;
     height: 770px;
@@ -8,10 +8,10 @@
     border-radius: 30px;
     
 }
-.left{
+.LGleft{
     position: absolute;
 }
-h1{
+.LGh1{
     color: #33475B;
     height: 43px;
     width: 430px;
@@ -22,11 +22,11 @@ h1{
     transition: transform 0.2s;
 }
 
-h1:hover{
+.LGh1:hover{
     transform: scale(1.1);
 }
 
-h2{
+.LGh2{
     color: #fff;
     position: absolute;
     margin-left: 260px;
@@ -35,7 +35,7 @@ h2{
     height: 40px;
     transition: transform 0.2s;
 }
-h2:hover{
+.LGh2:hover{
     transform: scale(1.1);
 }
 .imagen{
@@ -46,7 +46,7 @@ h2:hover{
     z-index: 999;
 }
 
-form{
+.LGform{
     background-color: #87b5e1;
     position: absolute;
     margin-top: 250px;
@@ -57,7 +57,7 @@ form{
     height: 480px;
 }
 
-input {
+.LGinput {
    background-color: #33475B;
     width: 300px;
     height: 40px;
@@ -67,11 +67,11 @@ input {
     transition: box-shadow 0.3s ease-in-out;
 }
 
-input:hover {
+.LGinput:hover {
     background-color: white;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Agregamos una sombra al pasar el cursor */
 }
-select{
+.LGselect{
     width: 300px;
     height: 40px;
     border-radius: 10px;
@@ -80,11 +80,11 @@ select{
     background-color: #ADCBED;
     
 }
-select:hover{
+.LGselect:hover{
     background-color: white;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
-.ingresar{
+.LGingresar{
     margin-top: 100px;
     width: 300px;
     border-radius: 10px;

@@ -1,21 +1,17 @@
-import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import SorteoMarketing from "../navbarsorteo";
 import Vistaparti from "../vistaParticipantes";
-import Configuracion from "../vistaConfiguracion";
-import Sorteo from "../vistaSorteo";
-import VistaEnviar from "../vistaEnviarCorreo";
-import Editar from "../vistaEditaCorreo";
 
 const SorteoMrk = () => {
-    return(
+    return (
         <body>
-            <SorteoMarketing/>
-            <Vistaparti/>
-            <Configuracion/>
-            <Sorteo/>
-            <Editar/>
-            <VistaEnviar/> 
+            <SorteoMarketing />
+            <Vistaparti />
+
         </body>
     );
 }
-export default Sorteo;
+
+export default SorteoMrk;
+
+
