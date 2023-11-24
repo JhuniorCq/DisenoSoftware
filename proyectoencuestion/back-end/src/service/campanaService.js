@@ -1,9 +1,11 @@
 const {format} = require('date-fns');
 const {CampanaRepository} = require('../repository/campanaRepository');
+const {SegmentacionRepository} = require('../repository/segmentacionRepository');
 const campanaRepository = new CampanaRepository();
+const segmentacionRepository = new SegmentacionRepository();
 
 class CampanaService {
-    async crearCampana (campanaData, segmentacion_id) {
+    async crearCampana (campanaData/*, segmentacion_id*/) {
         // Validación de los datos -> CREAR CAMPAÑA
         if (!campanaData.fecha_inicio || !campanaData.fecha_fin || !campanaData.nombre || !campanaData.tipo_campana || !campanaData.descripcion || !campanaData.objetivos) {
             throw new Error('Complete todos los campos');
@@ -33,6 +35,12 @@ class CampanaService {
             console.log(promocionData);
             promocion_id = promocionData.promocion_id;//Asigno a promocion_id el valor de la clave promocion_id del objeto promocionData
         }
+
+        //EN EL FRONT EL PRESIONAR EL BOTÓN "PÚBLICO OBJETIVO" Y EL COMPLETAR LOS DATOS DE LA SEGMENTACIÓN  DEBEN SER OBLIGATORIOS, DE LO CONTRARIO SI SE CREA UNA CAMPAÑA SE USARÁN LOS DATOS DE LA ULTIMA SEGMENTACION GUARDADA
+        
+        //Uso un objeto de SegmentacionRepository para acceder al método de mostrarSegmentacion que me dará la info de la ultima segmentacion guardada
+        const ultimaSegmentacion = await segmentacionRepository.mostrarUltimaSegmentacion();
+        const {segmentacion_id} = ultimaSegmentacion;
 
         // Llamada a crearCampanaRepository para meter datos en la BD -> INGRESAR LOS DEMÁS DATOS DE LA CAMPAÑA A LA BD
         const result = await campanaRepository.crearCampana(campanaData, promocion_id, segmentacion_id);//Paso como parametro a campanaData y aparte a promocion_id

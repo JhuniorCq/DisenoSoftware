@@ -1,5 +1,5 @@
 const {CampanaService} = require('../service/campanaService');
-const {crearSegmentacion} = require('../controllers/segmentacionController');
+const {mostrarSegmentacion} = require('../controllers/segmentacionController');
 // const {iniciarSesion} = require('../controllers/inicioSesionController');
 const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand, MostrarTipoCampanaCommand, MostrarCampanasEsteMesCommand, MostrarCampanasRecientesCommand, MostrarCampanasCorreoCommand, MostrarCampanasLlamadaCommand, MostrarCampanasSorteoCommand} = require('../command/campanaCommand');
 const campanaService = new CampanaService();
@@ -17,10 +17,7 @@ const crearCampana = async (req, res, next) => {
         // // dni = "12345678";//Probando
         // console.log(dni);
 
-        //LLAMANDO A SEGMENTACION PARA OBTENER segmentacion_id -> Este atributo contiene el ID de la ultima segmentacion realizada
-        const segmentacion_id = await crearSegmentacion(req,res,next);
-
-        const result = await crearCampanaCommand.execute(campanaData, segmentacion_id);
+        const result = await crearCampanaCommand.execute(campanaData);
 
         console.log(result);
         res.json(result);

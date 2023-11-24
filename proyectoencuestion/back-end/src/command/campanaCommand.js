@@ -3,8 +3,8 @@ class CrearCampanaCommand {
         this.campanaService = campanaService;
     }
 
-    execute(campanaData, segmentacion_id) {
-        return this.campanaService.crearCampana(campanaData, segmentacion_id);
+    execute(campanaData) {
+        return this.campanaService.crearCampana(campanaData);
     }
 }
 

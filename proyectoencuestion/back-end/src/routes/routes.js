@@ -5,7 +5,7 @@ const {iniciarSesion} = require('../controllers/inicioSesionController');
 const {crearCampana, mostrarCampanas, eliminarCampana, mostrarTipoCampana, mostrarCampanasEsteMes, mostrarCampanasRecientes, mostrarCampanasCorreo, mostrarCampanasLlamada, mostrarCampanasSorteo} = require('../controllers/campanaController');
 const {crearCorreo, mostrarCorreos, enviarCorreos} = require('../controllers/correoController');
 const {crearLlamada, mostrarLlamadas} = require('../controllers/llamadaController');
-const {crearSegmentacion, mostrarSegmentacion} = require('../controllers/segmentacionController');
+const {crearSegmentacion/*, mostrarSegmentacion*/} = require('../controllers/segmentacionController');
 const {buscarPromoDNI, buscarPromo} = require('../controllers/promocionController');
 
 //RUTAS PARA EL INICIO DE SESIÓN
@@ -34,8 +34,8 @@ router.post('/crearLlamada', crearLlamada);
 router.get('/mostrarLlamadas', mostrarLlamadas);
 
 //RUTAS PARA LA SEGMENTACIÓN
-// router.post('/crearSegmentacion', crearSegmentacion);//YA NO LA USAREMOS CREO
-router.get('/mostrarSegmentacion', mostrarSegmentacion);
+router.post('/crearSegmentacion', crearSegmentacion);//YA NO LA USAREMOS CREO
+// router.get('/mostrarSegmentacion', mostrarSegmentacion); //Lo puedo Descomentar si quiero mostrar como un response a los datos de una o todas las Segmentaciones
         
 //RUTAS PARA LA PROMOCIÓN (DESCUENTO) -> SERGIO
 router.get('/buscarPromoDNI', buscarPromoDNI);//Cambiar
