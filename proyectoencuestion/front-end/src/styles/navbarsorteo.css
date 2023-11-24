@@ -1,0 +1,98 @@
+/* Estilos generales */
+:root {
+    --color-primario: #2D3E50;
+    --color-btn-light: #c4beeb;
+    --color-btn-primary: #6959cb;
+    --color-border: rgba(0, 0, 0, 0.173);
+    --color-fechas: rgb(213, 197, 197);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    font-size: 1rem;
+  }
+  
+  a, .anchor {
+    text-decoration: none;
+    color: white;
+  }
+  
+  /* Estilos del Navbar */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 4rem;
+    font-size: 1.1rem;
+    padding: 0 1.8rem;
+    color: wheat;
+    background-color: var(--color-primario);
+  }
+  
+  .blueRectangle {
+    color: white;
+    cursor: pointer;
+    font-size: 1.7rem;
+  }
+  
+  /* Estilos del Menú Desplegable */
+  .contenidoLateral {
+    position: absolute;
+    width: 325px;
+    z-index: 10;
+    left: -350px;
+    transition: left 0.3s ease;
+    overflow-y: hidden;
+    height: 800px;
+  }
+  
+  .open {
+    left: 0;
+  }
+  
+  .list {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    background-color: whitesmoke;
+    color: var(--color-primario);
+    font-size: 1.1rem;
+  }
+  
+  .list__item {
+    list-style: none;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .list__item.list__item__click {
+    cursor: pointer;
+  }
+  
+  .list__button {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    width: 70%;
+  }
+  
+  .arrow .list__arrow {
+    transform: rotate(90deg);
+  }
+  
+  .list__arrow {
+    transition: transform 0.3s ease;
+    margin: auto;
+  }
+  
+  /* ... Otros estilos ... */
+  

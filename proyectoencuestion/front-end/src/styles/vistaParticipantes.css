@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+*{
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+.Ph3{
+    margin-left: 50px;
+    font-weight: 500;
+    margin-top: 15px;
+    height: 50px;
+}
+.Pul{
+    margin-top: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 3rem;
+    margin: 2.4rem;
+    padding-left: 2rem;
+    font-size: 20px ;
+    
+}
+.Pli{
+    cursor: pointer;
+  transition: transform 0.3s ease;
+  color: #2d3e50;
+}
+.Pli:hover{
+  color: #6959cb; /* Cambia el color al pasar el mouse sobre el elemento */
+  transform: scale(1.2); 
+  font-weight: bold;
+}
+
+.Phr{
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, #79b6e9, #A9A9A9);
+    
+}
+.Ptable {
+    margin-top: 30px;
+    display: table;
+    width: 98%;
+    float: center;
+    margin-left: 1.2%;
+}
+.Pencabezado-tabla{
+    display: table-row;
+}
+
+.Pcalendar-day {
+    position: static;
+    color: black;
+    display: table-cell;
+    padding-left: 5px;
+    vertical-align: middle;
+    background-color: #F5F8FA;
+    border-top: 1px  solid #B9C5DE;
+    border-left: 1px solid #B9C5DE;
+    border-right: 1px solid #B9C5DE;
+    padding-top: 10px;
+    margin-left: 5px;
+  
+}
+
+.Pmain{
+    border: 1px black;
+}
+
+.Pcalendar-cell {
+    display: table-cell;
+    border: 1px solid #B9C5DE;
+    padding: 20px;
+}
+.Pcalendar-row {
+    display: table-row;
+}
+.Pencabezado1{
+    margin-top: 90px;
+    font-family:sans-serif; 
+}
+.Ptxt{
+    margin-left: 20px;
+    margin-top: 30px;
+    color: #212529;
+    font-family:sans-serif;
+    color: #212529; 
+}
+.Psearch{
+    margin-top: px ;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;
+    width: 250px;
+    height: 35px;
+    margin-left: 1240px;
+    vertical-align: middle;
+    position: static;
+}
