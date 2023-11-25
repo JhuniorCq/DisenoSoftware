@@ -21,10 +21,17 @@ class CampanaService {
             throw new Error('La fecha de inicio no puede ser posterior a la fecha de finalización');
         }
 
+        //TIPO CAMPAÑA
+        let tipoCampanaInt = parseInt(campanaData.tipo_campana);
+
+        const tipo_campanaID = await campanaRepository.mostrarTipoCampana(tipoCampanaInt);
+        console.log(tipo_campanaID);//ID DEL TIPO DE CAMPAÑA -> tipo_campanaID es un entero
+
+
         //PROMOCIÓN
         let promocion_id;// Uso let porque sino tendría que darle un valor acá, y el valor quiero darselo adentro del if
         //Declaro acá afuera a promocion_id porque si lo declaro adentro no podré utilizar la variable fuera del if
-        if (campanaData.tipo_campana === '1' || campanaData.tipo_campana === '2') {//Llamada = 1 y Correo = 2
+        if (campanaData.tipo_campana == tipo_campanaID || campanaData.tipo_campana == tipo_campanaID) {//Llamada = 1 y Correo = 2
             // Aquí deberías verificar que el campo de descuento esté presente y no sea nulo
             if (campanaData.promocion == null) {
                 throw new Error('El campo de descuento es obligatorio para este tipo de campaña');
@@ -35,6 +42,8 @@ class CampanaService {
             console.log(promocionData);
             promocion_id = promocionData.promocion_id;//Asigno a promocion_id el valor de la clave promocion_id del objeto promocionData
         }
+
+        campanaData.tipo_campana = tipo_campanaID;
 
         //EN EL FRONT EL PRESIONAR EL BOTÓN "PÚBLICO OBJETIVO" Y EL COMPLETAR LOS DATOS DE LA SEGMENTACIÓN  DEBEN SER OBLIGATORIOS, DE LO CONTRARIO SI SE CREA UNA CAMPAÑA SE USARÁN LOS DATOS DE LA ULTIMA SEGMENTACION GUARDADA
         

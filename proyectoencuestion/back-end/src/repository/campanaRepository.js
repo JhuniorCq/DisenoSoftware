@@ -74,20 +74,20 @@ class CampanaRepository {
         return result;
     }
 
+    //USARÉ ESTO COMO FUNCIÓN, PERO NO COMO RUTA
     async mostrarTipoCampana(tipoCampanaID) {
-        const todosTipoCampana = await pool.query('SELECT * FROM tipo_campana');
-        const resultTipoCampana = await pool.query('SELECT * FROM campana WHERE tipo_campana = $1', [tipoCampanaID]);
-        const un_tipo_campana = resultTipoCampana.rows[0];
-
-        let nombreTipoCampana;
-        for(let i=0; i<3; i++) {
-            if(todosTipoCampana.rows[i].camid === un_tipo_campana.tipo_campana) {
-                nombreTipoCampana = todosTipoCampana.rows[i].nombre;
+        try{
+            const todosTipoCampana = await pool.query('SELECT * FROM tipo_campana');
+    
+            for(let i=0; i<3; i++) {
+                if(todosTipoCampana.rows[i].camid == tipoCampanaID) {
+                    return todosTipoCampana.rows[i].camid;
+    
+                }
             }
+        } catch(error) {
+            error;
         }
-        console.log(nombreTipoCampana);
-        console.log(todosTipoCampana.rows);
-        return nombreTipoCampana;
     }
 
     async mostrarCampanasCorreo() {
