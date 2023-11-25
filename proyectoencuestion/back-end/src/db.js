@@ -1,5 +1,5 @@
 const {Pool} = require('pg');
-const {db} = require('./config');
+const {db} = require('./config');//Borrar :v al ...
 
 const pool = new Pool({
     user: "modulomarketing_user",
