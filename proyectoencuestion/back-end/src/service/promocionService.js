@@ -1,28 +1,16 @@
 const {PromocionRepository} = require('../repository/promocionRepository');
 const promocionRepository = new PromocionRepository();
 
-
 class PromocionService {
-    async buscarPromoDNI(dni_cliente) {
+
+    async buscarPromocionPorID(idPromocion) {
         try {
             //Lógica
 
             //Llamado a Repository
-            const result = promocionRepository.buscarPromoDNI(dni_cliente);
-            return result;
+            const promocion_id = await promocionRepository.buscarPromocionPorID(idPromocion);
 
-        } catch(error) {
-            throw error;
-        }
-    }
-
-    async buscarPromo(promocion_id) {
-        try {
-            //Lógica
-
-            //Llamado a Repository
-            const result = promocionRepository.buscaPromo(promocion_id);
-            return result;
+            return promocion_id;
 
         } catch (error) {
             throw error;

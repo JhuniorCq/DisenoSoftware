@@ -8,17 +8,17 @@ class CrearSegmentacionCommand {
     }
 }
 
-class MostrarSegmentacionCommand {
-    constructor(campanaService) {
-        this.campanaService = campanaService;
-    }
+// class MostrarSegmentacionCommand {
+//     constructor(campanaService) {
+//         this.campanaService = campanaService;
+//     }
 
-    execute() {
-        return this.campanaService.mostrarSegmentacion();
-    }
-}
+//     execute() {
+//         return this.campanaService.mostrarSegmentacion();
+//     }
+// }
 
 module.exports = {
     CrearSegmentacionCommand: CrearSegmentacionCommand,
-    MostrarSegmentacionCommand: MostrarSegmentacionCommand
+    // MostrarSegmentacionCommand: MostrarSegmentacionCommand
 }

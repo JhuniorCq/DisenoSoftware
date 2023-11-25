@@ -1,17 +1,16 @@
 const {SegmentacionService} = require('../service/segmentacionService');
-const {CrearSegmentacionCommand, MostrarSegmentacionCommand} = require('../command/segmentacionCommand');
+const {CrearSegmentacionCommand/*, MostrarSegmentacionCommand*/} = require('../command/segmentacionCommand');
 const segmentacionService = new SegmentacionService();
 
-//CREAR SEGMENTACION SE PUEDE IR CREO
-const crearSegmentacion = (req, res, next) => {
+//ESTA RUTA DEBE ESTAR EN EL BOTÓN -> GUARDAR 
+const crearSegmentacion = async (req, res, next) => {
     try {
         const crearSegmentacionCommand = new CrearSegmentacionCommand(segmentacionService);
 
         const segmentacionData = req.body;
 
-        const result = crearSegmentacionCommand.execute(segmentacionData);
+        const result = await crearSegmentacionCommand.execute(segmentacionData);
 
-        console.log(result);
         res.json(result);
 
     } catch(error) {
@@ -19,21 +18,23 @@ const crearSegmentacion = (req, res, next) => {
     }
 }
 
-const mostrarSegmentacion = (req, res, next) => {
-    try {
-        const mostrarSegmentacionCommand = new MostrarSegmentacionCommand(segmentacionService);
-        const result = mostrarSegmentacionCommand.execute();
+//Lo puedo Descomentar si quiero mostrar como un response a los datos de una o todas las Segmentaciones
 
-        console.log(result);
-        console.log(`Esto es después del Result, NO se imprime el contenido del Result, se imprime una 'Promesa Pendiente'`);
-        res.json(result);
+// const mostrarSegmentacion = async (req, res, next) => {
+//     try {
+//         const mostrarSegmentacionCommand = new MostrarSegmentacionCommand(segmentacionService);
+//         const ultimaSegmentacion = await mostrarSegmentacionCommand.execute();
 
-    } catch(error) {
-        next(error);
-    }
-}
+//         console.log(ultimaSegmentacion);
+
+//         res.json(ultimaSegmentacion);
+
+//     } catch(error) {
+//         next(error);
+//     }
+// }
 
 module.exports = {
     crearSegmentacion: crearSegmentacion,
-    mostrarSegmentacion: mostrarSegmentacion
+    // mostrarSegmentacion: mostrarSegmentacion
 }

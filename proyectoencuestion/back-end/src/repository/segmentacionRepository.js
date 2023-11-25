@@ -3,10 +3,9 @@ const pool = require('../db');
 class SegmentacionRepository {
     async crearSegmentacion(segmentacionData) {
         try {
-            const {tipo, minm, maxm, fecha_inicio, fecha_fin, distrito, departamento, sexo} = segmentacionData;
+            const {minm, maxm, fecha_inicio, fecha_fin, distrito, departamento, sexo} = segmentacionData;
 
-            const result = await pool.query('INSERT INTO criterios_segmentacion (tipo, minm, maxm, "fecha_inicio", "fecha_fin", distrito, departamento, sexo) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *', [
-                tipo,
+            const result = await pool.query('INSERT INTO criterios_segmentacion (minm, maxm, "fecha_inicio", "fecha_fin", distrito, departamento, sexo) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *', [
                 minm,
                 maxm,
                 fecha_inicio,
@@ -15,7 +14,7 @@ class SegmentacionRepository {
                 departamento,
                 sexo
             ]);
-            console.log(result.rows[0]);
+
             return result.rows[0];
 
         } catch(error) {
@@ -23,11 +22,13 @@ class SegmentacionRepository {
         }
     }
 
-    async mostrarSegmentacion() {
+    //Esto lo puedo manejar sin que tenga una ruta, ya que solo llamo a esta funcion en campanaService, pero no se usa la ruta
+    async mostrarUltimaSegmentacion() {//Muestra la última segmentación guardada
         try {
             const result = await pool.query('SELECT * FROM criterios_segmentacion');
-            // console.log(result.rows);
-            return result.rows;
+            const ultimaSegmentacion = result.rows[result.rows.length - 1]
+
+            return ultimaSegmentacion;
         } catch(error) {
             throw error;
         }

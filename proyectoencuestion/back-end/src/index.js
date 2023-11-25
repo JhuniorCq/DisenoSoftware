@@ -5,14 +5,18 @@ const routes = require('./routes/routes');
 const app = express();
 const port = 3000;
 
-app.use(cors());
+app.use(cors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
+}));
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(routes);
 
-app.use((err, req, res, next) => {
+app.use((error, req, res, next) => {
+    console.error(error);
     return res.json({
-        message: err.message
+        message: 'Hubo un error en el Servidor'
     });
 });
 

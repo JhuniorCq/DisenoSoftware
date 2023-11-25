@@ -1,12 +1,20 @@
+const {format} = require('date-fns');
 const {CampanaRepository} = require('../repository/campanaRepository');
+const {SegmentacionRepository} = require('../repository/segmentacionRepository');
 const campanaRepository = new CampanaRepository();
+const segmentacionRepository = new SegmentacionRepository();
 
 class CampanaService {
-    async crearCampana (campanaData) {
+    async crearCampana (campanaData/*, segmentacion_id*/) {
         // Validación de los datos -> CREAR CAMPAÑA
         if (!campanaData.fecha_inicio || !campanaData.fecha_fin || !campanaData.nombre || !campanaData.tipo_campana || !campanaData.descripcion || !campanaData.objetivos) {
             throw new Error('Complete todos los campos');
         }
+
+        //CREANDO FECHA DE CREACIÓN DE CAMPAÑA (FECHA ACTUAL)
+        
+        const fechaCreacion = format(new Date(), 'yyyy-MM-dd');
+        campanaData.fecha_creacion = fechaCreacion;
 
         // Lógica Fechas
         if (campanaData.fecha_inicio > campanaData.fecha_fin) {
@@ -28,28 +36,46 @@ class CampanaService {
             promocion_id = promocionData.promocion_id;//Asigno a promocion_id el valor de la clave promocion_id del objeto promocionData
         }
 
-        //SEGMENTACIÓN
-        /*
-            - Si quiero que la Segmentación se guarde al mismo tiempo que los demás datos de la campaña debo llamar acá a segmentacionService, y la ruta para la crearSegmentacion quedaría obsoleta
-            - Caso Contrario si hago que la segmentacion se guarde al presionar el botón "Guardar" en la segmentación, se mantendría vigente la ruta de crearSegmentación, pero habría un error -> Se termine o no de crear la Campaña igual se guardarían los datos de la segmentación
-        */
-
-
+        //EN EL FRONT EL PRESIONAR EL BOTÓN "PÚBLICO OBJETIVO" Y EL COMPLETAR LOS DATOS DE LA SEGMENTACIÓN  DEBEN SER OBLIGATORIOS, DE LO CONTRARIO SI SE CREA UNA CAMPAÑA SE USARÁN LOS DATOS DE LA ULTIMA SEGMENTACION GUARDADA
+        
+        //Uso un objeto de SegmentacionRepository para acceder al método de mostrarSegmentacion que me dará la info de la ultima segmentacion guardada
+        const ultimaSegmentacion = await segmentacionRepository.mostrarUltimaSegmentacion();
+        const {segmentacion_id} = ultimaSegmentacion;
 
         // Llamada a crearCampanaRepository para meter datos en la BD -> INGRESAR LOS DEMÁS DATOS DE LA CAMPAÑA A LA BD
-        const result = await campanaRepository.crearCampana(campanaData, promocion_id);//Paso como parametro a campanaData y aparte a promocion_id
+        const result = await campanaRepository.crearCampana(campanaData, promocion_id, segmentacion_id);//Paso como parametro a campanaData y aparte a promocion_id
         return result;
     }
 
     async mostrarCampanas() {
         try {
-            const result = await campanaRepository.mostrarCampanas();
+            const todasCampanas = await campanaRepository.mostrarCampanas();
 
-            return result;
+            return todasCampanas;
         } catch(error) {
             throw error;
         }
         
+    }
+
+    async mostrarCampanasEsteMes() {
+        try {
+            const campanasEsteMes = await campanaRepository.mostrarCampanasEsteMes();
+
+            return campanasEsteMes;
+        } catch(error) {
+            throw error;
+        }
+    }
+
+    async mostrarCampanasRecientes() {
+        try {
+            const campanasRecientes = await campanaRepository.mostrarCampanasRecientes();
+
+            return campanasRecientes;
+        } catch(error) {
+            throw error;
+        }
     }
 
     async eliminarCampana(id_campana) {
@@ -67,6 +93,48 @@ class CampanaService {
         //Llamado a Repository
         const nombreTipoCampana = await campanaRepository.mostrarTipoCampana(tipoCampanaID);
         return nombreTipoCampana;
+    }
+
+    async mostrarCampanasCorreo() {
+        try {
+            const result = await campanaRepository.mostrarCampanasCorreo();
+    
+            return result;
+        } catch(error) {
+            res.status(500).json({ error: 'Ha ocurrido un error' });
+        }
+    }
+    
+    async mostrarCampanasLlamada() {
+        try {
+            const result = await campanaRepository.mostrarCampanasLlamada();
+
+            return result;
+        } catch(error) {
+            res.status(500).json({ error: 'Ha ocurrido un error' }); 
+        }
+    }
+    
+    async mostrarCampanasSorteo() {
+        try {
+            const result = await campanaRepository.mostrarCampanasSorteo();
+
+            return result;
+        } catch(error) {
+            res.status(500).json({ error: 'Ha ocurrido un error' });
+        }
+    }
+
+    async buscarCampanaPorID(idCampana) {
+        try {
+            const campana_id = await campanaRepository.buscarCampanaPorID(idCampana);
+
+            console.log(campana_id);
+
+            return campana_id;
+        } catch(error) {
+            throw error;
+        }
     }
 }
 

@@ -1,34 +1,24 @@
-const {BuscarPromoDNICommand, BuscarPromo} = require('../command/promocionCommand');
+const {BuscarPromocionPorIDCommand} = require('../command/promocionCommand');
 const {PromocionService} = require('../service/promocionService');
 const promocionService = new PromocionService();
 
-const buscarPromoDNI = (req, res, next) => {
+//FUNCIONES DE LAS RUTAS PARA SERGIO -> CON DATOS DE CLIENTES - LOCAL
+const buscarPromocionPorID = async (req, res, next) => {
+    try {
+        const buscarPromocionPorIDCommand = new BuscarPromocionPorIDCommand(promocionService);
 
-    const buscarPromoDNICommand = new BuscarPromoDNICommand(promocionService);
+        const {idPromocion} = req.params;
 
-    const {dni_cliente} = req.params;
+        const promocion_id = await buscarPromocionPorIDCommand.execute(idPromocion);
 
-    const result = buscarPromoDNICommand.execute(dni_cliente);
-    
-    console.log(result);
-    res.json(result);
-    
-}
+        console.log(promocion_id);
+        res.json(promocion_id);
 
-const buscarPromo = (req, res, next) => {
-    
-    const buscarPromo = new BuscarPromo(promocionService);
-
-    const {promocion_id} = req.params;
-
-    const result = buscarPromo.execute(promocion_id);
-
-    console.log(result);
-    res.json(result);
-
+    } catch(error) {
+        res.status(500).json({ error: 'Ha ocurrido un error' });
+    }
 }
 
 module.exports = {
-    buscarPromoDNI: buscarPromoDNI,
-    buscarPromo: buscarPromo
+    buscarPromocionPorID: buscarPromocionPorID
 }
