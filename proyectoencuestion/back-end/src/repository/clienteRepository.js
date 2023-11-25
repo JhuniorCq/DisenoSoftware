@@ -1,7 +1,7 @@
 const pool = require('../db');
 
 class ClienteRepository {
-    async guardarDNICliente(clienteData, campanaData) {//Este campanaData me puede servir para traer el campana_id , pero 
+    async guardarDNICliente(clienteData/*, campanaData*/) {//Este campanaData me puede servir para traer el campana_id , pero 
         try {
             const {dni} = clienteData;
 

@@ -44,8 +44,8 @@ router.get('/buscarCampanaPorID/:idCampana', buscarCampanaPorID);
 router.get('/buscarPromocionPorID/:idPromocion', buscarPromocionPorID);
 
 //OBTENER CLIENTES -> MÓDULO CLIENTES
-router.post('/clientes', obtenerClientes);
-router.post('/clientes/buscarPorDNI/:dni', obtenerClienteDNI);
+router.get('/obtenerClientes', obtenerClientes);
+router.get('/obtenerClienteDNI/:dni', obtenerClienteDNI);
 
 // const response = await axios.get('https://clientemodulocrm.onrender.com/clientes');
 // const clientes = response.data;
