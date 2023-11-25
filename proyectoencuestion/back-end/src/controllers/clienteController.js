@@ -1,5 +1,5 @@
 //ESTO ES PARA TRAER ACÁ LOS DATOS DE LOS CLIENTES DEL MÓDULO DE CLIENTES
-
+const axios = require('axios');
 const {ClienteRepository} = require('../repository/clienteRepository');
 const clienteRepository = new ClienteRepository();
 
@@ -26,7 +26,7 @@ const obtenerClienteDNI = async (req, res, next) => {
         console.log(clienteData);
 
         //DEBERIA HABER UN COMMAND Y SERVICE, PERO POR AHORA SERÁ ASI
-        const result = clienteRepository.guardarDNICliente(clienteData);
+        const result = await clienteRepository.guardarDNICliente(clienteData);
         
         console.log(result);
 
@@ -36,7 +36,6 @@ const obtenerClienteDNI = async (req, res, next) => {
     }
 }
 
-
 //FUNCIONES DE LAS RUTAS PARA SERGIO -> CON DATOS DE CLIENTES - LOCAL
 const buscarClientePorDNI = async (req, res, next) => {
     try {
@@ -45,7 +44,6 @@ const buscarClientePorDNI = async (req, res, next) => {
         res.status(500).json({ error: 'No se pudo buscar al cliente ' });
     }
 }
-
 
 module.exports = {
     obtenerClientes: obtenerClientes,

@@ -3,23 +3,25 @@ const {CampanaService} = require('../service/campanaService');
 // const {iniciarSesion} = require('../controllers/inicioSesionController');
 const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand, MostrarTipoCampanaCommand, MostrarCampanasEsteMesCommand, MostrarCampanasRecientesCommand, MostrarCampanasCorreoCommand, MostrarCampanasLlamadaCommand, MostrarCampanasSorteoCommand, BuscarCampanaPorIDCommand} = require('../command/campanaCommand');
 const campanaService = new CampanaService();
+const axios = require('axios');
 
 //Decirla a Enzo que los inputs en CREAR CAMPAÑA sean los que se ponen en la desestructuración de campanaData
 const crearCampana = async (req, res, next) => {
     try {
+        //HACER LO DE CLIENTE, ALMACENAR campana_id en la tabla participante, ese campana_id permitirá enlazarla la tabla campana y poder chapar a segmentacion_id y con eso realizar la segmentacion a los clientes y luegos mostrarlos.
+
+        
+        //Esto lo puedo traer como una sola funcion, importandola (esta funcion puede estar en clienteController)
+        const response = await axios.get('https://clientemodulocrm.onrender.com/clientes');
+        const clientes = response.data;
+
         const crearCampanaCommand = new CrearCampanaCommand(campanaService);
         
         const campanaData = req.body;
 
-        //NO SE PODRÁ TRAER EL DNI CON RES.LOCALS YA QUE EL RES.LOCALS solo tiene un tiempo de vida de 1 Solicitud, IniciarSesion y CrearCampaña son 2 Solicitudes, el res.locals de IniciarSesion muere cuando inicia el de CrearCampaña
-        // let {dni} = res.locals;
-
-        // // dni = "12345678";//Probando
-        // console.log(dni);
-
         const result = await crearCampanaCommand.execute(campanaData);
 
-        console.log(result);
+        // console.log(result);
         res.json(result);
 
     } catch (error) {
@@ -32,7 +34,7 @@ const mostrarCampanas = async (req, res, next) => {
         const mostrarCampanasCommand = new MostrarCampanasCommand(campanaService);
         const result = await mostrarCampanasCommand.execute();
 
-        console.log(result);
+        // console.log(result);
         res.json(result);
 
     } catch(error) {
