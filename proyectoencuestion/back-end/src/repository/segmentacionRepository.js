@@ -8,8 +8,8 @@ class SegmentacionRepository {
             const result = await pool.query('INSERT INTO criterios_segmentacion (minm, maxm, "fecha_inicio", "fecha_fin", distrito, departamento, sexo) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *', [
                 minm,
                 maxm,
-                fechaInicio,
-                fechaFin,
+                fecha_inicio,
+                fecha_fin,
                 distrito,
                 departamento,
                 sexo
