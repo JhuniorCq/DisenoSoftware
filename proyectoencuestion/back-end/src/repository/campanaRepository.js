@@ -33,6 +33,7 @@ class CampanaRepository {
     async mostrarCampanas() {
         try {
 
+            //FUSIONA TODOS LOS DATOS DE LA TABLA campana CON LOS DATOS promocion y estado DE LA TABLA promocion
             const datosTodasCampanas = await pool.query('SELECT campana.*, promocion.promocion, promocion.estado FROM campana LEFT JOIN promocion ON campana.promocion_id = promocion.promocion_id');
 
             console.log(datosTodasCampanas.rows);
@@ -123,12 +124,12 @@ class CampanaRepository {
 
     async buscarCampanaPorID(idCampana) {
         try {
-            const result = await pool.query('SELECT campana_id FROM campana WHERE campana_id = $1', [idCampana]);
+            const result = await pool.query('SELECT * FROM campana WHERE campana_id = $1', [idCampana]);
 
             if (result.rows.length > 0) {
-                return result.rows[0].campana_id;
+                return result.rows[0];
             } else {
-                return 'No se encontró la campaña buscada'; // O puedes lanzar un error o manejar el caso cuando no se encuentra la campaña
+                return 'No se encontró la campaña buscada';
             }
     
         } catch (error) {

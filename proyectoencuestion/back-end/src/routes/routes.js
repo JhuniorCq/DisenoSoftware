@@ -47,6 +47,10 @@ router.get('/buscarPromocionPorID/:idPromocion', buscarPromocionPorID);
 router.post('/clientes', obtenerClientes);
 router.post('/clientes/buscarPorDNI/:dni', obtenerClienteDNI);
 
+// const response = await axios.get('https://clientemodulocrm.onrender.com/clientes');
+// const clientes = response.data;
+
+
 // //
 // router.get('/clientesPorCampana');
 // // Por si quiero mostrar los cliente de Joaquin
