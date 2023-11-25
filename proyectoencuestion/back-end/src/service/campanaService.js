@@ -124,6 +124,18 @@ class CampanaService {
             res.status(500).json({ error: 'Ha ocurrido un error' });
         }
     }
+
+    async buscarCampanaPorID(idCampana) {
+        try {
+            const campana_id = await campanaRepository.buscarCampanaPorID(idCampana);
+
+            console.log(campana_id);
+
+            return campana_id;
+        } catch(error) {
+            throw error;
+        }
+    }
 }
 
 module.exports = {

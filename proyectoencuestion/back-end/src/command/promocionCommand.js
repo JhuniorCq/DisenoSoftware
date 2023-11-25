@@ -1,24 +1,14 @@
-class BuscarPromoDNICommand {
+
+class BuscarPromocionPorIDCommand {
     constructor(promocionService) {
         this.promocionService = promocionService;
     }
 
-    execute(dni_cliente) {
-        return this.promocionService.buscarPromoDNI(dni_cliente);
-    }
-}
-
-class BuscarPromo {
-    constructor(promocionService) {
-        this.promocionService = promocionService
-    }
-
-    execute(promocion_id) {
-        return this.promocionService.buscarPromo(promocion_id);
+    execute(idPromocion) {
+        return this.promocionService.buscarPromocionPorID(idPromocion);
     }
 }
 
 module.exports = {
-    BuscarPromoDNICommand: BuscarPromoDNICommand,
-    BuscarPromo: BuscarPromo
+    BuscarPromocionPorIDCommand: BuscarPromocionPorIDCommand
 }

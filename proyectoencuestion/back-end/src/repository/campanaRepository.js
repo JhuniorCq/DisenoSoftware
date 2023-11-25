@@ -21,6 +21,7 @@ class CampanaRepository {
         return result.rows[0];
     }
 
+    //Esto deberia ir en los archivos de prmocion :v
     async crearPromocion(campanaData) {
 
         const {promocion} = campanaData;
@@ -91,7 +92,7 @@ class CampanaRepository {
             return correoCampanas.rows;
             
         } catch(error) {
-            res.status(500).json({ error: 'Ha ocurrido un error' });
+            throw error;
         }
     }
     
@@ -102,7 +103,7 @@ class CampanaRepository {
             return llamadaCampanas.rows;
 
         } catch(error) {
-            res.status(500).json({ error: 'Ha ocurrido un error' }); 
+            throw error;
         }
     }
     
@@ -112,7 +113,22 @@ class CampanaRepository {
 
             return sorteoCampanas.rows;
         } catch(error) {
-            res.status(500).json({ error: 'Ha ocurrido un error' });
+            throw error;
+        }
+    }
+
+    async buscarCampanaPorID(idCampana) {
+        try {
+            const result = await pool.query('SELECT campana_id FROM campana WHERE campana_id = $1', [idCampana]);
+
+            if (result.rows.length > 0) {
+                return result.rows[0].campana_id;
+            } else {
+                return 'No se encontró la campaña buscada'; // O puedes lanzar un error o manejar el caso cuando no se encuentra la campaña
+            }
+    
+        } catch (error) {
+            throw error;
         }
     }
 }

@@ -88,6 +88,16 @@ class MostrarCampanasSorteoCommand {
     }
 }
 
+class BuscarCampanaPorIDCommand {
+    constructor(campanaService) {
+        this.campanaService = campanaService;
+    }
+
+    execute(idCampana) {
+        return this.campanaService.buscarCampanaPorID(idCampana);
+    }
+}
+
 module.exports = {
     CrearCampanaCommand: CrearCampanaCommand,
     MostrarCampanasCommand: MostrarCampanasCommand,
@@ -97,5 +107,6 @@ module.exports = {
     MostrarTipoCampanaCommand: MostrarTipoCampanaCommand,
     MostrarCampanasCorreoCommand: MostrarCampanasCorreoCommand,
     MostrarCampanasLlamadaCommand: MostrarCampanasLlamadaCommand,
-    MostrarCampanasSorteoCommand: MostrarCampanasSorteoCommand
+    MostrarCampanasSorteoCommand: MostrarCampanasSorteoCommand,
+    BuscarCampanaPorIDCommand: BuscarCampanaPorIDCommand
 }

@@ -1,7 +1,7 @@
 const {CampanaService} = require('../service/campanaService');
-const {mostrarSegmentacion} = require('../controllers/segmentacionController');
+// const {mostrarSegmentacion} = require('../controllers/segmentacionController');
 // const {iniciarSesion} = require('../controllers/inicioSesionController');
-const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand, MostrarTipoCampanaCommand, MostrarCampanasEsteMesCommand, MostrarCampanasRecientesCommand, MostrarCampanasCorreoCommand, MostrarCampanasLlamadaCommand, MostrarCampanasSorteoCommand} = require('../command/campanaCommand');
+const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand, MostrarTipoCampanaCommand, MostrarCampanasEsteMesCommand, MostrarCampanasRecientesCommand, MostrarCampanasCorreoCommand, MostrarCampanasLlamadaCommand, MostrarCampanasSorteoCommand, BuscarCampanaPorIDCommand} = require('../command/campanaCommand');
 const campanaService = new CampanaService();
 
 //Decirla a Enzo que los inputs en CREAR CAMPAÑA sean los que se ponen en la desestructuración de campanaData
@@ -143,6 +143,22 @@ const mostrarCampanasSorteo = async (req, res) => {
     }
 }
 
+//FUNCIONES DE LAS RUTAS PARA SERGIO -> CON DATOS DE CLIENTES - LOCAL
+const buscarCampanaPorID = async (req, res) => {
+    try {
+        const buscarCampanaPorIDCommand = new BuscarCampanaPorIDCommand(campanaService);
+
+        const {idCampana} = req.params;
+
+        const campana_id = await buscarCampanaPorIDCommand.execute(idCampana);
+
+        res.json(campana_id);//Devolver con un res.json o un res.send ¿?
+
+    } catch(error) {
+        res.status(500).json({ error: 'No se ha podido buscar la campaña' });
+    }
+}
+
 module.exports = {
     crearCampana: crearCampana,
     mostrarCampanas: mostrarCampanas,
@@ -152,5 +168,6 @@ module.exports = {
     mostrarTipoCampana: mostrarTipoCampana,
     mostrarCampanasCorreo: mostrarCampanasCorreo,
     mostrarCampanasLlamada: mostrarCampanasLlamada,
-    mostrarCampanasSorteo: mostrarCampanasSorteo
+    mostrarCampanasSorteo: mostrarCampanasSorteo,
+    buscarCampanaPorID: buscarCampanaPorID
 }
