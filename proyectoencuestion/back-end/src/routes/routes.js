@@ -44,7 +44,7 @@ router.get('/buscarCampanaPorID/:idCampana', buscarCampanaPorID);
 router.get('/buscarPromocionPorID/:idPromocion', buscarPromocionPorID);
 
 //OBTENER CLIENTES -> MÓDULO CLIENTES
-router.get('/clientes', obtenerClientes);
+router.post('/clientes', obtenerClientes);
 router.post('/clientes/buscarPorDNI/:dni', obtenerClienteDNI);
 
 // //

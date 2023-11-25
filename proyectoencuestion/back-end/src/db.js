@@ -10,6 +10,7 @@ const pool = new Pool({
     ssl: true
 });
 
+//SOLUCIONAR EL PROBLEMA DEL DOTENV CON RENDER Y PODRÉ VOLVERLO A USAR
 // const pool = new Pool({
 //     user: db.user,
 //     password: db.password,
