@@ -6,8 +6,8 @@ const app = express();
 const port = 3000;
 
 app.use(cors({
-    // origin: ['http://localhost:3000', 'https://modulo-marketing.onrender.com', 'https://clientemodulocrm.onrender.com/'],
-    // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
+    origin: ['http://localhost:3000', 'https://modulo-marketing.onrender.com', 'https://clientemodulocrm.onrender.com/'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
 }));
 app.use(morgan('dev'));
 app.use(express.json());
