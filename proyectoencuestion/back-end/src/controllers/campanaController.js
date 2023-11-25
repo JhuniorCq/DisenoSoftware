@@ -19,7 +19,7 @@ const crearCampana = async (req, res, next) => {
 
         const result = await crearCampanaCommand.execute(campanaData);
 
-        console.log(result);
+        // console.log(result);
         res.json(result);
 
     } catch (error) {
@@ -32,7 +32,7 @@ const mostrarCampanas = async (req, res, next) => {
         const mostrarCampanasCommand = new MostrarCampanasCommand(campanaService);
         const result = await mostrarCampanasCommand.execute();
 
-        console.log(result);
+        // console.log(result);
         res.json(result);
 
     } catch(error) {

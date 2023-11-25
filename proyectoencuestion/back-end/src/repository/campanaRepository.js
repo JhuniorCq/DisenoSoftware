@@ -18,10 +18,6 @@ class CampanaRepository {
             fecha_creacion
         ]);
 
-        const resultCampana = await pool.query('SELECT fecha_inicio, fecha_fin, nombre, tipo_campana, descripcion, fecha_creacion FROM campana WHERE campana_id = $1', [result.rows[0].campana_id]);
-
-        console.log(resultCampana.rows[0]);
-
         return result.rows[0];
     }
 
@@ -32,14 +28,18 @@ class CampanaRepository {
         const result = await pool.query('INSERT INTO promocion (promocion, estado) VALUES ($1, $2) RETURNING *', [promocion, 'activo']);
 
         return result.rows[0];
-    }
+    }   
 
     async mostrarCampanas() {
         try {
-            const todasCampanas = await pool.query('SELECT * FROM campana');
-            return todasCampanas.rows;
+
+            const datosTodasCampanas = await pool.query('SELECT campana.*, promocion.promocion, promocion.estado FROM campana LEFT JOIN promocion ON campana.promocion_id = promocion.promocion_id');
+
+            console.log(datosTodasCampanas.rows);
+
+            return datosTodasCampanas.rows;
         } catch (error) {
-            throw new Error("Hubo un error al mostrar todas las campañas");
+            throw error;
         }
     }
 
