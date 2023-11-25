@@ -1,8 +1,12 @@
 import { useEffect, useId, useState } from "react";
 import styles from "./formsCrearCampana.module.css";
 import FormsPublicoObjetivoCrearCampana from "./formsPublicoObjetivoCrearCampana";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { crearCampanas } from "../campanasAPI";
+import {
+  createSegmentacion,
+  getCampanas,
+  useCreateCampana,
+  useCreateSegmentacion,
+} from "../campanasAPI";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -34,14 +38,8 @@ const FormCrearCampana = (props) => {
   const tipoCampanaID = useId();
   const descuentoCampanaID = useId();
 
-  const queryClient = useQueryClient();
-  const agregarCampana = useMutation({
-    mutationFn: crearCampanas,
-    onSuccess: () => {
-      queryClient.invalidateQueries("campanas");
-      console.log("campaña añadida correctamente!");
-    },
-  });
+  const agregarCampana = getCampanas();
+  const agregarSegmentacion = createSegmentacion();
 
   const today = new Date();
   const formattedDate = today.toISOString().split("T")[0]; // Obtiene la fecha en formato "YYYY-MM-DD"
@@ -54,11 +52,11 @@ const FormCrearCampana = (props) => {
     const regexText = /^[a-zA-Z0-9ñÑ\s]*$/;
     const regexNumeric = /^[0-9]+$/;
 
-    const fechaInicio = new Date(mainForm.starts);
-    const fechaFin = new Date(mainForm.ends);
-    const notas = mainForm.description;
-    const objetivo = mainForm.objectives;
-    const nombreCampana = mainForm.name;
+    const fechaInicio = new Date(mainForm.fecha_inicio);
+    const fechaFin = new Date(mainForm.fecha_fin);
+    const notas = mainForm.descripcion;
+    const objetivo = mainForm.objetivos;
+    const nombreCampana = mainForm.nombre;
     const descuentoValue = mainForm.descuentoCampana; //nos ayuda a saber si este campo contiene numeros con su respectivo regex
     const descuento = parseInt(mainForm.descuentoCampana); //nos ayuda a establecer que el descuento no pase de 50% con una condicional
 
@@ -125,7 +123,7 @@ const FormCrearCampana = (props) => {
 
     if (objetivo.length < 10 || objetivo.length > 80) {
       toast.warn(
-        "El objetivo deben tener una longitud entre 10 y 80 caracteres",
+        "El objetivo debe tener una longitud entre 10 y 80 caracteres",
         {
           position: "bottom-right",
           autoClose: 3000,
@@ -174,47 +172,70 @@ const FormCrearCampana = (props) => {
       return;
     }
 
-    if (!regexNumeric.test(descuentoValue)) {
-      toast.warn("El descuento debe contener solo números", {
-        position: "bottom-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      return;
-    }
+    // if (!regexNumeric.test(descuentoValue)) {
+    //   toast.warn("El descuento debe contener solo números", {
+    //     position: "bottom-right",
+    //     autoClose: 3000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //   });
+    //   return;
+    // }
 
-    if (isNaN(descuento) || descuento < 0 || descuento > 50) {
-      toast.warn("El descuento debe ser un número entre 0 y 50%", {
-        position: "bottom-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      return;
-    }
+    // if (isNaN(descuento) || descuento < 0 || descuento > 50) {
+    //   toast.warn("El descuento debe ser un número entre 0 y 50%", {
+    //     position: "bottom-right",
+    //     autoClose: 3000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //   });
+    //   return;
+    // }
 
-    const formCompleto = {
-      ...mainForm,
-      ...publicoObjetivoData,
-    };
+    // const formCompleto = {
+    //   ...mainForm,
+    //   ...publicoObjetivoData,
+    // };
 
-    axios.post(
-      "https://modulo-marketing.onrender.com/crearCampana",
-      formCompleto
-    );
     // agregarCampana.mutate({
-    //   ...formCompleto,
-    //   created: formattedDate,
+    //   ...mainForm,
+    //   fecha_creacion: formattedDate,
     // });
+
+    // agregarSegmentacion.mutate({
+    //   ...publicoObjetivoData,
+    // });
+
+    axios
+      .post("https://modulo-marketing.onrender.com/crearCampana", mainForm)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al enviar datos:", error);
+      });
+    axios
+      .post(
+        "https://modulo-marketing.onrender.com/crearSegmentacion",
+        publicoObjetivoData
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al enviar datos:", error);
+      });
+
+    // agregarCampana(mainForm);
+    // agregarSegmentacion(publicoObjetivoData);
 
     setCrearCampana(!crearCampana);
 
@@ -315,7 +336,7 @@ const FormCrearCampana = (props) => {
 
           <div
             className={` ${styles.containerDescuento} ${
-              tipoCampanaInput === "correo" || tipoCampanaInput === "llamada"
+              tipoCampanaInput === "2" || tipoCampanaInput === "1"
                 ? styles.mostrarDescuento
                 : ""
             }`}
@@ -328,7 +349,7 @@ const FormCrearCampana = (props) => {
               type="text"
               id={descuentoCampanaID}
               value={descuentoInput}
-              name="descuentoCampana"
+              // name="descuentoCampana"
               placeholder="Descuento para los usuarios..."
               onChange={(e) => setDescuentoInput(e.target.value)}
             />
@@ -371,7 +392,7 @@ const FormCrearCampana = (props) => {
               id={objetivosCampanaID}
               required
               value={objetivosCampanaInput}
-              name="objetivo"
+              name="objetivos"
               onChange={handleObjetivosCampanaInputChange}
             />
           </div>

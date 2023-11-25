@@ -1,12 +1,12 @@
 import axios from "axios";
 
 const campanasAPI = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://modulo-marketing.onrender.com',
 });
 
 export const getLlamadasCliente = async () => {
     try {
-        const response = await campanasAPI.get('/clientesllamadas');
+        const response = await campanasAPI.get('/mostrarCampanasLlamada');
         return response.data;
     } catch (error) {
         // Handle the error, e.g., log it or return an empty array.

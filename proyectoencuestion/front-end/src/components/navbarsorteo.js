@@ -5,7 +5,6 @@ import NavbarParteGris from "./navBarParteGris";
 
 const SorteoMarketing = () => {
 
-
   return (
     <header>
       {/* Rectángulo azul con iconos */}
