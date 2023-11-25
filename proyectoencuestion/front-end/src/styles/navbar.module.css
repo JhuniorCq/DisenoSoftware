@@ -229,6 +229,7 @@ ul{
 .botonCrearCampana:hover{
     
     background-color: rgb(59, 59, 208);
+    transform: none;
 }
 
 /* colocando un efecto cuando se hace hover a cada 'anchor' (gestión y calendario)  */

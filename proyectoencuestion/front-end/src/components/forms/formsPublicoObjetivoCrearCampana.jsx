@@ -13,6 +13,7 @@ const FormsPublicoObjetivoCrearCampana = (props) => {
     setPublicoObjetivoIsClicked,
     publicoObjetivoIsClicked,
     onSecondFormSubmit,
+    tipoCampanaInput,
   } = props;
 
   const [selectedDepartamento, setSelectedDepartamento] = useState("");
@@ -88,109 +89,147 @@ const FormsPublicoObjetivoCrearCampana = (props) => {
         className={styles.formSubmenuCrearCampana}
         onSubmit={handleSubmitSubmenu}
       >
-        <div className={styles.labelsPublicoCampana}>
-          <label htmlFor="edadDirigida">
-            Edad dirigida<span className={styles.asterisco}>*</span>
-          </label>
-          <label htmlFor="sexo">
-            Sexo<span className={styles.asterisco}>*</span>
-          </label>
-        </div>
-        <div className={styles.inputsPublicoCampana}>
-          <select
-            className={styles.customSelect}
-            id="edadDirigida"
-            name="targeredAge"
-            required
-            onChange={(e) => {
-              if (e.target.value === "personalizada") {
-                setRangoPersonalizadoIsSelected(true);
-              } else {
-                setRangoPersonalizadoIsSelected(false);
-              }
-            }}
-          >
-            <option value="11-19">11-19</option>
-            <option value="20-29">20-29</option>
-            <option value="30-39">30-39</option>
-            <option value="40-49">40-49</option>
-            <option value="50-59">50-59</option>
-            <option value="60+">60 a más</option>
-            <option value="personalizada">Rango personalizado...</option>
-          </select>
+        {tipoCampanaInput === "3" && (
+          <>
+            <div className={styles.labelsPublicoCampana}>
+              <label htmlFor="fechainiciosorteo">
+                Fecha inicio sorteo<span className={styles.asterisco}>*</span>
+              </label>
+              <label htmlFor="fechafinsorteo">
+                Fecha fin sorteo<span className={styles.asterisco}>*</span>
+              </label>
+            </div>
 
-          <select
-            id="sexo"
-            className={styles.customSelect}
-            name="gender"
-            required
-          >
-            <option value="masculino">Masculino</option>
-            <option value="femenino">Femenino</option>
-            <option value="ambos">Ambos</option>
-          </select>
-        </div>
-
-        {rangoPersonalizadoIsSelected && (
-          <div className={styles.rangoPersonalizado}>
-            <label>Rango personalizado:</label>
-            <div className={styles.containerInputsRango}>
+            <div className={styles.inputsPublicoCampana}>
               <input
-                type="number"
-                min={0}
-                max={100}
-                onChange={handleRangoPersonalizadoMenor}
+                type="date"
+                className={styles.customSelect}
+                id="fechainiciosorteo"
+                name="fechaInicioSorteo"
+                required={tipoCampanaInput === "3"}
               />
-              <span> a </span>
+
               <input
-                type="number"
-                min={0}
-                onChange={handleRangoPersonalizadoMayor}
+                type="date"
+                className={styles.customSelect}
+                id="fechafinsorteo"
+                name="fechafinsorteo"
+                required={tipoCampanaInput === "3"}
               />
             </div>
-          </div>
+          </>
         )}
+        {tipoCampanaInput !== "3" && (
+          <>
+            <div className={styles.labelsPublicoCampana}>
+              <label htmlFor="edadDirigida">
+                Edad dirigida<span className={styles.asterisco}>*</span>
+              </label>
+              <label htmlFor="sexo">
+                Sexo<span className={styles.asterisco}>*</span>
+              </label>
+            </div>
+            <div className={styles.inputsPublicoCampana}>
+              <select
+                className={styles.customSelect}
+                id="edadDirigida"
+                name="targeredAge"
+                required={tipoCampanaInput !== "3"}
+                onChange={(e) => {
+                  if (e.target.value === "personalizada") {
+                    setRangoPersonalizadoIsSelected(true);
+                  } else {
+                    setRangoPersonalizadoIsSelected(false);
+                  }
+                }}
+              >
+                <option value="11-19">11-19</option>
+                <option value="20-29">20-29</option>
+                <option value="30-39">30-39</option>
+                <option value="40-49">40-49</option>
+                <option value="50-59">50-59</option>
+                <option value="60+">60 a más</option>
+                <option value="personalizada">Rango personalizado...</option>
+              </select>
 
-        <div className={styles.departamentoPublicoCampana}>
-          <label htmlFor="departamento">
-            Departamento<span className={styles.asterisco}>*</span>
-          </label>
-          <select
-            className={styles.customSelect}
-            id="departamento"
-            name="department"
-            onChange={handleDepartamentoChange}
-            required
-          >
-            <option value="">Selecciona un departamento</option>
-            {departamentos.map((departamento) => (
-              <option key={departamento.id} value={departamento.id}>
-                {departamento.nombre}
-              </option>
-            ))}
-          </select>
-        </div>
+              <select
+                id="sexo"
+                className={styles.customSelect}
+                name="sexo"
+                required={tipoCampanaInput !== "3"}
+              >
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+                <option value="ambos">Ambos</option>
+              </select>
+            </div>
 
-        <div className={styles.departamentoPublicoCampana}>
-          <label htmlFor="distrito">
-            Distrito<span className={styles.asterisco}>*</span>
-          </label>
-          <select
-            className={styles.customSelect}
-            id="distrito"
-            name="district"
-            disabled={!selectedDepartamento}
-            required
-          >
-            <option value="">Selecciona un distrito</option>
-            {selectedDepartamento &&
-              distritosPorDepartamento[selectedDepartamento].map((distrito) => (
-                <option key={distrito.id} value={distrito.id}>
-                  {distrito.nombre}
-                </option>
-              ))}
-          </select>
-        </div>
+            {rangoPersonalizadoIsSelected && tipoCampanaInput !== "3" && (
+              <div className={styles.rangoPersonalizado}>
+                <label>Rango personalizado:</label>
+                <div className={styles.containerInputsRango}>
+                  <input
+                    type="number"
+                    name="min"
+                    min={0}
+                    max={100}
+                    onChange={handleRangoPersonalizadoMenor}
+                  />
+                  <span> a </span>
+                  <input
+                    name="max"
+                    type="number"
+                    min={0}
+                    onChange={handleRangoPersonalizadoMayor}
+                  />
+                </div>
+              </div>
+            )}
+
+            <div className={styles.departamentoPublicoCampana}>
+              <label htmlFor="departamento">
+                Departamento<span className={styles.asterisco}>*</span>
+              </label>
+              <select
+                className={styles.customSelect}
+                id="departamento"
+                name="departamento"
+                onChange={handleDepartamentoChange}
+                required={tipoCampanaInput !== "3"}
+              >
+                <option value="">Selecciona un departamento</option>
+                {departamentos.map((departamento) => (
+                  <option key={departamento.id} value={departamento.id}>
+                    {departamento.nombre}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className={styles.departamentoPublicoCampana}>
+              <label htmlFor="distrito">
+                Distrito<span className={styles.asterisco}>*</span>
+              </label>
+              <select
+                className={styles.customSelect}
+                id="distrito"
+                name="distrito"
+                disabled={!selectedDepartamento}
+                required={tipoCampanaInput !== "3"}
+              >
+                <option value="">Selecciona un distrito</option>
+                {selectedDepartamento &&
+                  distritosPorDepartamento[selectedDepartamento].map(
+                    (distrito) => (
+                      <option key={distrito.id} value={distrito.id}>
+                        {distrito.nombre}
+                      </option>
+                    )
+                  )}
+              </select>
+            </div>
+          </>
+        )}
         <div className={styles.containerBotonesPopup}>
           <button type="submit" className={styles.botonPopup}>
             Guardar

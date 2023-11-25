@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const campanasAPI = axios.create({
-    baseURL : 'http://localhost:3000'
+    baseURL: 'http://localhost:3000'
 })
 
-export const getCampanas = async() => {
-    const data = await (await campanasAPI.get('/campanas')).data;
+export const getCampanas = async () => {
+    const data = await (await campanasAPI.get('https://modulo-marketing.onrender.com/mostrarCampanas')).data;
     return data;
 }
 // devolviendo de la primera manera
@@ -17,16 +17,16 @@ export const crearCampanas = (campana) => {
 
 // ------------------------------------------------------------------------
 
-export const getPublicoCorreosCampanas = async(cliente = "") => {
+export const getPublicoCorreosCampanas = async (cliente = "") => {
 
-    const {data} = (await campanasAPI.get('/publicocorreoscampanas'));
-    
+    const { data } = (await campanasAPI.get('/publicocorreoscampanas'));
+
     console.log("publico fetch!");
 
-    if(cliente.length >= 4){
-        const filterData = data.filter((dato) =>{
+    if (cliente.length >= 4) {
+        const filterData = data.filter((dato) => {
             return (dato.name.toString().toLowerCase().includes(cliente.toLowerCase()) ||
-            dato.surname.toString().toLowerCase().includes(cliente.toLowerCase()))
+                dato.surname.toString().toLowerCase().includes(cliente.toLowerCase()))
         })
         return [...filterData];
     }
@@ -46,7 +46,7 @@ export const createPublicoCorreosCampanas = (publico) => {
 
 
 export const getCorreosCampanas = async () => {
-    const {data} = (await campanasAPI.get('/correoscampanascreadas'));
+    const { data } = (await campanasAPI.get('/correoscampanascreadas'));
     return data;
 }
 

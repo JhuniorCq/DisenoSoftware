@@ -4,16 +4,13 @@ import styles from "../styles/vistaCalendario.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import Component1 from "./calendario"; 
+import VistaCalendarioComponent from "./calendario";
 // Importa CalendarioSemanal al principio de tu archivo
 import CalendarioSemanal from "./calendarioSemanal";
 
 const VistaCalendario = () => {
-  // Define tus estados y funciones
-  const [mesActual, setMesActual] = useState("");
   const [crearNota, setCrearNota] = useState(false);
-  const [mostrarCalendario, setMostrarCalendario] = useState(false);
-  const [mostrarCalendarioSemana, setMostrarCalendarioSemana] = useState(false);
+  const [mostrarCalendario, setMostrarCalendario] = useState("mensual");
   const [selectedDates, setSelectedDates] = useState([]);
 
   // Funciones para cambiar el estado
@@ -22,24 +19,12 @@ const VistaCalendario = () => {
   };
 
   const toggleMostrarCalendario = () => {
-    setMostrarCalendario(!mostrarCalendario);
-    setMostrarCalendarioSemana(false);
+    setMostrarCalendario("mensual");
   };
 
-  const toggleMostrarCalendarioSemana = () => {
-    setMostrarCalendarioSemana(!mostrarCalendarioSemana);
-    setMostrarCalendario(false);
+  const toggleMostrarCalendarioSemanal = () => {
+    setMostrarCalendario("semanal");
   };
-
-  useEffect(() => {
-    // Configura el mes actual
-    const nombresMeses = [
-      "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-      "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-    ];
-    const mesActualPorJs = new Date().getMonth();
-    setMesActual(`${nombresMeses[mesActualPorJs]}, 2023`);
-  }, []);
 
   return (
     <section className={styles.calendario}>
@@ -48,7 +33,7 @@ const VistaCalendario = () => {
           <div className={styles.mes} onClick={toggleMostrarCalendario}>
             <p>Mes</p>
           </div>
-          <div className={`${styles.semana} ${styles.a}`} onClick={toggleMostrarCalendarioSemana}>
+          <div className={`${styles.semana} ${styles.a}`} onClick={toggleMostrarCalendarioSemanal}>
             <p>Semana</p>
           </div>
         </div>
@@ -56,11 +41,11 @@ const VistaCalendario = () => {
           Crear Nota
         </button>
       </div>
-      <p className={styles.mesActual}>{mesActual}</p>
-      {mostrarCalendario && (
-        <Component1 selectedDates={selectedDates} setSelectedDates={setSelectedDates} />
+
+      {mostrarCalendario === "mensual" && (
+        <VistaCalendarioComponent selectedDates={selectedDates} setSelectedDates={setSelectedDates} />
       )}
-      {mostrarCalendarioSemana && (
+      {mostrarCalendario === "semanal" && (
         <CalendarioSemanal /> // Muestra CalendarioSemanal aquí
       )}
       <div className={`${styles.crearNotass} ${crearNota ? styles.open : ''}`}>
@@ -70,23 +55,23 @@ const VistaCalendario = () => {
         <div className={styles.containerForm}>
           <form className={styles.formCrearNota}>
 
-                            <div className={styles.containerTituloNota}>
-                                <label for='tituloNota'>Titulo</label>
-                                <input type="text" id="tituloNota" required minLength={1} />
-                            </div>
-                            <div className={styles.containerFechaNota}>
-                                <label for='fecha'>Fecha</label>
-                                <input type="date" id="fecha" required />
-                            </div>
-                            <div className={styles.containerNotas}>
-                                <label for='notas'>Notas</label>
-                                <textarea className={styles.textAreaa} id="notas"></textarea>
-                            </div>
-                            <div className={styles.botonesMenu}>
-                                {/* falta poner la conectividad a la base de datos */}
-                                <button type="submit" className={`${styles.boton} ${styles.boton__crear}`} >Crear</button>
-                                <button className={`${styles.boton} ${styles.boton__cancelar}`} onClick={toggleCrearNota}>Cancelar</button>
-                            </div> 
+            <div className={styles.containerTituloNota}>
+              <label for='tituloNota'>Titulo</label>
+              <input type="text" id="tituloNota" required minLength={1} />
+            </div>
+            <div className={styles.containerFechaNota}>
+              <label for='fecha'>Fecha</label>
+              <input type="date" id="fecha" required />
+            </div>
+            <div className={styles.containerNotas}>
+              <label for='notas'>Notas</label>
+              <textarea className={styles.textAreaa} id="notas"></textarea>
+            </div>
+            <div className={styles.botonesMenu}>
+              {/* falta poner la conectividad a la base de datos */}
+              <button type="submit" className={`${styles.boton} ${styles.boton__crear}`} >Crear</button>
+              <button className={`${styles.boton} ${styles.boton__cancelar}`} onClick={toggleCrearNota}>Cancelar</button>
+            </div>
           </form>
         </div>
       </div>

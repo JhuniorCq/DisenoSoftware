@@ -88,7 +88,7 @@ function VistaCalendarioComponent({ selectedDates, setSelectedDates }) {
       <p className="current-date">{`${months[currentMonth]} ${currentYear}`}</p>
       <button className="next-button" onClick={goToNextMonth}>
         {">"}{}</button>
-</header>
+      </header>
 
 
       <div className="calendar">

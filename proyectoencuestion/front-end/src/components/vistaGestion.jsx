@@ -115,10 +115,10 @@ const VistaGestion = () => {
                   <th>Id</th>
                   <th>Nombre de la campaña</th>
                   <th>Tipo de campaña</th>
-                  <th>Descuento</th>
+                  {/* <th>Descuento</th> */}
                   <th>Descripción</th>
                   <th>Objetivos de la campaña</th>
-                  <th>Fecha de creación</th>
+                  {/* <th>Fecha de creación</th> */}
                   <th>Fecha de inicio</th>
                   <th>Fecha de fin</th>
                 </tr>
@@ -154,30 +154,30 @@ const VistaGestion = () => {
 
                     .map((usuario) => (
                       <tr key={usuario.id}>
-                        <td>{usuario.id}</td>
+                        <td>{usuario.campana_id}</td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.name}
+                          {usuario.nombre}
                         </td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.tipoCampana}
+                          {usuario.tipo_campana}
                         </td>
-                        <td className={styles.campanaDescripcion}>
+                        {/* <td className={styles.campanaDescripcion}>
                           {`${usuario.descuentoCampana}%`}
+                        </td> */}
+                        <td className={styles.campanaDescripcion}>
+                          {usuario.descripcion}
                         </td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.description}
+                          {usuario.objetivo}
                         </td>
-                        <td className={styles.campanaDescripcion}>
-                          {usuario.objectives}
-                        </td>
-                        <td className={styles.campanaDescripcion}>
+                        {/* <td className={styles.campanaDescripcion}>
                           {usuario.created.toLocaleString()}
+                        </td> */}
+                        <td className={styles.campanaDescripcion}>
+                          {usuario.fecha_inicio.toLocaleString()}
                         </td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.starts.toLocaleString()}
-                        </td>
-                        <td className={styles.campanaDescripcion}>
-                          {usuario.ends.toLocaleString()}
+                          {usuario.fecha_fin.toLocaleString()}
                         </td>
                       </tr>
                     ))}

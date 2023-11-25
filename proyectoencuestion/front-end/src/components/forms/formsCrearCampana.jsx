@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { crearCampanas } from "../campanasAPI";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const FormCrearCampana = (props) => {
   const { crearCampana, setCrearCampana } = props;
@@ -28,8 +29,6 @@ const FormCrearCampana = (props) => {
   const nombreCampanaID = useId();
   const fechaInicioID = useId();
   const fechaFinID = useId();
-  const fechaInicioSorteoID = useId();
-  const fechaFinSorteoID = useId();
   const objetivosCampanaID = useId();
   const notasID = useId();
   const tipoCampanaID = useId();
@@ -208,10 +207,14 @@ const FormCrearCampana = (props) => {
       ...publicoObjetivoData,
     };
 
-    agregarCampana.mutate({
-      ...formCompleto,
-      created: formattedDate,
-    });
+    axios.post(
+      "https://modulo-marketing.onrender.com/crearCampana",
+      formCompleto
+    );
+    // agregarCampana.mutate({
+    //   ...formCompleto,
+    //   created: formattedDate,
+    // });
 
     setCrearCampana(!crearCampana);
 
@@ -258,12 +261,6 @@ const FormCrearCampana = (props) => {
     const objetivosCampanaCompleto = objetivosCampanaInput.length >= 1;
     const fechasCompletas = fechaInicioInput && fechaFinInput;
     const tipoCampanaCompleto = tipoCampanaInput;
-    if (tipoCampanaInput === "3") {
-      setBothFormsAreSubmitted(
-        nombreCampanaCompleto && tipoCampanaCompleto && fechasCompletas
-      );
-      return;
-    }
     setBothFormsAreSubmitted(
       secondFormIsSubmitted &&
         nombreCampanaCompleto &&
@@ -294,7 +291,7 @@ const FormCrearCampana = (props) => {
               id={nombreCampanaID}
               required
               value={nombreCampanaInput}
-              name="name"
+              name="nombre"
               onChange={handleNombreCampanaInputChange}
             />
           </div>
@@ -304,7 +301,7 @@ const FormCrearCampana = (props) => {
             </label>
             <select
               id={tipoCampanaID}
-              name="tipoCampana"
+              name="tipo_campana"
               value={tipoCampanaInput}
               onChange={handleTipoCampanaChange}
               required
@@ -316,130 +313,92 @@ const FormCrearCampana = (props) => {
             </select>
           </div>
 
-          {tipoCampanaInput !== "3" && (
-            <>
-              <div
-                className={` ${styles.containerDescuento} ${
-                  tipoCampanaInput === "correo" ||
-                  tipoCampanaInput === "llamada"
-                    ? styles.mostrarDescuento
-                    : ""
-                }`}
-              >
-                <label htmlFor={descuentoCampanaID}>
-                  Descuento de la campaña (%)
-                  <span className={styles.asterisco}>*</span>
-                </label>
-                <input
-                  type="text"
-                  id={descuentoCampanaID}
-                  value={descuentoInput}
-                  name="descuentoCampana"
-                  placeholder="Descuento para los usuarios..."
-                  onChange={(e) => setDescuentoInput(e.target.value)}
-                />
-              </div>
-              <div className={styles.containerFechaInicioCampanas}>
-                <label htmlFor={fechaInicioID}>
-                  Fecha de inicio<span className={styles.asterisco}>*</span>
-                </label>
-                <input
-                  type="date"
-                  id={fechaInicioID}
-                  required
-                  name="starts"
-                  value={fechaInicioInput}
-                  onChange={(e) => setFechaInicioInput(e.target.value)}
-                />
-              </div>
-              <div className={styles.containerFechaFinCampanas}>
-                <label htmlFor={fechaFinID}>
-                  Fecha de finalización
-                  <span className={styles.asterisco}>*</span>
-                </label>
-                <input
-                  type="date"
-                  required
-                  id={fechaFinID}
-                  name="ends"
-                  value={fechaFinInput}
-                  onChange={(e) => setFechaFinInput(e.target.value)}
-                />
-              </div>
+          <div
+            className={` ${styles.containerDescuento} ${
+              tipoCampanaInput === "correo" || tipoCampanaInput === "llamada"
+                ? styles.mostrarDescuento
+                : ""
+            }`}
+          >
+            <label htmlFor={descuentoCampanaID}>
+              Descuento de la campaña (%)
+              <span className={styles.asterisco}>*</span>
+            </label>
+            <input
+              type="text"
+              id={descuentoCampanaID}
+              value={descuentoInput}
+              name="descuentoCampana"
+              placeholder="Descuento para los usuarios..."
+              onChange={(e) => setDescuentoInput(e.target.value)}
+            />
+          </div>
+          <div className={styles.containerFechaInicioCampanas}>
+            <label htmlFor={fechaInicioID}>
+              Fecha de inicio<span className={styles.asterisco}>*</span>
+            </label>
+            <input
+              type="date"
+              id={fechaInicioID}
+              required
+              name="fecha_inicio"
+              value={fechaInicioInput}
+              onChange={(e) => setFechaInicioInput(e.target.value)}
+            />
+          </div>
+          <div className={styles.containerFechaFinCampanas}>
+            <label htmlFor={fechaFinID}>
+              Fecha de finalización
+              <span className={styles.asterisco}>*</span>
+            </label>
+            <input
+              type="date"
+              required
+              id={fechaFinID}
+              name="fecha_fin"
+              value={fechaFinInput}
+              onChange={(e) => setFechaFinInput(e.target.value)}
+            />
+          </div>
 
-              <div className={styles.containerObjetivosCampanas}>
-                <label htmlFor={objetivosCampanaID}>
-                  Objetivos de la campaña
-                  <span className={styles.asterisco}>*</span>
-                </label>
-                <input
-                  type="text"
-                  id={objetivosCampanaID}
-                  required
-                  value={objetivosCampanaInput}
-                  name="objectives"
-                  onChange={handleObjetivosCampanaInputChange}
-                />
-              </div>
+          <div className={styles.containerObjetivosCampanas}>
+            <label htmlFor={objetivosCampanaID}>
+              Objetivos de la campaña
+              <span className={styles.asterisco}>*</span>
+            </label>
+            <input
+              type="text"
+              id={objetivosCampanaID}
+              required
+              value={objetivosCampanaInput}
+              name="objetivo"
+              onChange={handleObjetivosCampanaInputChange}
+            />
+          </div>
 
-              <div className={styles.containerPublicoObjetivoCampana}>
-                <button
-                  onClick={togglePublicoObjetivoClicked}
-                  className={styles.publicoObjetivo}
-                >
-                  {" "}
-                  Público objetivo de la campaña
-                  <span className={styles.asterisco}>*</span>{" "}
-                </button>
-              </div>
+          <div className={styles.containerPublicoObjetivoCampana}>
+            <button
+              onClick={togglePublicoObjetivoClicked}
+              className={styles.publicoObjetivo}
+            >
+              {" "}
+              Público objetivo de la campaña
+              <span className={styles.asterisco}>*</span>{" "}
+            </button>
+          </div>
 
-              <div className={styles.containerNotas}>
-                <label htmlFor={notasID}>
-                  Notas <small>(entre 10 y 300 caracteres)</small>{" "}
-                </label>
-                <textarea
-                  className={styles.textAreaa}
-                  id={notasID}
-                  name="description"
-                  value={notasInput}
-                  onChange={(e) => setNotasInput(e.target.value)}
-                ></textarea>
-              </div>
-            </>
-          )}
-
-          {tipoCampanaInput === "3" && (
-            <>
-              <div className={styles.containerFechaInicioCampanas}>
-                <label htmlFor={fechaInicioSorteoID}>
-                  Fecha de inicio campana sorteo
-                  <span className={styles.asterisco}>*</span>
-                </label>
-                <input
-                  type="date"
-                  id={fechaInicioSorteoID}
-                  required={tipoCampanaInput === "3"}
-                  name="startsDrawCampaign"
-                  value={fechaInicioInput}
-                  onChange={(e) => setFechaInicioInput(e.target.value)}
-                />
-              </div>
-              <div className={styles.containerFechaFinCampanas}>
-                <label htmlFor={fechaFinSorteoID}>
-                  Fecha de finalización campana sorteo
-                  <span className={styles.asterisco}>*</span>
-                </label>
-                <input
-                  type="date"
-                  required={tipoCampanaInput === "3"}
-                  id={fechaFinSorteoID}
-                  name="endsDrawCampaign"
-                  value={fechaFinInput}
-                  onChange={(e) => setFechaFinInput(e.target.value)}
-                />
-              </div>
-            </>
-          )}
+          <div className={styles.containerNotas}>
+            <label htmlFor={notasID}>
+              Notas <small>(entre 10 y 300 caracteres)</small>{" "}
+            </label>
+            <textarea
+              className={styles.textAreaa}
+              id={notasID}
+              name="descripcion"
+              value={notasInput}
+              onChange={(e) => setNotasInput(e.target.value)}
+            ></textarea>
+          </div>
 
           <div className={styles.botonesMenu}>
             <button
@@ -459,6 +418,7 @@ const FormCrearCampana = (props) => {
           publicoObjetivoIsClicked={publicoObjetivoIsClicked}
           setPublicoObjetivoIsClicked={setPublicoObjetivoIsClicked}
           setSecondFormIsSubmitted={setSecondFormIsSubmitted}
+          tipoCampanaInput={tipoCampanaInput}
           onSecondFormSubmit={handleSecondFormSubmit} // Pasa la función de envío del segundo formulario
         />
       )}
