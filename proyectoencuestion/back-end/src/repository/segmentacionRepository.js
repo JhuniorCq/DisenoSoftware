@@ -3,13 +3,13 @@ const pool = require('../db');
 class SegmentacionRepository {
     async crearSegmentacion(segmentacionData) {
         try {
-            const {minm, maxm, fecha_inicio, fecha_fin, distrito, departamento, sexo} = segmentacionData;
+            const {minm, maxm, fechaInicio, fechaFin, distrito, departamento, sexo} = segmentacionData;
 
             const result = await pool.query('INSERT INTO criterios_segmentacion (minm, maxm, "fecha_inicio", "fecha_fin", distrito, departamento, sexo) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *', [
                 minm,
                 maxm,
-                fecha_inicio,
-                fecha_fin,
+                fechaInicio,
+                fechaFin,
                 distrito,
                 departamento,
                 sexo

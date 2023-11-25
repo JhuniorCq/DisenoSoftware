@@ -18,6 +18,10 @@ class CampanaRepository {
             fecha_creacion
         ]);
 
+        const resultCampana = await pool.query('SELECT fecha_inicio, fecha_fin, nombre, tipo_campana, descripcion, fecha_creacion FROM campana WHERE campana_id = $1', [result.rows[0].campana_id]);
+
+        console.log(resultCampana.rows[0]);
+
         return result.rows[0];
     }
 
