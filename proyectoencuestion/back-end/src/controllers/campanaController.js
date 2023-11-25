@@ -107,7 +107,7 @@ const mostrarTipoCampana = async (req, res, next) => {
     }
 }
 
-const mostrarCampanasCorreo = async (req, res) => {
+const mostrarCampanasCorreo = async (req, res, next) => {
     try {
         const mostrarCampanasCorreoCommand = new MostrarCampanasCorreoCommand(campanaService);
         const result = await mostrarCampanasCorreoCommand.execute();
@@ -115,11 +115,11 @@ const mostrarCampanasCorreo = async (req, res) => {
         console.log(result);
         res.json(result);
     } catch(error) {
-        res.status(500).json({ error: 'Ha ocurrido un error' });
+        next(error);
     }
 }
 
-const mostrarCampanasLlamada = async (req, res) => {
+const mostrarCampanasLlamada = async (req, res, next) => {
     try {
         const mostrarCampanasLlamadaCommand = new MostrarCampanasLlamadaCommand(campanaService);
         const result = await mostrarCampanasLlamadaCommand.execute();
@@ -127,11 +127,11 @@ const mostrarCampanasLlamada = async (req, res) => {
         console.log(result);
         res.json(result);
     } catch(error) {
-        res.status(500).json({ error: 'Ha ocurrido un error' }); 
+        next(error);
     }
 }
 
-const mostrarCampanasSorteo = async (req, res) => {
+const mostrarCampanasSorteo = async (req, res, next) => {
     try {
         const mostrarCampanasSorteoCommand = new MostrarCampanasSorteoCommand(campanaService);
         const result = await mostrarCampanasSorteoCommand.execute();
@@ -139,12 +139,12 @@ const mostrarCampanasSorteo = async (req, res) => {
         console.log(result);
         res.json(result);
     } catch(error) {
-        res.status(500).json({ error: 'Ha ocurrido un error' });
+        next(error);
     }
 }
 
 //FUNCIONES DE LAS RUTAS PARA SERGIO -> CON DATOS DE CLIENTES - LOCAL
-const buscarCampanaPorID = async (req, res) => {
+const buscarCampanaPorID = async (req, res, next) => {
     try {
         const buscarCampanaPorIDCommand = new BuscarCampanaPorIDCommand(campanaService);
 
@@ -155,7 +155,7 @@ const buscarCampanaPorID = async (req, res) => {
         res.json(campana_id);//Devolver con un res.json o un res.send ¿?
 
     } catch(error) {
-        res.status(500).json({ error: 'No se ha podido buscar la campaña' });
+        next(error);
     }
 }
 
