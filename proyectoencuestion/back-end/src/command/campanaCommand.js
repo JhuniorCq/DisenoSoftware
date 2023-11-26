@@ -3,8 +3,8 @@ class CrearCampanaCommand {
         this.campanaService = campanaService;
     }
 
-    execute(campanaData) {
-        return this.campanaService.crearCampana(campanaData);
+    execute(campanaData, datosTodosClientes, datosUnCliente) {
+        return this.campanaService.crearCampana(campanaData, datosTodosClientes, datosUnCliente);
     }
 }
 

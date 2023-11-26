@@ -34,7 +34,7 @@ class CampanaRepository {
         try {
 
             //FUSIONA TODOS LOS DATOS DE LA TABLA campana CON LOS DATOS promocion y estado DE LA TABLA promocion
-            const datosTodasCampanas = await pool.query('SELECT campana.*, promocion.promocion, promocion.estado FROM campana LEFT JOIN promocion ON campana.promocion_id = promocion.promocion_id');
+            const datosTodasCampanas = await pool.query('SELECT campana.*, promocion.promocion, promocion.estado FROM campana LEFT JOIN promocion ON campana.promocion_id = promocion.promocion_id ORDER BY fecha_creacion DESC');
 
             console.log(datosTodasCampanas.rows);
 
@@ -46,7 +46,7 @@ class CampanaRepository {
 
     async mostrarCampanasEsteMes() {
         try {
-            const result = await pool.query('SELECT * FROM campana');
+            const result = await pool.query('SELECT * FROM campana ORDER BY fecha_creacion DESC');
             //campana es la Tabla y campana.fecha_creacion es la columna fecha_creacion en la tabla campana
             const campanasEsteMes = result.rows.filter(campana => isThisMonth(new Date(campana.fecha_creacion)))
 

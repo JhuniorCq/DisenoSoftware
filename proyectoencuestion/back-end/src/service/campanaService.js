@@ -1,11 +1,15 @@
 const {format} = require('date-fns');
 const {CampanaRepository} = require('../repository/campanaRepository');
 const {SegmentacionRepository} = require('../repository/segmentacionRepository');
+const {ClienteRepository} = require('../repository/clienteRepository');
+const {ClienteService} = require('../service/clienteService');
 const campanaRepository = new CampanaRepository();
 const segmentacionRepository = new SegmentacionRepository();
+const clienteRepository = new ClienteRepository();
+const clienteService = new ClienteService();
 
 class CampanaService {
-    async crearCampana (campanaData/*, segmentacion_id*/) {
+    async crearCampana (campanaData, datosTodosClientes, datosUnCliente) {
         // Validación de los datos -> CREAR CAMPAÑA
         if (!campanaData.fecha_inicio || !campanaData.fecha_fin || !campanaData.nombre || !campanaData.tipo_campana || !campanaData.descripcion || !campanaData.objetivos) {
             throw new Error('Complete todos los campos');
@@ -24,9 +28,7 @@ class CampanaService {
         //TIPO CAMPAÑA
         let tipoCampanaInt = parseInt(campanaData.tipo_campana);
 
-        const tipo_campanaID = await campanaRepository.mostrarTipoCampana(tipoCampanaInt);
-        console.log(tipo_campanaID);//ID DEL TIPO DE CAMPAÑA -> tipo_campanaID es un entero
-
+        const tipo_campanaID = await campanaRepository.mostrarTipoCampana(tipoCampanaInt);//ID DEL TIPO DE CAMPAÑA -> tipo_campanaID es un entero
 
         //PROMOCIÓN
         let promocion_id;// Uso let porque sino tendría que darle un valor acá, y el valor quiero darselo adentro del if
@@ -49,10 +51,24 @@ class CampanaService {
         
         //Uso un objeto de SegmentacionRepository para acceder al método de mostrarSegmentacion que me dará la info de la ultima segmentacion guardada
         const ultimaSegmentacion = await segmentacionRepository.mostrarUltimaSegmentacion();
-        const {segmentacion_id} = ultimaSegmentacion;
+        const {segmentacion_id, minm: edadMinima, maxm: edadMaxima, fecha_inicio: rangoFechaInicio, fecha_fin: rangoFechaFin, distrito, departamento, sexo} = ultimaSegmentacion;
 
         // Llamada a crearCampanaRepository para meter datos en la BD -> INGRESAR LOS DEMÁS DATOS DE LA CAMPAÑA A LA BD
         const result = await campanaRepository.crearCampana(campanaData, promocion_id, segmentacion_id);//Paso como parametro a campanaData y aparte a promocion_id
+
+        const campana_id = result.campana_id;
+
+        //REALIZAR LA FILTRACIÓN DE CLIENTES
+        const clientesFiltrados = clienteService.filtrarClientes(datosTodosClientes, edadMinima, edadMaxima, rangoFechaInicio, rangoFechaFin, distrito, departamento, sexo, tipo_campanaID);
+
+        const dniClientesFiltrados = clienteService.extraerDniClientesFiltrados(clientesFiltrados);
+
+        const datosTablaParticipante = await clienteRepository.guardarCamposParticipante(campana_id, dniClientesFiltrados);
+
+        console.log(clientesFiltrados);
+        console.log(dniClientesFiltrados);
+        console.log(datosTablaParticipante);
+
         return result;
     }
 

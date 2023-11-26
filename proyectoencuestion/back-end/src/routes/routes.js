@@ -8,7 +8,7 @@ const {crearLlamada, mostrarLlamadas} = require('../controllers/llamadaControlle
 const {crearSegmentacion/*, mostrarSegmentacion*/} = require('../controllers/segmentacionController');
 const {buscarPromocionPorID} = require('../controllers/promocionController');
 
-const {obtenerClientes, obtenerClienteDNI} = require('../controllers/clienteController');
+const {buscarClientePorDNI} = require('../controllers/clienteController');
 
 //RUTAS PARA EL INICIO DE SESIÓN
 router.post('/iniciarSesion', iniciarSesion);
@@ -42,10 +42,8 @@ router.post('/crearSegmentacion', crearSegmentacion);//YA NO LA USAREMOS CREO
 //RUTAS PARA LA PROMOCIÓN (DESCUENTO) -> SERGIO
 router.get('/buscarCampanaPorID/:idCampana', buscarCampanaPorID);
 router.get('/buscarPromocionPorID/:idPromocion', buscarPromocionPorID);
+router.get('/buscarClientePorDNI/:dniCliente', buscarClientePorDNI);
 
-//OBTENER CLIENTES -> MÓDULO CLIENTES
-router.get('/obtenerClientes', obtenerClientes);
-router.get('/obtenerClienteDNI/:dni', obtenerClienteDNI);
 
 // const response = await axios.get('https://clientemodulocrm.onrender.com/clientes');
 // const clientes = response.data;
