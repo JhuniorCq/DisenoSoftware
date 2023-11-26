@@ -1,7 +1,7 @@
 const {CampanaService} = require('../service/campanaService');
 // const {mostrarSegmentacion} = require('../controllers/segmentacionController');
 // const {iniciarSesion} = require('../controllers/inicioSesionController');
-const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand, MostrarTipoCampanaCommand, MostrarCampanasEsteMesCommand, MostrarCampanasRecientesCommand, MostrarCampanasCorreoCommand, MostrarCampanasLlamadaCommand, MostrarCampanasSorteoCommand, BuscarCampanaPorIDCommand} = require('../command/campanaCommand');
+const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand, MostrarTipoCampanaCommand, MostrarCampanasEsteMesCommand, MostrarCampanasRecientesCommand, MostrarCampanasCorreoCommand, MostrarCampanasLlamadaCommand, MostrarCampanasSorteoCommand, BuscarCampanaPorIDCommand, InfoCampanaCommand} = require('../command/campanaCommand');
 const campanaService = new CampanaService();
 const axios = require('axios');
 
@@ -146,7 +146,6 @@ const mostrarCampanasSorteo = async (req, res, next) => {
     }
 }
 
-//FUNCIONES DE LAS RUTAS PARA SERGIO -> CON DATOS DE CLIENTES - LOCAL
 const buscarCampanaPorID = async (req, res, next) => {
     try {
         const buscarCampanaPorIDCommand = new BuscarCampanaPorIDCommand(campanaService);
@@ -162,6 +161,17 @@ const buscarCampanaPorID = async (req, res, next) => {
     }
 }
 
+const infoCampana = async (req, res, next) => {
+    try {
+        const infoCampanaCommand = new InfoCampanaCommand(campanaService);
+        const result = await infoCampanaCommand.execute();
+        
+        res.json(result);
+    } catch(error) {
+        next(error);
+    }
+}
+
 module.exports = {
     crearCampana: crearCampana,
     mostrarCampanas: mostrarCampanas,
@@ -172,5 +182,6 @@ module.exports = {
     mostrarCampanasCorreo: mostrarCampanasCorreo,
     mostrarCampanasLlamada: mostrarCampanasLlamada,
     mostrarCampanasSorteo: mostrarCampanasSorteo,
-    buscarCampanaPorID: buscarCampanaPorID
+    buscarCampanaPorID: buscarCampanaPorID,
+    infoCampana: infoCampana
 }

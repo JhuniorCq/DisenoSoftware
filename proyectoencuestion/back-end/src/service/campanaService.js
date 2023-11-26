@@ -18,6 +18,7 @@ class CampanaService {
         //CREANDO FECHA DE CREACIÓN DE CAMPAÑA (FECHA ACTUAL)
         
         const fechaCreacion = format(new Date(), 'yyyy-MM-dd');
+        // const fechaCreacion = new Date(); //Cuando ya esté la BD como Date DESCOMENTO esto y lo de arriba lo borro, y la fecha_fin y fecha_inicio lo convierto a Date también
         campanaData.fecha_creacion = fechaCreacion;
 
         // Lógica Fechas
@@ -157,6 +158,26 @@ class CampanaService {
             console.log(campana_id);
 
             return campana_id;
+        } catch(error) {
+            throw error;
+        }
+    }
+
+    async infoCampana() {
+        try {
+            const result = await campanaRepository.infoCampana();
+
+            for(const datos of result) {
+                if(datos.tipo_campana === 1) {
+                    datos.tipo_campana = 'Campaña - Llamada';
+                } else if(datos.tipo_campana === 2) {
+                    datos.tipo_campana = 'Campaña - Correo';
+                } else if(datos.tipo_campana === 3) {
+                    datos.tipo_campana = 'Campaña - Sorteo';
+                }
+            }
+
+            return result;
         } catch(error) {
             throw error;
         }

@@ -17,7 +17,8 @@ class CampanaRepository {
             promocion_id,
             fecha_creacion
         ]);
-
+        
+        console.log(typeof fecha_fin, typeof fecha_inicio, new Date());
         return result.rows[0];
     }
 
@@ -82,7 +83,6 @@ class CampanaRepository {
             for(let i=0; i<3; i++) {
                 if(todosTipoCampana.rows[i].camid == tipoCampanaID) {
                     return todosTipoCampana.rows[i].camid;
-    
                 }
             }
         } catch(error) {
@@ -134,6 +134,27 @@ class CampanaRepository {
     
         } catch (error) {
             throw error;
+        }
+    }
+
+    async infoCampana() {//Nombre Campaña , tipo de campaña y las promocion
+            try {
+
+            // Consulta SQL con JOIN entre las tablas campana y promocion
+            // Ejecutando la consulta
+            const result = await pool.query('SELECT c.nombre, c.tipo_campana, p.promocion FROM campana c JOIN promocion p ON c.promocion_id = p.promocion_id;');
+
+            // Verifica si se encontraron resultados
+            if (result.rows.length > 0) {
+                // Devuelve los datos obtenidos
+                console.log(result.rows)
+                return result.rows;
+            } else {
+                // No se encontraron campañas
+                return null;
+            }
+        } catch(error) {
+            throw console.error('No se pudo obtener la información de las Campañas', error.message);
         }
     }
 }

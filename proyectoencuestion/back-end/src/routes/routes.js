@@ -2,7 +2,7 @@ const { Router } = require('express');
 const router = Router();
 
 const {iniciarSesion} = require('../controllers/inicioSesionController');
-const {crearCampana, mostrarCampanas, eliminarCampana, mostrarTipoCampana, mostrarCampanasEsteMes, mostrarCampanasRecientes, mostrarCampanasCorreo, mostrarCampanasLlamada, mostrarCampanasSorteo, buscarCampanaPorID} = require('../controllers/campanaController');
+const {crearCampana, mostrarCampanas, eliminarCampana, mostrarTipoCampana, mostrarCampanasEsteMes, mostrarCampanasRecientes, mostrarCampanasCorreo, mostrarCampanasLlamada, mostrarCampanasSorteo, buscarCampanaPorID, infoCampana} = require('../controllers/campanaController');
 const {crearCorreo, mostrarCorreos, enviarCorreos} = require('../controllers/correoController');
 const {crearLlamada, mostrarLlamadas} = require('../controllers/llamadaController');
 const {crearSegmentacion/*, mostrarSegmentacion*/} = require('../controllers/segmentacionController');
@@ -43,6 +43,9 @@ router.post('/crearSegmentacion', crearSegmentacion);//YA NO LA USAREMOS CREO
 router.get('/buscarCampanaPorID/:idCampana', buscarCampanaPorID);
 router.get('/buscarPromocionPorID/:idPromocion', buscarPromocionPorID);
 router.get('/buscarClientePorDNI/:dniCliente', buscarClientePorDNI);
+
+//RUTA PARA MÓDULO DE AUTOCONSULTAS
+router.get('/infoCampana', infoCampana);
 
 
 // const response = await axios.get('https://clientemodulocrm.onrender.com/clientes');
