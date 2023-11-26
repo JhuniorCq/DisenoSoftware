@@ -142,7 +142,7 @@ class CampanaRepository {
 
             // Consulta SQL con JOIN entre las tablas campana y promocion
             // Ejecutando la consulta
-            const result = await pool.query('SELECT c.nombre, c.tipo_campana, p.promocion FROM campana c JOIN promocion p ON c.promocion_id = p.promocion_id;');
+            const result = await pool.query('SELECT c.campana_id, c.nombre, c.tipo_campana, p.promocion FROM campana c JOIN promocion p ON c.promocion_id = p.promocion_id;');
 
             // Verifica si se encontraron resultados
             if (result.rows.length > 0) {

@@ -48,17 +48,6 @@ router.get('/buscarClientePorDNI/:dniCliente', buscarClientePorDNI);
 router.get('/infoCampana', infoCampana);
 
 
-// const response = await axios.get('https://clientemodulocrm.onrender.com/clientes');
-// const clientes = response.data;
-
-
-// //
-// router.get('/clientesPorCampana');
-// // Por si quiero mostrar los cliente de Joaquin
-// const response = await axios.get('/rutaDeJoaquin');
-// const arrayClientes = response.data;
-
-
 //Esto no es del Proyecto
 const {
     //Importaciones de Prueba

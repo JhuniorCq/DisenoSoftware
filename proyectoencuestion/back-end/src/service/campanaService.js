@@ -53,7 +53,7 @@ class CampanaService {
         //Uso un objeto de SegmentacionRepository para acceder al método de mostrarSegmentacion que me dará la info de la ultima segmentacion guardada
         const ultimaSegmentacion = await segmentacionRepository.mostrarUltimaSegmentacion();
         const {segmentacion_id, minm: edadMinima, maxm: edadMaxima, fecha_inicio: rangoFechaInicio, fecha_fin: rangoFechaFin, distrito, departamento, sexo} = ultimaSegmentacion;
-
+        
         // Llamada a crearCampanaRepository para meter datos en la BD -> INGRESAR LOS DEMÁS DATOS DE LA CAMPAÑA A LA BD
         const result = await campanaRepository.crearCampana(campanaData, promocion_id, segmentacion_id);//Paso como parametro a campanaData y aparte a promocion_id
 

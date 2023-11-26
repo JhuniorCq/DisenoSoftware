@@ -24,8 +24,12 @@ class ClienteService {
 
         try {
             for(const cliente of datosTodosClientes) {
+
                 if(tipo_campanaID == 1 || tipo_campanaID == 2) {
-                    if(edadMinima <= this.calcularEdadCliente(this.formatearFecha(cliente.fechanac)) <= edadMaxima && cliente.distrito === distrito && cliente.departamento === departamento && cliente.sexo === sexo) {
+                    
+                    const cumpleCondicionSexo = sexo === 'Ambos' || cliente.sexo === sexo;
+
+                    if(edadMinima <= this.calcularEdadCliente(this.formatearFecha(cliente.fechanac)) <= edadMaxima && cliente.distrito === distrito && cliente.departamento === departamento && cumpleCondicionSexo) {
                         clientesFiltrados.push(cliente);
                     }
                 } else {
@@ -33,8 +37,8 @@ class ClienteService {
                         clientesFiltrados.push(cliente);
                     }
                 }
-                
             }
+            
             return clientesFiltrados;
         } catch(error) {
             throw console.error('No se ha podido filtrar a los clientes:', error.message);
@@ -57,9 +61,9 @@ class ClienteService {
     calcularEdadCliente(fechaNacimiento) {//Se debe proporcionar la fecha en formato YYYY-MM-DD y en CADENA
         const fechaActual = new Date();
 
-        const fechaNacimientoDate = new Date(fechaNacimiento);
+        // const fechaNacimientoDate = new Date(fechaNacimiento);//Esto ya no creo, porque fechaNadimiento ya es un Date
 
-        const diferenciaDeDechas = fechaActual - fechaNacimientoDate;
+        const diferenciaDeDechas = fechaActual - fechaNacimiento;
 
         const edad = Math.floor(diferenciaDeDechas / (365.25 * 24 * 60 * 60 * 1000));
 
