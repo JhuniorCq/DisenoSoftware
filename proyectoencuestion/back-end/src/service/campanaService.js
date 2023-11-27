@@ -64,11 +64,14 @@ class CampanaService {
 
         const dniClientesFiltrados = clienteService.extraerDniClientesFiltrados(clientesFiltrados);
 
+        //Ese datosTablaParticipante es un  String que dice que se guardo correctamente
         const datosTablaParticipante = await clienteRepository.guardarCamposParticipante(campana_id, dniClientesFiltrados);
 
-        console.log(clientesFiltrados);
-        console.log(dniClientesFiltrados);
-        console.log(datosTablaParticipante);
+        
+
+        // console.log(clientesFiltrados);
+        // console.log(dniClientesFiltrados);
+        // console.log(datosTablaParticipante);
 
         return result;
     }

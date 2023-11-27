@@ -42,9 +42,9 @@ class ClienteRepository {
 
     async traerDNIClientesParaCorreos(campana_id) {
         try {
-
-            const query = 'SELECT campana_id, cliente_id, estado FROM participante WHERE campana_id = $1';
-            const datosClientesParaCorreos = await pool.query(query, [campana_id]);
+        
+            // const query = 'SELECT campana_id, cliente_id, estado FROM participante WHERE campana_id = $1';
+            const datosClientesParaCorreos = await pool.query('SELECT campana_id, cliente_id, estado FROM participante WHERE campana_id = $1', [campana_id]);
 
             console.log(datosClientesParaCorreos.rows);//iMPRIME campana_id, cliente_id y estado DE LOS CLIENTES QUE TENGAN EL VALOR DE campana_id
             

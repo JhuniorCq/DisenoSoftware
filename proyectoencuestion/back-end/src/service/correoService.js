@@ -27,12 +27,12 @@ class CorreoService {
             for(const datosCliente of datosClientesParaCorreos) {//CON ESTE BUCLE SE ENVIARÁ EL CORREO A CADA UNO DE LOS CLIENTES
 
                 const cliente_id = datosCliente.cliente_id;
-                const responseCliente = await axios.get(`https://clientemodulocrm.onrender.com/clientes/buscarPorDNI/${cliente_id}`);
+                const responseCliente = await axios.get(`https://clientemodulocrm.onrender.com/clientes/buscarPorDNI/${cliente_id}`);//Obtengo correo, nombre, apellido, pero de un solo cliente
                 const datosUnCliente = responseCliente.data;// ME TRAR UN CLIENTE CUANDO PASO SU DNI
-                console.log(datosUnCliente);//HASTA ACÁ YA TENGO LOS DATOS DE CADA UNO DE LOS CLIENTES PARA ENVIARLES SUS CORREOS
+                // console.log(datosUnCliente);//HASTA ACÁ YA TENGO LOS DATOS DE CADA UNO DE LOS CLIENTES PARA ENVIARLES SUS CORREOS
 
-                const result = new Correo(datosDelCorreo, datosClientesParaCorreos);
-                result.enviar(datosUnCliente);
+                const result = new Correo(datosDelCorreo, datosClientesParaCorreos);//CREO QUE ACÁ TA EL PROBLEMA :,V
+                result.enviar(datosUnCliente);//Estoy mandando los datos de un cliente luego de buscarlo por su DNI en la ruta de Joaquin
             }
 
             return datosDelCorreo;

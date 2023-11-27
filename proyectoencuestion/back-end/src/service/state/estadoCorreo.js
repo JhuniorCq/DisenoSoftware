@@ -35,7 +35,7 @@ class EstadoEnviado {
 }
 
 class Correo {
-    constructor(datosDelCorreo, datosClientesParaCorreos) {//ACÁ NO TENGO QUE TRAER datosClientesParaCorreos, sino que tengo que traer a los Datos de los Clientes
+    constructor(datosDelCorreo, datosClientesParaCorreos) {
         const {campana_id, mensaje, fecha_envio, hora, titulo, asunto} = datosDelCorreo;
         // const {cliente_id, estado} = datosClientesParaCorreos;
         this.mensaje = mensaje;
