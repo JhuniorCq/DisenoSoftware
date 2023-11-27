@@ -4,6 +4,7 @@ const correoService = new CorreoService();
 
 const crearCorreo = async (req, res, next) => {
     try{
+
         const crearCorreoCommand = new CrearCorreoCommand(correoService);
 
         const correoData = req.body;
@@ -32,6 +33,8 @@ const mostrarCorreos = async (req, res, next) => {
     }
 }
 
+
+//ESTO YA NO SE USARÁ CREO, SE ENVIARÁN LOS CORREOS DESDE -> CREARCORREO
 const enviarCorreos = async (req, res, next) => {
     try {
         const enviarCorreosCommand = new EnviarCorreosCommand(correoService);

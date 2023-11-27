@@ -39,6 +39,29 @@ class ClienteRepository {
             throw console.error('No se ha podido realizar la búsqueda del cliente por su DNI.', error.message);
         }
     }
+
+    async traerDNIClientesParaCorreos(campana_id) {
+        try {
+
+            const query = 'SELECT campana_id, cliente_id, estado FROM participante WHERE campana_id = $1';
+            const datosClientesParaCorreos = await pool.query(query, [campana_id]);
+
+            console.log(datosClientesParaCorreos.rows);//iMPRIME campana_id, cliente_id y estado DE LOS CLIENTES QUE TENGAN EL VALOR DE campana_id
+            
+            // let arrayDNI = [];
+
+            // for(const dniCliente of datosClientesParaCorreos.rows) {
+            //     arrayDNI.push(dniCliente.cliente_id);
+            // }
+
+            // console.log(arrayDNI);//IMPRIME DNI DE LOS CLIENTES QUE TENGNA EL VALOR DE campana_id
+
+            return datosClientesParaCorreos.rows;
+
+        } catch(error) {
+            throw console.error('No se pudo traer los clientes para enviar los correos', error.message);
+        }
+    }
 }
 
 module.exports = {

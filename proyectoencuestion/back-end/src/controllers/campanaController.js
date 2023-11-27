@@ -1,6 +1,4 @@
 const {CampanaService} = require('../service/campanaService');
-// const {mostrarSegmentacion} = require('../controllers/segmentacionController');
-// const {iniciarSesion} = require('../controllers/inicioSesionController');
 const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand, MostrarTipoCampanaCommand, MostrarCampanasEsteMesCommand, MostrarCampanasRecientesCommand, MostrarCampanasCorreoCommand, MostrarCampanasLlamadaCommand, MostrarCampanasSorteoCommand, BuscarCampanaPorIDCommand, InfoCampanaCommand} = require('../command/campanaCommand');
 const campanaService = new CampanaService();
 const axios = require('axios');
@@ -20,8 +18,6 @@ const crearCampana = async (req, res, next) => {
         const campanaData = req.body;
 
         const result = await crearCampanaCommand.execute(campanaData, datosTodosClientes, datosUnCliente);
-
-        // console.log(datosUnCliente);
 
         res.json(result);
 
