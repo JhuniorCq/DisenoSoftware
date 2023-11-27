@@ -17,8 +17,8 @@ class CampanaService {
 
         //CREANDO FECHA DE CREACIÓN DE CAMPAÑA (FECHA ACTUAL)
         
-        const fechaCreacion = format(new Date(), 'yyyy-MM-dd');
-        // const fechaCreacion = new Date(); //Cuando ya esté la BD como Date DESCOMENTO esto y lo de arriba lo borro, y la fecha_fin y fecha_inicio lo convierto a Date también
+        // const fechaCreacion = format(new Date(), 'yyyy-MM-dd');
+        const fechaCreacion = new Date(); //Cuando ya esté la BD como Date DESCOMENTO esto y lo de arriba lo borro, y la fecha_fin y fecha_inicio lo convierto a Date también
         campanaData.fecha_creacion = fechaCreacion;
 
         // Lógica Fechas
@@ -42,7 +42,7 @@ class CampanaService {
             // Llamada a crearCampanaRepository para meter datos en la BD
             const promocionData = await campanaRepository.crearPromocion(campanaData);//Asigno a promocionData la info guardada en la tabla promocion
 
-            console.log(promocionData);
+            // console.log(promocionData);
             promocion_id = promocionData.promocion_id;//Asigno a promocion_id el valor de la clave promocion_id del objeto promocionData
         }
 

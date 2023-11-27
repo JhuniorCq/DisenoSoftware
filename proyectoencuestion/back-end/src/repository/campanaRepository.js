@@ -18,7 +18,7 @@ class CampanaRepository {
             fecha_creacion
         ]);
         
-        console.log(typeof fecha_fin, typeof fecha_inicio, new Date());
+        // console.log(typeof fecha_fin, typeof fecha_inicio, new Date());
         return result.rows[0];
     }
 
