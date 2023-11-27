@@ -2,7 +2,7 @@ const transporter = require('../../nodemailer'); // Importar el transporter conf
 
 //Estado Programado
 class EstadoProgramado {
-    async enviarCorreo(instanciaCorreo, correoCliente) {
+    async enviarCorreo(instanciaCorreo, correoCliente) {//ACÁ SERÍA TRAER LA VARIABLE -> TIPOCAMPANA Y DE AHI HACER UN IF PARA CAMBIAR EL ESTADO
 
         const fecha_actual = new Date();
         const fecha_envio = instanciaCorreo.fecha_envio;
@@ -52,7 +52,7 @@ class Correo {
 
             this.datosCliente.push({
                 cliente_id: datosCliente.cliente_id,
-                estado: datosCliente.estado
+                estado: datosCliente.estado //ESTE ESTADO ES EL DEL PARTICIPANTE -> ENVIADO O PROGRAMADO
             })
         }
     }
