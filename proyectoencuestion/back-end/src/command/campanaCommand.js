@@ -3,8 +3,8 @@ class CrearCampanaCommand {
         this.campanaService = campanaService;
     }
 
-    execute(campanaData) {
-        return this.campanaService.crearCampana(campanaData);
+    execute(campanaData, datosTodosClientes, datosUnCliente) {
+        return this.campanaService.crearCampana(campanaData, datosTodosClientes, datosUnCliente);
     }
 }
 
@@ -98,6 +98,16 @@ class BuscarCampanaPorIDCommand {
     }
 }
 
+class InfoCampanaCommand {
+    constructor(campanaService) {
+        this.campanaService = campanaService;
+    }
+
+    execute() {
+        return this.campanaService.infoCampana();
+    }
+}
+
 module.exports = {
     CrearCampanaCommand: CrearCampanaCommand,
     MostrarCampanasCommand: MostrarCampanasCommand,
@@ -108,5 +118,6 @@ module.exports = {
     MostrarCampanasCorreoCommand: MostrarCampanasCorreoCommand,
     MostrarCampanasLlamadaCommand: MostrarCampanasLlamadaCommand,
     MostrarCampanasSorteoCommand: MostrarCampanasSorteoCommand,
-    BuscarCampanaPorIDCommand: BuscarCampanaPorIDCommand
+    BuscarCampanaPorIDCommand: BuscarCampanaPorIDCommand,
+    InfoCampanaCommand: InfoCampanaCommand
 }

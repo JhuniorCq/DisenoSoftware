@@ -1,27 +1,28 @@
 const {CampanaService} = require('../service/campanaService');
 // const {mostrarSegmentacion} = require('../controllers/segmentacionController');
 // const {iniciarSesion} = require('../controllers/inicioSesionController');
-const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand, MostrarTipoCampanaCommand, MostrarCampanasEsteMesCommand, MostrarCampanasRecientesCommand, MostrarCampanasCorreoCommand, MostrarCampanasLlamadaCommand, MostrarCampanasSorteoCommand, BuscarCampanaPorIDCommand} = require('../command/campanaCommand');
+const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand, MostrarTipoCampanaCommand, MostrarCampanasEsteMesCommand, MostrarCampanasRecientesCommand, MostrarCampanasCorreoCommand, MostrarCampanasLlamadaCommand, MostrarCampanasSorteoCommand, BuscarCampanaPorIDCommand, InfoCampanaCommand} = require('../command/campanaCommand');
 const campanaService = new CampanaService();
 const axios = require('axios');
 
 //Decirla a Enzo que los inputs en CREAR CAMPAÑA sean los que se ponen en la desestructuración de campanaData
 const crearCampana = async (req, res, next) => {
     try {
-        //HACER LO DE CLIENTE, ALMACENAR campana_id en la tabla participante, ese campana_id permitirá enlazarla la tabla campana y poder chapar a segmentacion_id y con eso realizar la segmentacion a los clientes y luegos mostrarlos.
 
-        
-        //Esto lo puedo traer como una sola funcion, importandola (esta funcion puede estar en clienteController)
-        const response = await axios.get('https://clientemodulocrm.onrender.com/clientes');
-        const clientes = response.data;
+        const responseClientes = await axios.get('https://clientemodulocrm.onrender.com/clientes');
+        const datosTodosClientes = responseClientes.data;// ME TRAE A TODOS LOS CLIENTES
+        const dni = "123456789";
+        const responseCliente = await axios.get(`https://clientemodulocrm.onrender.com/clientes/buscarPorDNI/${dni}`);
+        const datosUnCliente = responseCliente.data;// ME TRAR UN CLIENTE CUANDO PASO SU DNI
 
         const crearCampanaCommand = new CrearCampanaCommand(campanaService);
         
         const campanaData = req.body;
 
-        const result = await crearCampanaCommand.execute(campanaData);
+        const result = await crearCampanaCommand.execute(campanaData, datosTodosClientes, datosUnCliente);
 
-        // console.log(result);
+        // console.log(datosUnCliente);
+
         res.json(result);
 
     } catch (error) {
@@ -145,7 +146,6 @@ const mostrarCampanasSorteo = async (req, res, next) => {
     }
 }
 
-//FUNCIONES DE LAS RUTAS PARA SERGIO -> CON DATOS DE CLIENTES - LOCAL
 const buscarCampanaPorID = async (req, res, next) => {
     try {
         const buscarCampanaPorIDCommand = new BuscarCampanaPorIDCommand(campanaService);
@@ -161,6 +161,17 @@ const buscarCampanaPorID = async (req, res, next) => {
     }
 }
 
+const infoCampana = async (req, res, next) => {
+    try {
+        const infoCampanaCommand = new InfoCampanaCommand(campanaService);
+        const result = await infoCampanaCommand.execute();
+        
+        res.json(result);
+    } catch(error) {
+        next(error);
+    }
+}
+
 module.exports = {
     crearCampana: crearCampana,
     mostrarCampanas: mostrarCampanas,
@@ -171,5 +182,6 @@ module.exports = {
     mostrarCampanasCorreo: mostrarCampanasCorreo,
     mostrarCampanasLlamada: mostrarCampanasLlamada,
     mostrarCampanasSorteo: mostrarCampanasSorteo,
-    buscarCampanaPorID: buscarCampanaPorID
+    buscarCampanaPorID: buscarCampanaPorID,
+    infoCampana: infoCampana
 }
