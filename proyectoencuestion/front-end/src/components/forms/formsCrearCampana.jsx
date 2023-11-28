@@ -1,10 +1,15 @@
 import { useEffect, useId, useState } from "react";
 import styles from "./formsCrearCampana.module.css";
 import FormsPublicoObjetivoCrearCampana from "./formsPublicoObjetivoCrearCampana";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { crearCampanas } from "../campanasAPI";
+import {
+  createSegmentacion,
+  getCampanas,
+  useCreateCampana,
+  useCreateSegmentacion,
+} from "../campanasAPI";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const FormCrearCampana = (props) => {
   const { crearCampana, setCrearCampana } = props;
@@ -33,14 +38,8 @@ const FormCrearCampana = (props) => {
   const tipoCampanaID = useId();
   const descuentoCampanaID = useId();
 
-  const queryClient = useQueryClient();
-  const agregarCampana = useMutation({
-    mutationFn: crearCampanas,
-    onSuccess: () => {
-      queryClient.invalidateQueries("campanas");
-      console.log("campaña añadida correctamente!");
-    },
-  });
+  const agregarCampana = getCampanas();
+  const agregarSegmentacion = createSegmentacion();
 
   const today = new Date();
   const formattedDate = today.toISOString().split("T")[0]; // Obtiene la fecha en formato "YYYY-MM-DD"
@@ -53,13 +52,14 @@ const FormCrearCampana = (props) => {
     const regexText = /^[a-zA-Z0-9ñÑ\s]*$/;
     const regexNumeric = /^[0-9]+$/;
 
-    const fechaInicio = new Date(mainForm.starts);
-    const fechaFin = new Date(mainForm.ends);
-    const notas = mainForm.description;
-    const objetivo = mainForm.objectives;
-    const nombreCampana = mainForm.name;
-    const descuentoValue = mainForm.descuentoCampana; //nos ayuda a saber si este campo contiene numeros con su respectivo regex
-    const descuento = parseInt(mainForm.descuentoCampana); //nos ayuda a establecer que el descuento no pase de 50% con una condicional
+    const fechaInicio = new Date(mainForm.fecha_inicio);
+    const fechaFin = new Date(mainForm.fecha_fin);
+    const notas = mainForm.descripcion;
+    const objetivo = mainForm.objetivos;
+    const nombreCampana = mainForm.nombre;
+    const descuentoValue = mainForm.promocion; //nos ayuda a saber si este campo contiene numeros con su respectivo regex
+    const descuento = parseInt(mainForm.promocion); //nos ayuda a establecer que el descuento no pase de 50% con una condicional
+    const tipoCampanaEntero = parseInt(mainForm.tipo_campana);
 
     if (fechaInicio < today) {
       toast.warn("La fecha de inicio debe ser igual o posterior a hoy", {
@@ -124,7 +124,7 @@ const FormCrearCampana = (props) => {
 
     if (objetivo.length < 10 || objetivo.length > 80) {
       toast.warn(
-        "El objetivo deben tener una longitud entre 10 y 80 caracteres",
+        "El objetivo debe tener una longitud entre 10 y 80 caracteres",
         {
           position: "bottom-right",
           autoClose: 3000,
@@ -203,13 +203,39 @@ const FormCrearCampana = (props) => {
 
     const formCompleto = {
       ...mainForm,
-      ...publicoObjetivoData,
     };
 
-    agregarCampana.mutate({
-      ...formCompleto,
-      created: formattedDate,
-    });
+    // agregarCampana.mutate({
+    //   ...mainForm,
+    //   fecha_creacion: formattedDate,
+    // });
+
+    // agregarSegmentacion.mutate({
+    //   ...publicoObjetivoData,
+    // });
+
+    axios
+      .post("https://modulo-marketing.onrender.com/crearCampana", formCompleto)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al enviar datos:", error);
+      });
+    axios
+      .post(
+        "https://modulo-marketing.onrender.com/crearSegmentacion",
+        publicoObjetivoData
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al enviar datos:", error);
+      });
+
+    // agregarCampana(mainForm);
+    // agregarSegmentacion(publicoObjetivoData);
 
     setCrearCampana(!crearCampana);
 
@@ -286,7 +312,7 @@ const FormCrearCampana = (props) => {
               id={nombreCampanaID}
               required
               value={nombreCampanaInput}
-              name="name"
+              name="nombre"
               onChange={handleNombreCampanaInputChange}
             />
           </div>
@@ -296,20 +322,21 @@ const FormCrearCampana = (props) => {
             </label>
             <select
               id={tipoCampanaID}
-              name="tipoCampana"
+              name="tipo_campana"
               value={tipoCampanaInput}
               onChange={handleTipoCampanaChange}
               required
             >
               <option value="">Selecciona una opción...</option>
-              <option value="correo">Correo</option>
-              <option value="llamada">Llamada</option>
-              <option value="sorteo">Sorteo</option>
+              <option value="2">Correo</option>
+              <option value="1">Llamada</option>
+              <option value="3">Sorteo</option>
             </select>
           </div>
+
           <div
             className={` ${styles.containerDescuento} ${
-              tipoCampanaInput === "correo" || tipoCampanaInput === "llamada"
+              tipoCampanaInput === "2" || tipoCampanaInput === "1"
                 ? styles.mostrarDescuento
                 : ""
             }`}
@@ -322,7 +349,7 @@ const FormCrearCampana = (props) => {
               type="text"
               id={descuentoCampanaID}
               value={descuentoInput}
-              name="descuentoCampana"
+              name="promocion"
               placeholder="Descuento para los usuarios..."
               onChange={(e) => setDescuentoInput(e.target.value)}
             />
@@ -335,20 +362,21 @@ const FormCrearCampana = (props) => {
               type="date"
               id={fechaInicioID}
               required
-              name="starts"
+              name="fecha_inicio"
               value={fechaInicioInput}
               onChange={(e) => setFechaInicioInput(e.target.value)}
             />
           </div>
           <div className={styles.containerFechaFinCampanas}>
             <label htmlFor={fechaFinID}>
-              Fecha de finalización<span className={styles.asterisco}>*</span>
+              Fecha de finalización
+              <span className={styles.asterisco}>*</span>
             </label>
             <input
               type="date"
               required
               id={fechaFinID}
-              name="ends"
+              name="fecha_fin"
               value={fechaFinInput}
               onChange={(e) => setFechaFinInput(e.target.value)}
             />
@@ -356,14 +384,15 @@ const FormCrearCampana = (props) => {
 
           <div className={styles.containerObjetivosCampanas}>
             <label htmlFor={objetivosCampanaID}>
-              Objetivos de la campaña<span className={styles.asterisco}>*</span>
+              Objetivos de la campaña
+              <span className={styles.asterisco}>*</span>
             </label>
             <input
               type="text"
               id={objetivosCampanaID}
               required
               value={objetivosCampanaInput}
-              name="objectives"
+              name="objetivos"
               onChange={handleObjetivosCampanaInputChange}
             />
           </div>
@@ -386,7 +415,7 @@ const FormCrearCampana = (props) => {
             <textarea
               className={styles.textAreaa}
               id={notasID}
-              name="description"
+              name="descripcion"
               value={notasInput}
               onChange={(e) => setNotasInput(e.target.value)}
             ></textarea>
@@ -410,6 +439,7 @@ const FormCrearCampana = (props) => {
           publicoObjetivoIsClicked={publicoObjetivoIsClicked}
           setPublicoObjetivoIsClicked={setPublicoObjetivoIsClicked}
           setSecondFormIsSubmitted={setSecondFormIsSubmitted}
+          tipoCampanaInput={tipoCampanaInput}
           onSecondFormSubmit={handleSecondFormSubmit} // Pasa la función de envío del segundo formulario
         />
       )}

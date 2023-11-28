@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+*{
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.CCheader{
+    width: 100%;
+    height: 64px;
+    background-color: #2d3e50;
+}
+.CCbutton1{
+    position: absolute;
+    text-align: center;
+    padding: 10px 20px;
+    width: 150px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #c5daf7;
+    color: #6052a9;
+    border: none;
+    border-radius: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+    margin-left: 30px;
+    }
+body {
+    font-family: Arial, sans-serif;
+}
+.CCh3{
+    margin-left: 50px;
+    font-weight: 500;
+    margin-top: 40px;
+    height: 50px;
+}
+.CCul{
+    margin-top: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 3rem;
+    margin: 2.4rem;
+    padding-left: 2rem;
+    font-size: 20px ;
+    
+}
+.CCli{
+    cursor: pointer;
+  transition: transform 0.3s ease;
+  color: #2d3e50;
+}
+.CCli:hover{
+  color: #6959cb; /* Cambia el color al pasar el mouse sobre el elemento */
+  transform: scale(1.2); 
+  font-weight: bold;
+}
+
+.CChr{
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, #79b6e9, #A9A9A9);
+    
+}
+.CCtable {
+    margin-top: 30px;
+    display: table;
+    width: 98%;
+    float: center;
+    margin-left: 1.2%;
+}
+.CCencabezado-tabla{
+    display: table-row;
+}
+
+.CCcalendar-day {
+    position: static;
+    color: black;
+    display: table-cell;
+    padding-left: 5px;
+    vertical-align: middle;
+    background-color: #F5F8FA;
+    border-top: 1px  solid #B9C5DE;
+    border-left: 1px solid #B9C5DE;
+    border-right: 1px solid #B9C5DE;
+    padding-top: 10px;
+    margin-left: 5px;
+  
+}
+
+.CCmain{
+    border: 1px black;
+}
+
+.CCcalendar-cell {
+    display: table-cell;
+    border: 1px solid #B9C5DE;
+    padding: 20px;
+}
+.CCcalendar-row {
+    display: table-row;
+}
+.CCencabezado1{
+    
+    font-family:sans-serif; 
+    
+}
+
+.CCtxt{
+    margin-left: 20px;
+    margin-top: 30px;
+    color: #212529;
+    font-family:sans-serif;
+    color: #212529; 
+}
+.CCsearch{
+    margin-top: px ;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;
+    width: 250px;
+    height: 35px;
+    margin-left: 1240px;
+    vertical-align: middle;
+    position: static;
+}

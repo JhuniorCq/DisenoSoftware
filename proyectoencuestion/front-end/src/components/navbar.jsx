@@ -43,7 +43,7 @@ const Navbar = () => {
       <div className={styles.containerRoutes}>
         <ul className={styles.redirection}>
           <li>
-            <Link className={styles.gestionAjustar} to={"/"}>
+            <Link className={styles.gestionAjustar} to={"/gestion"}>
               Gestión
             </Link>
           </li>

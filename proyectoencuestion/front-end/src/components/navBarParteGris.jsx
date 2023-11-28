@@ -177,7 +177,7 @@ const NavbarParteGris = () => {
             >
               <li className={styles.list__inside}>
                 <Link
-                  to={"/"}
+                  to={"/gestion"}
                   className={`${styles.nav__link} ${styles.nav__link__inside}`}
                 >
                   Campañas
@@ -199,9 +199,10 @@ const NavbarParteGris = () => {
                   Correos
                 </Link>
               </li>
+
               <li className={styles.list__inside}>
                 <Link
-                  to={"/sorteos"}
+                  to={"/Sorteom"}
                   className={`${styles.nav__link} ${styles.nav__link__inside}`}
                 >
                   Sorteos
