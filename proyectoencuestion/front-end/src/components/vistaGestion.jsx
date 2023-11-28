@@ -129,7 +129,7 @@ const VistaGestion = () => {
                     .filter((usuario) => {
                       if (opcionSeleccionada === "Este mes") {
                         const fechaActual = new Date();
-                        const fechaCreacion = new Date(usuario.created);
+                        const fechaCreacion = new Date(usuario.fecha_creacion);
                         return (
                           fechaActual.getFullYear() ===
                             fechaCreacion.getFullYear() &&
@@ -140,11 +140,11 @@ const VistaGestion = () => {
                         opcionSeleccionada === "Creado recientemente"
                       ) {
                         const fechaActual = new Date();
-                        const fechaCreacion = new Date(usuario.created);
+                        const fechaCreacion = new Date(usuario.fecha_creacion);
                         const tiempoTranscurrido =
                           (fechaActual - fechaCreacion) / (1000 * 3600 * 24); // Calcula la diferencia en días
                         return (
-                          tiempoTranscurrido <= 3 &&
+                          tiempoTranscurrido <= 7 &&
                           fechaActual.getFullYear() ===
                             fechaCreacion.getFullYear()
                         );
@@ -154,30 +154,30 @@ const VistaGestion = () => {
 
                     .map((usuario) => (
                       <tr key={usuario.id}>
-                        <td>{usuario.id}</td>
+                        <td>{usuario.campana_id}</td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.name}
+                          {usuario.nombre}
                         </td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.tipoCampana}
+                          {usuario.tipo_campana}
                         </td>
                         <td className={styles.campanaDescripcion}>
-                          {`${usuario.descuentoCampana}%`}
+                          {`${usuario.promocion}%`}
                         </td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.description}
+                          {usuario.descripcion}
                         </td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.objectives}
+                          {usuario.objetivo}
                         </td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.created.toLocaleString()}
+                          {usuario.fecha_creacion?.split("T")[0]}
                         </td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.starts.toLocaleString()}
+                          {usuario.fecha_inicio.split("T")[0]}
                         </td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.ends.toLocaleString()}
+                          {usuario.fecha_fin.split("T")[0]}
                         </td>
                       </tr>
                     ))}

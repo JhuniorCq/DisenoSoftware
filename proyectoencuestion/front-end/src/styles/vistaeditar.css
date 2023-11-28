@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+*{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.VCheader{
+    width: 100%;
+    height: 64px;
+    background-color: #2d3e50;
+}
+.VCbutton1{
+  position: absolute;
+  text-align: center;
+  padding: 10px 20px;
+  width: 150px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #c5daf7;
+  color: #6052a9;
+  border: none;
+  border-radius: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+  margin-left: 30px;
+  }
+  .VCbutton1:hover{
+    background-color: #6052a9;
+    color: white;
+    opacity: 0.7; 
+  }
+  .VCbutton2 {
+    position: fixed;
+    padding: 10px 20px;
+    width: 250px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #e4edf2;
+    color: #2d3e50;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: none;
+    margin-left: 480px;
+    border: 1px solid #e3ebf2;
+  }
+
+  .VCbutton3{
+    position: absolute;
+    text-align: center;
+    padding: 10px 20px;
+    width: 250px;
+    font-size: 1rem;
+    cursor: pointer;
+    background:white;
+    color: #2d3e50;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-top: none;
+    margin-left: 730px;
+    border: 1px solid #e3ebf2;
+  }
+.VCbtnsg{
+  position:absolute;
+  text-align: center;
+    padding: 10px 20px;
+    width: 150px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #c5daf7;
+    color: #6052a9;
+    border: none;
+    border-radius: 20px;
+    margin-top: 50px;
+    margin-left: 1300px;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+}
+.VCbtnsg:hover{
+  background-color: #33475b;
+  color: white;
+  opacity: 0.7; 
+}
+.VCcontainer{
+  margin-top: 90px;
+  font-family: 'Mooli', sans-serif;
+  margin-left: 150px;
+  color: #2d3e50;
+}
+.VCsb1{
+  font-family: 'Mooli', sans-serif;
+}
+#VCcuadrotexto{
+  border: 1px solid #c5daf7;
+  width: 500px;
+  height: 30px;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+#VCname{
+  margin-top: 30px;
+}
+.VCbox1{
+  border: 1px solid #c5daf7;
+  width: 500px;
+  height: 30px;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+#VCcuadrotexto1{
+  border: 1px solid #c5daf7;
+  width: 700px;
+  height: 350px;
+  border-radius: 10px;
+  margin-top: 50px;
+  margin-left: 300px;
+}

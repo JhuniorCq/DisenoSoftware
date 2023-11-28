@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+*{
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+.Sencabezado{
+   
+    font-family:sans-serif; 
+}
+.Sul{
+    margin-top: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 3rem;
+    margin: 2.4rem;
+    font-size: 20px ;
+    
+}
+.Sli{
+    cursor: pointer;
+  transition: transform 0.3s ease;
+  color: #2d3e50;
+}
+.Sli:hover{
+  color: #6959cb; 
+  transform: scale(1.2); 
+  font-weight: bold;
+}
+
+.Shr{
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, #79b6e9, #A9A9A9);
+    
+}
+.Scontainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.Ssection1{
+    height: 480px;
+    border-right: 2px solid #e3ebf2;
+    float: left;
+    width: 60%;
+    margin-top: 0px;
+
+}
+.Ssection2{
+    float: right;
+    width: 40%;
+}
+.Sbtn1{
+    background: #5785c1;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    width: 220px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-left: 100px;
+    transition: opacity 0.5s ease;
+}
+.Sbtn1:hover{
+    background-color: #2d3e50;
+    opacity: 0.7; 
+}
+.Sbtn2{
+    background: #6959cb;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-left: 800px;
+    margin-top: 20px;
+    transition: opacity 0.5s ease;
+}
+.Sbtn2:hover{
+    background-color: #3b3bd0;
+    opacity: 0.7; 
+}
+
+.Sgenerator-container {
+    text-align: center;
+  }
+  
+textarea {
+    width: 300px;
+    height: 150px;
+    resize: none;
+  }
+  .Sresult {
+    margin-top: 20px;
+    font-size: 1.2rem;
+  }
+  .Stxt{
+    margin-left: 50px;
+    font-family: 'Mooli', sans-serif;
+  }
+  .Stxt1{
+    margin-left: 60px;
+    font-family: 'Mooli', sans-serif;
+    padding: 10px;
+    text-align: center;
+    width: 170px;
+    border:1px solid #5785c1;
+    border-radius: 20px;
+  }
+  .Swin{
+    margin-left: 50px;
+    font-family: 'Mooli', sans-serif;
+    position: absolute;
+    font-weight: bold;
+  }
+  .Sres{
+    margin-top: 40px;
+    margin-left: 60px;
+    position: absolute;
+    font-family: 'Mooli', sans-serif;
+    padding: 10px;
+    text-align: center;
+    width: 170px;
+    height: 30px;
+    border:1px solid #5785c1;
+    border-radius: 20px;
+  }
+  .Spartici{
+    margin-left: 300px;
+    margin-top: 100px;
+    border-radius: 10px;
+    width: 500px;
+    height: 200px;
+    border:1px solid #5785c1;
+  }
+  .Sbtn3{
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #c5daf7;
+    color: #6052a9;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 470px;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+  }
+  .Sbtn3:hover{
+    background-color: #33475b;
+    color: white;
+    opacity: 0.7; 
+  }
+  .Sbtn4{
+    background: #6959cb;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 430px;
+    margin-left: 250px;
+    position: absolute;
+    transition: opacity 0.5s ease;
+}
+.Sbtn4:hover{
+    background-color: #3b3bd0;
+    opacity: 0.7; 
+}
+.Sgenerator-container{
+    border: 1px solid #5785c1;
+    margin-top: 60px;
+    height: 350px;
+    width: 550px;
+    margin-left: 35px;
+}
+.Sh3{
+    margin-left: 50px;
+    font-weight: 500;
+    margin-top: 17px;
+    color: #2d3e50;
+    height: 50px;
+}

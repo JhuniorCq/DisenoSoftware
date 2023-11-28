@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+*{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+.ECheader{
+    width: 100%;
+    height: 64px;
+    background-color: #2d3e50;
+}
+.ECbt1{
+    position: absolute;
+    text-align: center;
+    padding: 10px 20px;
+    width: 150px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #c5daf7;
+    color: #6052a9;
+    border: none;
+    border-radius: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+    margin-left: 30px;
+  }
+  .ECbt1:hover{
+    background-color: #6052a9;
+    color: white;
+    opacity: 0.7; 
+  }
+  .ECbt2 {
+    text-align: center;
+    position: absolute;
+    height: auto;
+    width: 200px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background:white;
+    color: #2d3e50;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: none;
+    margin-left: 550px;
+    border: 1px solid #e3ebf2;
+  }
+  
+  .ECbt3{
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #e4edf2;
+    color: #2d3e50;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-left: 750px;
+    border: 1px solid #e3ebf2;
+    height: auto;
+  }
+.ECbtnsgt{
+    background: #6959cb;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    width: 200px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 1250px;
+    position: fixed;
+    transition: opacity 0.5s ease;
+}
+.ECbtnsgt:hover{
+    background-color: #3b3bd0;
+    opacity: 0.7; 
+}
+.ECh4, .ECh5 {
+    font-family: 'Mooli', sans-serif;
+}
+.ECblock1{
+    color: #2d3e50;
+    margin-top: 60px;
+    margin-left: 80px;
+}
+.ECh5{
+    margin-left: 100px;
+    margin-top: 80px;
+}
+#ECcuadrotxt{
+    border: 1px solid #c5daf7;
+    width: 500px;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 100px;
+}
+.ECsection1{
+    width: 49%;
+    height: 605px;
+    float: left;
+    margin-top: 10px;
+    border-right: 1px solid #c5daf7;
+}
+.ECsection2{
+    width: 50%;
+    height: 605px;
+    float: right;
+}
+.ECblock2{
+    float: right;
+    height: 300px;
+    position: fixed;
+    color: #2d3e50;
+    margin-top: 60px;
+    margin-left: 80px;
+}
+.ECblock3{
+    float: right;
+    height: 300px;
+    position: fixed;
+    color: #2d3e50;
+    margin-top: 200px;
+    margin-left: 80px;
+}
+.EChr{
+    border: 0;
+    height: 2px;
+    background: #e3ebf2;
+    margin: 2rem 0;
+    margin-top: 300px;
+}
+#ECopcion1{
+    margin-top: 90px;
+    margin-left: 90px;
+}
+.ECprogramacion{
+    margin-top: 20px;
+    margin-left: 120px;
+    position: fixed;
+}
+.ECblock3{
+    position: float;
+    margin-left: 53px;
+    margin-top: 20px;
+}
+.ECfecha{
+    float: left;
+    margin-left: 10px;
+    margin-top: 110px;
+}
+.EChora{
+    float: left;
+    margin-left: 170px;
+    margin-top: 110px;
+}
+.ECbts{
+    height: 50px;
+}

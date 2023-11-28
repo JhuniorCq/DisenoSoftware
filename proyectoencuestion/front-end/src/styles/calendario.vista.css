@@ -1,0 +1,176 @@
+@import url('https://font.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  margin-top: 40px;
+  border-radius: 10px;
+}
+
+.calendar ul {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  text-align: center;
+  padding: 20px;
+}
+
+.weeks {
+  color: #6959CB;
+  font-weight: bold;
+  width: auto;
+}
+
+.days {
+  width: auto;
+}
+
+.wrapper header {
+  display: flex;
+  align-content: center;
+  padding: 25px 30px 10px;
+  width: 1500px;
+  justify-content: space-between;
+}
+
+.current-date {
+    color: #4B4B53;
+    font-family: Besley;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    
+    margin-right: 720px;
+  
+}
+
+header .icons span {
+  height: 38px;
+  width: 38px;
+  color: #878787;
+  font-size: 1.9rem;
+  margin: 0 1px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 40px;
+  margin-right: 40px;
+  border-radius: 50%;
+  background: #dfd5eb;
+}
+
+header.icons span:last-child {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+header .icons span:hover {
+  background: #f2f2f2;
+  cursor: pointer; /* Cambia el cursor a la forma de mano al pasar por encima */
+}
+
+
+.calendar ul li {
+  position: relative;
+  width: calc(100% / 7);
+}
+
+.calendar {
+  padding: 20px;
+  width: 1400px;
+  margin-left: 30px;
+}
+
+.calendar .weeks li {
+  font-weight: 500;
+  justify-content: space-between;
+}
+
+.calendar .days {
+  margin-bottom: 30px;
+}
+
+.calendar .days li {
+  z-index: 1;
+  margin-top: 30px;
+  cursor: pointer;
+  height: 50px;
+  padding-top: 10px;
+}
+
+.calendar .days li::before {
+  position: absolute;
+  content: "";
+  height: 40px;
+  width: 40px;
+  top: 48%;
+  left: 50%;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.days li:hover::before {
+    background: #B5ADE6;
+  }
+  
+  .days li.inactive {
+    color: #aaa;
+  }
+  
+  .days li.active::before {
+    background: #9b59b6;
+  }
+ .next-button{
+    margin-right: 40px;
+ }
+  header .icons span {
+    /* Otros estilos ... */
+    cursor: pointer; /* Agrega esta línea para cambiar el cursor a "pointer" */
+  }
+ 
+  .next-button{
+    position:absolute;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 1120px;
+    border: none;
+    background-color: #eee6f1;
+    border-radius: 50%;
+    font-size: 12px;
+    padding: 10px;
+    height: 41px;
+    width: 41px;
+  }
+  .prev-button{
+    position: absolute;
+    font-weight: bold;
+    margin-left: 1040px;
+    border: none;
+    background-color: #eee6f1;
+    border-radius: 60%;
+    font-size: 12px;
+    padding: 10px;
+    padding: 10px;
+    height: 41px;
+    width: 41px;
+  }
+  .prev-button:hover{
+    background-color: #b3a9f4;
+    color: #ffffff;
+  }
+  .next-button:hover{
+    background-color: #b3a9f4;
+    color: #ffffff;
+  }
+

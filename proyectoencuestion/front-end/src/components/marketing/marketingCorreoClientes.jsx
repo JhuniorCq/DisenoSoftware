@@ -31,13 +31,15 @@ export const CorreoClientes = () => {
   if (isSuccessFetchCampana) {
     const today = new Date();
     let campanasTipoCorreo = dataCampanas.filter((campana) => {
-      return campana.tipoCampana === "correo";
+      return campana.tipo_campana === 2;
     });
+
     var campanasTipoCorreoVigentes = campanasTipoCorreo.filter(
       (campanasTipoCorreo) => {
-        return new Date(campanasTipoCorreo.ends) > today;
+        return new Date(campanasTipoCorreo.fecha_fin) > today;
       }
     );
+    console.log(campanasTipoCorreoVigentes);
   }
 
   if (isLoading) return <p>Loading...</p>;
@@ -59,8 +61,11 @@ export const CorreoClientes = () => {
           >
             <option value="all">Todas las campañas...</option>
             {campanasTipoCorreoVigentes.map((opcionesCampanas) => (
-              <option key={opcionesCampanas.id} value={opcionesCampanas.id}>
-                {opcionesCampanas.name}
+              <option
+                key={opcionesCampanas.campana_id}
+                value={opcionesCampanas.campana_id}
+              >
+                {opcionesCampanas.nombre}
               </option>
             ))}
           </select>
@@ -74,7 +79,7 @@ export const CorreoClientes = () => {
                 type="text"
                 value={nameCliente}
                 placeholder="Buscar clientes..."
-                minlength="1"
+                minLength="1"
                 onChange={handleChange}
               />
               {/* quité lo de value = {busqueda} y onChangue = {handleChange} porque aun no sé como se manejará la tabla */}

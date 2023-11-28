@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+*{
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+.Cencabezado{
+    
+    font-family:sans-serif; 
+}
+.Ch3{
+    margin-left: 50px;
+    font-weight: 500;
+    margin-top: 15px;
+    height: 50px;
+}
+.Cul{
+    margin-top: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 3rem;
+    margin: 2.4rem;
+    padding-left: 2rem;
+    font-size: 20px ;
+    
+}
+.Cli{
+    cursor: pointer;
+  transition: transform 0.3s ease;
+  color: #2d3e50;
+}
+.Cli:hover{
+  color: #6959cb; /* Cambia el color al pasar el mouse sobre el elemento */
+  transform: scale(1.2); 
+  font-weight: bold;
+}
+
+.Chr{
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, #79b6e9, #A9A9A9);
+    
+}
+
+.Csection1{
+    height: 480px;
+    border-right: 2px solid #e3ebf2;
+    float: left;
+    width: 30%;
+    margin-top: 0px;
+}
+.Csection2{
+    float: right;
+    width: 70%;
+}
+.Cbtn1{
+    background: #5785c1;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    width: 220px;
+    height: 40px;
+    margin-top: 40px;
+    margin-left: 100px;
+    text-align: center;
+}
+
+.Cbtn2{
+    background: #6959cb;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-left: 800px;
+    margin-top: 20px;
+    transition: opacity 0.5s ease;
+}
+.Cbtn2:hover{
+    background-color: #3b3bd0;
+    opacity: 0.7; 
+}
+.Ccont{
+    margin-left: 70px;
+    margin-top: 20px;
+}
+.Ccombobox{
+    width: 500px;
+    height: 27px;
+    border-radius: 10px;
+    border-color: #878787;
+    
+}
+.Ccaja1{
+    width: 500px;
+    height: 27px;
+    border-radius: 10px;
+    border-color: #878787;
+}
+.Ccaja2{
+    width: 700px;
+    height: 170px;
+    border-radius: 10px;
+    border-color: #878787;
+}
+.Ch5{
+    height: 40px;
+}

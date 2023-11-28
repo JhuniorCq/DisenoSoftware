@@ -131,6 +131,7 @@ export const CorreoAdministrar = () => {
                   <th>id</th>
                   <th>Título del correo</th>
                   <th>Asunto</th>
+                  <th>Mensaje</th>
                   <th>Id campaña</th>
                   <th>Fecha de envío</th>
                   <th>Hora de envío</th>
@@ -139,14 +140,15 @@ export const CorreoAdministrar = () => {
               </thead>
               <tbody>
                 {usuariosAdm && botonCorreo === "Todos los correos" ? (
-                  usuariosAdm.map((correo) => (
-                    <tr key={correo.id}>
-                      <td>{correo.id}</td>
-                      <td>{correo.titleCorreo}</td>
-                      <td>{correo.affair}</td>
-                      <td>{correo.tipoCampana}</td>
-                      <td>{correo.date}</td>
-                      <td>{correo.time}</td>
+                  usuariosAdm.map((correo, index) => (
+                    <tr key={index}>
+                      <td>{correo.camcorreo_id}</td>
+                      <td>{correo.titulo}</td>
+                      <td>{correo.asunto}</td>
+                      <td>{correo.mensaje}</td>
+                      {/* <td>{correo.tipoCampana}</td> */}
+                      <td>{correo.fecha_envio}</td>
+                      <td>{correo.hora}</td>
                       <td>{correo.estado}</td>
                     </tr>
                   ))
@@ -160,13 +162,14 @@ export const CorreoAdministrar = () => {
                       return currentDate < correoDateTime;
                     })
                     .map((correo) => (
-                      <tr key={correo.id}>
-                        <td>{correo.id}</td>
-                        <td>{correo.titleCorreo}</td>
-                        <td>{correo.affair}</td>
-                        <td>{correo.tipoCampana}</td>
-                        <td>{correo.date}</td>
-                        <td>{correo.time}</td>
+                      <tr key={index}>
+                        <td>{correo.camcorreo_id}</td>
+                        <td>{correo.titulo}</td>
+                        <td>{correo.asunto}</td>
+                        <td>{correo.mensaje}</td>
+                        {/* <td>{correo.tipoCampana}</td> */}
+                        <td>{correo.fecha_envio}</td>
+                        <td>{correo.hora}</td>
                       </tr>
                     ))
                 ) : usuariosAdm && botonCorreo === "Enviados" ? (
@@ -179,13 +182,14 @@ export const CorreoAdministrar = () => {
                       return currentDate >= correoDateTime;
                     })
                     .map((correo) => (
-                      <tr key={correo.id}>
-                        <td>{correo.id}</td>
-                        <td>{correo.titleCorreo}</td>
-                        <td>{correo.affair}</td>
-                        <td>{correo.tipoCampana}</td>
-                        <td>{correo.date}</td>
-                        <td>{correo.time}</td>
+                      <tr key={index}>
+                        <td>{correo.camcorreo_id}</td>
+                        <td>{correo.titulo}</td>
+                        <td>{correo.asunto}</td>
+                        <td>{correo.mensaje}</td>
+                        {/* <td>{correo.tipoCampana}</td> */}
+                        <td>{correo.fecha_envio}</td>
+                        <td>{correo.hora}</td>
                       </tr>
                     ))
                 ) : (

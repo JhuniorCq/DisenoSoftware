@@ -69,6 +69,7 @@
 
 .textAreaa{
     resize: none;
+    width: 100%;
 }
 
 .botonesMenu{
@@ -120,6 +121,7 @@
 
 .publicoObjetivo:hover{
     background-color: rgb(35, 112, 175);
+    transform: none;
 }
 
 .asterisco{

@@ -1,10 +1,11 @@
 import Navbar from "../navbar";
-import VistaCalendario from "../vistaCalendario";
+import VistaCalendario from "../vistaCalendario.js";
+
 
 const ModuloMarketingDos = () => {
     return(
         <main>
-            <Navbar />
+          <Navbar/>
             <VistaCalendario />
         </main>
     );
