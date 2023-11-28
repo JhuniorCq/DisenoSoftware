@@ -29,13 +29,11 @@ export const CorreoClientes = () => {
   });
 
   if (isSuccessFetchCampana) {
-    console.log(dataCampanas);
     const today = new Date();
     let campanasTipoCorreo = dataCampanas.filter((campana) => {
       return campana.tipo_campana === 2;
     });
 
-    console.log(campanasTipoCorreo);
     var campanasTipoCorreoVigentes = campanasTipoCorreo.filter(
       (campanasTipoCorreo) => {
         return new Date(campanasTipoCorreo.fecha_fin) > today;

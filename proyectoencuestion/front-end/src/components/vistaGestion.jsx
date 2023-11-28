@@ -171,13 +171,13 @@ const VistaGestion = () => {
                           {usuario.objetivo}
                         </td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.fecha_creacion}
+                          {usuario.fecha_creacion?.split("T")[0]}
                         </td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.fecha_inicio.toLocaleString()}
+                          {usuario.fecha_inicio.split("T")[0]}
                         </td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.fecha_fin.toLocaleString()}
+                          {usuario.fecha_fin.split("T")[0]}
                         </td>
                       </tr>
                     ))}

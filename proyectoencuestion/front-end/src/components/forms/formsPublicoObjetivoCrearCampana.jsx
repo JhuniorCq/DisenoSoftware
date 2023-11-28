@@ -133,7 +133,7 @@ const FormsPublicoObjetivoCrearCampana = (props) => {
               <select
                 className={styles.customSelect}
                 id="edadDirigida"
-                name="targeredAge"
+                name="tipo"
                 required={tipoCampanaInput !== "3"}
                 onChange={(e) => {
                   if (e.target.value === "personalizada") {
@@ -158,9 +158,9 @@ const FormsPublicoObjetivoCrearCampana = (props) => {
                 name="sexo"
                 required={tipoCampanaInput !== "3"}
               >
-                <option value="masculino">Masculino</option>
-                <option value="femenino">Femenino</option>
-                <option value="ambos">Ambos</option>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+                <option value="Ambos">Ambos</option>
               </select>
             </div>
 

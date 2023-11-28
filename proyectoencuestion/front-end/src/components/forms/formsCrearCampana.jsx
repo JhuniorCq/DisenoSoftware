@@ -57,8 +57,9 @@ const FormCrearCampana = (props) => {
     const notas = mainForm.descripcion;
     const objetivo = mainForm.objetivos;
     const nombreCampana = mainForm.nombre;
-    const descuentoValue = mainForm.descuentoCampana; //nos ayuda a saber si este campo contiene numeros con su respectivo regex
-    const descuento = parseInt(mainForm.descuentoCampana); //nos ayuda a establecer que el descuento no pase de 50% con una condicional
+    const descuentoValue = mainForm.promocion; //nos ayuda a saber si este campo contiene numeros con su respectivo regex
+    const descuento = parseInt(mainForm.promocion); //nos ayuda a establecer que el descuento no pase de 50% con una condicional
+    const tipoCampanaEntero = parseInt(mainForm.tipo_campana);
 
     if (fechaInicio < today) {
       toast.warn("La fecha de inicio debe ser igual o posterior a hoy", {
@@ -172,38 +173,37 @@ const FormCrearCampana = (props) => {
       return;
     }
 
-    // if (!regexNumeric.test(descuentoValue)) {
-    //   toast.warn("El descuento debe contener solo números", {
-    //     position: "bottom-right",
-    //     autoClose: 3000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "light",
-    //   });
-    //   return;
-    // }
+    if (!regexNumeric.test(descuentoValue)) {
+      toast.warn("El descuento debe contener solo números", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
 
-    // if (isNaN(descuento) || descuento < 0 || descuento > 50) {
-    //   toast.warn("El descuento debe ser un número entre 0 y 50%", {
-    //     position: "bottom-right",
-    //     autoClose: 3000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "light",
-    //   });
-    //   return;
-    // }
+    if (isNaN(descuento) || descuento < 0 || descuento > 50) {
+      toast.warn("El descuento debe ser un número entre 0 y 50%", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
 
-    // const formCompleto = {
-    //   ...mainForm,
-    //   ...publicoObjetivoData,
-    // };
+    const formCompleto = {
+      ...mainForm,
+    };
 
     // agregarCampana.mutate({
     //   ...mainForm,
@@ -215,7 +215,7 @@ const FormCrearCampana = (props) => {
     // });
 
     axios
-      .post("https://modulo-marketing.onrender.com/crearCampana", mainForm)
+      .post("https://modulo-marketing.onrender.com/crearCampana", formCompleto)
       .then((response) => {
         console.log(response.data);
       })
@@ -349,7 +349,7 @@ const FormCrearCampana = (props) => {
               type="text"
               id={descuentoCampanaID}
               value={descuentoInput}
-              // name="descuentoCampana"
+              name="promocion"
               placeholder="Descuento para los usuarios..."
               onChange={(e) => setDescuentoInput(e.target.value)}
             />
