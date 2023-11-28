@@ -51,7 +51,7 @@ class CampanaService {
         //EN EL FRONT EL PRESIONAR EL BOTÓN "PÚBLICO OBJETIVO" Y EL COMPLETAR LOS DATOS DE LA SEGMENTACIÓN  DEBEN SER OBLIGATORIOS, DE LO CONTRARIO SI SE CREA UNA CAMPAÑA SE USARÁN LOS DATOS DE LA ULTIMA SEGMENTACION GUARDADA
 
         
-        
+        //CORREGIR LO DE EN<O -> YA NO HAY QUE TRAER LA ULTIMA SEGMENTACION -> TENGO QUE TRAER AHORA EL segmentacion_id NI BIEN SE CREE LA SEGMENTACIÓN
         //Uso un objeto de SegmentacionRepository para acceder al método de mostrarSegmentacion que me dará la info de la ultima segmentacion guardada
         const ultimaSegmentacion = await segmentacionRepository.mostrarUltimaSegmentacion();
         const {segmentacion_id, minm: edadMinima, maxm: edadMaxima, fecha_inicio: rangoFechaInicio, fecha_fin: rangoFechaFin, distrito, departamento, sexo} = ultimaSegmentacion;

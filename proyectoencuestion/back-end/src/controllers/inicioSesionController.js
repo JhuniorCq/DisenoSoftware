@@ -19,11 +19,12 @@ const iniciarSesion = async (req, res, next) => {
 
         if(id_rol === 1) {// 1 -> callcenter
             // Redirigir a la vista de Marketing en el Front
-            res.json({ message: 'Inicio de sesión exitoso - CallCenter'});
+            res.json({ //PREGUNTAR A CRISBEL QUE DATO QUIERE RECIBIR PARA QUE EL USUARIO PASE A LAS DEMAS VISTAS SI INGRESO LOS DATOS CORRECTOS
+                mensaje: 'Inicio de sesión exitoso - CallCenter'});
         }
         else if(id_rol === 2) {// 2 -> marketing
             // Redirigir a la vista de CallCenter en el Front
-            res.json({ message: 'Inicio de sesión exitoso - Marketing'});
+            res.json({ mensaje: 'Inicio de sesión exitoso - Marketing'});
         }
 
     } catch(error) {
