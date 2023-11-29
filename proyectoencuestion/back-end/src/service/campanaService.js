@@ -37,7 +37,8 @@ class CampanaService {
         if (campanaData.tipo_campana == tipo_campanaID || campanaData.tipo_campana == tipo_campanaID) {//Llamada = 1 y Correo = 2
             // Aquí deberías verificar que el campo de descuento esté presente y no sea nulo
             if (campanaData.promocion == null) {
-                throw new Error('El campo de descuento es obligatorio para este tipo de campaña');
+                throw console.error('El campo de descuento es obligatorio para este tipo de campaña', error.message)
+                // throw new Error('El campo de descuento es obligatorio para este tipo de campaña');
             }
             // Llamada a crearCampanaRepository para meter datos en la BD
             const promocionData = await campanaRepository.crearPromocion(campanaData);//Asigno a promocionData la info guardada en la tabla promocion
@@ -51,29 +52,27 @@ class CampanaService {
         //EN EL FRONT EL PRESIONAR EL BOTÓN "PÚBLICO OBJETIVO" Y EL COMPLETAR LOS DATOS DE LA SEGMENTACIÓN  DEBEN SER OBLIGATORIOS, DE LO CONTRARIO SI SE CREA UNA CAMPAÑA SE USARÁN LOS DATOS DE LA ULTIMA SEGMENTACION GUARDADA
 
         
-        //CORREGIR LO DE EN<O -> YA NO HAY QUE TRAER LA ULTIMA SEGMENTACION -> TENGO QUE TRAER AHORA EL segmentacion_id NI BIEN SE CREE LA SEGMENTACIÓN
-        //Uso un objeto de SegmentacionRepository para acceder al método de mostrarSegmentacion que me dará la info de la ultima segmentacion guardada
-        const ultimaSegmentacion = await segmentacionRepository.mostrarUltimaSegmentacion();
-        const {segmentacion_id, minm: edadMinima, maxm: edadMaxima, fecha_inicio: rangoFechaInicio, fecha_fin: rangoFechaFin, distrito, departamento, sexo} = ultimaSegmentacion;
+        //CHAPO A segmentacion_id DE campanaData (INFO QUE VIENE DEL FRONT)
+        const {segmentacion_id} = campanaData;
+        const ultimaSegmentacion = await segmentacionRepository.buscarSegmentacionPorID(segmentacion_id);//CAMBIAR POR BUSCAR SEGMENTACION POR ID / PASAR COMO PARAMETRO A segmentacion_id QUE VIENE DE campanaData que manda ENZO
+        const {minm: edadMinima, maxm: edadMaxima, fecha_inicio: rangoFechaInicio, fecha_fin: rangoFechaFin, distrito, departamento, sexo} = ultimaSegmentacion;
         
         // Llamada a crearCampanaRepository para meter datos en la BD -> INGRESAR LOS DEMÁS DATOS DE LA CAMPAÑA A LA BD
-        const result = await campanaRepository.crearCampana(campanaData, promocion_id, segmentacion_id);//Paso como parametro a campanaData y aparte a promocion_id
+        const result = await campanaRepository.crearCampana(campanaData, promocion_id, segmentacion_id);//Paso como parametro a campanaData y aparte a promocion_id y a segmentacion_id
 
         const campana_id = result.campana_id;
 
         //REALIZAR LA FILTRACIÓN DE CLIENTES
-        const clientesFiltrados = clienteService.filtrarClientes(datosTodosClientes, edadMinima, edadMaxima, rangoFechaInicio, rangoFechaFin, distrito, departamento, sexo, tipo_campanaID);
+        const clientesFiltrados = clienteService.filtrarClientes(datosTodosClientes, edadMinima, edadMaxima, rangoFechaInicio, rangoFechaFin, distrito, departamento, sexo, tipo_campanaID);//ME TRAE TODOS LOS DATOS DE LOS CLIENTES FILTRADOS
 
-        const dniClientesFiltrados = clienteService.extraerDniClientesFiltrados(clientesFiltrados);
+        const dniClientesFiltrados = clienteService.extraerDniClientesFiltrados(clientesFiltrados);//ME TRAE SOLO A LOS DNI DE LOS CLIENTES FILTRADOS
 
-        //Ese datosTablaParticipante es un  String que dice que se guardo correctamente
-        const datosTablaParticipante = await clienteRepository.guardarCamposParticipante(campana_id, dniClientesFiltrados);
+        //ESTE ES UN MENSAJE QUE DICE QUE SE GUARDARON LOS DATOS EN LA TABLA PARTICIPANT
+        const mensajeGuardarParticipantes = await clienteRepository.guardarCamposParticipante(campana_id, dniClientesFiltrados);//GUARDA campana_id Y cliente_id -> EL campana_id SE GUARDA EN CADA cliente_id
 
-        
-
-        // console.log(clientesFiltrados);
+        console.log(clientesFiltrados);//IMPRIMO TODOS LOS DATOS DE LOS CLIENTES FILTRADOS
         // console.log(dniClientesFiltrados);
-        // console.log(datosTablaParticipante);
+        console.log(mensajeGuardarParticipantes);//IMPRIME EL MENSAJE INDICADO QUE SE ALMACENARON LOS DATOS DE LOS PARTICIPANTES EN LA TABLA participante
 
         return result;
     }

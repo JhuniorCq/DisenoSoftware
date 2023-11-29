@@ -35,24 +35,23 @@ const mostrarCorreos = async (req, res, next) => {
 
 
 //ESTO YA NO SE USARÁ CREO, SE ENVIARÁN LOS CORREOS DESDE -> CREARCORREO
-const enviarCorreos = async (req, res, next) => {
-    try {
-        const enviarCorreosCommand = new EnviarCorreosCommand(correoService);
+// const enviarCorreos = async (req, res, next) => {
+//     try {
+//         const enviarCorreosCommand = new EnviarCorreosCommand(correoService);
 
-        const correoData = req.body;
+//         const correoData = req.body;
 
-        const result = await enviarCorreosCommand.execute(correoData);
+//         const result = await enviarCorreosCommand.execute(correoData);
 
-        console.log(result);
-        res.json(result);
+//         console.log(result);
+//         res.json(result);
 
-    } catch(error) {
-        next(error);
-    }
-}
+//     } catch(error) {
+//         next(error);
+//     }
+// }
 
 module.exports = {
     crearCorreo: crearCorreo,
-    mostrarCorreos: mostrarCorreos,
-    enviarCorreos: enviarCorreos
+    mostrarCorreos: mostrarCorreos
 }

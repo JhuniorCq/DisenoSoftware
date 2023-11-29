@@ -3,7 +3,7 @@ const router = Router();
 
 const {iniciarSesion} = require('../controllers/inicioSesionController');
 const {crearCampana, mostrarCampanas, eliminarCampana, mostrarTipoCampana, mostrarCampanasEsteMes, mostrarCampanasRecientes, mostrarCampanasCorreo, mostrarCampanasLlamada, mostrarCampanasSorteo, buscarCampanaPorID, infoCampana} = require('../controllers/campanaController');
-const {crearCorreo, mostrarCorreos, enviarCorreos} = require('../controllers/correoController');
+const {crearCorreo, mostrarCorreos/*, enviarCorreos*/} = require('../controllers/correoController');
 const {crearLlamada, mostrarLlamadas} = require('../controllers/llamadaController');
 const {crearSegmentacion/*, mostrarSegmentacion*/} = require('../controllers/segmentacionController');
 const {buscarPromocionPorID} = require('../controllers/promocionController');
@@ -29,7 +29,7 @@ router.get('/mostrarTipoCampana/:id', mostrarTipoCampana);
 //RUTAS PARA EL APARTADO DE CORREOS
 router.post('/crearCorreo', crearCorreo);
 router.get('/mostrarCorreos', mostrarCorreos);
-router.get('/enviarCorreos', enviarCorreos);//Ruta nueva
+// router.get('/enviarCorreos', enviarCorreos);//Ruta nueva
 
 //RUTAS PARA EL APARTADO DE LLAMADAS
 router.post('/crearLlamada', crearLlamada);

@@ -39,13 +39,13 @@ class CorreoRepository {
         }
     }
 
-    async enviarCorreos() {
-        try {
+    // async enviarCorreos() {
+    //     try {
             
-        } catch(error) {
-            throw console.error('No se ha podido enviar los correos', error.message);
-        }
-    }
+    //     } catch(error) {
+    //         throw console.error('No se ha podido enviar los correos', error.message);
+    //     }
+    // }
     
     async mostrarCorreos() {
         try{
