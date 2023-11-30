@@ -215,20 +215,29 @@ const FormCrearCampana = (props) => {
     // });
 
     axios
-      .post("https://modulo-marketing.onrender.com/crearCampana", formCompleto)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error("Error al enviar datos:", error);
-      });
-    axios
       .post(
         "https://modulo-marketing.onrender.com/crearSegmentacion",
         publicoObjetivoData
       )
       .then((response) => {
         console.log(response.data);
+
+        const formConSegmentacionID = {
+          ...formCompleto,
+          segmentacion_id: response.data.segmentacion_id,
+        };
+
+        axios
+          .post(
+            "https://modulo-marketing.onrender.com/crearCampana",
+            formConSegmentacionID
+          )
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.error("Error al enviar datos:", error);
+          });
       })
       .catch((error) => {
         console.error("Error al enviar datos:", error);

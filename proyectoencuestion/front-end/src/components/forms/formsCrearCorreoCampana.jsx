@@ -64,7 +64,7 @@ const FormsCrearCorreoCampana = (props) => {
           type="text"
           required
           placeholder="Título..."
-          name="titleCorreo"
+          name="titulo"
           onChange={handleTituloChange}
         />
         {/* {errorCorreo && <p className={styles.error}>{errorCorreo}</p>} */}
@@ -76,7 +76,7 @@ const FormsCrearCorreoCampana = (props) => {
           required
           minLength={1}
           placeholder="Asunto aquí..."
-          name="affair"
+          name="asunto"
           onChange={handleChangeAsuntoCorreo}
         />
       </div>
@@ -87,7 +87,7 @@ const FormsCrearCorreoCampana = (props) => {
           required
           minLength={1}
           cols={10}
-          name="message"
+          name="mensaje"
           onChange={handleChangeMensajeCorreo}
         />
       </div>

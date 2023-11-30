@@ -5,7 +5,6 @@ export const useFormCorreo = create((set) => ({
     methodAddDataFormCorreo: (data) => {
         set((state) => {
             const newData = {
-                ...state.dataCorreoForm,
                 ...data
             };
             return {
