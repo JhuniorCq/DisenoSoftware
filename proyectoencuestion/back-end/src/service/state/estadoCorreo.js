@@ -1,28 +1,46 @@
 const transporter = require('../../nodemailer'); // Importar el transporter configurado
+const {enviarCorreosNodemailer} = require('../../enviarCorreosNodemailer')
 const { parseISO, add, isPast, parse } = require('date-fns');
 
 //Estado Programado
 class EstadoProgramado {
     async enviarCorreo(instanciaCorreo/*, correoCliente*/) {
 
-        const fecha_actual = new Date();
+        const fecha_actual_Date = new Date();
+
+        const fecha_actual = fecha_actual_Date.toISOString().split('T', 1)[0];;
+        const hora_actual = fecha_actual_Date.toLocaleTimeString('es-ES');
+        const fecha_envio = instanciaCorreo.fecha_envio.toISOString().split('T', 1)[0];
+        const hora_envio = instanciaCorreo.hora;
+
+        console.log(`Fecha actual: ${fecha_actual}`);
+        console.log(`Fecha envío: ${fecha_envio}`);
+        console.log(`Hora actual: ${hora_actual}`);
+        console.log(`Hora envío ${hora_envio}`);
 
         //ENVIA CORREOS COMPARANDO LA FECHA DE ENVIO DESDE LA HORA 05:00 :,V , Y ESO LO COMPARA CON LA FECHA ACTUAL
         //POR ESO SI ENVIO LA FECHA DE HOY (PORQUE NO ESTOY USANDO LA HORA) ESO SE COMPARA CON LA FECHA ACTUAL QUE SI TIENE HORA
-        if(instanciaCorreo.fecha_envio <= fecha_actual) {
+        if(fecha_envio < fecha_actual) {
 
-            //ACÁ DEBO USAR EL nodemailer PARA ENVIAR LOS CORREOS
-            const mailOptions = {
-                from: 'holiver.ccora.quispe@gmail.com',
-                to: instanciaCorreo.correo, 
-                subject: instanciaCorreo.asunto,
-                text: instanciaCorreo.mensaje
-            };
-
-            await transporter.sendMail(mailOptions);
+            //FUNCIÓN QUE USAR NODEMAILER PARA ENVIAR CORREOS
+            enviarCorreosNodemailer(instanciaCorreo.correo, instanciaCorreo.asunto, instanciaCorreo.mensaje);
 
             console.log(`Correo programado enviado a ${instanciaCorreo.correo}`);
+
             instanciaCorreo.estadoCorreoObjeto = new EstadoEnviado();
+
+        } else if(fecha_envio == fecha_actual) {
+            if(hora_envio <= hora_actual) {
+                
+                enviarCorreosNodemailer(instanciaCorreo.correo, instanciaCorreo.asunto, instanciaCorreo.mensaje);
+    
+                console.log(`Correo programado enviado a ${instanciaCorreo.correo} :v`);
+
+                instanciaCorreo.estadoCorreoObjeto = new EstadoEnviado();
+
+            } else {
+                console.log(`El correo programado para ${instanciaCorreo.correo} debe ser enviado hoy, pero no a esta hora`);
+            }
         } else {
             console.log(`El correo programado para ${instanciaCorreo.correo} no debe ser enviado hoy`);
 

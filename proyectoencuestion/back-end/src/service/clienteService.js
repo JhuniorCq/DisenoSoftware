@@ -66,7 +66,7 @@ class ClienteService {
 
                 if(tipo_campanaID == 1 || tipo_campanaID == 2) {//SE MEUSTRAN A SEXO M Y F CUANDO SEGMENTO SOLO A M
                     
-                    const cumpleCondicionSexo = sexo === 'Ambos' || cliente.sexo === sexo;
+                    const cumpleCondicionSexo = sexo === 'A' || cliente.sexo === sexo;
                     
                     // console.log('Realizando la segmentación en filstrarClientes en clienteService');
                     if(edadMinima <= this.calcularEdadCliente(this.formatearFecha(cliente.fechanac)) <= edadMaxima && cliente.distrito === distrito && cliente.departamento === departamento && cumpleCondicionSexo) {
