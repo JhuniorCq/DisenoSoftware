@@ -43,12 +43,25 @@ class ClienteRepository {
     async traerDNIClientesParaCorreos(campana_id) {
         try {
 
-            const datosClientesParaCorreos = await pool.query('SELECT campana_id, cliente_id, estado FROM participante WHERE campana_id = $1', [campana_id]);
+            const dni_y_EstadoClientes = await pool.query('SELECT campana_id, cliente_id, estado FROM participante WHERE campana_id = $1', [campana_id]);
 
-            return datosClientesParaCorreos.rows;
+            return dni_y_EstadoClientes.rows;
 
         } catch(error) {
             throw console.error('No se pudo traer los clientes para enviar los correos', error.message);
+        }
+    }
+
+    async obtenerClientesSegmentados(campana_id) {
+        try {
+            
+            // Ejecutar la consulta con el valor de campana_id como parámetro
+            const dniClientes = await pool.query('SELECT campana_id, cliente_id FROM participante WHERE campana_id = $1', [campana_id]);
+            console.log(dniClientes.rows);
+            // El resultado contiene las filas que coinciden con la condición
+            return dniClientes.rows;
+        } catch(error) {
+            throw console.error('Error en el métod buscarCampanaPorID en clienteService.js', error.message)
         }
     }
 }

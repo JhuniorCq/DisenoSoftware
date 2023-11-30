@@ -14,22 +14,23 @@ class CorreoService {
             
             const {campana_id} = datosDelCorreo;
 
-            const datosClientesParaCorreos = await clienteRepository.traerDNIClientesParaCorreos(campana_id); //TRAE UN ARRAY DE OBJETOS DE CLIENTES (CADA CLIENTE TRAE campana_id, cliente_id, estado)
+            const dni_y_EstadoClientes = await clienteRepository.traerDNIClientesParaCorreos(campana_id); //TRAE UN ARRAY DE OBJETOS DE CLIENTES (CADA CLIENTE TRAE campana_id, cliente_id, estado) DE LA CAMPAÑA RESPECTIVA
 
-            console.log(datosClientesParaCorreos);//iMPRIME campana_id, cliente_id y estado DE LOS CLIENTES QUE TENGAN EL VALOR DE campana_id
+            console.log(dni_y_EstadoClientes);//iMPRIME campana_id, cliente_id y estado DE LOS CLIENTES QUE TENGAN EL VALOR DE campana_id
 
-            // const {cliente_id} = datosClientesParaCorreos;
+            // const {cliente_id} = dni_y_EstadoClientes;
 
-            for(const datosCliente of datosClientesParaCorreos) {//CON ESTE BUCLE SE ENVIARÁ EL CORREO A CADA UNO DE LOS CLIENTES
+            for(const datosCliente of dni_y_EstadoClientes) {//CON ESTE BUCLE SE ENVIARÁ EL CORREO A CADA UNO DE LOS CLIENTES
 
                 const cliente_id = datosCliente.cliente_id;
+                // ME TRAR UN CLIENTE CUANDO PASO SU DNI
                 const responseCliente = await axios.get(`https://clientemodulocrm.onrender.com/clientes/buscarPorDNI/${cliente_id}`);//Obtengo correo, nombre, apellido, pero de un solo cliente
-                const datosUnCliente = responseCliente.data;// ME TRAR UN CLIENTE CUANDO PASO SU DNI
+                const datosUnCliente = responseCliente.data;
                 console.log(datosUnCliente);//HASTA ACÁ YA TENGO LOS DATOS DE CADA UNO DE LOS CLIENTES PARA ENVIARLES SUS CORREOS
 
-                // const result = new Correo(datosDelCorreo, datosClientesParaCorreos);
+                // const result = new Correo(datosDelCorreo, dni_y_EstadoClientes);
                 // result.enviar(datosUnCliente);//Estoy mandando los datos de un cliente luego de buscarlo por su DNI en la ruta de Joaquin
-                const result = new Correo(datosDelCorreo, datosClientesParaCorreos, datosUnCliente);
+                const result = new Correo(datosDelCorreo, dni_y_EstadoClientes, datosUnCliente);
                 
                 result.enviar();
             }

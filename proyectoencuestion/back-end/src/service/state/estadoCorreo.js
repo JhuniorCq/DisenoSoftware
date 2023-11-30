@@ -3,7 +3,7 @@ const { parseISO, add, isPast, parse } = require('date-fns');
 
 //Estado Programado
 class EstadoProgramado {
-    async enviarCorreo(instanciaCorre/*, correoCliente*/) {
+    async enviarCorreo(instanciaCorreo/*, correoCliente*/) {
 
         const fecha_actual = new Date();
 
@@ -14,14 +14,14 @@ class EstadoProgramado {
             //ACÁ DEBO USAR EL nodemailer PARA ENVIAR LOS CORREOS
             const mailOptions = {
                 from: 'holiver.ccora.quispe@gmail.com',
-                to: instanciaCorreo.correo,
+                to: instanciaCorreo.correo, 
                 subject: instanciaCorreo.asunto,
                 text: instanciaCorreo.mensaje
             };
 
             await transporter.sendMail(mailOptions);
 
-            // console.log(`Correo programado enviado a ${instanciaCorreo.correo}`);
+            console.log(`Correo programado enviado a ${instanciaCorreo.correo}`);
             instanciaCorreo.estadoCorreoObjeto = new EstadoEnviado();
         } else {
             console.log(`El correo programado para ${instanciaCorreo.correo} no debe ser enviado hoy`);
