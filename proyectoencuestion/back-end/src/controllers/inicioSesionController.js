@@ -19,11 +19,11 @@ const iniciarSesion = async (req, res, next) => {
 
         if(id_rol === 1) {// 1 -> callcenter
             // Redirigir a la vista de Marketing en el Front
-            res.json({ message: 'Inicio de sesión exitoso - CallCenter'});
+            res.json(iniciarSesionData);//Le envio el dni, contrasena y id_rol que TRAIGO DE LA BD -> SE ENVIAN SOLO SI LOS DATOS CUMPLEN
         }
         else if(id_rol === 2) {// 2 -> marketing
             // Redirigir a la vista de CallCenter en el Front
-            res.json({ message: 'Inicio de sesión exitoso - Marketing'});
+            res.json(iniciarSesionData);
         }
 
     } catch(error) {

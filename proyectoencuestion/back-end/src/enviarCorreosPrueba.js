@@ -1,4 +1,4 @@
-const transporter = require('./nodemailer'); // Importa el transporter configurado
+const transporter = require('./nodemailer'); // Importar el transporter configurado
 
 const enviarCorreos = async (segmentoDeClientes, asunto, mensaje) => {//Estos 3 parámetros vienen de cuando estoy crenado el correo
     try {
@@ -31,7 +31,7 @@ const enviarCorreos = async (segmentoDeClientes, asunto, mensaje) => {//Estos 3 
         });
 
     } catch (error) {
-        console.error('Error al enviar correos:', error);
+        console.error('Error al enviar correos:', error.message);
         throw error;
     }
 };

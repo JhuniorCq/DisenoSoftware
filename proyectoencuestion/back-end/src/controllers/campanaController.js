@@ -1,6 +1,4 @@
 const {CampanaService} = require('../service/campanaService');
-// const {mostrarSegmentacion} = require('../controllers/segmentacionController');
-// const {iniciarSesion} = require('../controllers/inicioSesionController');
 const {CrearCampanaCommand, MostrarCampanasCommand, EliminarCampanaCommand, MostrarTipoCampanaCommand, MostrarCampanasEsteMesCommand, MostrarCampanasRecientesCommand, MostrarCampanasCorreoCommand, MostrarCampanasLlamadaCommand, MostrarCampanasSorteoCommand, BuscarCampanaPorIDCommand, InfoCampanaCommand} = require('../command/campanaCommand');
 const campanaService = new CampanaService();
 const axios = require('axios');
@@ -11,17 +9,15 @@ const crearCampana = async (req, res, next) => {
 
         const responseClientes = await axios.get('https://clientemodulocrm.onrender.com/clientes');
         const datosTodosClientes = responseClientes.data;// ME TRAE A TODOS LOS CLIENTES
-        const dni = "123456789";
-        const responseCliente = await axios.get(`https://clientemodulocrm.onrender.com/clientes/buscarPorDNI/${dni}`);
-        const datosUnCliente = responseCliente.data;// ME TRAR UN CLIENTE CUANDO PASO SU DNI
+        // const dni = "123456789";
+        // const responseCliente = await axios.get(`https://clientemodulocrm.onrender.com/clientes/buscarPorDNI/${dni}`);
+        // const datosUnCliente = responseCliente.data;// ME TRAR UN CLIENTE CUANDO PASO SU DNI
 
         const crearCampanaCommand = new CrearCampanaCommand(campanaService);
         
         const campanaData = req.body;
 
-        const result = await crearCampanaCommand.execute(campanaData, datosTodosClientes, datosUnCliente);
-
-        // console.log(datosUnCliente);
+        const result = await crearCampanaCommand.execute(campanaData, datosTodosClientes/*, datosUnCliente*/);
 
         res.json(result);
 

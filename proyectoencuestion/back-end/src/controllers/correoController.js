@@ -4,6 +4,7 @@ const correoService = new CorreoService();
 
 const crearCorreo = async (req, res, next) => {
     try{
+
         const crearCorreoCommand = new CrearCorreoCommand(correoService);
 
         const correoData = req.body;
@@ -32,24 +33,25 @@ const mostrarCorreos = async (req, res, next) => {
     }
 }
 
-const enviarCorreos = async (req, res, next) => {
-    try {
-        const enviarCorreosCommand = new EnviarCorreosCommand(correoService);
 
-        const correoData = req.body;
+//ESTO YA NO SE USARÁ CREO, SE ENVIARÁN LOS CORREOS DESDE -> CREARCORREO
+// const enviarCorreos = async (req, res, next) => {
+//     try {
+//         const enviarCorreosCommand = new EnviarCorreosCommand(correoService);
 
-        const result = await enviarCorreosCommand.execute(correoData);
+//         const correoData = req.body;
 
-        console.log(result);
-        res.json(result);
+//         const result = await enviarCorreosCommand.execute(correoData);
 
-    } catch(error) {
-        next(error);
-    }
-}
+//         console.log(result);
+//         res.json(result);
+
+//     } catch(error) {
+//         next(error);
+//     }
+// }
 
 module.exports = {
     crearCorreo: crearCorreo,
-    mostrarCorreos: mostrarCorreos,
-    enviarCorreos: enviarCorreos
+    mostrarCorreos: mostrarCorreos
 }

@@ -39,6 +39,18 @@ class ClienteRepository {
             throw console.error('No se ha podido realizar la búsqueda del cliente por su DNI.', error.message);
         }
     }
+
+    async traerDNIClientesParaCorreos(campana_id) {
+        try {
+
+            const datosClientesParaCorreos = await pool.query('SELECT campana_id, cliente_id, estado FROM participante WHERE campana_id = $1', [campana_id]);
+
+            return datosClientesParaCorreos.rows;
+
+        } catch(error) {
+            throw console.error('No se pudo traer los clientes para enviar los correos', error.message);
+        }
+    }
 }
 
 module.exports = {

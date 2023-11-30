@@ -1,25 +1,43 @@
+const axios = require('axios');
 const {CorreoRepository} = require('../repository/correoRepository');
+const {ClienteRepository} = require('../repository/clienteRepository');
 const {Correo} = require('../service/state/estadoCorreo');
-const correoRepository = new CorreoRepository;
+const correoRepository = new CorreoRepository();
+const clienteRepository = new ClienteRepository();
 
 class CorreoService {
     async crearCorreo(correoData){
-        try{
-            //Validación de Datos
-
-
-            
-            //Lógica de Negocio
-            const {correo, mensaje, fecha_envio} = correoData;
-            const nuevoCorreo = new Correo(correo, mensaje, fecha_envio);
-            nuevoCorreo.enviar();
+        try{//PARA ESTE ENTONCES EN EL FRONT SOLO SE DEBEN MOSTRAR CAMPAÑAS DEL TIPO CORREO
 
             //Llamada a correoRepository para meter datos en la BD
-            const result = await correoRepository.crearCorreo(correoData);
-            return result;
+            const datosDelCorreo = await correoRepository.crearCorreo(correoData); //correData contiene -> campana_id, mensaje, fecha_envio, hora, titulo, asunto
+            
+            const {campana_id} = datosDelCorreo;
+
+            const datosClientesParaCorreos = await clienteRepository.traerDNIClientesParaCorreos(campana_id); //TRAE UN ARRAY DE OBJETOS DE CLIENTES (CADA CLIENTE TRAE campana_id, cliente_id, estado)
+
+            console.log(datosClientesParaCorreos);//iMPRIME campana_id, cliente_id y estado DE LOS CLIENTES QUE TENGAN EL VALOR DE campana_id
+
+            // const {cliente_id} = datosClientesParaCorreos;
+
+            for(const datosCliente of datosClientesParaCorreos) {//CON ESTE BUCLE SE ENVIARÁ EL CORREO A CADA UNO DE LOS CLIENTES
+
+                const cliente_id = datosCliente.cliente_id;
+                const responseCliente = await axios.get(`https://clientemodulocrm.onrender.com/clientes/buscarPorDNI/${cliente_id}`);//Obtengo correo, nombre, apellido, pero de un solo cliente
+                const datosUnCliente = responseCliente.data;// ME TRAR UN CLIENTE CUANDO PASO SU DNI
+                console.log(datosUnCliente);//HASTA ACÁ YA TENGO LOS DATOS DE CADA UNO DE LOS CLIENTES PARA ENVIARLES SUS CORREOS
+
+                // const result = new Correo(datosDelCorreo, datosClientesParaCorreos);
+                // result.enviar(datosUnCliente);//Estoy mandando los datos de un cliente luego de buscarlo por su DNI en la ruta de Joaquin
+                const result = new Correo(datosDelCorreo, datosClientesParaCorreos, datosUnCliente);
+                
+                result.enviar();
+            }
+
+            return datosDelCorreo;
 
         } catch(error){
-            throw error;
+            throw console.error('Hay un error en correoService en el método crearCorreo', error.message);
         }
     }
 
@@ -39,20 +57,20 @@ class CorreoService {
     }
 
     //Esto ya no será necesario creo
-    async enviarCorreos(correoData) {
-        try {
-            //Validación de Datos
+    // async enviarCorreos(correoData) {
+    //     try {
+    //         //Validación de Datos
 
-            //Lógica de Negocio
+    //         //Lógica de Negocio
 
-            //Llamada a correoRepository para meter datos en la BD
-            const result = await correoRepository.enviarCorreos(correoData);
-            return result;
+    //         //Llamada a correoRepository para meter datos en la BD
+    //         const result = await correoRepository.enviarCorreos(correoData);
+    //         return result;
 
-        } catch(error) {
-            throw error;
-        }
-    }
+    //     } catch(error) {
+    //         throw error;
+    //     }
+    // }
 }
 
 module.exports = {

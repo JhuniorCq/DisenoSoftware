@@ -15,10 +15,24 @@ class SegmentacionRepository {
                 sexo
             ]);
 
+            console.log(result.rows[0]);
+
             return result.rows[0];
 
         } catch(error) {
             throw error;
+        }
+    }
+
+
+    async buscarSegmentacionPorID(segmentacion_id) {
+        try {
+            // const query = 'SELECT * FROM criterios_segmentacion WHERE segmentacion_id = $1';
+            const result = await pool.query('SELECT * FROM criterios_segmentacion WHERE segmentacion_id = $1', [segmentacion_id]);
+            
+            return result.rows[0];
+        } catch(error) {
+            throw console.error('Error al buscar la segmentación con segmentación_id', error.message)
         }
     }
 
