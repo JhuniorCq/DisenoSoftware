@@ -1,10 +1,10 @@
 const transporter = require('../../nodemailer'); // Importar el transporter configurado
 const {enviarCorreosNodemailer} = require('../../enviarCorreosNodemailer')
-const { parseISO, add, isPast, parse } = require('date-fns');
+const { differenceInDays, differenceInMinutes, differenceInSeconds } = require('date-fns');
 
 //Estado Programado
 class EstadoProgramado {
-    async enviarCorreo(instanciaCorreo/*, correoCliente*/) {
+    async enviarCorreo(instanciaCorreo) {
 
         const fecha_actual_Date = new Date();
 
@@ -13,49 +13,49 @@ class EstadoProgramado {
         const fecha_envio = instanciaCorreo.fecha_envio.toISOString().split('T', 1)[0];
         const hora_envio = instanciaCorreo.hora;
 
+        const calcularDiferenciaHora = () => {
+            const [horaE, minutoE, segundoE] = hora_envio.split(":").map(Number);
+            const [horaA, minutoA, segundoA] = hora_actual.split(":").map(Number);
+
+            const diferenciaHoras = Math.abs(horaE - horaA);//PONERLO EN MILISEGUNDOS
+            const diferenciaMinutos = Math.abs(minutoE - minutoA);
+            const diferenciaSegundos = Math.abs(segundoE - segundoA);
+
+            console.log(`Diferencia de Horas: ${diferenciaHoras}`);
+            console.log(`Diferencia de Minutos: ${diferenciaMinutos}`);
+            console.log(`Diferencia de Segundos: ${diferenciaSegundos}`);
+        }
+
         console.log(`Fecha actual: ${fecha_actual}`);
         console.log(`Fecha envío: ${fecha_envio}`);
         console.log(`Hora actual: ${hora_actual}`);
         console.log(`Hora envío ${hora_envio}`);
+        
+        const enviarCorreoNodemailer = () => {
+            try {
 
-        //ENVIA CORREOS COMPARANDO LA FECHA DE ENVIO DESDE LA HORA 05:00 :,V , Y ESO LO COMPARA CON LA FECHA ACTUAL
-        //POR ESO SI ENVIO LA FECHA DE HOY (PORQUE NO ESTOY USANDO LA HORA) ESO SE COMPARA CON LA FECHA ACTUAL QUE SI TIENE HORA
-        if(fecha_envio < fecha_actual) {
-
-            //FUNCIÓN QUE USAR NODEMAILER PARA ENVIAR CORREOS
-            enviarCorreosNodemailer(instanciaCorreo.correo, instanciaCorreo.asunto, instanciaCorreo.mensaje);
-
-            console.log(`Correo programado enviado a ${instanciaCorreo.correo}`);
-
-            instanciaCorreo.estadoCorreoObjeto = new EstadoEnviado();
-
-        } else if(fecha_envio == fecha_actual) {
-            if(hora_envio <= hora_actual) {
-                
                 enviarCorreosNodemailer(instanciaCorreo.correo, instanciaCorreo.asunto, instanciaCorreo.mensaje);
-    
-                console.log(`Correo programado enviado a ${instanciaCorreo.correo} :v`);
-
+                console.log(`Correo programado enviado a ${instanciaCorreo.correo}`);
                 instanciaCorreo.estadoCorreoObjeto = new EstadoEnviado();
 
+            } catch(error) {
+                throw console.error('Error al enviar correos con Nodemailer', error.message)
+            }
+        };
+
+        if(fecha_envio < fecha_actual) {
+            enviarCorreoNodemailer();
+        } else if(fecha_envio == fecha_actual) {
+            if(hora_envio <= hora_actual) {
+                enviarCorreoNodemailer();
             } else {
+ 
+                calcularDiferenciaHora();
+
                 console.log(`El correo programado para ${instanciaCorreo.correo} debe ser enviado hoy, pero no a esta hora`);
             }
         } else {
             console.log(`El correo programado para ${instanciaCorreo.correo} no debe ser enviado hoy`);
-
-            //ACÁ FALTA HACER QUE SI LA FECHA DE ENVIO AÚN NO LLEGA, PUES QUE SE ENVIE CUANDO LLEGUE LA FECHA DE ENVIO
-
-            //ESTO RECIÉN ESTOY PONIENDOOOOOOOOOOOOOOOOOOOOOOO
-            // Calcular la diferencia en milisegundos hasta el tiempo de envío
-            // const tiempoRestante = instanciaCorreo.fecha_envio - fecha_actual;
-            
-            // // Configurar un temporizador para enviar el correo cuando llegue el momento
-            // setTimeout(async () => {
-            //     await this.enviarCorreo(instanciaCorreo);
-            // }, tiempoRestante);
-
-            //ENVIAR TODO ESTE PATRÓN A CHAT Y DECIRLE QUE QUIERO USAR TAL TAL YQUE ESTA RUTA ES DE TIPO POST     
         }
     }
 }
