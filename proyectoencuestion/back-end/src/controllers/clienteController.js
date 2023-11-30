@@ -26,10 +26,10 @@ const obtenerClientesSegmentados = async (req, res, next) => {
 
         const obtenerClientesSegmentadosCommand = new ObtenerClientesSegmentadosCommand(clienteService);
 
-        const result = await obtenerClientesSegmentadosCommand.execute(campana_id);
+        const datosClientesLlamada = await obtenerClientesSegmentadosCommand.execute(campana_id);
 
         // return result;
-        res.json(result);
+        res.json(datosClientesLlamada);
 
     } catch(error) {
         next(error);

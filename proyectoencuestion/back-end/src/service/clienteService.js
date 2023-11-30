@@ -23,7 +23,7 @@ class ClienteService {
         try {
             const dniClientes = await clienteRepository.obtenerClientesSegmentados(campana_id);
 
-            const datosClientesLlamada = {};
+            const datosClientesLlamada = [];
             //AGREGAR DATOS DEL CLIENTE DE LA RUTA DE JOAQUIN A MI dniClientes, LUEGO AGREGAR EL NUMERO DEL CLIENTE CON LA RUTA DE SERGIO
             for(const datosCliente of dniClientes) {
 
@@ -40,18 +40,17 @@ class ClienteService {
                 if(datosUnCliente2 === null) {
                     datosUnCliente.numero = 'Sin número';
                 } else {
-                    const numero = datosUnCliente2.numero;//SACO EL NÚMERO DE LOS CLIENTES (ESTOS NUMEROS VIENEN DE LA URL DE LINEAS)
+                    const numero = datosUnCliente2[0].numero;//SACO EL NÚMERO DE LOS CLIENTES (ESTOS NUMEROS VIENEN DE LA URL DE LINEAS)
                     datosUnCliente.numero = numero;//METO EL NÚEMERO JUNTO CON LOS DEMÁS DATOS DE LOS CLIENTES
                 }
-                
+
                 console.log(datosUnCliente);
+
+                datosClientesLlamada.push(datosUnCliente);
                 //HASTA ACÁ YA TENGO LOS DATOS DE CADA UNO DE LOS CLIENTES PARA ENVIARLES SUS CORREOS
             }
-            const responseCliente2 = await axios.get(`https://modulo-ventas.onrender.com/getlineas/12345678`);//SI ME BOTA NULL O UN OBJETO VACÍO QUIERE DECIR QUE ESE CLIENTE (DNI) NO TIENE UNA LÍNEA ASOCIADA
-            const datosUnCliente2 = responseCliente2.data;
-            console.log(datosUnCliente2);
 
-            return dniClientes;
+            return datosClientesLlamada;
 
         } catch(error) {
             throw console.error('Error en el métod buscarCampanaPorID en clienteService.js', error.message)
