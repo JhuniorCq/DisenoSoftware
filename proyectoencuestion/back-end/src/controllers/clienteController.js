@@ -3,7 +3,7 @@
 // const {ClienteRepository} = require('../repository/clienteRepository');
 // const clienteRepository = new ClienteRepository();
 const {ClienteService} = require('../service/clienteService');
-const {BuscarClientePorDNICommand} = require('../command//clienteCommand');
+const {BuscarClientePorDNICommand, ObtenerClientesSegmentadosCommand} = require('../command//clienteCommand');
 const clienteService = new ClienteService();
 
 
@@ -20,6 +20,23 @@ const buscarClientePorDNI = async (req, res, next) => {
     }
 }
 
+const obtenerClientesSegmentados = async (req, res, next) => {
+    try {
+        const {campana_id} = req.params;
+
+        const obtenerClientesSegmentadosCommand = new ObtenerClientesSegmentadosCommand(clienteService);
+
+        const datosClientesLlamada = await obtenerClientesSegmentadosCommand.execute(campana_id);
+
+        // return result;
+        res.json(datosClientesLlamada);
+
+    } catch(error) {
+        next(error);
+    }
+}
+
 module.exports = {
-    buscarClientePorDNI: buscarClientePorDNI
+    buscarClientePorDNI: buscarClientePorDNI,
+    obtenerClientesSegmentados: obtenerClientesSegmentados
 }

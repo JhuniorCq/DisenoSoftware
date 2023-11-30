@@ -10,6 +10,17 @@ class BuscarClientePorDNICommand {
     }
 }
 
+class ObtenerClientesSegmentadosCommand {
+    constructor(clienteService) {
+        this.clienteService = clienteService;
+    }
+
+    execute(campana_id) {
+        return this.clienteService.obtenerClientesSegmentados(campana_id);
+    }
+}
+
 module.exports = {
-    BuscarClientePorDNICommand: BuscarClientePorDNICommand
+    BuscarClientePorDNICommand: BuscarClientePorDNICommand,
+    ObtenerClientesSegmentadosCommand: ObtenerClientesSegmentadosCommand
 }

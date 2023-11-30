@@ -1,3 +1,4 @@
+const axios = require('axios');
 const { format } = require('date-fns');
 const {ClienteRepository} = require('../repository/clienteRepository');
 const clienteRepository = new ClienteRepository();
@@ -15,6 +16,44 @@ class ClienteService {
             return result;
         } catch(error) {
             throw console.error(error.message);//Así debo manejar los errores, con esto se ejecuta el mensaje de error solamente de esta función
+        }
+    }
+
+    async obtenerClientesSegmentados(campana_id) {
+        try {
+            const dniClientes = await clienteRepository.obtenerClientesSegmentados(campana_id);
+
+            const datosClientesLlamada = [];
+            //AGREGAR DATOS DEL CLIENTE DE LA RUTA DE JOAQUIN A MI dniClientes, LUEGO AGREGAR EL NUMERO DEL CLIENTE CON LA RUTA DE SERGIO
+            for(const datosCliente of dniClientes) {
+
+
+                const cliente_id = datosCliente.cliente_id;
+                const responseCliente = await axios.get(`https://clientemodulocrm.onrender.com/clientes/buscarPorDNI/${cliente_id}`);
+                const datosUnCliente = responseCliente.data;//Obtengo correo, nombre, apellido, DE UN SOLO CLIENTE -> COMO ES "FOR" OBTENGO DE VARIOS CLIENTES
+                // console.log(datosUnCliente);
+
+                const responseCliente2 = await axios.get(`https://modulo-ventas.onrender.com/getlineas/${cliente_id}`);//SI ME BOTA NULL O UN OBJETO VACÍO QUIERE DECIR QUE ESE CLIENTE (DNI) NO TIENE UNA LÍNEA ASOCIADA
+                const datosUnCliente2 = responseCliente2.data;
+                // console.log(datosUnCliente2);
+
+                if(datosUnCliente2 === null) {
+                    datosUnCliente.numero = 'Sin número';
+                } else {
+                    const numero = datosUnCliente2[0].numero;//SACO EL NÚMERO DE LOS CLIENTES (ESTOS NUMEROS VIENEN DE LA URL DE LINEAS)
+                    datosUnCliente.numero = numero;//METO EL NÚEMERO JUNTO CON LOS DEMÁS DATOS DE LOS CLIENTES
+                }
+
+                console.log(datosUnCliente);
+
+                datosClientesLlamada.push(datosUnCliente);
+                //HASTA ACÁ YA TENGO LOS DATOS DE CADA UNO DE LOS CLIENTES PARA ENVIARLES SUS CORREOS
+            }
+
+            return datosClientesLlamada;
+
+        } catch(error) {
+            throw console.error('Error en el métod buscarCampanaPorID en clienteService.js', error.message)
         }
     }
 

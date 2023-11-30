@@ -11,7 +11,7 @@ const iniciarSesion = async (req, res, next) => {
         //VALIDAR CREDENCIALES
         const result = await iniciarSesionCommand.execute(iniciarSesionData);
 
-        if(!result) {
+        if(result.length === 0) {
             return res.status(401).json({mensaje: 'Credenciales Inválidas'});
         }
 
@@ -19,11 +19,11 @@ const iniciarSesion = async (req, res, next) => {
 
         if(id_rol === 1) {// 1 -> callcenter
             // Redirigir a la vista de Marketing en el Front
-            res.json(iniciarSesionData);//Le envio el dni, contrasena y id_rol que TRAIGO DE LA BD -> SE ENVIAN SOLO SI LOS DATOS CUMPLEN
+            res.json(result);//Le envio el dni, contrasena y id_rol que TRAIGO DE LA BD -> SE ENVIAN SOLO SI LOS DATOS CUMPLEN
         }
         else if(id_rol === 2) {// 2 -> marketing
             // Redirigir a la vista de CallCenter en el Front
-            res.json(iniciarSesionData);
+            res.json(result);
         }
 
     } catch(error) {

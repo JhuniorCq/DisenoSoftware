@@ -8,7 +8,7 @@ const {crearLlamada, mostrarLlamadas} = require('../controllers/llamadaControlle
 const {crearSegmentacion/*, mostrarSegmentacion*/} = require('../controllers/segmentacionController');
 const {buscarPromocionPorID} = require('../controllers/promocionController');
 
-const {buscarClientePorDNI} = require('../controllers/clienteController');
+const {buscarClientePorDNI, obtenerClientesSegmentados} = require('../controllers/clienteController');
 
 //RUTAS PARA EL INICIO DE SESIÓN
 router.post('/iniciarSesion', iniciarSesion);
@@ -39,6 +39,9 @@ router.get('/mostrarLlamadas', mostrarLlamadas);
 router.post('/crearSegmentacion', crearSegmentacion);//YA NO LA USAREMOS CREO
 // router.get('/mostrarSegmentacion', mostrarSegmentacion); //Lo puedo Descomentar si quiero mostrar como un response a los datos de una o todas las Segmentaciones
         
+//RUTA PARA TRAER A CLIENTES SEGMENTADOS DE CUALQUIER CAMPAÑA -> Esto gracias al campana_id
+router.get('/obtenerClientesSegmentados/:campana_id', obtenerClientesSegmentados);//NUEVOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+
 //RUTAS PARA LA PROMOCIÓN (DESCUENTO) -> SERGIO
 router.get('/buscarCampanaPorID/:idCampana', buscarCampanaPorID);
 router.get('/buscarPromocionPorID/:idPromocion', buscarPromocionPorID);
