@@ -1,6 +1,8 @@
 const transporter = require('../../nodemailer'); // Importar el transporter configurado
 const {enviarCorreosNodemailer} = require('../../enviarCorreosNodemailer')
-const { differenceInDays, differenceInMinutes, differenceInSeconds } = require('date-fns');
+const {ClienteRepository} = require('../../repository/clienteRepository')
+const clienteRepository = new ClienteRepository();
+// const { differenceInDays, differenceInMinutes, differenceInSeconds } = require('date-fns');
 
 //Estado Programado
 class EstadoProgramado {
@@ -17,13 +19,18 @@ class EstadoProgramado {
             const [horaE, minutoE, segundoE] = hora_envio.split(":").map(Number);
             const [horaA, minutoA, segundoA] = hora_actual.split(":").map(Number);
 
-            const diferenciaHoras = Math.abs(horaE - horaA);//PONERLO EN MILISEGUNDOS
-            const diferenciaMinutos = Math.abs(minutoE - minutoA);
-            const diferenciaSegundos = Math.abs(segundoE - segundoA);
+            const diferenciaHoras = Math.abs(horaE - horaA)*60*60*1000;//PONERLO EN MILISEGUNDOS
+            const diferenciaMinutos = Math.abs(minutoE - minutoA)*60*1000;
+            const diferenciaSegundos = Math.abs(segundoE - segundoA)*1000;
 
-            console.log(`Diferencia de Horas: ${diferenciaHoras}`);
-            console.log(`Diferencia de Minutos: ${diferenciaMinutos}`);
-            console.log(`Diferencia de Segundos: ${diferenciaSegundos}`);
+            const timpoTotalEspera = diferenciaHoras + diferenciaMinutos + diferenciaSegundos;
+
+            console.log(`Diferencia de Horas en milisegundos: ${diferenciaHoras}`);
+            console.log(`Diferencia de Minutos en milisegundos: ${diferenciaMinutos}`);
+            console.log(`Diferencia de Segundos en milisegundos: ${diferenciaSegundos}`);
+            console.log(`Tiempo Total de Espera: ${timpoTotalEspera}`);
+
+            return timpoTotalEspera;
         }
 
         console.log(`Fecha actual: ${fecha_actual}`);
@@ -45,62 +52,66 @@ class EstadoProgramado {
 
         if(fecha_envio < fecha_actual) {
             enviarCorreoNodemailer();
+
+            // const result = await clienteRepository.modificarEstadoParticipante(instanciaCorreo.campana_id, instanciaCorreo.estado);
+
         } else if(fecha_envio == fecha_actual) {
             if(hora_envio <= hora_actual) {
                 enviarCorreoNodemailer();
             } else {
  
-                calcularDiferenciaHora();
+                const tiempoTotalEspera = calcularDiferenciaHora();
 
-                console.log(`El correo programado para ${instanciaCorreo.correo} debe ser enviado hoy, pero no a esta hora`);
+                setTimeout(enviarCorreoNodemailer, tiempoTotalEspera);
+
+                console.log(`El correo programado para ${instanciaCorreo.correo} debe ser enviado hoy a las ${hora_envio}`);
             }
         } else {
-            console.log(`El correo programado para ${instanciaCorreo.correo} no debe ser enviado hoy`);
+            console.log(`El correo programado para ${instanciaCorreo.correo} debe ser enviado el ${fecha_envio} a las ${hora_envio}`);
         }
     }
 }
 
 //Estado Enviado
 class EstadoEnviado {
-    enviarCorreo(correo) {
-        console.log(`Este correo ya ha sido enviado a ${correo}`);
+    enviarCorreo(instanciaCorreo) {
+        console.log(`Este correo ya ha sido enviado a ${instanciaCorreo.correo}`);
     }
 }
 
 class Correo {
-    constructor(datosDelCorreo, datosClientesParaCorreos, datosUnCliente) {// datosClientesParaCorreos ES UN ARRAY DE OBJETOS QUE CONTIENE -> campana_id, cliente_id y estado DE CADA CLIENTE (CADA OBJETO ES UN CLIENTE)
+    constructor(datosDelCorreo, estado, datosUnCliente) {
         const {campana_id, mensaje, fecha_envio, hora, titulo, asunto} = datosDelCorreo;
-        // const {cliente_id, estado} = datosClientesParaCorreos;
         const {dni, nombre, apellido, fechanac, distrito, departamento, correo, sexo, fechaafili} = datosUnCliente;
+        this.campana_id = campana_id;//Este campana_id lo usaré para ubicar a los PARTICIPANTES y almacenar el estado "Enviado" o "Programado" en ellos
         this.mensaje = mensaje;
         this.fecha_envio = fecha_envio;
         this.hora = hora,
         this.titulo = titulo,
         this.asunto = asunto,
 
+        this.estado = estado;//Este estado es el de la tabla participante, puede ser programado o enviado
+
         this.correo = correo;//DE AHI SI NECESITO LOS DEMÁS DATOS DE datosUnCliente LOS INICIALIZO EN ESTE CONSTRUCTOR
 
         this.estadoCorreoObjeto = new EstadoProgramado();//Con esto determino el Estado del Correo, en cada CLASE. No es lo mismo que el 'estado' de datosDelCorreo
 
-        this.datosCliente = [];
+        // this.datosCliente = [];
 
-        for(const datosCliente of datosClientesParaCorreos) {
+        // for(const datosCliente of dni_y_EstadoClientes) {
 
-            this.datosCliente.push({
-                cliente_id: datosCliente.cliente_id,
-                estado: datosCliente.estado //ESTE ESTADO ES EL DEL PARTICIPANTE -> ENVIADO O PROGRAMADO
-            })
-        }
+        //     this.datosCliente.push({
+        //         cliente_id: datosCliente.cliente_id,
+        //         estado: datosCliente.estado //ESTE ESTADO ES EL DEL PARTICIPANTE -> ENVIADO O PROGRAMADO
+        //     })
+        // }
     }
 
-    transicionEstado(nuevoEstado) {// NO LO ESTOY USANDO EN LA LA CLASE Correo 
-        this.nuevoEstado = nuevoEstado;
+    async transicionEstado(campana_id, estado) {// NO LO ESTOY USANDO EN LA LA CLASE Correo 
+        const result = await clienteRepository.modificarEstadoParticipante(campana_id, estado);
     }
 
-    enviar(/*datosUnCliente*/) {//ESTOY QUE TRAIGO ESTE datosUnCliente de correoService, iré a Orinar :,v
-
-        // const {dni, nombre, apellido, fechanac, distrito, departamento, correo, sexo, fechaafili} = datosUnCliente;
-
+    enviar() {
         this.estadoCorreoObjeto.enviarCorreo(this/*, correo*/);//Al pasarle el this le estoy pasando una instancia de la misma clase Correo
     }
 }

@@ -20,9 +20,10 @@ class CorreoService {
 
             // const {cliente_id} = dni_y_EstadoClientes;
 
-            for(const datosCliente of dni_y_EstadoClientes) {//CON ESTE BUCLE SE ENVIARÁ EL CORREO A CADA UNO DE LOS CLIENTES
+            for(const dni_y_Estado_Un_Cliente of dni_y_EstadoClientes) {//CON ESTE BUCLE SE ENVIARÁ EL CORREO A CADA UNO DE LOS CLIENTES
 
-                const cliente_id = datosCliente.cliente_id;
+                // const cliente_id = dni_y_Estado_Un_Cliente.cliente_id;
+                const {cliente_id, estado} = dni_y_Estado_Un_Cliente;
                 // ME TRAR UN CLIENTE CUANDO PASO SU DNI
                 const responseCliente = await axios.get(`https://clientemodulocrm.onrender.com/clientes/buscarPorDNI/${cliente_id}`);//Obtengo correo, nombre, apellido, pero de un solo cliente
                 const datosUnCliente = responseCliente.data;
@@ -30,7 +31,7 @@ class CorreoService {
 
                 // const result = new Correo(datosDelCorreo, dni_y_EstadoClientes);
                 // result.enviar(datosUnCliente);//Estoy mandando los datos de un cliente luego de buscarlo por su DNI en la ruta de Joaquin
-                const result = new Correo(datosDelCorreo, dni_y_EstadoClientes, datosUnCliente);
+                const result = new Correo(datosDelCorreo, estado, datosUnCliente);
                 
                 result.enviar();
             }
