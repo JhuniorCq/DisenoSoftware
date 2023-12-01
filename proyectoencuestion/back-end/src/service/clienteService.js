@@ -58,6 +58,7 @@ class ClienteService {
         }
     }
 
+    //SI LE PONGO ACÁ ASYNC EN LA PARTE DONDE LLAMO A ESTA FUNCIÓN DEBE IR AWAIT
     async filtrarClientes(datosTodosClientes, edadMinima, edadMaxima, rangoFechaInicio, rangoFechaFin, distrito, departamento, sexo, tipo_campanaID) {
 
         let clientesFiltrados = [];
@@ -76,42 +77,43 @@ class ClienteService {
                     }
                 } else {
 
-                    const {dni} = datosTodosClientes;
+                    // const {dni} = cliente.dni;
+                    let cont = 0;
+                    // console.log('Hola:', cliente.dni);
 
-                    const responseVentaCliente = await axios.get(`https://modulo-ventas.onrender.com/getselldni/${dni}`);
+                    const responseVentaCliente = await axios.get(`https://modulo-ventas.onrender.com/getselldni/${cliente.dni}`);
                     const datosClienteVenta = responseVentaCliente.data;// ME TRAE LAS VENTAS DE UN CLIENTE -> ARRAY DE OBJETOS
 
-                    datosClienteVenta.forEach((objetoClienteVenta) => {
-                        cliente.primera_compra = objetoClienteVenta.fecha;//ANALIZAAAAAAAAAAR
-                    });
+                    
 
-                    const {fecha} = datosClienteVenta;
+                    // if(datosClienteVenta === null) {
+                    //     throw new Error('No se encontraron los DNI en la Ruta de Ventas');
+                    // }
+                    if(datosClienteVenta !== null) {
+                        // console.log(datosClienteVenta);
+                        datosClienteVenta.forEach((objetoDatosClientesVenta) => {
+                            const fechaInicioCompra = new Date(rangoFechaInicio);
+                            const fechaFinCompra = new Date(rangoFechaFin);
+                            const fechaCompra = new Date(objetoDatosClientesVenta.fecha);
 
-                    if(rangoFechaInicio <= cliente.fechaafili <= rangoFechaFin) {//Al medio NO va cliente.fechaafili
+                            if( fechaInicioCompra <= fechaCompra <= fechaFinCompra) {
+                                // console.log(`Rango Fecha Inicio: ${this.formatearFecha(rangoFechaInicio)}`);
+                                // console.log(`Rango Fecha Fin: ${this.formatearFecha(rangoFechaFin)}`);
+                                // console.log(`Fecha de Compra: ${objetoDatosClientesVenta.fecha}`);
+                                // console.log(`Fecha de Compra Formateada: ${this.formatearFecha(objetoDatosClientesVenta.fecha)}`);
+    
+                                cont++;
+                            }
+                        });
+                    }
+
+                    if(cont > 0) {
+                        // console.log(`El contador es: ${cont}`)
                         clientesFiltrados.push(cliente);
                     }
                 }
             }
-
-            // if(tipo_campanaID == 1 || tipo_campanaID == 2) {
-
-            //     for(const cliente of datosTodosClientes) {
-            //         const cumpleCondicionSexo = 'A' === sexo || cliente.sexo === sexo;
-
-            //         if(edadMinima <= this.calcularEdadCliente(this.formatearFecha(cliente.fechanac)) <= edadMaxima && cliente.distrito === distrito && cliente.departamento === departamento && cumpleCondicionSexo) {
-
-            //             clientesFiltrados.push(cliente);
-            //         }
-            //     }
-
-            // } else {
-            //     for(const clienteVenta of todosClientesVentas) {
-
-            //     }
-            // }
-
-
-            
+            // console.log(clientesFiltrados);
             return clientesFiltrados;
         } catch(error) {
             throw console.error('No se ha podido filtrar a los clientes:', error.message);
