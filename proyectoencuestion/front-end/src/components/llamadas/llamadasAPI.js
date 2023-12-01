@@ -17,7 +17,7 @@ export const getLlamadasCliente = async () => {
 
 export const getLlamadasAdministrar = async () => {
     try {
-        const response = await campanasAPI.get('/llamadasadministrar');
+        const response = await axios.get('http://localhost:3000/llamadasadministrar');
         return response.data;
     } catch (error) {
         // Handle the error, e.g., log it or return an empty array.

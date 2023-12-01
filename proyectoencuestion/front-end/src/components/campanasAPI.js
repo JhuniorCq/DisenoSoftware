@@ -45,21 +45,30 @@ export const useCreateSegmentacion = () => {
 
 // ------------------------------------------------------------------------
 
-export const getPublicoCorreosCampanas = async (cliente = "") => {
+export const getPublicoCorreosCampanas = async (cliente = "", id = -1) => {
 
-    const { data } = (await axios.get('http://localhost:3000/publicocorreoscampanas'));
+    if (id === -1) {
+        const { data } = (await axios.get('http://localhost:3000/publicocorreoscampanas'));
 
-    console.log("publico fetch!");
+        console.log("publico fetch!");
 
-    if (cliente.length >= 4) {
-        const filterData = data.filter((dato) => {
-            return (dato.name.toString().toLowerCase().includes(cliente.toLowerCase()) ||
-                dato.surname.toString().toLowerCase().includes(cliente.toLowerCase()))
-        })
-        return [...filterData];
+        if (cliente.length >= 4) {
+            const filterData = data.filter((dato) => {
+                return (dato.name.toString().toLowerCase().includes(cliente.toLowerCase()) ||
+                    dato.surname.toString().toLowerCase().includes(cliente.toLowerCase()))
+            })
+            return [...filterData];
+        }
+
+        return data;
     }
+    else {
+        const { data } = (await axios.get(`https://modulo-marketing.onrender.com/obtenerClientesSegmentados/:${id}`));
 
-    return data;
+        console.log(data);
+
+        return data;
+    }
 
 }
 // devolviendo de la segunda manera (hay mas)

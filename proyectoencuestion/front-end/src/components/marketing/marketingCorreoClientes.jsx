@@ -2,7 +2,7 @@ import styles from "../../styles/vistaCorreo.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getPublicoCorreosCampanas } from "../campanasAPI";
 import { useQuery } from "@tanstack/react-query";
 import NavbarCorreo from "../navbarCorreo";
@@ -12,16 +12,7 @@ import Select from "react-select";
 
 export const CorreoClientes = () => {
   const [nameCliente, setNameCliente] = useState("");
-
-  const {
-    isLoading,
-    isError,
-    error,
-    data: usuariosClientes,
-  } = useQuery({
-    queryFn: () => getPublicoCorreosCampanas(nameCliente),
-    queryKey: ["publicocorreoscampanas", { nameCliente }],
-  });
+  const [campanasIDs, setCampanasIDs] = useState("all");
 
   const { data: dataCampanas, isSuccess: isSuccessFetchCampana } = useQuery({
     queryFn: () => getCampanas(),
@@ -42,11 +33,36 @@ export const CorreoClientes = () => {
     console.log(campanasTipoCorreoVigentes);
   }
 
+  var id_campana = -1;
+
+  const handleCampanaId = () => {
+    if (campanasIDs === "all") {
+      id_campana = -1;
+    } else {
+      id_campana = parseInt(campanasIDs);
+    }
+  };
+
+  const {
+    isLoading,
+    isError,
+    error,
+    data: usuariosClientes,
+  } = useQuery({
+    queryFn: () => getPublicoCorreosCampanas(nameCliente, id_campana),
+    queryKey: ["publicocorreoscampanas", { nameCliente }],
+  });
+
   if (isLoading) return <p>Loading...</p>;
   else if (isError) return <p>Error : {error.message}</p>;
 
   const handleChange = (e) => {
     setNameCliente(e.target.value);
+  };
+
+  const handleCampanaSelect = (e) => {
+    setCampanasIDs(e.target.value);
+    handleCampanaId();
   };
 
   return (
@@ -58,6 +74,7 @@ export const CorreoClientes = () => {
           <select
             className={styles.selectCampanaCorreo}
             placeholder="Seleccionar campana"
+            onChange={handleCampanaSelect}
           >
             <option value="all">Todas las campañas...</option>
             {campanasTipoCorreoVigentes.map((opcionesCampanas) => (
