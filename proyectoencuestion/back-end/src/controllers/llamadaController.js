@@ -1,5 +1,5 @@
 const {LlamadaService} = require('../service/llamadaService');
-const {CrearLlamadaCommand, MostrarLlamadasCommand} = require('../command/llamadaCommand');
+const {CrearLlamadaCommand, MostrarLlamadasAdministrarCommand} = require('../command/llamadaCommand');
 const llamadaService = new LlamadaService();
 
 const crearLlamada = async (req, res, next) => {
@@ -18,10 +18,10 @@ const crearLlamada = async (req, res, next) => {
     }}
 }
 
-const mostrarLlamadas = async (req, res, next) => {
+const mostrarLlamadasAdministrar = async (req, res, next) => {
     try{
-        const mostrarLlamadasCommand = new MostrarLlamadasCommand(llamadaService);
-        const result = await mostrarLlamadasCommand.execute();
+        const mostrarLlamadasAdministrarCommand = new MostrarLlamadasAdministrarCommand(llamadaService);
+        const result = await mostrarLlamadasAdministrarCommand.execute();
 
         console.log(result);
         res.json(result);
@@ -31,7 +31,16 @@ const mostrarLlamadas = async (req, res, next) => {
     }
 }
 
+const mostrarClientesCallCenter = async (req, res, next) => {
+    try {
+
+    } catch(error) {
+        next(error);
+    }
+}
+
 module.exports = {
     crearLlamada: crearLlamada,
-    mostrarLlamadas: mostrarLlamadas
+    mostrarLlamadasAdministrar: mostrarLlamadasAdministrar,
+    mostrarClientesCallCenter: mostrarClientesCallCenter
 }

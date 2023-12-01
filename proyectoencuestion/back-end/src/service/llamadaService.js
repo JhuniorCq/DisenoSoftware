@@ -16,6 +16,9 @@ class LlamadaService{
 
 
         
+
+        //ESTO IRIÍA EN OTRA RUTAAAA, LA DE mostrarLlamadasAdministrar EN DONDE SE DEBEERIA PASAR A campana_id COMO PARÉMETRO DE LA RUTA Y LUEGO CON ESO TRAER A LOS CLIENTES QUE TENGAN ESE campana_id Y YA RECIEN HACER EL PATRÓ STATE
+
         //TODO ESTO NO DEBE IR ACÁ CREO, PORQUE ESTA RUTA SOLO CREARÁ LA LLAMADA -> EL CALLCENTER HARÁ LAS LLAMADAS EN OTRO LADO
         const {campana_id} = llamadaData;
 
@@ -30,12 +33,6 @@ class LlamadaService{
             const responseCliente = await axios.get(`https://clientemodulocrm.onrender.com/clientes/buscarPorDNI/${cliente_id}`);//Obtengo mensaje, fecha_inicio, fecha_fin, hora_inicio, hora_fin
             const datosUnCliente = responseCliente.data;
             console.log(datosUnCliente);//HASTA ACÁ YA TENGO LOS DATOS DE CADA UNO DE LOS CLIENTES PARA ENVIARLES SUS CORREOS
-
-            // const result = new Correo(datosDelCorreo, dni_y_EstadoClientes);
-            // result.enviar(datosUnCliente);//Estoy mandando los datos de un cliente luego de buscarlo por su DNI en la ruta de Joaquin
-            // const result = new Correo(datosDelCorreo, dni_y_EstadoClientes, datosUnCliente); -> ESTO ES DE CORREOS :V JEJEJE
-            
-            // result.enviar();
             
             //HACER UN PATRÓN STATE PARA LLAMADAS
 
@@ -45,10 +42,13 @@ class LlamadaService{
         return result;
     }
 
-    async mostrarLlamadas(){
+    //SI QUIERO QUE DEVUELVA EL ESTADO, DEBE EL FRONT PONER ALGO PARA CAMBIAR ENTRE ESTADOS Y CUANDO SE PRESIONE ESO SE TIENE QUE DEVOLVER AL BACKEND EL campana_id DE LA CAMPAÑA QUE CONTIENE AL CONJUNTO DE DATOS PARA LAS LLAMADAS -> LUEGO APLICAR EL PATRÓN STATE ACÁ
+    async mostrarLlamadasAdministrar(){//ESTO NO SE USA CREO
 
 
-        const result = llamadaRepository.mostrarLlamadas();
+        //LLAMAR A obtenerClientesSegmentados de CLIENTESERVICE
+
+        const result = llamadaRepository.mostrarLlamadasAdministrar();
         return result;
     }
 }

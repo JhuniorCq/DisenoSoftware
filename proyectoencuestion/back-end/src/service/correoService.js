@@ -43,14 +43,12 @@ class CorreoService {
         }
     }
 
-    async mostrarCorreos(){
+    async mostrarCorreosAdministrar(){
         try{
-            //Validación de Datos
-
-            //Lógica de Negocio
+            
 
             //Llamada a correoRepository para meter datos en la BD
-            const result = await correoRepository.mostrarCorreos();
+            const result = await correoRepository.mostrarCorreosAdministrar();
             return result;
 
         } catch(error){
@@ -58,21 +56,6 @@ class CorreoService {
         }
     }
 
-    //Esto ya no será necesario creo
-    // async enviarCorreos(correoData) {
-    //     try {
-    //         //Validación de Datos
-
-    //         //Lógica de Negocio
-
-    //         //Llamada a correoRepository para meter datos en la BD
-    //         const result = await correoRepository.enviarCorreos(correoData);
-    //         return result;
-
-    //     } catch(error) {
-    //         throw error;
-    //     }
-    // }
 }
 
 module.exports = {

@@ -1,5 +1,5 @@
 const {CorreoService} = require('../service/correoService');
-const {CrearCorreoCommand, MostrarCorreosCommand, EnviarCorreosCommand} = require('../command/correoCommand');
+const {CrearCorreoCommand, MostrarCorreosAdministrarCommand} = require('../command/correoCommand');
 const correoService = new CorreoService();
 
 const crearCorreo = async (req, res, next) => {
@@ -19,13 +19,13 @@ const crearCorreo = async (req, res, next) => {
     }
 }
 
-const mostrarCorreos = async (req, res, next) => {
+//ESTA RUTA USARÉ PARA MOSTRAR CORREOS Y EL ESTADO -> ADMINISTRAR
+const mostrarCorreosAdministrar = async (req, res, next) => {
     try{
-        const mostrarCorreosCommand = new MostrarCorreosCommand(correoService);
+        const mostrarCorreosAdministrarCommand = new MostrarCorreosAdministrarCommand(correoService);
 
-        const result = await mostrarCorreosCommand.execute();
+        const result = await mostrarCorreosAdministrarCommand.execute();
 
-        console.log(result);
         res.json(result);
 
     } catch(error){
@@ -33,25 +33,7 @@ const mostrarCorreos = async (req, res, next) => {
     }
 }
 
-
-//ESTO YA NO SE USARÁ CREO, SE ENVIARÁN LOS CORREOS DESDE -> CREARCORREO
-// const enviarCorreos = async (req, res, next) => {
-//     try {
-//         const enviarCorreosCommand = new EnviarCorreosCommand(correoService);
-
-//         const correoData = req.body;
-
-//         const result = await enviarCorreosCommand.execute(correoData);
-
-//         console.log(result);
-//         res.json(result);
-
-//     } catch(error) {
-//         next(error);
-//     }
-// }
-
 module.exports = {
     crearCorreo: crearCorreo,
-    mostrarCorreos: mostrarCorreos
+    mostrarCorreosAdministrar: mostrarCorreosAdministrar
 }

@@ -1,3 +1,4 @@
+const { es } = require('date-fns/locale');
 const pool = require('../db');
 
 class CorreoRepository {
@@ -22,11 +23,31 @@ class CorreoRepository {
         }
     }
 
-    async mostrarCorreos() {
+    async mostrarCorreosAdministrar() {
         try{
+            const todosCorreosAdministrar = [];
 
-            const result = await pool.query('SELECT * FROM cam_correo');
-            return result.rows;
+            const datosTodosCorreos = await pool.query('SELECT * FROM cam_correo');
+
+            for(const datosUnCorreo of datosTodosCorreos.rows) {
+                const {campana_id, cam_correo_id, mensaje, fecha_envio, hora, titulo, asunto} = datosUnCorreo;
+
+                // campanaID_CampanasCorreos.push(campana_id);
+                const participantesData = await pool.query('SELECT campana_id, cliente_id, estado FROM participante WHERE campana_id = $1', [campana_id]);
+
+                for(const unParticipanteData of participantesData.rows) {
+                    unParticipanteData.cam_correo_id = cam_correo_id;
+                    unParticipanteData.mensaje = mensaje;
+                    unParticipanteData.fecha_envio = fecha_envio;
+                    unParticipanteData.hora = hora;
+                    unParticipanteData.titulo = titulo;
+                    unParticipanteData.asunto = asunto;
+
+                    todosCorreosAdministrar.push(unParticipanteData);
+                }
+            }
+
+            return todosCorreosAdministrar;
 
         } catch(error){
             throw error;
