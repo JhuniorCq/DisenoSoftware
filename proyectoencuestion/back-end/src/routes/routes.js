@@ -35,7 +35,7 @@ router.get('/mostrarCorreosAdministrar', mostrarCorreosAdministrar);
 //RUTAS PARA EL APARTADO DE LLAMADAS
 router.post('/crearLlamada', crearLlamada);
 router.get('/mostrarLlamadasAdministrar', mostrarLlamadasAdministrar);
-router.get('mostrarClientesCallCenter/:campana_id', mostrarClientesCallCenter)
+router.get('/mostrarClientesCallCenter/:campana_id', mostrarClientesCallCenter)
 
 //RUTAS PARA LA SEGMENTACIÓN
 router.post('/crearSegmentacion', crearSegmentacion);

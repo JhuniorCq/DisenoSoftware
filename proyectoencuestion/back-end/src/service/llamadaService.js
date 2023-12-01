@@ -1,6 +1,7 @@
 const axios = require('axios');
 const {LlamadaRepository} = require('../repository/llamadaRepository');
 const {ClienteRepository} = require('../repository/clienteRepository');
+// const {ClienteService} = require('../service/clienteService');
 const llamadaRepository = new LlamadaRepository();
 const clienteRepository = new ClienteRepository();
 
@@ -43,13 +44,55 @@ class LlamadaService{
     }
 
     //SI QUIERO QUE DEVUELVA EL ESTADO, DEBE EL FRONT PONER ALGO PARA CAMBIAR ENTRE ESTADOS Y CUANDO SE PRESIONE ESO SE TIENE QUE DEVOLVER AL BACKEND EL campana_id DE LA CAMPAÑA QUE CONTIENE AL CONJUNTO DE DATOS PARA LAS LLAMADAS -> LUEGO APLICAR EL PATRÓN STATE ACÁ
-    async mostrarLlamadasAdministrar(){//ESTO NO SE USA CREO
+    async mostrarLlamadasAdministrar(campana_id){//ESTO NO SE USA CREO
 
+        const dniClientes = await clienteRepository.obtenerClientesSegmentados(campana_id);
 
-        //LLAMAR A obtenerClientesSegmentados de CLIENTESERVICE
+        //TAMOOOOOS EN LLAMADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAS
+        const datosClientesSegmentados = [];
+        //AGREGAR DATOS DEL CLIENTE DE LA RUTA DE JOAQUIN A MI dniClientes, LUEGO AGREGAR EL NUMERO DEL CLIENTE CON LA RUTA DE SERGIO
+        for(const datosCliente of dniClientes) {
 
-        const result = llamadaRepository.mostrarLlamadasAdministrar();
-        return result;
+            const cliente_id = datosCliente.cliente_id;
+            const responseCliente = await axios.get(`https://clientemodulocrm.onrender.com/clientes/buscarPorDNI/${cliente_id}`);
+            const datosUnCliente = responseCliente.data;//Obtengo correo, nombre, apellido, DE UN SOLO CLIENTE -> COMO ES "FOR" OBTENGO DE VARIOS CLIENTES
+            // console.log(datosUnCliente);
+
+            const responseCliente2 = await axios.get(`https://modulo-ventas.onrender.com/getlineas/${cliente_id}`);//SI ME BOTA NULL O UN OBJETO VACÍO QUIERE DECIR QUE ESE CLIENTE (DNI) NO TIENE UNA LÍNEA ASOCIADA
+            const datosUnCliente2 = responseCliente2.data;
+            // console.log(datosUnCliente2);
+
+            if(datosUnCliente2 === null) {
+                datosUnCliente.numero = 'Sin número';
+            } else {
+                const numero = datosUnCliente2[0].numero;//SACO EL NÚMERO DE LOS CLIENTES (ESTOS NUMEROS VIENEN DE LA URL DE LINEAS)
+                datosUnCliente.numero = numero;//METO EL NÚEMERO JUNTO CON LOS DEMÁS DATOS DE LOS CLIENTES
+            }
+
+            datosClientesSegmentados.push(datosUnCliente);
+        }
+
+        // datosClientesSegmentados.campana_id = campana_id;
+
+        datosClientesSegmentados.forEach((objetoDatosUnCliente) => {
+            objetoDatosUnCliente.campana_id = campana_id;
+        })
+
+        const datosUnaCampanaLLamada = await llamadaRepository.mostrarLlamadasAdministrar(campana_id);
+        const {mensaje, fecha_inicio, fecha_fin, hora_inicio, hora_fin} = datosUnaCampanaLLamada;
+
+        
+        datosClientesSegmentados.forEach((objetoDatosUnCliente) => {
+            objetoDatosUnCliente.mensaje = mensaje;
+            objetoDatosUnCliente.fecha_inicio = fecha_inicio;
+            objetoDatosUnCliente.fecha_fin = fecha_fin;
+            objetoDatosUnCliente.hora_inicio = hora_inicio;
+            objetoDatosUnCliente.hora_fin = hora_fin;
+        })
+
+        console.log(datosUnaCampanaLLamada);
+
+        return datosClientesSegmentados;
     }
 }
 

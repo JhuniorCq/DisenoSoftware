@@ -1,5 +1,5 @@
 const {LlamadaService} = require('../service/llamadaService');
-const {CrearLlamadaCommand, MostrarLlamadasAdministrarCommand} = require('../command/llamadaCommand');
+const {CrearLlamadaCommand, MostrarLlamadasAdministrarCommand, MostrarClientesCallCenter} = require('../command/llamadaCommand');
 const llamadaService = new LlamadaService();
 
 const crearLlamada = async (req, res, next) => {
@@ -33,6 +33,13 @@ const mostrarLlamadasAdministrar = async (req, res, next) => {
 
 const mostrarClientesCallCenter = async (req, res, next) => {
     try {
+        const {campana_id} = req.params;
+
+        const mostrarClientesCallCenter = new MostrarClientesCallCenter(llamadaService);
+
+        const result = await mostrarClientesCallCenter.execute(campana_id);
+
+        res.json(result);
 
     } catch(error) {
         next(error);
