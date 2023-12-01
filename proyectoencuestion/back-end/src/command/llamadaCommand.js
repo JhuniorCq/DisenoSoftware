@@ -8,16 +8,26 @@ class CrearLlamadaCommand{
     }
 }
 
-class MostrarLlamadasCommand{
+class MostrarLlamadasAdministrarCommand{
     constructor(llamadaService){
         this.llamadaService = llamadaService;
     }
     execute(){
-        return this.llamadaService.mostrarLlamadas();
+        return this.llamadaService.mostrarLlamadasAdministrar();
+    }
+}
+
+class MostrarClientesCallCenter {
+    constructor(llamadaService){
+        this.llamadaService = llamadaService;
+    }
+    execute(campana_id){
+        return this.llamadaService.mostrarLlamadasAdministrar(campana_id);
     }
 }
 
 module.exports = {
     CrearLlamadaCommand: CrearLlamadaCommand,
-    MostrarLlamadasCommand: MostrarLlamadasCommand
+    MostrarLlamadasAdministrarCommand: MostrarLlamadasAdministrarCommand,
+    MostrarClientesCallCenter: MostrarClientesCallCenter
 }

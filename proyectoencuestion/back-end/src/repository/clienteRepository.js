@@ -2,6 +2,18 @@ const pool = require('../db');
 
 class ClienteRepository {
 
+    async modificarEstadoParticipante(campana_id, estado) {//El estado que se enviará será "Enviado" o "Programado"
+        try {
+
+            const result = await pool.query('UPDATE participante SET estado = $1 WHERE campana_id = $2', [estado, campana_id]);
+
+            console.log(`Se han modificado ${result.rowCount} filas`);
+
+        } catch(error) {
+            throw console.error('Error al quere modificar el estado del participante', error.message)
+        }
+    }
+
     async guardarCamposParticipante(campana_id, dniClientesFiltrados) {
         try {
             for(let i=0; i<dniClientesFiltrados.length; i++) {
@@ -11,7 +23,7 @@ class ClienteRepository {
                 await pool.query('INSERT INTO participante (campana_id, cliente_id, estado) VALUES ($1, $2, $3)', [
                     campana_id,
                     cliente_id,
-                    'Listo'
+                    'Sin estado'
                 ]);
             }
 
@@ -58,10 +70,10 @@ class ClienteRepository {
             // Ejecutar la consulta con el valor de campana_id como parámetro
             const dniClientes = await pool.query('SELECT campana_id, cliente_id FROM participante WHERE campana_id = $1', [campana_id]);
             console.log(dniClientes.rows);
-            // El resultado contiene las filas que coinciden con la condición
+            
             return dniClientes.rows;
         } catch(error) {
-            throw console.error('Error en el métod buscarCampanaPorID en clienteService.js', error.message)
+            throw console.error('Error en el método buscarCampanaPorID en clienteService.js', error.message)
         }
     }
 }

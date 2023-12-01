@@ -19,11 +19,12 @@ class ClienteService {
         }
     }
 
+    //AHORA -> CREAR RUTA EN LLAMADAS QUE LLAME EN LA PARTE DE SERVICE A obtenerClientesSegmentados Y DENTRO DEL SERVICE DE LLAMADAS LLAMAR A OTRO LLAMADA REPOSITORY PARA QUE HAGAS ALGUNAS CONSULTAS EN LA BD
     async obtenerClientesSegmentados(campana_id) {
         try {
             const dniClientes = await clienteRepository.obtenerClientesSegmentados(campana_id);
 
-            const datosClientesLlamada = [];
+            const datosClientesSegmentados = [];
             //AGREGAR DATOS DEL CLIENTE DE LA RUTA DE JOAQUIN A MI dniClientes, LUEGO AGREGAR EL NUMERO DEL CLIENTE CON LA RUTA DE SERGIO
             for(const datosCliente of dniClientes) {
 
@@ -46,14 +47,14 @@ class ClienteService {
 
                 console.log(datosUnCliente);
 
-                datosClientesLlamada.push(datosUnCliente);
+                datosClientesSegmentados.push(datosUnCliente);
                 //HASTA ACÁ YA TENGO LOS DATOS DE CADA UNO DE LOS CLIENTES PARA ENVIARLES SUS CORREOS
             }
 
-            return datosClientesLlamada;
+            return datosClientesSegmentados;
 
         } catch(error) {
-            throw console.error('Error en el métod buscarCampanaPorID en clienteService.js', error.message)
+            throw console.error('Error en el método buscarCampanaPorID en clienteService.js', error.message)
         }
     }
 
@@ -66,7 +67,7 @@ class ClienteService {
 
                 if(tipo_campanaID == 1 || tipo_campanaID == 2) {//SE MEUSTRAN A SEXO M Y F CUANDO SEGMENTO SOLO A M
                     
-                    const cumpleCondicionSexo = sexo === 'Ambos' || cliente.sexo === sexo;
+                    const cumpleCondicionSexo = sexo === 'A' || cliente.sexo === sexo;
                     
                     // console.log('Realizando la segmentación en filstrarClientes en clienteService');
                     if(edadMinima <= this.calcularEdadCliente(this.formatearFecha(cliente.fechanac)) <= edadMaxima && cliente.distrito === distrito && cliente.departamento === departamento && cumpleCondicionSexo) {

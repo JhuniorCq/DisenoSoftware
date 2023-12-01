@@ -123,13 +123,13 @@ export const CorreoClientes = () => {
                 usuariosClientes.map((usuario) => {
                   return (
                     <tr key={usuario.id}>
-                      <td>{usuario.id}</td>
-                      <td>{usuario.name}</td>
-                      <td>{usuario.surname}</td>
-                      <td>{usuario.email}</td>
-                      <td>{usuario.gender}</td>
-                      <td>{usuario.celphone}</td>
-                    </tr>
+                    <td>{usuario.id}</td>
+                    <td>{usuario.name}</td>
+                    <td>{usuario.surname}</td>
+                    <td>{usuario.email}</td>
+                    <td>{usuario.gender}</td>
+                    <td>{usuario.celphone}</td>
+                  </tr>
                   );
                 })}
             </tbody>

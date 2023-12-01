@@ -1,89 +1,117 @@
-const transporter = require('../../nodemailer'); // Importar el transporter configurado
-const { parseISO, add, isPast, parse } = require('date-fns');
+const {enviarCorreosNodemailer} = require('../../enviarCorreosNodemailer')
+const {ClienteRepository} = require('../../repository/clienteRepository')
+const clienteRepository = new ClienteRepository();
 
-//Estado Programado
-class EstadoProgramado {
-    async enviarCorreo(instanciaCorreo/*, correoCliente*/) {
-
-        const fecha_actual = new Date();
-
-        //ENVIA CORREOS COMPARANDO LA FECHA DE ENVIO DESDE LA HORA 05:00 :,V , Y ESO LO COMPARA CON LA FECHA ACTUAL
-        //POR ESO SI ENVIO LA FECHA DE HOY (PORQUE NO ESTOY USANDO LA HORA) ESO SE COMPARA CON LA FECHA ACTUAL QUE SI TIENE HORA
-        if(instanciaCorreo.fecha_envio <= fecha_actual) {
-
-            //ACÁ DEBO USAR EL nodemailer PARA ENVIAR LOS CORREOS
-            const mailOptions = {
-                from: 'holiver.ccora.quispe@gmail.com',
-                to: instanciaCorreo.correo, 
-                subject: instanciaCorreo.asunto,
-                text: instanciaCorreo.mensaje
-            };
-
-            await transporter.sendMail(mailOptions);
-
-            console.log(`Correo programado enviado a ${instanciaCorreo.correo}`);
-            instanciaCorreo.estadoCorreoObjeto = new EstadoEnviado();
-        } else {
-            console.log(`El correo programado para ${instanciaCorreo.correo} no debe ser enviado hoy`);
-
-            //ACÁ FALTA HACER QUE SI LA FECHA DE ENVIO AÚN NO LLEGA, PUES QUE SE ENVIE CUANDO LLEGUE LA FECHA DE ENVIO
-
-            //ESTO RECIÉN ESTOY PONIENDOOOOOOOOOOOOOOOOOOOOOOO
-            // Calcular la diferencia en milisegundos hasta el tiempo de envío
-            // const tiempoRestante = instanciaCorreo.fecha_envio - fecha_actual;
-            
-            // // Configurar un temporizador para enviar el correo cuando llegue el momento
-            // setTimeout(async () => {
-            //     await this.enviarCorreo(instanciaCorreo);
-            // }, tiempoRestante);
-
-            //ENVIAR TODO ESTE PATRÓN A CHAT Y DECIRLE QUE QUIERO USAR TAL TAL YQUE ESTA RUTA ES DE TIPO POST     
-        }
+class EstadoCorreo {
+    enviarCorreo(instanciaCorreo) {
+        throw new Error("Método abstracto. Debe ser implementado por clases derivadas.");
     }
 }
 
-//Estado Enviado
-class EstadoEnviado {
-    enviarCorreo(correo) {
-        console.log(`Este correo ya ha sido enviado a ${correo}`);
+class EstadoProgramado extends EstadoCorreo {
+    async enviarCorreo(instanciaCorreo) {
+
+        instanciaCorreo.transicionEstadoParticipante(instanciaCorreo.campana_id, 'Programado');
+        instanciaCorreo.estado = 'Programado'
+
+        const fecha_actual_Date = new Date();
+
+        const fecha_actual = fecha_actual_Date.toISOString().split('T', 1)[0];;
+        const hora_actual = fecha_actual_Date.toLocaleTimeString('es-ES');
+        const fecha_envio = instanciaCorreo.fecha_envio.toISOString().split('T', 1)[0];
+        const hora_envio = instanciaCorreo.hora;
+
+        const calcularDiferenciaHora = () => {
+
+            //CONVIERTO A DATE, PERO PONIENDOLE CUALQUIER FECHA, YA QUE ESTAS SE ELIMINARÁN AL RESTARLAS
+            const horaActualDATE = new Date(`2023-11-30T${hora_actual}`);
+            const horaEnvioDATE = new Date(`2023-11-30T${hora_envio}`);
+
+            const diferenciaMilisegundos = horaEnvioDATE - horaActualDATE;
+
+            console.log(`Diferencia Date Milisegundos: ${diferenciaMilisegundos}`);
+
+            return diferenciaMilisegundos;
+        }
+
+        console.log(`Fecha actual: ${fecha_actual}`);
+        console.log(`Fecha envío: ${fecha_envio}`);
+        console.log(`Hora actual: ${hora_actual}`);
+        console.log(`Hora envío ${hora_envio}`);
+        
+        const enviarCorreoNodemailer = () => {
+            try {
+
+                enviarCorreosNodemailer(instanciaCorreo.correo, instanciaCorreo.asunto, instanciaCorreo.mensaje);
+
+                console.log(`Correo programado enviado a ${instanciaCorreo.correo}`);
+
+                instanciaCorreo.estadoCorreoObjeto = new EstadoEnviado();//Ahora se le asignó un Objeto de la clase EstadoEnviado, por lo que si se usar el método "enviarCorreo" se devolverá un mensaje indicado que ya se envió el correo
+
+                instanciaCorreo.transicionEstadoParticipante(instanciaCorreo.campana_id, 'Enviado');
+                instanciaCorreo.estado = 'Enviado'
+
+            } catch(error) {
+                throw console.error('Error al enviar correos con Nodemailer', error.message)
+            }
+        };
+
+        if(fecha_envio < fecha_actual) {
+            enviarCorreoNodemailer();
+
+        } else if(fecha_envio == fecha_actual) {
+            if(hora_envio <= hora_actual) {
+                enviarCorreoNodemailer();
+
+            } else {
+ 
+                const tiempoTotalEspera = calcularDiferenciaHora();
+
+                setTimeout(enviarCorreoNodemailer, tiempoTotalEspera);
+
+                console.log(`El correo programado para ${instanciaCorreo.correo} debe ser enviado hoy a las ${hora_envio}`);
+
+            }
+        } else {
+            console.log(`El correo programado para ${instanciaCorreo.correo} debe ser enviado el ${fecha_envio} a las ${hora_envio}`);
+
+            //ACÁ DEBE IR CÓDIGO PARA QUE EL CORREO SE ENVÍE DÍAS DESPUÉS ->  SE DEBE USAR setTimeout DE NUEVO CREO
+        }
+
+    }
+}
+
+class EstadoEnviado extends EstadoCorreo {
+    enviarCorreo(instanciaCorreo) {
+        // Realizar acciones específicas del estado enviado
+        console.log(`Este correo ya ha sido enviado a ${instanciaCorreo.correo}`);
     }
 }
 
 class Correo {
-    constructor(datosDelCorreo, datosClientesParaCorreos, datosUnCliente) {// datosClientesParaCorreos ES UN ARRAY DE OBJETOS QUE CONTIENE -> campana_id, cliente_id y estado DE CADA CLIENTE (CADA OBJETO ES UN CLIENTE)
+    constructor(datosDelCorreo, estado, datosUnCliente) {
         const {campana_id, mensaje, fecha_envio, hora, titulo, asunto} = datosDelCorreo;
-        // const {cliente_id, estado} = datosClientesParaCorreos;
         const {dni, nombre, apellido, fechanac, distrito, departamento, correo, sexo, fechaafili} = datosUnCliente;
+        this.campana_id = campana_id;//Este campana_id lo usaré para ubicar a los PARTICIPANTES y almacenar el estado "Enviado" o "Programado" en ellos
         this.mensaje = mensaje;
         this.fecha_envio = fecha_envio;
         this.hora = hora,
         this.titulo = titulo,
         this.asunto = asunto,
 
+        this.estado = estado;//Este estado es el de la tabla participante, puede ser programado o enviado
+
         this.correo = correo;//DE AHI SI NECESITO LOS DEMÁS DATOS DE datosUnCliente LOS INICIALIZO EN ESTE CONSTRUCTOR
 
         this.estadoCorreoObjeto = new EstadoProgramado();//Con esto determino el Estado del Correo, en cada CLASE. No es lo mismo que el 'estado' de datosDelCorreo
-
-        this.datosCliente = [];
-
-        for(const datosCliente of datosClientesParaCorreos) {
-
-            this.datosCliente.push({
-                cliente_id: datosCliente.cliente_id,
-                estado: datosCliente.estado //ESTE ESTADO ES EL DEL PARTICIPANTE -> ENVIADO O PROGRAMADO
-            })
-        }
     }
 
-    transicionEstado(nuevoEstado) {// NO LO ESTOY USANDO EN LA LA CLASE Correo 
-        this.nuevoEstado = nuevoEstado;
+    async transicionEstadoParticipante(campana_id, estado) {// NO LO ESTOY USANDO EN LA LA CLASE Correo 
+        await clienteRepository.modificarEstadoParticipante(campana_id, estado);
     }
 
-    enviar(/*datosUnCliente*/) {//ESTOY QUE TRAIGO ESTE datosUnCliente de correoService, iré a Orinar :,v
-
-        // const {dni, nombre, apellido, fechanac, distrito, departamento, correo, sexo, fechaafili} = datosUnCliente;
-
-        this.estadoCorreoObjeto.enviarCorreo(this/*, correo*/);//Al pasarle el this le estoy pasando una instancia de la misma clase Correo
+    enviar() {
+        this.estadoCorreoObjeto.enviarCorreo(this);//Al pasarle el this le estoy pasando una instancia de la misma clase Correo
     }
 }
 

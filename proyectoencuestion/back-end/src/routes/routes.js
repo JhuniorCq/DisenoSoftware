@@ -3,9 +3,9 @@ const router = Router();
 
 const {iniciarSesion} = require('../controllers/inicioSesionController');
 const {crearCampana, mostrarCampanas, eliminarCampana, mostrarTipoCampana, mostrarCampanasEsteMes, mostrarCampanasRecientes, mostrarCampanasCorreo, mostrarCampanasLlamada, mostrarCampanasSorteo, buscarCampanaPorID, infoCampana} = require('../controllers/campanaController');
-const {crearCorreo, mostrarCorreos/*, enviarCorreos*/} = require('../controllers/correoController');
-const {crearLlamada, mostrarLlamadas} = require('../controllers/llamadaController');
-const {crearSegmentacion/*, mostrarSegmentacion*/} = require('../controllers/segmentacionController');
+const {crearCorreo, mostrarCorreosAdministrar} = require('../controllers/correoController');
+const {crearLlamada, mostrarLlamadasAdministrar, mostrarClientesCallCenter} = require('../controllers/llamadaController');
+const {crearSegmentacion} = require('../controllers/segmentacionController');
 const {buscarPromocionPorID} = require('../controllers/promocionController');
 
 const {buscarClientePorDNI, obtenerClientesSegmentados} = require('../controllers/clienteController');
@@ -28,19 +28,20 @@ router.get('/mostrarTipoCampana/:id', mostrarTipoCampana);
 
 //RUTAS PARA EL APARTADO DE CORREOS
 router.post('/crearCorreo', crearCorreo);
-router.get('/mostrarCorreos', mostrarCorreos);
+router.get('/mostrarCorreosAdministrar', mostrarCorreosAdministrar);
+
 // router.get('/enviarCorreos', enviarCorreos);//Ruta nueva
 
 //RUTAS PARA EL APARTADO DE LLAMADAS
 router.post('/crearLlamada', crearLlamada);
-router.get('/mostrarLlamadas', mostrarLlamadas);
+router.get('/mostrarLlamadasAdministrar', mostrarLlamadasAdministrar);
+router.get('/mostrarClientesCallCenter/:campana_id', mostrarClientesCallCenter)
 
 //RUTAS PARA LA SEGMENTACIÓN
-router.post('/crearSegmentacion', crearSegmentacion);//YA NO LA USAREMOS CREO
-// router.get('/mostrarSegmentacion', mostrarSegmentacion); //Lo puedo Descomentar si quiero mostrar como un response a los datos de una o todas las Segmentaciones
+router.post('/crearSegmentacion', crearSegmentacion);
         
 //RUTA PARA TRAER A CLIENTES SEGMENTADOS DE CUALQUIER CAMPAÑA -> Esto gracias al campana_id
-router.get('/obtenerClientesSegmentados/:campana_id', obtenerClientesSegmentados);//NUEVOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+router.get('/obtenerClientesSegmentados/:campana_id', obtenerClientesSegmentados);
 
 //RUTAS PARA LA PROMOCIÓN (DESCUENTO) -> SERGIO
 router.get('/buscarCampanaPorID/:idCampana', buscarCampanaPorID);

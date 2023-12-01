@@ -8,27 +8,17 @@ class CrearCorreoCommand {
     }
 }
 
-class MostrarCorreosCommand {
+class MostrarCorreosAdministrarCommand {
     constructor(correoService){
         this.correoService = correoService;
     }
 
     execute(){
-        return this.correoService.mostrarCorreos();
+        return this.correoService.mostrarCorreosAdministrar();
     }
 }
 
-// class EnviarCorreosCommand {
-//     constructor(correoService) {
-//         this.correoService = correoService.enviarCorreos(correoData);
-//     }
-
-//     execute() {
-        
-//     }
-// }
-
 module.exports = {
     CrearCorreoCommand: CrearCorreoCommand,
-    MostrarCorreosCommand: MostrarCorreosCommand
+    MostrarCorreosAdministrarCommand: MostrarCorreosAdministrarCommand
 }

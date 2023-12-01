@@ -167,7 +167,7 @@ export const CorreoAdministrar = () => {
                       return currentDate < correoDateTime;
                     })
                     .map((correo, index) => (
-                      <tr key={index}>
+                      <tr key={correo.camcorreo_id}>
                         <td>{correo.camcorreo_id}</td>
                         <td>{correo.titulo}</td>
                         <td>{correo.asunto}</td>
@@ -188,8 +188,8 @@ export const CorreoAdministrar = () => {
                       );
                       return currentDate >= correoDateTime;
                     })
-                    .map((correo, index) => (
-                      <tr key={index}>
+                    .map((correo) => (
+                      <tr key={correo.camcorreo_id}>
                         <td>{correo.camcorreo_id}</td>
                         <td>{correo.titulo}</td>
                         <td>{correo.asunto}</td>
