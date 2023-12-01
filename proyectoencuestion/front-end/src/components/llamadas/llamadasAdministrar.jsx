@@ -29,7 +29,7 @@ const LlamadasAdministrar = () => {
 
   if (isSuccess) {
     console.log(data);
-    console.log(data[1].initialDateCall);
+    console.log(data[1]?.initialDateCall); // Added optional chaining
   }
 
   const handleButtonTodasLasLlamadas = () => {
@@ -102,7 +102,7 @@ const LlamadasAdministrar = () => {
                 </tr>
               </thead>
               <tbody>
-                {buttonPressed === "Todas las llamadas" ? (
+                {buttonPressed === "Todas las llamadas" && data ? (
                   data.map((llamadaAdm) => (
                     <tr key={llamadaAdm.id}>
                       <td>{llamadaAdm.id}</td>
@@ -113,7 +113,7 @@ const LlamadasAdministrar = () => {
                       <td>{llamadaAdm.endTimeCall}</td>
                     </tr>
                   ))
-                ) : buttonPressed === "Programadas" ? (
+                ) : buttonPressed === "Programadas" && data ? (
                   data
                     .filter((llamadaAdm) => {
                       const day = new Date();
@@ -130,7 +130,7 @@ const LlamadasAdministrar = () => {
                         <td>{filterLlamadaAdm.endTimeCall}</td>
                       </tr>
                     ))
-                ) : buttonPressed === "Realizadas" ? (
+                ) : buttonPressed === "Realizadas" && data ? (
                   data
                     .filter((llamadaAdm) => {
                       const day = new Date();
