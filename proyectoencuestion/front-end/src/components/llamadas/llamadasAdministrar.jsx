@@ -23,13 +23,15 @@ const LlamadasAdministrar = () => {
   if (isLoading) {
     return <p>Loading...</p>;
   }
+
   if (isError) {
-    return <p>There's an error {error}</p>;
+    console.error("Error fetching data:", error);
+    return <p>There's an error. Please check the console for details.</p>;
   }
 
   if (isSuccess) {
-    console.log(data);
-    console.log(data[1]?.initialDateCall); // Added optional chaining
+    console.log("Data:", data);
+    console.log("Initial Date of the second item:", data[1]?.initialDateCall);
   }
 
   return (
@@ -91,7 +93,8 @@ const LlamadasAdministrar = () => {
               </thead>
               <tbody>
                 {data ? (
-                  buttonPressed === "Todas las llamadas" && data.map((llamadaAdm) => (
+                  buttonPressed === "Todas las llamadas" &&
+                  data.map((llamadaAdm) => (
                     <tr key={llamadaAdm.id}>
                       <td>{llamadaAdm.id}</td>
                       <td>{llamadaAdm.guionLlamada}</td>

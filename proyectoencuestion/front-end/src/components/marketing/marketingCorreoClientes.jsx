@@ -13,6 +13,7 @@ import Select from "react-select";
 export const CorreoClientes = () => {
   const [nameCliente, setNameCliente] = useState("");
   const [campanasIDs, setCampanasIDs] = useState("all");
+  const [idCampana, setIdCampana] = useState("-1");
 
   const { data: dataCampanas, isSuccess: isSuccessFetchCampana } = useQuery({
     queryFn: () => getCampanas(),
@@ -33,13 +34,11 @@ export const CorreoClientes = () => {
     console.log(campanasTipoCorreoVigentes);
   }
 
-  var id_campana = -1;
-
   const handleCampanaId = () => {
     if (campanasIDs === "all") {
-      id_campana = -1;
+      setIdCampana("-1");
     } else {
-      id_campana = parseInt(campanasIDs);
+      setIdCampana(campanasIDs);
     }
   };
 
@@ -49,8 +48,8 @@ export const CorreoClientes = () => {
     error,
     data: usuariosClientes,
   } = useQuery({
-    queryFn: () => getPublicoCorreosCampanas(nameCliente, id_campana),
-    queryKey: ["publicocorreoscampanas", { nameCliente }],
+    queryFn: () => getPublicoCorreosCampanas(nameCliente, idCampana),
+    queryKey: ["publicocorreoscampanas", { nameCliente, idCampana }],
   });
 
   if (isLoading) return <p>Loading...</p>;
@@ -123,13 +122,14 @@ export const CorreoClientes = () => {
                 usuariosClientes.map((usuario) => {
                   return (
                     <tr key={usuario.id}>
-                    <td>{usuario.id}</td>
-                    <td>{usuario.name}</td>
-                    <td>{usuario.surname}</td>
-                    <td>{usuario.email}</td>
-                    <td>{usuario.gender}</td>
-                    <td>{usuario.celphone}</td>
-                  </tr>
+                      <td>{usuario.id}</td>
+                      <td>{usuario.nombre}</td>
+                      <td>{usuario.apellido}</td>
+                      <td>{usuario.fechanac}</td>
+                      <td>{usuario.departamento}</td>
+                      <td>{usuario.distrito}</td>
+                      <td>{usuario.correo}</td>
+                    </tr>
                   );
                 })}
             </tbody>
