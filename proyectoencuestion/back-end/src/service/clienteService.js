@@ -59,7 +59,7 @@ class ClienteService {
     }
 
     //SI LE PONGO ACÁ ASYNC EN LA PARTE DONDE LLAMO A ESTA FUNCIÓN DEBE IR AWAIT
-    filtrarClientes(datosTodosClientes, edadMinima, edadMaxima, rangoFechaInicio, rangoFechaFin, distrito, departamento, sexo, tipo_campanaID) {
+    async filtrarClientes(datosTodosClientes, edadMinima, edadMaxima, rangoFechaInicio, rangoFechaFin, distrito, departamento, sexo, tipo_campanaID) {
 
         let clientesFiltrados = [];
 
@@ -77,33 +77,40 @@ class ClienteService {
                     }
                 } else {
 
-                    // const {dni} = cliente;
-                    // let cont = 0;
+                    // const {dni} = cliente.dni;
+                    let cont = 0;
+                    // console.log('Hola:', cliente.dni);
 
-                    // const responseVentaCliente = await axios.get(`https://modulo-ventas.onrender.com/getselldni/${dni}`);
-                    // const datosClienteVenta = responseVentaCliente.data;// ME TRAE LAS VENTAS DE UN CLIENTE -> ARRAY DE OBJETOS
+                    const responseVentaCliente = await axios.get(`https://modulo-ventas.onrender.com/getselldni/${cliente.dni}`);
+                    const datosClienteVenta = responseVentaCliente.data;// ME TRAE LAS VENTAS DE UN CLIENTE -> ARRAY DE OBJETOS
 
-                    // console.log(datosClienteVenta);
+                    
 
                     // if(datosClienteVenta === null) {
                     //     throw new Error('No se encontraron los DNI en la Ruta de Ventas');
                     // }
+                    if(datosClienteVenta !== null) {
+                        // console.log(datosClienteVenta);
+                        datosClienteVenta.forEach((objetoDatosClientesVenta) => {
+                            const fechaInicioCompra = new Date(rangoFechaInicio);
+                            const fechaFinCompra = new Date(rangoFechaFin);
+                            const fechaCompra = new Date(objetoDatosClientesVenta.fecha);
 
-                    // datosClienteVenta.forEach((objetoDatosClientesVenta) => {
+                            if( fechaInicioCompra <= fechaCompra <= fechaFinCompra) {
+                                // console.log(`Rango Fecha Inicio: ${this.formatearFecha(rangoFechaInicio)}`);
+                                // console.log(`Rango Fecha Fin: ${this.formatearFecha(rangoFechaFin)}`);
+                                // console.log(`Fecha de Compra: ${objetoDatosClientesVenta.fecha}`);
+                                // console.log(`Fecha de Compra Formateada: ${this.formatearFecha(objetoDatosClientesVenta.fecha)}`);
+    
+                                cont++;
+                            }
+                        });
+                    }
 
-                    //     if(this.formatearFecha(rangoFechaInicio) <= this.formatearFecha(objetoDatosClientesVenta.fecha) <= this.formatearFecha(rangoFechaFin)) {
-                    //         console.log(`Rango Fecha Inicio: ${rangoFechaInicio}`);
-                    //         console.log(`Rango Fecha Fin: ${rangoFechaFin}`);
-                    //         console.log(`Fecha de Compra: ${objetoDatosClientesVenta.fecha}`);
-                    //         console.log(`Fecha de Compra Formateada: ${this.formatearFecha(objetoDatosClientesVenta.fecha)}`);
-
-                    //         cont++;
-                    //     }
-                    // });
-
-                    // if(cont > 0) {
-                    //     clientesFiltrados.push(cliente);
-                    // }
+                    if(cont > 0) {
+                        // console.log(`El contador es: ${cont}`)
+                        clientesFiltrados.push(cliente);
+                    }
                 }
             }
             // console.log(clientesFiltrados);
