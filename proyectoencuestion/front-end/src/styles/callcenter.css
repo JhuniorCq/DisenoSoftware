@@ -122,3 +122,10 @@ body {
     vertical-align: middle;
     position: static;
 }
+.CCselect{
+    border-color: #2d3e50;
+    border-radius: 10px;
+    height: 25px;
+    text-align: center;
+    margin-left: 20px;
+}

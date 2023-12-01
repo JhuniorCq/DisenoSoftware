@@ -32,18 +32,6 @@ const LlamadasAdministrar = () => {
     console.log(data[1]?.initialDateCall); // Added optional chaining
   }
 
-  const handleButtonTodasLasLlamadas = () => {
-    setButtonPressed("Todas las llamadas");
-  };
-
-  const handleButtonProgramadas = () => {
-    setButtonPressed("Programadas");
-  };
-
-  const handleButtonRealizadas = () => {
-    setButtonPressed("Realizadas");
-  };
-
   return (
     <main>
       <NavbarParteGris />
@@ -58,7 +46,7 @@ const LlamadasAdministrar = () => {
                   ? styles.buttonPressed
                   : ""
               }`}
-              onClick={handleButtonTodasLasLlamadas}
+              onClick={() => setButtonPressed("Todas las llamadas")}
             >
               Todas las llamadas
             </button>
@@ -66,7 +54,7 @@ const LlamadasAdministrar = () => {
               className={`${styles.btnList} ${
                 buttonPressed === "Programadas" ? styles.buttonPressed : ""
               }`}
-              onClick={handleButtonProgramadas}
+              onClick={() => setButtonPressed("Programadas")}
             >
               Programadas
             </button>
@@ -74,7 +62,7 @@ const LlamadasAdministrar = () => {
               className={`${styles.btnList} ${
                 buttonPressed === "Realizadas" ? styles.buttonPressed : ""
               }`}
-              onClick={handleButtonRealizadas}
+              onClick={() => setButtonPressed("Realizadas")}
             >
               Realizadas
             </button>
@@ -102,8 +90,8 @@ const LlamadasAdministrar = () => {
                 </tr>
               </thead>
               <tbody>
-                {buttonPressed === "Todas las llamadas" && data ? (
-                  data.map((llamadaAdm) => (
+                {data ? (
+                  buttonPressed === "Todas las llamadas" && data.map((llamadaAdm) => (
                     <tr key={llamadaAdm.id}>
                       <td>{llamadaAdm.id}</td>
                       <td>{llamadaAdm.guionLlamada}</td>
