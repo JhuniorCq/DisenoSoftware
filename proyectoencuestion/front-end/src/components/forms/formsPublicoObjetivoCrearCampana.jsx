@@ -160,7 +160,7 @@ const FormsPublicoObjetivoCrearCampana = (props) => {
               >
                 <option value="M">Masculino</option>
                 <option value="F">Femenino</option>
-                <option value="Ambos">Ambos</option>
+                <option value="A">Ambos</option>
               </select>
             </div>
 

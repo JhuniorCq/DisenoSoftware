@@ -21,16 +21,17 @@ export const CorreoAdministrar = () => {
 
   useEffect(() => {
     if (isSuccess) {
+      console.log(data);
       const currentDate = new Date();
-      const correosActualizados = data.map((correo) => {
-        const correoDateTime = new Date(`${correo.date}T${correo.time}`);
-        if (currentDate >= correoDateTime) {
-          return { ...correo, estado: "realizados" };
-        }
-        return correo;
-      });
-      setUsuariosAdm(correosActualizados);
-      setTablaUsuariosAdm(correosActualizados);
+      // const correosActualizados = data.map((correo) => {
+      //   const correoDateTime = new Date(`${correo.date}T${correo.time}`);
+      //   if (currentDate >= correoDateTime) {
+      //     return { ...correo, estado: "realizados" };
+      //   }
+      //   return correo;
+      // });
+      setUsuariosAdm(data);
+      setTablaUsuariosAdm(data);
     }
   }, [isSuccess]);
 
@@ -132,14 +133,16 @@ export const CorreoAdministrar = () => {
                   <th>Título del correo</th>
                   <th>Asunto</th>
                   <th>Mensaje</th>
-                  <th>Id campaña</th>
+                  {/* <th>Id campaña</th> */}
                   <th>Fecha de envío</th>
                   <th>Hora de envío</th>
                   {botonCorreo === "Todos los correos" && <th>Estado</th>}
                 </tr>
               </thead>
               <tbody>
-                {usuariosAdm && botonCorreo === "Todos los correos" ? (
+                {usuariosAdm &&
+                usuariosAdm.length > 0 &&
+                botonCorreo === "Todos los correos" ? (
                   usuariosAdm.map((correo, index) => (
                     <tr key={index}>
                       <td>{correo.camcorreo_id}</td>
@@ -152,7 +155,9 @@ export const CorreoAdministrar = () => {
                       <td>{correo.estado}</td>
                     </tr>
                   ))
-                ) : usuariosAdm && botonCorreo === "Programados" ? (
+                ) : usuariosAdm &&
+                  usuariosAdm.length > 0 &&
+                  botonCorreo === "Programados" ? (
                   usuariosAdm
                     .filter((correo) => {
                       const currentDate = new Date();
@@ -161,7 +166,7 @@ export const CorreoAdministrar = () => {
                       );
                       return currentDate < correoDateTime;
                     })
-                    .map((correo) => (
+                    .map((correo, index) => (
                       <tr key={correo.camcorreo_id}>
                         <td>{correo.camcorreo_id}</td>
                         <td>{correo.titulo}</td>
@@ -172,7 +177,9 @@ export const CorreoAdministrar = () => {
                         <td>{correo.hora}</td>
                       </tr>
                     ))
-                ) : usuariosAdm && botonCorreo === "Enviados" ? (
+                ) : usuariosAdm &&
+                  usuariosAdm.length > 0 &&
+                  botonCorreo === "Enviados" ? (
                   usuariosAdm
                     .filter((correo) => {
                       const currentDate = new Date();

@@ -8,6 +8,7 @@ import {
 } from "../campanasAPI";
 import { useFormCorreo } from "../marketing/storeCorreo/useFormCorreo";
 import { useCloseFormCorreo } from "../marketing/storeCorreo/useCloseFormCorreo";
+import axios from "axios";
 
 function FormCrearCorreoDos({ siguienteIsClicked, setSiguienteIsClicked }) {
   const [sendNow, setSendNow] = useState(true);
@@ -27,13 +28,15 @@ function FormCrearCorreoDos({ siguienteIsClicked, setSiguienteIsClicked }) {
     const today = new Date();
 
     let campanasTipoCorreo = dataCampanas.filter((campana) => {
-      return campana.tipoCampana === "correo";
+      return campana.tipo_campana === 2;
     });
+
     var campanasTipoCorreoVigentes = campanasTipoCorreo.filter(
       (campanasTipoCorreo) => {
-        return new Date(campanasTipoCorreo.ends) > today;
+        return new Date(campanasTipoCorreo.fecha_fin) > today;
       }
     );
+    console.log(campanasTipoCorreoVigentes);
   }
 
   const { data } = useQuery({
@@ -99,20 +102,61 @@ function FormCrearCorreoDos({ siguienteIsClicked, setSiguienteIsClicked }) {
     const newFinalForm = new FormData(e.target);
     const newCorreoDos = Object.fromEntries(newFinalForm);
 
+    const camposExcluidos = ["send"];
+
+    const newFormSinSend = Object.keys(newCorreoDos)
+      .filter((campo) => !camposExcluidos.includes(campo))
+      .reduce((objeto, campo) => {
+        objeto[campo] = newCorreoDos[campo];
+        return objeto;
+      }, {});
+
     if (sendNow) {
-      agregarCorreoCampana.mutate({
+      const formCrearCorreoNow = {
         ...dataCorreoForm,
-        ...newCorreoDos,
-        date: formattedDate,
-        time: horaActual,
-        estado: "realizados",
-      });
+        ...newFormSinSend,
+        hora: horaActual,
+      };
+
+      axios
+        .post(
+          "https://modulo-marketing.onrender.com/crearCorreo",
+          formCrearCorreoNow
+        )
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error("Error al enviar datos:", error);
+        });
+      console.log(newCorreoDos);
+      console.log(dataCorreoForm);
+      console.log(formCrearCorreoNow);
     } else {
-      agregarCorreoCampana.mutate({
+      const formCrearCorreoLater = {
         ...dataCorreoForm,
-        ...newCorreoDos,
-        estado: "programados",
-      });
+        ...newFormSinSend,
+      };
+
+      console.log(newCorreoDos);
+      console.log(dataCorreoForm);
+      console.log(formCrearCorreoLater);
+      axios
+        .post(
+          "https://modulo-marketing.onrender.com/crearCorreo",
+          formCrearCorreoLater
+        )
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error("Error al enviar datos:", error);
+        });
+
+      // agregarCorreoCampana.mutate({
+      //   ...dataCorreoForm,
+      //   ...newCorreoDos,
+      // });
     }
 
     toggleStateFormCorreo();
@@ -127,13 +171,13 @@ function FormCrearCorreoDos({ siguienteIsClicked, setSiguienteIsClicked }) {
           <select
             className={styles.selectCampanaCorreo}
             id="selectID"
-            name="tipoCampana"
+            name="campana_id"
           >
             <option value="all">Todas las campañas...</option>
             {campanasTipoCorreoVigentes &&
-              campanasTipoCorreoVigentes.map((opcionesCampanas) => (
-                <option key={opcionesCampanas.id} value={opcionesCampanas.id}>
-                  {opcionesCampanas.name}
+              campanasTipoCorreoVigentes.map((opcionesCampanas, index) => (
+                <option key={index} value={opcionesCampanas.campana_id}>
+                  {opcionesCampanas.nombre}
                 </option>
               ))}
           </select>
@@ -171,19 +215,19 @@ function FormCrearCorreoDos({ siguienteIsClicked, setSiguienteIsClicked }) {
           <input
             type="date"
             value={date}
-            name="date"
+            name="fecha_envio"
             id={fechaID}
             onChange={handleDateChange}
-            required
+            required={!sendNow}
           />
           <label htmlFor={horaID}>Hora:</label>
           <input
             type="time"
             value={time}
-            name="time"
+            name="hora"
             id={horaID}
             onChange={handleTimeChange}
-            required
+            required={!sendNow}
           />
         </div>
       )}
