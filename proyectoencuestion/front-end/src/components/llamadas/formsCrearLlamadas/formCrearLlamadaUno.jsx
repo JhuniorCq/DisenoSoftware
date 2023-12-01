@@ -18,7 +18,7 @@ export const FormCrearLlamadaUno = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    if (data.guionLlamada.length < 10 || data.guionLlamada.length > 500) {
+    if (data.mensaje.length < 10 || data.mensaje.length > 500) {
       toast.warn("La longitud del guion debe estar entre 10 y 500 caracteres", {
         position: "bottom-left",
         autoClose: 3000,
@@ -33,7 +33,7 @@ export const FormCrearLlamadaUno = () => {
     }
 
     const validCharactersRegex = /^[a-zA-Z0-9\s]+$/;
-    if (!validCharactersRegex.test(data.guionLlamada)) {
+    if (!validCharactersRegex.test(data.mensaje)) {
       toast.warn("El guion solo puede contener letras y números.", {
         position: "bottom-left",
         autoClose: 3000,
@@ -60,7 +60,7 @@ export const FormCrearLlamadaUno = () => {
           <textarea
             className={styles.textAreaGuionLlamada}
             id="guionLlamada"
-            name="guionLlamada"
+            name="mensaje"
           ></textarea>
         </div>
         <button className={styles.btnSubmitForm}>Siguiente</button>

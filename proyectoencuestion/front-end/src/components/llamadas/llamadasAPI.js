@@ -44,7 +44,7 @@ export const getLlamadasAdministrar = async () => {
 
 export const createLlamadasAdministrar = async (llamada) => {
     try {
-        await campanasAPI.post('/llamadasadministrar', llamada);
+        await campanasAPI.post('/crearLlamada', llamada);
         // Optionally, you can return a success response or handle it as needed.
     } catch (error) {
         // Handle the error, e.g., log it or throw an exception.
