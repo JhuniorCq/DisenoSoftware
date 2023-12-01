@@ -41,10 +41,11 @@ const CallcenterM = () => {
           <div className="CCcalendar-day">Celular</div>
           <div className="CCcalendar-day">Fecha</div>
           <div className="CCcalendar-day">Hora</div>
+          <div className="CCcalendar-day">Mensaje</div>
         </div>
         {[...Array(7)].map((_, index) => (
           <div key={index} className="CCcalendar-row">
-            {[...Array(5)].map((_, cellIndex) => (
+            {[...Array(6)].map((_, cellIndex) => (
               <div key={cellIndex} className="CCcalendar-cell"></div>
             ))}
           </div>
