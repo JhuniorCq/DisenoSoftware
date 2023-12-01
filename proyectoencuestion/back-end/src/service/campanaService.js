@@ -62,8 +62,9 @@ class CampanaService {
 
         const campana_id = result.campana_id;
 
-        //REALIZAR LA FILTRACIÓN DE CLIENTES
-        const clientesFiltrados = clienteService.filtrarClientes(datosTodosClientes, edadMinima, edadMaxima, rangoFechaInicio, rangoFechaFin, distrito, departamento, sexo, tipo_campanaID);//ME TRAE TODOS LOS DATOS DE LOS CLIENTES FILTRADOS
+
+        //REALIZAR LA FILTRACIÓN DE CLIENTES -> todosClientesVentas ESTOOO TRAERLO DEL MODULO DE VENTAS
+        const clientesFiltrados = clienteService.filtrarClientes(datosTodosClientes, todosClientesVentas, edadMinima, edadMaxima, rangoFechaInicio, rangoFechaFin, distrito, departamento, sexo, tipo_campanaID);//ME TRAE TODOS LOS DATOS DE LOS CLIENTES FILTRADOS
 
         const dniClientesFiltrados = clienteService.extraerDniClientesFiltrados(clientesFiltrados);//ME TRAE SOLO A LOS DNI DE LOS CLIENTES FILTRADOS
 

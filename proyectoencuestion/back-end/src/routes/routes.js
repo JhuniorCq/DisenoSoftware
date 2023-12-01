@@ -30,8 +30,6 @@ router.get('/mostrarTipoCampana/:id', mostrarTipoCampana);
 router.post('/crearCorreo', crearCorreo);
 router.get('/mostrarCorreosAdministrar', mostrarCorreosAdministrar);
 
-// router.get('/enviarCorreos', enviarCorreos);//Ruta nueva
-
 //RUTAS PARA EL APARTADO DE LLAMADAS
 router.post('/crearLlamada', crearLlamada);
 router.get('/mostrarLlamadasAdministrar', mostrarLlamadasAdministrar);
