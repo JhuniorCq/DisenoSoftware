@@ -10,15 +10,12 @@ import { getCampanas } from "../campanasAPI";
 
 const LlamadasClientes = () => {
   const [inputCall, setInputCall] = useState("");
+  const [campanasIDs, setCampanasIDs] = useState("all");
+  const [idCampana, setIdCampana] = useState("-1");
 
   const handleChangeCallInput = (e) => {
     setInputCall(e.target.value);
   };
-
-  const { data, isLoading, isError, error } = useQuery({
-    queryFn: getLlamadasCliente,
-    queryKey: "clientesllamadas",
-  });
 
   const { data: dataCampanas, isSuccess: isSuccessFetchCampana } = useQuery({
     queryFn: () => getCampanas(),
@@ -27,16 +24,35 @@ const LlamadasClientes = () => {
 
   if (isSuccessFetchCampana) {
     const today = new Date();
-
-    let campanasTipoLlamada = dataCampanas.filter((campana) => {
-      return campana.tipoCampana === "llamada";
+    let campanasTipoCorreo = dataCampanas.filter((campana) => {
+      return campana.tipo_campana === 1;
     });
-    var campanasTipoLlamadaVigentes = campanasTipoLlamada.filter(
-      (campanasTipoLlamada) => {
-        return new Date(campanasTipoLlamada.ends) > today;
+
+    var campanasTipoLlamadaVigentes = campanasTipoCorreo.filter(
+      (campanasTipoCorreo) => {
+        return new Date(campanasTipoCorreo.fecha_fin) > today;
       }
     );
+    console.log(campanasTipoLlamadaVigentes);
   }
+
+  const handleCampanaId = () => {
+    if (campanasIDs === "all") {
+      setIdCampana("-1");
+    } else {
+      setIdCampana(campanasIDs);
+    }
+  };
+
+  const handleCampanaSelect = (e) => {
+    setCampanasIDs(e.target.value);
+    handleCampanaId();
+  };
+
+  const { data, isLoading, isError, error } = useQuery({
+    queryFn: () => getLlamadasCliente(idCampana),
+    queryKey: ["clientesllamadas", { idCampana }],
+  });
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -53,11 +69,15 @@ const LlamadasClientes = () => {
         <select
           className={styles.selectCampanaCorreo}
           placeholder="Seleccionar campana"
+          onChange={handleCampanaSelect}
         >
           <option value="all">Todas las campañas...</option>
           {campanasTipoLlamadaVigentes.map((opcionesCampanas) => (
-            <option key={opcionesCampanas.id} value={opcionesCampanas.id}>
-              {opcionesCampanas.name}
+            <option
+              key={opcionesCampanas.campana_id}
+              value={opcionesCampanas.campana_id}
+            >
+              {opcionesCampanas.nombre}
             </option>
           ))}
         </select>
@@ -89,11 +109,12 @@ const LlamadasClientes = () => {
               {data.map((llamada) => (
                 <tr key={llamada.id}>
                   <td>{llamada.id}</td>
-                  <td>{llamada.names}</td>
-                  <td>{llamada.surnames}</td>
-                  <td>{llamada.email}</td>
-                  <td>{llamada.gender}</td>
-                  <td>{llamada.phone}</td>
+                  <td>{llamada.nombre}</td>
+                  <td>{llamada.apellido}</td>
+                  <td>{llamada.fechanac}</td>
+                  <td>{llamada.departamento}</td>
+                  <td>{llamada.distrito}</td>
+                  <td>{llamada.correo}</td>
                 </tr>
               ))}
             </tbody>

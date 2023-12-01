@@ -45,9 +45,9 @@ export const useCreateSegmentacion = () => {
 
 // ------------------------------------------------------------------------
 
-export const getPublicoCorreosCampanas = async (cliente = "", id = -1) => {
+export const getPublicoCorreosCampanas = async (cliente = "", id) => {
 
-    if (id === -1) {
+    if (id === "-1") {
         const { data } = (await axios.get('http://localhost:3000/publicocorreoscampanas'));
 
         console.log("publico fetch!");
@@ -63,7 +63,7 @@ export const getPublicoCorreosCampanas = async (cliente = "", id = -1) => {
         return data;
     }
     else {
-        const { data } = (await axios.get(`https://modulo-marketing.onrender.com/obtenerClientesSegmentados/:${id}`));
+        const { data } = (await axios.get(`https://modulo-marketing.onrender.com/obtenerClientesSegmentados/${id}`));
 
         console.log(data);
 
@@ -83,7 +83,7 @@ export const createPublicoCorreosCampanas = (publico) => {
 
 
 export const getCorreosCampanas = async () => {
-    const data = await (await campanasAPI.get('/mostrarCampanasCorreo')).data;
+    const data = await (await campanasAPI.get('/mostrarCorreosAdministrar')).data;
     return data;
 }
 

@@ -23,13 +23,14 @@ const LlamadasAdministrar = () => {
   if (isLoading) {
     return <p>Loading...</p>;
   }
+
   if (isError) {
-    return <p>There's an error {error}</p>;
+    console.error("Error fetching data:", error);
+    return <p>There's an error. Please check the console for details.</p>;
   }
 
   if (isSuccess) {
-    console.log(data);
-    console.log(data[1]?.initialDateCall); // Added optional chaining
+    console.log("Data:", data);
   }
 
   return (
@@ -91,14 +92,15 @@ const LlamadasAdministrar = () => {
               </thead>
               <tbody>
                 {data ? (
-                  buttonPressed === "Todas las llamadas" && data.map((llamadaAdm) => (
-                    <tr key={llamadaAdm.id}>
-                      <td>{llamadaAdm.id}</td>
-                      <td>{llamadaAdm.guionLlamada}</td>
-                      <td>{llamadaAdm.initialDateCall}</td>
-                      <td>{llamadaAdm.endDateCall}</td>
-                      <td>{llamadaAdm.initialTimeCall}</td>
-                      <td>{llamadaAdm.endTimeCall}</td>
+                  buttonPressed === "Todas las llamadas" &&
+                  data.map((llamadaAdm) => (
+                    <tr key={llamadaAdm.cam_llamada_id}>
+                      <td>{llamadaAdm.cam_llamada_id}</td>
+                      <td>{llamadaAdm.mensaje}</td>
+                      <td>{llamadaAdm.fecha_inicio}</td>
+                      <td>{llamadaAdm.fecha_fin}</td>
+                      <td>{llamadaAdm.hora_inicio}</td>
+                      <td>{llamadaAdm.hora_fin}</td>
                     </tr>
                   ))
                 ) : buttonPressed === "Programadas" && data ? (
@@ -109,13 +111,13 @@ const LlamadasAdministrar = () => {
                       return llamadaDate > day;
                     })
                     .map((filterLlamadaAdm) => (
-                      <tr key={filterLlamadaAdm.id}>
-                        <td>{filterLlamadaAdm.id}</td>
-                        <td>{filterLlamadaAdm.guionLlamada}</td>
-                        <td>{filterLlamadaAdm.initialDateCall}</td>
-                        <td>{filterLlamadaAdm.endDateCall}</td>
-                        <td>{filterLlamadaAdm.initialTimeCall}</td>
-                        <td>{filterLlamadaAdm.endTimeCall}</td>
+                      <tr key={filterLlamadaAdm.cam_llamada_id}>
+                        <td>{filterLlamadaAdm.cam_llamada_id}</td>
+                        <td>{filterLlamadaAdm.mensaje}</td>
+                        <td>{filterLlamadaAdm.fecha_inicio}</td>
+                        <td>{filterLlamadaAdm.fecha_fin}</td>
+                        <td>{filterLlamadaAdm.hora_inicio}</td>
+                        <td>{llamadaAdm.hora_fin}</td>
                       </tr>
                     ))
                 ) : buttonPressed === "Realizadas" && data ? (
@@ -126,13 +128,13 @@ const LlamadasAdministrar = () => {
                       return day > llamadaDate;
                     })
                     .map((filterLlamadaAdm) => (
-                      <tr key={filterLlamadaAdm.id}>
-                        <td>{filterLlamadaAdm.id}</td>
-                        <td>{filterLlamadaAdm.guionLlamada}</td>
-                        <td>{filterLlamadaAdm.initialDateCall}</td>
-                        <td>{filterLlamadaAdm.endDateCall}</td>
-                        <td>{filterLlamadaAdm.initialTimeCall}</td>
-                        <td>{filterLlamadaAdm.endTimeCall}</td>
+                      <tr key={filterLlamadaAdm.cam_llamada_id}>
+                        <td>{filterLlamadaAdm.cam_llamada_id}</td>
+                        <td>{filterLlamadaAdm.mensaje}</td>
+                        <td>{filterLlamadaAdm.fecha_inicio}</td>
+                        <td>{filterLlamadaAdm.fecha_fin}</td>
+                        <td>{filterLlamadaAdm.hora_inicio}</td>
+                        <td>{llamadaAdm.hora_fin}</td>
                       </tr>
                     ))
                 ) : (
