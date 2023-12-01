@@ -70,10 +70,10 @@ class ClienteRepository {
             // Ejecutar la consulta con el valor de campana_id como parámetro
             const dniClientes = await pool.query('SELECT campana_id, cliente_id FROM participante WHERE campana_id = $1', [campana_id]);
             console.log(dniClientes.rows);
-            // El resultado contiene las filas que coinciden con la condición
+            
             return dniClientes.rows;
         } catch(error) {
-            throw console.error('Error en el métod buscarCampanaPorID en clienteService.js', error.message)
+            throw console.error('Error en el método buscarCampanaPorID en clienteService.js', error.message)
         }
     }
 }

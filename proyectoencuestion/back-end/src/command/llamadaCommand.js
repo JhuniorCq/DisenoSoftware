@@ -21,12 +21,13 @@ class MostrarClientesCallCenter {
     constructor(llamadaService){
         this.llamadaService = llamadaService;
     }
-    execute(){
-        return this.llamadaService.mostrarLlamadasAdministrar();
+    execute(campana_id){
+        return this.llamadaService.mostrarLlamadasAdministrar(campana_id);
     }
 }
 
 module.exports = {
     CrearLlamadaCommand: CrearLlamadaCommand,
-    MostrarLlamadasAdministrarCommand: MostrarLlamadasAdministrarCommand
+    MostrarLlamadasAdministrarCommand: MostrarLlamadasAdministrarCommand,
+    MostrarClientesCallCenter: MostrarClientesCallCenter
 }

@@ -24,10 +24,11 @@ class LlamadaRepository{
     }
 
 
-    async mostrarLlamadasAdministrar(){
+    async mostrarLlamadasAdministrar(campana_id){
         try{
-            const result = await pool.query('SELECT * FROM cam_llamada');
-            return result.rows;
+            const datosUnaCampanaLLamada = await pool.query('SELECT * FROM cam_llamada WHERE campana_id = $1', [campana_id]);
+
+            return datosUnaCampanaLLamada.rows[0];
         } catch(error){
             throw error;
         }
