@@ -58,28 +58,59 @@ class ClienteService {
         }
     }
 
-    filtrarClientes(datosTodosClientes, edadMinima, edadMaxima, rangoFechaInicio, rangoFechaFin, distrito, departamento, sexo, tipo_campanaID) {
+    async filtrarClientes(datosTodosClientes, edadMinima, edadMaxima, rangoFechaInicio, rangoFechaFin, distrito, departamento, sexo, tipo_campanaID) {
 
         let clientesFiltrados = [];
 
         try {
             for(const cliente of datosTodosClientes) {
 
-                if(tipo_campanaID == 1 || tipo_campanaID == 2) {//SE MEUSTRAN A SEXO M Y F CUANDO SEGMENTO SOLO A M
+                if(tipo_campanaID == 1 || tipo_campanaID == 2) {
                     
                     const cumpleCondicionSexo = sexo === 'A' || cliente.sexo === sexo;
                     
                     // console.log('Realizando la segmentación en filstrarClientes en clienteService');
                     if(edadMinima <= this.calcularEdadCliente(this.formatearFecha(cliente.fechanac)) <= edadMaxima && cliente.distrito === distrito && cliente.departamento === departamento && cumpleCondicionSexo) {
-                        // console.log(cliente);
+
                         clientesFiltrados.push(cliente);
                     }
                 } else {
-                    if(rangoFechaInicio <= cliente.fechaafili <= rangoFechaFin) {
+
+                    const {dni} = datosTodosClientes;
+
+                    const responseVentaCliente = await axios.get(`https://modulo-ventas.onrender.com/getselldni/${dni}`);
+                    const datosClienteVenta = responseVentaCliente.data;// ME TRAE LAS VENTAS DE UN CLIENTE -> ARRAY DE OBJETOS
+
+                    datosClienteVenta.forEach((objetoClienteVenta) => {
+                        cliente.primera_compra = objetoClienteVenta.fecha;//ANALIZAAAAAAAAAAR
+                    });
+
+                    const {fecha} = datosClienteVenta;
+
+                    if(rangoFechaInicio <= cliente.fechaafili <= rangoFechaFin) {//Al medio NO va cliente.fechaafili
                         clientesFiltrados.push(cliente);
                     }
                 }
             }
+
+            // if(tipo_campanaID == 1 || tipo_campanaID == 2) {
+
+            //     for(const cliente of datosTodosClientes) {
+            //         const cumpleCondicionSexo = 'A' === sexo || cliente.sexo === sexo;
+
+            //         if(edadMinima <= this.calcularEdadCliente(this.formatearFecha(cliente.fechanac)) <= edadMaxima && cliente.distrito === distrito && cliente.departamento === departamento && cumpleCondicionSexo) {
+
+            //             clientesFiltrados.push(cliente);
+            //         }
+            //     }
+
+            // } else {
+            //     for(const clienteVenta of todosClientesVentas) {
+
+            //     }
+            // }
+
+
             
             return clientesFiltrados;
         } catch(error) {
