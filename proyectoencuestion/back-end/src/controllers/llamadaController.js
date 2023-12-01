@@ -23,7 +23,6 @@ const mostrarLlamadasAdministrar = async (req, res, next) => {
         const mostrarLlamadasAdministrarCommand = new MostrarLlamadasAdministrarCommand(llamadaService);
         const result = await mostrarLlamadasAdministrarCommand.execute();
 
-        console.log(result);
         res.json(result);
 
     } catch(error){
