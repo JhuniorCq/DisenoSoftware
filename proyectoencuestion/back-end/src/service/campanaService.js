@@ -63,13 +63,15 @@ class CampanaService {
         const campana_id = result.campana_id;
 
 
-        //REALIZAR LA FILTRACIÓN DE CLIENTES -> todosClientesVentas ESTOOO TRAERLO DEL MODULO DE VENTAS
-        const clientesFiltrados = clienteService.filtrarClientes(datosTodosClientes, todosClientesVentas, edadMinima, edadMaxima, rangoFechaInicio, rangoFechaFin, distrito, departamento, sexo, tipo_campanaID);//ME TRAE TODOS LOS DATOS DE LOS CLIENTES FILTRADOS
+        //REALIZAR LA FILTRACIÓN DE CLIENTES
+        const clientesFiltrados = await clienteService.filtrarClientes(datosTodosClientes, edadMinima, edadMaxima, rangoFechaInicio, rangoFechaFin, distrito, departamento, sexo, tipo_campanaID);//ME TRAE TODOS LOS DATOS DE LOS CLIENTES FILTRADOS
+
+        console.log(clientesFiltrados);
 
         const dniClientesFiltrados = clienteService.extraerDniClientesFiltrados(clientesFiltrados);//ME TRAE SOLO A LOS DNI DE LOS CLIENTES FILTRADOS
 
         //ESTE ES UN MENSAJE QUE DICE QUE SE GUARDARON LOS DATOS EN LA TABLA PARTICIPANT
-        const mensajeGuardarParticipantes = await clienteRepository.guardarCamposParticipante(campana_id, dniClientesFiltrados);//GUARDA campana_id Y cliente_id -> EL campana_id SE GUARDA EN CADA cliente_id
+        const mensajeGuardarParticipantes = clienteRepository.guardarCamposParticipante(campana_id, dniClientesFiltrados);//GUARDA campana_id Y cliente_id -> EL campana_id SE GUARDA EN CADA cliente_id
 
         console.log(clientesFiltrados);//IMPRIMO TODOS LOS DATOS DE LOS CLIENTES FILTRADOS
         // console.log(dniClientesFiltrados);
