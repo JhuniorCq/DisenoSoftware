@@ -205,15 +205,6 @@ const FormCrearCampana = (props) => {
       ...mainForm,
     };
 
-    // agregarCampana.mutate({
-    //   ...mainForm,
-    //   fecha_creacion: formattedDate,
-    // });
-
-    // agregarSegmentacion.mutate({
-    //   ...publicoObjetivoData,
-    // });
-
     axios
       .post(
         "https://modulo-marketing.onrender.com/crearSegmentacion",

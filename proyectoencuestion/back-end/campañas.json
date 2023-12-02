@@ -600,80 +600,80 @@
   "clientesllamadas": [
     {
       "id": "0101",
-      "names": "Alonso Mateo",
-      "surnames": "Gutierrez Vidal",
+      "nombre": "Alonso Mateo",
+      "apellido": "Gutierrez Vidal",
       "email": "alonso2910@gmail.com",
       "gender": "masculino",
       "phone": "986742853"
     },
     {
       "id": "0202",
-      "names": "Camila",
-      "surnames": "López Martínez",
+      "nombre": "Camila",
+      "apellido": "López Martínez",
       "email": "camila123@gmail.com",
       "gender": "femenino",
       "phone": "789456321"
     },
     {
       "id": "0303",
-      "names": "Juan",
-      "surnames": "García Pérez",
+      "nombre": "Juan",
+      "apellido": "García Pérez",
       "email": "juan.garcia@gmail.com",
       "gender": "masculino",
       "phone": "654123789"
     },
     {
       "id": "0404",
-      "names": "María",
-      "surnames": "Rodríguez Sánchez",
+      "nombre": "María",
+      "apellido": "Rodríguez Sánchez",
       "email": "maria.r@gmail.com",
       "gender": "femenino",
       "phone": "567890123"
     },
     {
       "id": "0505",
-      "names": "Pedro",
-      "surnames": "Mendoza Silva",
+      "nombre": "Pedro",
+      "apellido": "Mendoza Silva",
       "email": "pedro.m@gmail.com",
       "gender": "masculino",
       "phone": "432109876"
     },
     {
       "id": "0606",
-      "names": "Laura",
-      "surnames": "Pérez González",
+      "nombre": "Laura",
+      "apellido": "Pérez González",
       "email": "laura_pg@gmail.com",
       "gender": "femenino",
       "phone": "765432198"
     },
     {
       "id": "0707",
-      "names": "Miguel",
-      "surnames": "Fernández López",
+      "nombre": "Miguel",
+      "apellido": "Fernández López",
       "email": "miguel_f@hotmail.com",
       "gender": "masculino",
       "phone": "654987321"
     },
     {
       "id": "0808",
-      "names": "Isabella",
-      "surnames": "Torres Ramírez",
+      "nombre": "Isabella",
+      "apellido": "Torres Ramírez",
       "email": "isabella_t@gmail.com",
       "gender": "femenino",
       "phone": "789012345"
     },
     {
       "id": "0909",
-      "names": "David",
-      "surnames": "Hernández Martínez",
+      "nombre": "David",
+      "apellido": "Hernández Martínez",
       "email": "david.hm@gmail.com",
       "gender": "masculino",
       "phone": "543216789"
     },
     {
       "id": "1010",
-      "names": "Valentina",
-      "surnames": "Gómez Pérez",
+      "nombre": "Valentina",
+      "apellido": "Gómez Pérez",
       "email": "valentina.gomez@gmail.com",
       "gender": "femenino",
       "phone": "678901234"

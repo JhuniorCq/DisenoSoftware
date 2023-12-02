@@ -40,13 +40,14 @@ const FormsPublicoObjetivoCrearCampana = (props) => {
       const customValueTargeredAge = `${rangoPersonalizadoByUserMenor}-${rangoPersonalizadoByUserMayor}`;
       const dataWithCustomRange = {
         ...dataSubMenu,
-        targeredAge: customValueTargeredAge,
+        tipo: customValueTargeredAge,
       };
 
       // devuelvo la data con el rango personalizado...
       console.log("data personalizado devuelto!");
       setSecondFormIsSubmitted(true);
       onSecondFormSubmit(dataWithCustomRange);
+      console.log(dataWithCustomRange);
       return;
     }
 
@@ -105,7 +106,7 @@ const FormsPublicoObjetivoCrearCampana = (props) => {
                 type="date"
                 className={styles.customSelect}
                 id="fechainiciosorteo"
-                name="fechaInicioSorteo"
+                name="fechaInicio"
                 required={tipoCampanaInput === "3"}
               />
 
@@ -113,7 +114,7 @@ const FormsPublicoObjetivoCrearCampana = (props) => {
                 type="date"
                 className={styles.customSelect}
                 id="fechafinsorteo"
-                name="fechafinsorteo"
+                name="fechaFin"
                 required={tipoCampanaInput === "3"}
               />
             </div>
@@ -170,16 +171,16 @@ const FormsPublicoObjetivoCrearCampana = (props) => {
                 <div className={styles.containerInputsRango}>
                   <input
                     type="number"
-                    name="min"
                     min={0}
                     max={100}
+                    name="minm"
                     onChange={handleRangoPersonalizadoMenor}
                   />
                   <span> a </span>
                   <input
-                    name="max"
                     type="number"
                     min={0}
+                    name="maxm"
                     onChange={handleRangoPersonalizadoMayor}
                   />
                 </div>
