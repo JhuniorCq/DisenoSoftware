@@ -19,7 +19,7 @@ router.post('/crearCampana', crearCampana);
 router.get('/mostrarCampanas', mostrarCampanas);
 router.get('/mostrarCampanas/este-mes', mostrarCampanasEsteMes);
 router.get('/mostrarCampanas/recientes', mostrarCampanasRecientes);
-router.delete('/eliminarCampana/:id', eliminarCampana);//Modificar esto o sacarlo
+router.delete('/eliminarCampana/:id', eliminarCampana);
 router.get('/mostrarCampanasCorreo', mostrarCampanasCorreo);
 router.get('/mostrarCampanasLlamada', mostrarCampanasLlamada);
 router.get('/mostrarCampanasSorteo', mostrarCampanasSorteo);
@@ -38,8 +38,6 @@ router.get('/mostrarClientesCallCenter/:campana_id', mostrarClientesCallCenter)
 
 //RUTAS PARA LA SEGMENTACIÓN
 router.post('/crearSegmentacion', crearSegmentacion);
-        
-//RUTA PARA TRAER A CLIENTES SEGMENTADOS DE CUALQUIER CAMPAÑA -> Esto gracias al campana_id
 router.get('/obtenerClientesSegmentados/:campana_id', obtenerClientesSegmentados);
 
 //RUTAS PARA SORTEOS
@@ -47,33 +45,12 @@ router.post('/crearMensajeSorteo', crearMensajeSorteo);
 router.post('/realizarSorteo', realizarSorteo);
 router.put('/modificarEstadoPromocion/:promocion_id', modificarEstadoPromocion);
 
-//RUTAS PARA LA PROMOCIÓN (DESCUENTO) -> SERGIO
+//RUTAS PARA EL MÓDULO DE VENTAS
 router.get('/buscarCampanaPorID/:idCampana', buscarCampanaPorID);
 router.get('/buscarPromocionPorID/:idPromocion', buscarPromocionPorID);
 router.get('/buscarClientePorDNI/:dniCliente', buscarClientePorDNI);
 
 //RUTA PARA MÓDULO DE AUTOCONSULTAS
 router.get('/infoCampana', infoCampana);
-
-
-//Esto no es del Proyecto
-const {
-    //Importaciones de Prueba
-    obtenerTodasTareas,
-    obtenerUnaTarea, 
-    crearTarea, 
-    eliminarTarea, 
-    modificarTarea,
-    holaMundito
-} = require('../controllers/controller');
-
-//Rutas de Prueba
-router.get('/', holaMundito);
-router.get('/tasks', obtenerTodasTareas);
-router.get('/tasks/:id', obtenerUnaTarea);
-router.post('/tasks', crearTarea);
-router.delete('/tasks/:id', eliminarTarea);
-router.put('/tasks/:id', modificarTarea);
-//Hasta acá
 
 module.exports = router;

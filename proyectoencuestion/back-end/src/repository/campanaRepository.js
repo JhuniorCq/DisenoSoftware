@@ -1,9 +1,8 @@
 const pool = require('../db');
-const {format, isThisMonth, isWithinInterval} = require('date-fns');
+const {isThisMonth, isWithinInterval} = require('date-fns');
 
 class CampanaRepository {
     async crearCampana(campanaData, promocion_id, segmentacion_id) {
-        //Desestructuro a campanaDasta -> Ojo: promocion_id no forma parte de campanaData, pero si lo considera al hacer el query
         const { fecha_inicio, fecha_fin, nombre, tipo_campana, descripcion, objetivos, fecha_creacion } = campanaData;
 
         const result = await pool.query('INSERT INTO campana ("fecha_inicio", "fecha_fin", nombre, "tipo_campana", descripcion, objetivos, "segmentacion_id", "promocion_id", "fecha_creacion") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *', [
@@ -17,12 +16,10 @@ class CampanaRepository {
             promocion_id,
             fecha_creacion
         ]);
-        
-        // console.log(typeof fecha_fin, typeof fecha_inicio, new Date());
+
         return result.rows[0];
     }
 
-    //Esto deberia ir en los archivos de prmocion :v
     async crearPromocion(campanaData) {
 
         const {promocion} = campanaData;
@@ -41,8 +38,6 @@ class CampanaRepository {
 
     async mostrarCampanas() {
         try {
-
-            //FUSIONA TODOS LOS DATOS DE LA TABLA campana CON LOS DATOS promocion y estado DE LA TABLA promocion
             const datosTodasCampanas = await pool.query('SELECT campana.*, promocion.promocion, promocion.estado FROM campana LEFT JOIN promocion ON campana.promocion_id = promocion.promocion_id ORDER BY fecha_creacion DESC');
 
             console.log(datosTodasCampanas.rows);
@@ -56,7 +51,7 @@ class CampanaRepository {
     async mostrarCampanasEsteMes() {
         try {
             const result = await pool.query('SELECT * FROM campana ORDER BY fecha_creacion DESC');
-            //campana es la Tabla y campana.fecha_creacion es la columna fecha_creacion en la tabla campana
+
             const campanasEsteMes = result.rows.filter(campana => isThisMonth(new Date(campana.fecha_creacion)))
 
             return campanasEsteMes;
@@ -83,7 +78,6 @@ class CampanaRepository {
         return result;
     }
 
-    //USARÉ ESTO COMO FUNCIÓN, PERO NO COMO RUTA
     async mostrarTipoCampana(tipoCampanaID) {
         try{
             const todosTipoCampana = await pool.query('SELECT * FROM tipo_campana');
@@ -145,20 +139,18 @@ class CampanaRepository {
         }
     }
 
-    async infoCampana() {//Nombre Campaña , tipo de campaña y las promocion
+    async infoCampana() {
             try {
 
-            // Consulta SQL con JOIN entre las tablas campana y promocion
-            // Ejecutando la consulta
             const result = await pool.query('SELECT c.campana_id, c.nombre, c.tipo_campana, p.promocion FROM campana c JOIN promocion p ON c.promocion_id = p.promocion_id;');
 
-            // Verifica si se encontraron resultados
             if (result.rows.length > 0) {
-                // Devuelve los datos obtenidos
+
                 console.log(result.rows)
                 return result.rows;
+
             } else {
-                // No se encontraron campañas
+
                 return null;
             }
         } catch(error) {
