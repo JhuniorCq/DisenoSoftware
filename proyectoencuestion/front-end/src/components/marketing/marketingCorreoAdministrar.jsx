@@ -65,11 +65,11 @@ export const CorreoAdministrar = () => {
   };
 
   const toggleCorreosProgramados = () => {
-    setBotonCorreo("Programados");
+    setBotonCorreo("Listo");
   };
 
   const toggleCorreosEnviados = () => {
-    setBotonCorreo("Enviados");
+    setBotonCorreo("Enviado");
   };
 
   return (
@@ -92,7 +92,7 @@ export const CorreoAdministrar = () => {
             </button>
             <button
               className={`${styles.botonLista} ${
-                botonCorreo === "Programados" ? styles.highlightButton : ""
+                botonCorreo === "Listo" ? styles.highlightButton : ""
               }`}
               onClick={toggleCorreosProgramados}
             >
@@ -100,7 +100,7 @@ export const CorreoAdministrar = () => {
             </button>
             <button
               className={`${styles.botonLista} ${
-                botonCorreo === "Enviados" ? styles.highlightButton : ""
+                botonCorreo === "Enviado" ? styles.highlightButton : ""
               }`}
               onClick={toggleCorreosEnviados}
             >
@@ -157,14 +157,14 @@ export const CorreoAdministrar = () => {
                   ))
                 ) : usuariosAdm &&
                   usuariosAdm.length > 0 &&
-                  botonCorreo === "Programados" ? (
+                  botonCorreo === "Listo" ? (
                   usuariosAdm
                     .filter((correo) => {
                       const currentDate = new Date();
                       const correoDateTime = new Date(
-                        `${correo.date}T${correo.time}`
+                        `${correo.fecha_envio}T${correo.hora}`
                       );
-                      return currentDate < correoDateTime;
+                      return currentDate < correoDateTime; // Mostrar correos cuya fecha de envío es en el futuro
                     })
                     .map((correo, index) => (
                       <tr key={correo.camcorreo_id}>
@@ -179,14 +179,14 @@ export const CorreoAdministrar = () => {
                     ))
                 ) : usuariosAdm &&
                   usuariosAdm.length > 0 &&
-                  botonCorreo === "Enviados" ? (
+                  botonCorreo === "Enviado" ? (
                   usuariosAdm
                     .filter((correo) => {
                       const currentDate = new Date();
                       const correoDateTime = new Date(
-                        `${correo.date}T${correo.time}`
+                        `${correo.fecha_envio}T${correo.hora}`
                       );
-                      return currentDate >= correoDateTime;
+                      return currentDate >= correoDateTime; // Mostrar correos cuya fecha y hora de envío ya han pasado
                     })
                     .map((correo) => (
                       <tr key={correo.camcorreo_id}>

@@ -48,7 +48,7 @@ export const useCreateSegmentacion = () => {
 export const getPublicoCorreosCampanas = async (cliente = "", id) => {
 
     if (id === "-1") {
-        const { data } = (await axios.get('http://localhost:3000/publicocorreoscampanas'));
+        const { data } = (await axios.get('https://modulo-marketing.onrender.com/obtenerClientesSegmentados/161'));
 
         console.log("publico fetch!");
 
