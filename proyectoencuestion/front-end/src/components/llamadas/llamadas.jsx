@@ -49,10 +49,14 @@ const LlamadasClientes = () => {
     handleCampanaId();
   };
 
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error, isSuccess } = useQuery({
     queryFn: () => getLlamadasCliente(idCampana),
     queryKey: ["clientesllamadas", { idCampana }],
   });
+
+  if (isSuccess) {
+    console.log(data);
+  }
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -97,26 +101,28 @@ const LlamadasClientes = () => {
           <table className="table table-hover table-bordered table-info">
             <thead className="table-light">
               <tr className="bg-primary">
-                <td>id</td>
-                <td>Nombres</td>
-                <td>Apellidos</td>
-                <td>Correo electrónico</td>
-                <td>Género</td>
-                <td>Celular</td>
+                <td>DNI</td>
+                <td>Nombre</td>
+                <td>Apellido</td>
+                <td>Fecha de nacimiento</td>
+                <td>Departamento</td>
+                <td>Distrito</td>
+                <td>Correo</td>
               </tr>
             </thead>
             <tbody>
-              {data.map((llamada) => (
-                <tr key={llamada.id}>
-                  <td>{llamada.id}</td>
-                  <td>{llamada.nombre}</td>
-                  <td>{llamada.apellido}</td>
-                  <td>{llamada.fechanac}</td>
-                  <td>{llamada.departamento}</td>
-                  <td>{llamada.distrito}</td>
-                  <td>{llamada.correo}</td>
-                </tr>
-              ))}
+              {Array.isArray(data) &&
+                data.map((llamada) => (
+                  <tr key={llamada.id}>
+                    <td>{llamada.dni}</td>
+                    <td>{llamada.nombre}</td>
+                    <td>{llamada.apellido}</td>
+                    <td>{llamada.fechanac.split("T")[0]}</td>
+                    <td>{llamada.departamento}</td>
+                    <td>{llamada.distrito}</td>
+                    <td>{llamada.correo}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
