@@ -104,6 +104,7 @@ const CallcenterM = () => {
               <td>Hora de inicio</td>
               <td>Hora de fin</td>
               <td>Mensaje</td>
+              <td>Celular</td>
             </tr>
           </thead>
           <tbody>
@@ -118,6 +119,7 @@ const CallcenterM = () => {
                   <td>{llamada.hora_inicio}</td>
                   <td>{llamada.hora_fin}</td>
                   <td>{llamada.mensaje}</td>
+                  <td>{llamada.numero}</td>
                 </tr>
               ))}
           </tbody>
