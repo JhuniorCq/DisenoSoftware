@@ -26,12 +26,12 @@ class CampanaRepository {
     async crearPromocion(campanaData) {
 
         const {promocion} = campanaData;
-        let estado = 'Valido';
+        let estado = 'activo';
         const fecha_actual = new Date();
         const fecha_fin = new Date(campanaData.fecha_fin);
 
         if(fecha_actual > fecha_fin) {
-            estado = 'No Valido';
+            estado = 'no activo';
         }
         
         const result = await pool.query('INSERT INTO promocion (promocion, estado) VALUES ($1, $2) RETURNING *', [promocion, estado]);

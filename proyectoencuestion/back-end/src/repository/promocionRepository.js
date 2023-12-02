@@ -18,7 +18,7 @@ class PromocionRepository {
 
     async modificarEstadoPromocion(promocion_id) {
         try {
-            const result = await pool.query('UPDATE promocion SET estado = $1 WHERE promocion_id = $2', ['No valido', promocion_id]);
+            const result = await pool.query('UPDATE promocion SET estado = $1 WHERE promocion_id = $2', ['no activo', promocion_id]);
 
             console.log(`Se han modificado ${result.rowCount} filas -> El estado de la promoción #${promocion_id}`);
 
