@@ -117,7 +117,7 @@ const LlamadasAdministrar = () => {
                         <td>{filterLlamadaAdm.fecha_inicio}</td>
                         <td>{filterLlamadaAdm.fecha_fin}</td>
                         <td>{filterLlamadaAdm.hora_inicio}</td>
-                        <td>{llamadaAdm.hora_fin}</td>
+                        <td>{filterLlamadaAdm.hora_fin}</td>
                       </tr>
                     ))
                 ) : buttonPressed === "Realizadas" && data ? (
@@ -134,7 +134,7 @@ const LlamadasAdministrar = () => {
                         <td>{filterLlamadaAdm.fecha_inicio.split("T")[0]}</td>
                         <td>{filterLlamadaAdm.fecha_fin.split("T")[0]}</td>
                         <td>{filterLlamadaAdm.hora_inicio}</td>
-                        <td>{llamadaAdm.hora_fin}</td>
+                        <td>{filterLlamadaAdm.hora_fin}</td>
                       </tr>
                     ))
                 ) : (
