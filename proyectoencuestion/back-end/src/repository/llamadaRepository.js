@@ -4,7 +4,6 @@ class LlamadaRepository{
 
     async crearLlamada(llamadaData){
         try{
-            //PARA GUARDAR LOS DATOS DE LA LLAMADA (mensaje, fecha de inicio, fecha de fin, hora de inicio y de fin), SE NECESITA EL campana_id QUE DEBE SER PASADO DESDE EL FRONT AL ESCOGER UNA DE LAS CAMPAÑAS DE LLAMADAS
             const {campana_id, mensaje, fecha_inicio, fecha_fin, hora_inicio, hora_fin} = llamadaData;
 
             const result = await pool.query('INSERT INTO cam_llamada ("campana_id", mensaje, "fecha_inicio", "fecha_fin", "hora_inicio", "hora_fin") VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [
@@ -24,11 +23,11 @@ class LlamadaRepository{
     }
 
 
-    async mostrarLlamadasAdministrar(/*campana_id*/){
+    async mostrarLlamadasAdministrar(){
         try{
             const datosCampanasLLamada = await pool.query('SELECT * FROM cam_llamada');
 
-            console.log(datosCampanasLLamada.rows);
+            // console.log(datosCampanasLLamada.rows);
             return datosCampanasLLamada.rows;
         } catch(error){
             throw error;
