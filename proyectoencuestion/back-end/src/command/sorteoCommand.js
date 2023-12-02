@@ -9,6 +9,17 @@ class CrearMensajeSorteoCommand {
     }
 }
 
+class RealizarSorteoCommand {
+    constructor(sorteoService) {
+        this.sorteoService = sorteoService;
+    }
+
+    execute(sorteoData) {
+        return this.sorteoService.realizarSorteo(sorteoData);
+    }
+}
+
 module.exports = {
-    CrearMensajeSorteoCommand: CrearMensajeSorteoCommand
+    CrearMensajeSorteoCommand: CrearMensajeSorteoCommand,
+    RealizarSorteoCommand: RealizarSorteoCommand
 }

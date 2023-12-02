@@ -1,4 +1,4 @@
-const {CrearMensajeSorteoCommand} = require('../command/sorteoCommand');
+const {CrearMensajeSorteoCommand, RealizarSorteoCommand} = require('../command/sorteoCommand');
 const {SorteoService} = require('../service/sorteoService')
 const sorteoService = new SorteoService();
 
@@ -18,6 +18,22 @@ const crearMensajeSorteo = async (req, res, next) => {
     }
 }
 
+const realizarSorteo = async (req, res, next) => {
+    try {
+        const sorteoData = req.body;//Esto contiene a campana_id y a cantidad_ganadores
+
+        const realizarSorteoCommand = new RealizarSorteoCommand(sorteoService);
+
+        const ganadores = await realizarSorteoCommand.execute(sorteoData);
+
+        console.log(ganadores);
+        res.json(ganadores);
+
+    } catch(error) {
+        next(error);
+    }
+}
 module.exports = {
-    crearMensajeSorteo: crearMensajeSorteo
+    crearMensajeSorteo: crearMensajeSorteo,
+    realizarSorteo: realizarSorteo
 }
