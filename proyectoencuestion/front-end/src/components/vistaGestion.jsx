@@ -26,6 +26,7 @@ const VistaGestion = () => {
     if (isSuccess) {
       setUsuarios(data);
       setTablaUsuarios(data);
+      console.log(data);
     }
   }, [isSuccess, data]);
 
@@ -169,7 +170,7 @@ const VistaGestion = () => {
                           {usuario.descripcion}
                         </td>
                         <td className={styles.campanaDescripcion}>
-                          {usuario.objetivo}
+                          {usuario.objetivos}
                         </td>
                         <td className={styles.campanaDescripcion}>
                           {usuario.fecha_creacion?.split("T")[0]}
