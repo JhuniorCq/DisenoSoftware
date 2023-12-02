@@ -131,8 +131,8 @@ const LlamadasAdministrar = () => {
                       <tr key={filterLlamadaAdm.cam_llamada_id}>
                         <td>{filterLlamadaAdm.cam_llamada_id}</td>
                         <td>{filterLlamadaAdm.mensaje}</td>
-                        <td>{filterLlamadaAdm.fecha_inicio}</td>
-                        <td>{filterLlamadaAdm.fecha_fin}</td>
+                        <td>{filterLlamadaAdm.fecha_inicio.split("T")[0]}</td>
+                        <td>{filterLlamadaAdm.fecha_fin.split("T")[0]}</td>
                         <td>{filterLlamadaAdm.hora_inicio}</td>
                         <td>{llamadaAdm.hora_fin}</td>
                       </tr>

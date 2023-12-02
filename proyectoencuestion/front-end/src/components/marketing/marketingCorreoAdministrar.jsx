@@ -23,15 +23,15 @@ export const CorreoAdministrar = () => {
     if (isSuccess) {
       console.log(data);
       const currentDate = new Date();
-      // const correosActualizados = data.map((correo) => {
-      //   const correoDateTime = new Date(`${correo.date}T${correo.time}`);
-      //   if (currentDate >= correoDateTime) {
-      //     return { ...correo, estado: "realizados" };
-      //   }
-      //   return correo;
-      // });
-      setUsuariosAdm(data);
-      setTablaUsuariosAdm(data);
+      const correosActualizados = data.map((correo) => {
+        const correoDateTime = new Date(`${correo.fecha_envio}T${correo.hora}`);
+        if (currentDate >= correoDateTime) {
+          return { ...correo, estado: "realizados" };
+        }
+        return correo;
+      });
+      setUsuariosAdm(correosActualizados);
+      setTablaUsuariosAdm(correosActualizados);
     }
   }, [isSuccess]);
 
@@ -145,12 +145,12 @@ export const CorreoAdministrar = () => {
                 botonCorreo === "Todos los correos" ? (
                   usuariosAdm.map((correo, index) => (
                     <tr key={index}>
-                      <td>{correo.camcorreo_id}</td>
+                      <td>{correo.cliente_id}</td>
                       <td>{correo.titulo}</td>
                       <td>{correo.asunto}</td>
                       <td>{correo.mensaje}</td>
                       {/* <td>{correo.tipoCampana}</td> */}
-                      <td>{correo.fecha_envio}</td>
+                      <td>{correo.fecha_envio.split("T")[0]}</td>
                       <td>{correo.hora}</td>
                       <td>{correo.estado}</td>
                     </tr>

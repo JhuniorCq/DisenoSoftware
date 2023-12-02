@@ -7,6 +7,7 @@ const {crearCorreo, mostrarCorreosAdministrar} = require('../controllers/correoC
 const {crearLlamada, mostrarLlamadasAdministrar, mostrarClientesCallCenter} = require('../controllers/llamadaController');
 const {crearSegmentacion} = require('../controllers/segmentacionController');
 const {buscarPromocionPorID} = require('../controllers/promocionController');
+const {crearMensajeSorteo,realizarSorteo} = require('../controllers/sorteoController')
 
 const {buscarClientePorDNI, obtenerClientesSegmentados} = require('../controllers/clienteController');
 
@@ -40,6 +41,10 @@ router.post('/crearSegmentacion', crearSegmentacion);
         
 //RUTA PARA TRAER A CLIENTES SEGMENTADOS DE CUALQUIER CAMPAÑA -> Esto gracias al campana_id
 router.get('/obtenerClientesSegmentados/:campana_id', obtenerClientesSegmentados);
+
+//RUTAS PARA SORTEOS
+router.post('/crearMensajeSorteo', crearMensajeSorteo);
+router.post('/realizarSorteo', realizarSorteo);
 
 //RUTAS PARA LA PROMOCIÓN (DESCUENTO) -> SERGIO
 router.get('/buscarCampanaPorID/:idCampana', buscarCampanaPorID);
