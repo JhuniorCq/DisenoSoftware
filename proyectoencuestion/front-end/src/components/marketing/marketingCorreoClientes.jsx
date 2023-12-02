@@ -126,7 +126,7 @@ export const CorreoClientes = () => {
                       <td>{usuario.dni}</td>
                       <td>{usuario.nombre}</td>
                       <td>{usuario.apellido}</td>
-                      <td>{usuario.fechanac}</td>
+                      <td>{usuario.fechanac.split("T")[0]}</td>
                       <td>{usuario.departamento}</td>
                       <td>{usuario.distrito}</td>
                       <td>{usuario.correo}</td>

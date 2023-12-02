@@ -90,3 +90,24 @@ export const getCorreosCampanas = async () => {
 export const createCorreosCampanas = (correo) => {
     campanasAPI.post('/correoscampanascreadas', correo);
 }
+
+
+//  ------------------------------------------------
+
+export const getCallCenter = async (id) => {
+    if (id === "-1") {
+        const { data } = (await axios.get('https://modulo-marketing.onrender.com/mostrarClientesCallCenter/161'));
+
+        console.log("publico fetch!");
+
+        return data;
+    }
+    else {
+        const { data } = (await axios.get(`https://modulo-marketing.onrender.com/mostrarClientesCallCenter/${id}`));
+
+        console.log(data);
+
+        return data;
+    }
+
+}
