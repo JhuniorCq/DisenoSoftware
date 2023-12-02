@@ -39,13 +39,15 @@ const CallcenterM = () => {
           <div className="CCcalendar-day">Nombres</div>
           <div className="CCcalendar-day">Apellidos</div>
           <div className="CCcalendar-day">Celular</div>
-          <div className="CCcalendar-day">Fecha</div>
-          <div className="CCcalendar-day">Hora</div>
+          <div className="CCcalendar-day">Fecha inicio</div>
+          <div className="CCcalendar-day">Fecha fin</div>
+          <div className="CCcalendar-day">Hora inicio</div>
+          <div className="CCcalendar-day">Hora fin</div>
           <div className="CCcalendar-day">Mensaje</div>
         </div>
         {[...Array(7)].map((_, index) => (
           <div key={index} className="CCcalendar-row">
-            {[...Array(6)].map((_, cellIndex) => (
+            {[...Array(8)].map((_, cellIndex) => (
               <div key={cellIndex} className="CCcalendar-cell"></div>
             ))}
           </div>
