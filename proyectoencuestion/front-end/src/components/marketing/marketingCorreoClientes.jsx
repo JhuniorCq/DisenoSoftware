@@ -109,12 +109,13 @@ export const CorreoClientes = () => {
           <table className="table table-info table-hover align-middle">
             <thead className="table-light align-middle">
               <tr>
-                <td>Id</td>
+                <td>DNI</td>
                 <td>Nombre</td>
                 <td>Apellido</td>
+                <td>Fecha de nacimiento</td>
+                <td>Departamento</td>
+                <td>Distrito</td>
                 <td>Correo</td>
-                <td>Género</td>
-                <td>Celular</td>
               </tr>
             </thead>
             <tbody>
@@ -122,10 +123,10 @@ export const CorreoClientes = () => {
                 usuariosClientes.map((usuario) => {
                   return (
                     <tr key={usuario.id}>
-                      <td>{usuario.id}</td>
+                      <td>{usuario.dni}</td>
                       <td>{usuario.nombre}</td>
                       <td>{usuario.apellido}</td>
-                      <td>{usuario.fechanac}</td>
+                      <td>{usuario.fechanac.split("T")[0]}</td>
                       <td>{usuario.departamento}</td>
                       <td>{usuario.distrito}</td>
                       <td>{usuario.correo}</td>

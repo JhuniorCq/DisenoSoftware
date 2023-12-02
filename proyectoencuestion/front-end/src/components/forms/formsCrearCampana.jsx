@@ -61,7 +61,7 @@ const FormCrearCampana = (props) => {
     const descuento = parseInt(mainForm.promocion); //nos ayuda a establecer que el descuento no pase de 50% con una condicional
     const tipoCampanaEntero = parseInt(mainForm.tipo_campana);
 
-    if (fechaInicio < today) {
+    if (fechaInicio <= today) {
       toast.warn("La fecha de inicio debe ser igual o posterior a hoy", {
         position: "bottom-right",
         autoClose: 3000,

@@ -8,7 +8,7 @@ export const getLlamadasCliente = async (id) => {
 
     if (id === '-1') {
         try {
-            const response = await axios.get('http://localhost:3000/clientesllamadas');
+            const response = await axios.get('https://modulo-marketing.onrender.com/obtenerClientesSegmentados/161');
             return response.data;
         } catch (error) {
             // Handle the error, e.g., log it or return an empty array.
@@ -18,7 +18,7 @@ export const getLlamadasCliente = async (id) => {
     }
     else {
         try {
-            const response = await campanasAPI.get('/mostrarCampanasLlamada');
+            const response = await axios.get('https://modulo-marketing.onrender.com/obtenerClientesSegmentados/${id}');
             return response.data;
         } catch (error) {
             // Handle the error, e.g., log it or return an empty array.
@@ -29,14 +29,6 @@ export const getLlamadasCliente = async (id) => {
 };
 
 export const getLlamadasAdministrar = async () => {
-    // try {
-    //     const response = await axios.get('http://localhost:3000/llamadasadministrar');
-    //     return response.data;
-    // } catch (error) {
-    //     // Handle the error, e.g., log it or return an empty array.
-    //     console.error("Error fetching administrate calls:", error);
-    //     return [];
-    // }
 
     const data = await (await campanasAPI.get('/mostrarLlamadasAdministrar')).data;
     return data;
