@@ -6,7 +6,7 @@ const {crearCampana, mostrarCampanas, eliminarCampana, mostrarTipoCampana, mostr
 const {crearCorreo, mostrarCorreosAdministrar} = require('../controllers/correoController');
 const {crearLlamada, mostrarLlamadasAdministrar, mostrarClientesCallCenter} = require('../controllers/llamadaController');
 const {crearSegmentacion} = require('../controllers/segmentacionController');
-const {buscarPromocionPorID} = require('../controllers/promocionController');
+const {buscarPromocionPorID, modificarEstadoPromocion} = require('../controllers/promocionController');
 const {crearMensajeSorteo,realizarSorteo} = require('../controllers/sorteoController')
 
 const {buscarClientePorDNI, obtenerClientesSegmentados} = require('../controllers/clienteController');
@@ -45,6 +45,7 @@ router.get('/obtenerClientesSegmentados/:campana_id', obtenerClientesSegmentados
 //RUTAS PARA SORTEOS
 router.post('/crearMensajeSorteo', crearMensajeSorteo);
 router.post('/realizarSorteo', realizarSorteo);
+router.put('/modificarEstadoPromocion/:promocion_id', modificarEstadoPromocion);
 
 //RUTAS PARA LA PROMOCIÓN (DESCUENTO) -> SERGIO
 router.get('/buscarCampanaPorID/:idCampana', buscarCampanaPorID);

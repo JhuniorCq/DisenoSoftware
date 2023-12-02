@@ -9,6 +9,17 @@ class BuscarPromocionPorIDCommand {
     }
 }
 
+class ModificarEstadoPromocionCommand {
+    constructor(promocionService) {
+        this.promocionService = promocionService;
+    }
+
+    execute(promocion_id) {
+        return this.promocionService.modificarEstadoPromocion(promocion_id);
+    }
+}
+
 module.exports = {
-    BuscarPromocionPorIDCommand: BuscarPromocionPorIDCommand
+    BuscarPromocionPorIDCommand: BuscarPromocionPorIDCommand,
+    ModificarEstadoPromocionCommand: ModificarEstadoPromocionCommand
 }

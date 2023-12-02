@@ -1,4 +1,4 @@
-const {BuscarPromocionPorIDCommand} = require('../command/promocionCommand');
+const {BuscarPromocionPorIDCommand, ModificarEstadoPromocionCommand} = require('../command/promocionCommand');
 const {PromocionService} = require('../service/promocionService');
 const promocionService = new PromocionService();
 
@@ -15,10 +15,23 @@ const buscarPromocionPorID = async (req, res, next) => {
         res.json(promocion_id);
 
     } catch(error) {
-        res.status(500).json({ error: 'Ha ocurrido un error' });
+        next(error);
+    }
+}
+
+const modificarEstadoPromocion = async (req, res, next) => {
+    try {
+        const {promocion_id} = req.params;
+        const modificarEstadoPromocionCommand = new ModificarEstadoPromocionCommand(promocionService);
+        const result = await modificarEstadoPromocionCommand.execute(promocion_id)
+
+        res.send(`Se han modificado ${result} filas -> El estado de la promoción #${promocion_id}`);
+    } catch(error) {
+        next(error);
     }
 }
 
 module.exports = {
-    buscarPromocionPorID: buscarPromocionPorID
+    buscarPromocionPorID: buscarPromocionPorID,
+    modificarEstadoPromocion: modificarEstadoPromocion
 }

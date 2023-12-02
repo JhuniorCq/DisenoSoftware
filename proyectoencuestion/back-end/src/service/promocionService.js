@@ -16,6 +16,16 @@ class PromocionService {
             throw error;
         }
     }
+
+    async modificarEstadoPromocion(promocion_id) {
+        try {
+            const result = await promocionRepository.modificarEstadoPromocion(promocion_id);
+
+            return result;
+        } catch(error) {
+            throw console.error('Error en modificarEstadoPromocion en promocionService.js', error.message);
+        }
+    }
 }
 
 module.exports = {

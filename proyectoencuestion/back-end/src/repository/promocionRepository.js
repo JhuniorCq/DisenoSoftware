@@ -15,6 +15,18 @@ class PromocionRepository {
             throw error;
         }
     }
+
+    async modificarEstadoPromocion(promocion_id) {
+        try {
+            const result = await pool.query('UPDATE promocion SET estado = $1 WHERE promocion_id = $2', ['No valido', promocion_id]);
+
+            console.log(`Se han modificado ${result.rowCount} filas -> El estado de la promoción #${promocion_id}`);
+
+            return result.rowCount;
+        } catch(error) {
+            throw console.error('Error en modificarEstadoPromocion en promocionRepository.js', error.message);
+        }
+    }
 }
 
 
