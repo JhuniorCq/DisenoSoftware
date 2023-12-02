@@ -116,6 +116,7 @@ function FormCrearCorreoDos({ siguienteIsClicked, setSiguienteIsClicked }) {
         ...dataCorreoForm,
         ...newFormSinSend,
         hora: horaActual,
+        fecha_envio: formattedDate,
       };
 
       axios

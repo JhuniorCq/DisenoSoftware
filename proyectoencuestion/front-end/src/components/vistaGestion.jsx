@@ -111,7 +111,7 @@ const VistaGestion = () => {
           <div className={`${styles.containerTabla} table-responsive`}>
             <table className="table table-info table-hover align-middle">
               <thead className="table-light align-middle">
-                <tr>
+                <tr key={"table"}>
                   <th>Id</th>
                   <th>Nombre de la campaña</th>
                   <th>Tipo de campaña</th>
@@ -130,12 +130,13 @@ const VistaGestion = () => {
                       if (opcionSeleccionada === "Este mes") {
                         const fechaActual = new Date();
                         const fechaCreacion = new Date(usuario.fecha_creacion);
+                        const tiempoTranscurrido =
+                          (fechaActual - fechaCreacion) / (1000 * 3600 * 24);
                         return (
                           fechaActual.getFullYear() ===
                             fechaCreacion.getFullYear() &&
-                          fechaActual.getMonth() === fechaCreacion.getMonth()
+                          tiempoTranscurrido < 30
                         );
-                        //comparamos que sea del mismo año la fecha ingresada (por si el usuario se equivoca en poner el año)
                       } else if (
                         opcionSeleccionada === "Creado recientemente"
                       ) {
