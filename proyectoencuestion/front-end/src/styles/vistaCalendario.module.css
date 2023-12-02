@@ -139,13 +139,13 @@ body{
 }
 
 .containerTituloNota, .containerFechaNota,
-.containerNotas{
+.containerNotas,.containerHoraNota{
 
     display: flex;
     flex-direction: column;
 }
 
-.containerTituloNota > input, .containerFechaNota > input{
+.containerTituloNota > input, .containerFechaNota > input, .containerHoraNota> input{
     border-radius: 3px;
     border: 1px solid var(--color-btn-primary);
     outline: none;
@@ -154,7 +154,7 @@ body{
 }
 
 .containerTituloNota > label, .containerFechaNota > label,
-.containerNotas > label{
+.containerNotas > label, .containerHoraNota> label{
     font-family: 'Mooli', sans-serif;
     letter-spacing: 1.5px;
     margin-bottom: .7rem;
@@ -172,7 +172,8 @@ body{
 }
 
 .botonesMenu{
-
+    margin-top: 20px;
+    height: 100px;
     display: flex;
     justify-content: space-around;
     margin: 1rem 0;
@@ -188,6 +189,8 @@ body{
 }
 
 .boton__crear{
+    height: 50px;
+    width: 100px;
     background-color: var(--color-btn-primary);
     transition: background-color .3s ease;
 }
@@ -197,6 +200,8 @@ body{
 }
 
 .boton__cancelar{
+    height: 50px;
+    width: 100px;
     background-color: var(--color-btn-primary);
     transition: background-color .3s ease;
 }

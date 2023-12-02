@@ -63,6 +63,11 @@ const VistaCalendario = () => {
               <label for='fecha'>Fecha</label>
               <input type="date" id="fecha" required />
             </div>
+            <div className={styles.containerHoraNota}>
+              <label htmlFor='hora'>Hora</label>
+              <input type="time" id="hora" required />
+            </div>
+
             <div className={styles.containerNotas}>
               <label for='notas'>Notas</label>
               <textarea className={styles.textAreaa} id="notas"></textarea>
